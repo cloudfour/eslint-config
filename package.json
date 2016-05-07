@@ -6,6 +6,7 @@
   "homepage": "https://github.com/cloudfour/eslint-config",
   "bugs": "https://github.com/cloudfour/eslint-config/issues",
   "license": "MIT",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cloudfour/eslint-config.git"
