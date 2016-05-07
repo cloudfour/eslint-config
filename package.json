@@ -15,6 +15,7 @@
     "Erik Jung <erik@cloudfour.com>"
   ],
   "files": [
+    ".eslintrc.json",
     "index.js",
     "babel.js"
   ],
