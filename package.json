@@ -15,7 +15,7 @@
   ],
   "files": [
     "index.js",
-    "frontend.js"
+    "babel.js"
   ],
   "engines": {
     "node": ">=4.0.0"
