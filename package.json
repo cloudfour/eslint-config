@@ -1,0 +1,34 @@
+{
+  "name": "@cloudfour/eslint-config",
+  "version": "0.1.0",
+  "description": "Cloud Four's shareable ESLint configuration",
+  "author": "Cloud Four <info@cloudfour.com> (http://cloudfour.com)",
+  "homepage": "https://github.com/cloudfour/eslint-config",
+  "bugs": "https://github.com/cloudfour/eslint-config/issues",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudfour/eslint-config.git"
+  },
+  "contributors": [
+    "Erik Jung <erik@cloudfour.com>"
+  ],
+  "files": [
+    "index.js",
+    "frontend.js"
+  ],
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "keywords": [
+    "eslint",
+    "eslintconfig"
+  ],
+  "scripts": {
+    "release": "echo \"release\"",
+    "test": "echo \"test\""
+  },
+  "dependencies": {
+    "babel-eslint": "^6.0.4"
+  }
+}
