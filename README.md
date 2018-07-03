@@ -1,25 +1,46 @@
-# cloudfour/eslint-config
+# @cloudfour/eslint-config
 
 This is our ESLint configuration.
 
 ## Installation
 
 ```sh
-$ npm install --save-dev cloudfour/eslint-config
+npm install --save-dev @cloudfour/eslint-config eslint prettier
+```
+
+You will also have to install some plugins that this depends on, because of a [limitation of ESLint](https://github.com/eslint/eslint/issues/3458)
+
+```sh
+npm install --save-dev eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard eslint-plugin-unicorn
 ```
 
 ## Usage
 
-Add an `.eslintrc` file to your project and extend this configuration.
+Add this to your `package.json`:
 
-The default configuration will work for most Node/CommonJS projects:
-
-```yaml
-extends: '@cloudfour/eslint-config'
+```json
+  "scripts": {
+    "check-lint": "prettier --list-different '**/*.js' && eslint '**/*.js'",
+    "lint": "prettier --write '**/*.js' && eslint --fix '**/*.js'"
+  },
+  "eslintConfig": {
+    "extends": "@cloudfour/eslint-config"
+  },
+  "prettier": {
+    "singleQuote": true
+  }
 ```
 
-The `babel` configuration can be used for projects using Babel. You will want this specifically if you're using ES modules (`import` and `export`).
+### For CI
 
-```yaml
-extends: '@cloudfour/eslint-config/babel'
+```sh
+npm run check-lint
+```
+
+### Locally
+
+(this will automatically fix many linting issues)
+
+```sh
+npm run lint
 ```
