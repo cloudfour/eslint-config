@@ -51,7 +51,8 @@
   "scripts": {
     "check-lint": "eslint . && prettier --list-different '**/*.js'",
     "lint": "eslint . && prettier --write '**/*.js'",
-    "prepublishOnly": "npm run check-lint && npm run build",
+    "prepublishOnly": "npm ci && npm link && npm link @cloudfour/eslint-plugin && npm run build && npm run check-lint",
+    "postpublish": "git tag v$npm_package_version && git push --tags",
     "build": "node build.js"
   },
   "eslintConfig": {
