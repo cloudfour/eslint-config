@@ -28,11 +28,11 @@
     "eslintconfig"
   ],
   "dependencies": {
-    "babel-eslint": "^6.0.4",
-    "deepmerge": "^2.1.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-config-xo": "^0.23.0"
+    "babel-eslint": "^10.0.1",
+    "deepmerge": "^2.2.1",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-config-xo": "^0.25.0"
   },
   "peerDependencies": {
     "eslint": "^5.0.1",
@@ -46,6 +46,6 @@
     "singleQuote": true
   },
   "devDependencies": {
-    "prettier": "^1.13.7"
+    "prettier": "^1.15.2"
   }
 }
