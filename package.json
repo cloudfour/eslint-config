@@ -1,5 +1,5 @@
 {
-  "name": "@cloudfour/eslint-config",
+  "name": "@cloudfour/eslint-plugin",
   "version": "1.0.0",
   "description": "Cloud Four's shareable ESLint configuration",
   "author": "Cloud Four <info@cloudfour.com> (http://cloudfour.com)",
@@ -28,19 +28,18 @@
     "eslintconfig"
   ],
   "dependencies": {
+    "@babel/core": "^7.1.6",
     "babel-eslint": "^10.0.1",
-    "deepmerge": "^2.2.1",
     "eslint-config-prettier": "^3.3.0",
     "eslint-config-standard": "^12.0.0",
-    "eslint-config-xo": "^0.25.0"
+    "eslint-config-xo": "^0.25.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0"
   },
   "peerDependencies": {
-    "eslint": "^5.9.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.8.0",
-    "eslint-plugin-standard": "^3.1.0",
-    "eslint-plugin-unicorn": "^4.0.3"
+    "eslint": "^5.9.0"
   },
   "prettier": {
     "singleQuote": true
@@ -48,5 +47,14 @@
   "devDependencies": {
     "eslint": "^5.9.0",
     "prettier": "^1.15.2"
+  },
+  "scripts": {
+    "check-lint": "eslint . && prettier --list-different '**/*.js'",
+    "lint": "eslint . && prettier --write '**/*.js'",
+    "prepublishOnly": "npm run check-lint && npm run build",
+    "build": "node build.js"
+  },
+  "eslintConfig": {
+    "extends": "plugin:@cloudfour/recommended"
   }
 }
