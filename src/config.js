@@ -51,7 +51,14 @@ module.exports.configs = {
         // Overrides
         'valid-jsdoc': 'off',
         'no-return-assign': ['error'],
-        'func-names': 'off'
+        'func-names': 'off',
+        'prefer-const': 'error',
+        'no-var': 'error',
+        'object-shorthand': 'error',
+        'prefer-object-spread': 'error',
+        'prefer-spread': 'error',
+        'prefer-destructuring': ['error', { array: false }],
+        'prefer-rest-params': 'error'
       })
     )
   }
