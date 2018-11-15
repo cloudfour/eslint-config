@@ -16,7 +16,7 @@ with `cloudfour/`, because the plugins are exposed through this "super-plugin".
 
 ```json
 {
-  "extends": ["plugin:cloudfour/recommended"],
+  "extends": ["plugin:@cloudfour/recommended"],
   "rules": {
     "cloudfour/promise/no-native": "off"
   }
@@ -39,7 +39,7 @@ Add this to your `package.json`:
     "lint": "prettier --write '**/*.js' && eslint --fix '**/*.js'"
   },
   "eslintConfig": {
-    "extends": "plugin:cloudfour/recommended"
+    "extends": "plugin:@cloudfour/recommended"
   },
   "prettier": {
     "singleQuote": true
