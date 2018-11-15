@@ -1,7 +1,11 @@
+// ESLint configs
 const xo = require('eslint-config-xo');
 const standard = require('eslint-config-standard');
 const prettier = require('eslint-config-prettier');
 const prettierStandard = require('eslint-config-prettier/standard');
+
+// ESLint plugins
+const node = require('eslint-plugin-node').configs.recommended;
 
 /**
  * @param {{[key: string]: any}} rules the rules to process
@@ -41,6 +45,9 @@ module.exports.configs = {
     plugins: ['@cloudfour'],
     rules: removeUnused(
       prefix({
+        // Plugins' recommended configs
+        ...node.rules,
+
         // "standards"
         ...xo.rules,
         ...standard.rules,
@@ -58,7 +65,9 @@ module.exports.configs = {
         'prefer-object-spread': 'error',
         'prefer-spread': 'error',
         'prefer-destructuring': ['error', { array: false }],
-        'prefer-rest-params': 'error'
+        'prefer-rest-params': 'error',
+        'node/no-unsupported-features/es-syntax': 'off', // Does not account for transpilation
+        'node/shebang': 'off' // Tons of false positives
       })
     )
   }
