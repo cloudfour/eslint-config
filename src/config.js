@@ -5,7 +5,6 @@ const prettierStandard = require('eslint-config-prettier/standard');
 
 /**
  * @param {{[key: string]: any}} rules the rules to process
- * @param {false} removeUnused whether to remove rules set to 'off' or 0
  */
 const prefix = rules =>
   Object.entries(rules).reduce((output, [key, val]) => {
