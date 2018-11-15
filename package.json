@@ -16,9 +16,9 @@
     "Caleb Eby <caleb@cloudfour.com>"
   ],
   "files": [
-    ".eslintrc.json",
-    "index.js",
-    "babel.js"
+    "dist/config.js",
+    "src/rules.js",
+    "index.js"
   ],
   "engines": {
     "node": ">=4.0.0"
