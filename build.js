@@ -14,7 +14,7 @@ const stringify = data =>
       return (
         resolveStart +
         v // Replace the static node_modules path with a relative path
-          .replace(join(__dirname, 'node_modules' + sep), '')
+          .replace(join(__dirname, `node_modules${sep}`), '')
           .replace(/\/.*$/, '') +
         resolveEnd
       );
@@ -22,7 +22,7 @@ const stringify = data =>
     return v;
   })}`.replace(
     // Wrap the relative parser path with require.resolve
-    new RegExp('"' + resolveStart + '(.*?)' + resolveEnd + '"', 'g'),
+    new RegExp(`"${resolveStart}(.*?)${resolveEnd}"`, 'g'),
     (_match, replacement) => {
       return `require.resolve("${replacement}")`;
     }

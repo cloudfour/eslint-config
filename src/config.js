@@ -12,7 +12,7 @@ const node = require('eslint-plugin-node').configs.recommended;
  */
 const prefix = rules =>
   Object.entries(rules).reduce((output, [key, val]) => {
-    if (key.includes('/')) key = '@cloudfour/' + key;
+    if (key.includes('/')) key = `@cloudfour/${key}`;
     output[key] = val;
     return output;
   }, {});
@@ -66,6 +66,7 @@ module.exports.configs = {
         'prefer-spread': 'error',
         'prefer-destructuring': ['error', { array: false }],
         'prefer-rest-params': 'error',
+        'prefer-template': 'error',
         'node/no-unsupported-features/es-syntax': 'off', // Does not account for transpilation
         'node/shebang': 'off' // Tons of false positives
       })
