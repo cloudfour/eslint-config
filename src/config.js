@@ -68,6 +68,7 @@ module.exports.configs = {
         'prefer-rest-params': 'error',
         'prefer-template': 'error',
         'node/no-unsupported-features/es-syntax': 'off', // Does not account for transpilation
+        'node/no-unpublished-require': 'off', // Does not account for "build" scripts
         'node/shebang': 'off' // Tons of false positives
       })
     )

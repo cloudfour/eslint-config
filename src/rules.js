@@ -5,7 +5,7 @@ const promise = require('eslint-plugin-promise').rules;
 
 const hoist = (prefix, rules) =>
   Object.entries(rules).reduce((output, [key, val]) => {
-    output[prefix + '/' + key] = val;
+    output[`${prefix}/${key}`] = val;
     return output;
   }, {});
 
