@@ -41,11 +41,13 @@ ruleTester.run('no-param-reassign', rule, {
     {
       code:
         'reduce(function (acc, [key, val]) { if (key.startsWith("/")) {key += "asdf"} })',
-      options: [
-        {
-          ignoredWithinCallbacks: ['reduce']
-        }
-      ],
+      options: [{ ignoreWithinCallbacks: ['reduce'] }],
+      parserOptions: { ecmaVersion: 6 }
+    },
+    {
+      code:
+        'foo.reduce(function (acc, [key, val]) { if (key.startsWith("/")) {key += "asdf"} })',
+      options: [{ ignoreWithinCallbacks: ['reduce'] }],
       parserOptions: { ecmaVersion: 6 }
     },
     {

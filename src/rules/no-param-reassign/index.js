@@ -27,27 +27,17 @@ module.exports = {
           {
             type: 'object',
             properties: {
-              props: {
-                enum: [false]
-              },
-              ignoredWithinCallbacks: {
-                type: 'array',
-                items: { type: 'string' }
-              }
-            },
-            additionalProperties: false
-          },
-          {
-            type: 'object',
-            properties: {
-              props: {
-                enum: [true]
-              },
+              props: { type: 'boolean' },
               ignorePropertyModificationsFor: {
                 type: 'array',
                 items: {
                   type: 'string'
                 },
+                uniqueItems: true
+              },
+              ignoreWithinCallbacks: {
+                type: 'array',
+                items: { type: 'string' },
                 uniqueItems: true
               }
             },
@@ -65,8 +55,8 @@ module.exports = {
         context.options[0].ignorePropertyModificationsFor) ||
       [];
 
-    const ignoredWithinCallbacks =
-      (context.options[0] && context.options[0].ignoredWithinCallbacks) || [];
+    const ignoreWithinCallbacks =
+      (context.options[0] && context.options[0].ignoreWithinCallbacks) || [];
 
     /**
      * Checks whether or not the reference modifies properties of its variable.
@@ -183,11 +173,13 @@ module.exports = {
      */
     function checkForFunction(node) {
       // If it is within an ignored callback, don't report any assignments
-      if (
-        node.parent.type === 'CallExpression' &&
-        ignoredWithinCallbacks.includes(node.parent.callee.name)
-      ) {
-        return;
+      if (node.parent.type === 'CallExpression') {
+        const { callee } = node.parent;
+        const name =
+          callee.type === 'Identifier'
+            ? callee.name
+            : callee.property && callee.property.name;
+        if (ignoreWithinCallbacks.includes(name)) return;
       }
       context.getDeclaredVariables(node).forEach(checkVariable);
     }

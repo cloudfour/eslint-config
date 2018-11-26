@@ -12,7 +12,9 @@ const node = require('eslint-plugin-node').configs.recommended;
  */
 const prefix = rules =>
   Object.entries(rules).reduce((output, [key, val]) => {
-    if (key.includes('/')) key = `@cloudfour/${key}`;
+    if (key.includes('/') && !key.startsWith('@cloudfour/')) {
+      key = `@cloudfour/${key}`;
+    }
     output[key] = val;
     return output;
   }, {});
@@ -54,6 +56,12 @@ module.exports.configs = {
 
         ...prettier.rules, // Undoes core stylistic rules
         ...prettierStandard.rules, // Undoes stylistic rules in standard plugin
+
+        // Custom Rules
+        '@cloudfour/no-param-reassign': [
+          'error',
+          { ignoreWithinCallbacks: ['reduce'] }
+        ],
 
         // Overrides
         'valid-jsdoc': 'off',
