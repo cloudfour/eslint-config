@@ -1,14 +1,20 @@
+// ESLint configs
 const xo = require('eslint-config-xo');
 const standard = require('eslint-config-standard');
 const prettier = require('eslint-config-prettier');
 const prettierStandard = require('eslint-config-prettier/standard');
+
+// ESLint plugins
+const node = require('eslint-plugin-node').configs.recommended;
 
 /**
  * @param {{[key: string]: any}} rules the rules to process
  */
 const prefix = rules =>
   Object.entries(rules).reduce((output, [key, val]) => {
-    if (key.includes('/')) key = '@cloudfour/' + key;
+    if (key.includes('/') && !key.startsWith('@cloudfour/')) {
+      key = `@cloudfour/${key}`;
+    }
     output[key] = val;
     return output;
   }, {});
@@ -41,6 +47,9 @@ module.exports.configs = {
     plugins: ['@cloudfour'],
     rules: removeUnused(
       prefix({
+        // Plugins' recommended configs
+        ...node.rules,
+
         // "standards"
         ...xo.rules,
         ...standard.rules,
@@ -48,10 +57,27 @@ module.exports.configs = {
         ...prettier.rules, // Undoes core stylistic rules
         ...prettierStandard.rules, // Undoes stylistic rules in standard plugin
 
+        // Custom Rules
+        '@cloudfour/no-param-reassign': [
+          'error',
+          { ignoreWithinCallbacks: ['reduce'] }
+        ],
+
         // Overrides
         'valid-jsdoc': 'off',
         'no-return-assign': ['error'],
-        'func-names': 'off'
+        'func-names': 'off',
+        'prefer-const': 'error',
+        'no-var': 'error',
+        'object-shorthand': 'error',
+        'prefer-object-spread': 'error',
+        'prefer-spread': 'error',
+        'prefer-destructuring': ['error', { array: false }],
+        'prefer-rest-params': 'error',
+        'prefer-template': 'error',
+        'node/no-unsupported-features/es-syntax': 'off', // Does not account for transpilation
+        'node/no-unpublished-require': 'off', // Does not account for "build" scripts
+        'node/shebang': 'off' // Tons of false positives
       })
     )
   }

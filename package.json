@@ -21,7 +21,7 @@
     "index.js"
   ],
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=8.0.0"
   },
   "keywords": [
     "eslint",
@@ -46,14 +46,16 @@
     "eslint-config-prettier": "^3.3.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-config-xo": "^0.25.0",
+    "jest": "^23.6.0",
     "prettier": "^1.15.2"
   },
   "scripts": {
     "check-lint": "eslint . && prettier --list-different '**/*.js'",
-    "lint": "eslint . && prettier --write '**/*.js'",
+    "lint": "eslint --fix . && prettier --write '**/*.js'",
     "prepublishOnly": "npm ci && npm link && npm link @cloudfour/eslint-plugin && npm run build && npm run check-lint",
     "postpublish": "git tag v$npm_package_version && git push --tags",
-    "build": "node build.js"
+    "build": "node build.js",
+    "test": "jest"
   },
   "eslintConfig": {
     "extends": "plugin:@cloudfour/recommended"
