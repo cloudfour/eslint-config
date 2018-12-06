@@ -39,9 +39,6 @@
   "peerDependencies": {
     "eslint": "^5.9.0"
   },
-  "prettier": {
-    "singleQuote": true
-  },
   "devDependencies": {
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.3.0",
@@ -57,6 +54,9 @@
     "postpublish": "git tag v$npm_package_version && git push --tags",
     "build": "node build.js",
     "test": "jest"
+  },
+  "prettier": {
+    "singleQuote": true
   },
   "eslintConfig": {
     "extends": "plugin:@cloudfour/recommended"
