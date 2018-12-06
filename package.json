@@ -18,6 +18,8 @@
   "files": [
     "dist/config.js",
     "src/rules.js",
+    "src/rules/**/*.js",
+    "!src/rules/**/*.test.js",
     "index.js"
   ],
   "engines": {
