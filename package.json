@@ -28,26 +28,24 @@
     "eslintconfig"
   ],
   "dependencies": {
-    "@babel/core": "^7.1.6",
+    "@babel/core": "^7.2.0",
     "babel-eslint": "^10.0.1",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0"
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-unicorn": "^6.0.1"
   },
   "peerDependencies": {
     "eslint": "^5.9.0"
-  },
-  "prettier": {
-    "singleQuote": true
   },
   "devDependencies": {
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-config-standard": "^12.0.0",
-    "eslint-config-xo": "^0.25.0",
+    "eslint-config-xo": "^0.25.1",
     "jest": "^23.6.0",
-    "prettier": "^1.15.2"
+    "prettier": "^1.15.3"
   },
   "scripts": {
     "check-lint": "eslint . && prettier --list-different '**/*.js'",
@@ -56,6 +54,9 @@
     "postpublish": "git tag v$npm_package_version && git push --tags",
     "build": "node build.js",
     "test": "jest"
+  },
+  "prettier": {
+    "singleQuote": true
   },
   "eslintConfig": {
     "extends": "plugin:@cloudfour/recommended"

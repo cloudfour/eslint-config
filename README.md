@@ -10,6 +10,7 @@ The plugins that this exposes are:
 - [`import`](https://github.com/benmosher/eslint-plugin-import)
 - [`standard`](https://github.com/standard/eslint-plugin-standard)
 - [`promise`](https://github.com/xjamundx/eslint-plugin-promise)
+- [`unicorn`](https://github.com/sindresorhus/eslint-plugin-unicorn)
 
 To override settings for any of these plugins, you must prefix the configuration
 with `cloudfour/`, because the plugins are exposed through this "super-plugin".
