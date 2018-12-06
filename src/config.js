@@ -3,9 +3,11 @@ const xo = require('eslint-config-xo');
 const standard = require('eslint-config-standard');
 const prettier = require('eslint-config-prettier');
 const prettierStandard = require('eslint-config-prettier/standard');
+const prettierUnicorn = require('eslint-config-prettier/unicorn');
 
 // ESLint plugins
 const node = require('eslint-plugin-node').configs.recommended;
+const unicorn = require('eslint-plugin-unicorn').configs.recommended;
 
 /**
  * @param {{[key: string]: any}} rules the rules to process
@@ -49,6 +51,7 @@ module.exports.configs = {
       prefix({
         // Plugins' recommended configs
         ...node.rules,
+        ...unicorn.rules,
 
         // "standards"
         ...xo.rules,
@@ -56,6 +59,7 @@ module.exports.configs = {
 
         ...prettier.rules, // Undoes core stylistic rules
         ...prettierStandard.rules, // Undoes stylistic rules in standard plugin
+        ...prettierUnicorn.rules, // Undoes stylistic rules in unicorn plugin
 
         // Custom Rules
         '@cloudfour/no-param-reassign': [
