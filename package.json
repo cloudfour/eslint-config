@@ -42,6 +42,7 @@
     "eslint": "^5.9.0"
   },
   "devDependencies": {
+    "@cloudfour/eslint-plugin": ".",
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-config-standard": "^12.0.0",
@@ -52,7 +53,7 @@
   "scripts": {
     "check-lint": "eslint . && prettier --list-different '**/*.js'",
     "lint": "eslint --fix . && prettier --write '**/*.js'",
-    "prepublishOnly": "npm ci && npm link && npm link @cloudfour/eslint-plugin && npm run build && npm run check-lint",
+    "prepublishOnly": "npm ci && npm run build && npm run check-lint",
     "postpublish": "git tag v$npm_package_version && git push --tags",
     "build": "node build.js",
     "test": "jest"
