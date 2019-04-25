@@ -1,6 +1,6 @@
 # @cloudfour/eslint-plugin
 
-[![NPM version](https://img.shields.io/npm/v/@cloudfour/eslint-plugin.svg)](https://www.npmjs.com/package/@cloudfour/eslint-plugin)
+[![NPM version](https://img.shields.io/npm/v/@cloudfour/eslint-plugin.svg)](https://www.npmjs.com/package/@cloudfour/eslint-plugin) [![Renovate Status](https://badges.renovateapi.com/github/cloudfour/eslint-config)](https://renovatebot.com/)
 
 Cloud Four's ESLint configuration. This exports itself as a "super-plugin" because of a [limitation of ESLint](https://github.com/eslint/eslint/issues/3458).
 
