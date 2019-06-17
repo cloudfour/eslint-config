@@ -69,6 +69,14 @@ module.exports.configs = {
 
         // Overrides
         'valid-jsdoc': 'off',
+        'no-unused-expressions': [
+          'error',
+          {
+            allowShortCircuit: false,
+            allowTernary: false,
+            allowTaggedTemplates: false
+          }
+        ],
         'no-return-assign': ['error'],
         'func-names': 'off',
         'prefer-const': 'error',
