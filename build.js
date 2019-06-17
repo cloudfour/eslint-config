@@ -19,6 +19,7 @@ const stringify = data =>
         resolveEnd
       );
     }
+
     return v;
   })}`.replace(
     // Wrap the relative parser path with require.resolve

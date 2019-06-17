@@ -17,6 +17,7 @@ const prefix = rules =>
     if (key.includes('/') && !key.startsWith('@cloudfour/')) {
       key = `@cloudfour/${key}`;
     }
+
     output[key] = val;
     return output;
   }, {});
@@ -26,6 +27,7 @@ const removeUnused = rules =>
     if (val === 'off' || val === 0 || val[0] === 'off' || val[0] === 0) {
       return output;
     }
+
     output[key] = val;
     return output;
   }, {});
@@ -89,7 +91,8 @@ module.exports.configs = {
         'prefer-template': 'error',
         'node/no-unsupported-features/es-syntax': 'off', // Does not account for transpilation
         'node/no-unpublished-require': 'off', // Does not account for "build" scripts
-        'node/shebang': 'off' // Tons of false positives
+        'node/shebang': 'off', // Tons of false positives
+        'unicorn/prevent-abbreviations': 'off' // Causes more issues than it's worth
       })
     )
   }

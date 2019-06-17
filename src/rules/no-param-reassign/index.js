@@ -82,6 +82,7 @@ module.exports = {
             if (parent.operator === 'delete') {
               return true;
             }
+
             break;
 
           // EXCLUDES: e.g. cache.get(foo.a).b = 0;
@@ -89,6 +90,7 @@ module.exports = {
             if (parent.callee !== node) {
               return false;
             }
+
             break;
 
           // EXCLUDES: e.g. cache[foo.a] = 0;
@@ -96,6 +98,7 @@ module.exports = {
             if (parent.property === node) {
               return false;
             }
+
             break;
 
           // EXCLUDES: e.g. ({ [foo]: a }) = bar;
@@ -144,7 +147,7 @@ module.exports = {
         } else if (
           props &&
           isModifyingProp(reference) &&
-          ignoredPropertyAssignmentsFor.indexOf(identifier.name) === -1
+          !ignoredPropertyAssignmentsFor.includes(identifier.name)
         ) {
           context.report({
             node: identifier,
@@ -181,6 +184,7 @@ module.exports = {
             : callee.property && callee.property.name;
         if (ignoreWithinCallbacks.includes(name)) return;
       }
+
       context.getDeclaredVariables(node).forEach(checkVariable);
     }
 
