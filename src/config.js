@@ -13,20 +13,27 @@ const unicorn = require('eslint-plugin-unicorn').configs.recommended;
  * @param {{[key: string]: any}} rules the rules to process
  */
 const prefix = rules =>
-  Object.entries(rules).reduce((output, [key, val]) => {
+  Object.entries(rules).reduce((output, [key, value]) => {
     if (key.includes('/') && !key.startsWith('@cloudfour/')) {
       key = `@cloudfour/${key}`;
     }
-    output[key] = val;
+
+    output[key] = value;
     return output;
   }, {});
 
 const removeUnused = rules =>
-  Object.entries(rules).reduce((output, [key, val]) => {
-    if (val === 'off' || val === 0 || val[0] === 'off' || val[0] === 0) {
+  Object.entries(rules).reduce((output, [key, value]) => {
+    if (
+      value === 'off' ||
+      value === 0 ||
+      value[0] === 'off' ||
+      value[0] === 0
+    ) {
       return output;
     }
-    output[key] = val;
+
+    output[key] = value;
     return output;
   }, {});
 
@@ -37,7 +44,7 @@ module.exports.configs = {
       sourceType: 'module',
       ecmaFeatures: { jsx: true }
     },
-    env: {
+    environment: {
       node: true,
       es6: true
     },

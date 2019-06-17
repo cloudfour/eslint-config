@@ -14,7 +14,7 @@ module.exports = {
   meta: {
     type: 'suggestion',
 
-    docs: {
+    documents: {
       description: 'disallow reassigning `function` parameters',
       category: 'Best Practices',
       recommended: false,
@@ -27,7 +27,7 @@ module.exports = {
           {
             type: 'object',
             properties: {
-              props: { type: 'boolean' },
+              properties: { type: 'boolean' },
               ignorePropertyModificationsFor: {
                 type: 'array',
                 items: {
@@ -49,7 +49,7 @@ module.exports = {
   },
 
   create(context) {
-    const props = context.options[0] && Boolean(context.options[0].props);
+    const properties = context.options[0] && Boolean(context.options[0].props);
     const ignoredPropertyAssignmentsFor =
       (context.options[0] &&
         context.options[0].ignorePropertyModificationsFor) ||
@@ -63,7 +63,7 @@ module.exports = {
      * @param {Reference} reference - A reference to check.
      * @returns {boolean} Whether or not the reference modifies properties of its variable.
      */
-    function isModifyingProp(reference) {
+    function isModifyingProperty(reference) {
       let node = reference.identifier;
       let parent = node.parent;
 
@@ -82,6 +82,7 @@ module.exports = {
             if (parent.operator === 'delete') {
               return true;
             }
+
             break;
 
           // EXCLUDES: e.g. cache.get(foo.a).b = 0;
@@ -89,6 +90,7 @@ module.exports = {
             if (parent.callee !== node) {
               return false;
             }
+
             break;
 
           // EXCLUDES: e.g. cache[foo.a] = 0;
@@ -96,6 +98,7 @@ module.exports = {
             if (parent.property === node) {
               return false;
             }
+
             break;
 
           // EXCLUDES: e.g. ({ [foo]: a }) = bar;
@@ -142,9 +145,9 @@ module.exports = {
             data: { name: identifier.name }
           });
         } else if (
-          props &&
-          isModifyingProp(reference) &&
-          ignoredPropertyAssignmentsFor.indexOf(identifier.name) === -1
+          properties &&
+          isModifyingProperty(reference) &&
+          !ignoredPropertyAssignmentsFor.includes(identifier.name)
         ) {
           context.report({
             node: identifier,
@@ -181,6 +184,7 @@ module.exports = {
             : callee.property && callee.property.name;
         if (ignoreWithinCallbacks.includes(name)) return;
       }
+
       context.getDeclaredVariables(node).forEach(checkVariable);
     }
 
