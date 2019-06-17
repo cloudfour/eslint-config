@@ -6,8 +6,8 @@ const unicorn = require('eslint-plugin-unicorn').rules;
 const noParamReassign = require('./rules/no-param-reassign');
 
 const hoist = (prefix, rules) =>
-  Object.entries(rules).reduce((output, [key, value]) => {
-    output[`${prefix}/${key}`] = value;
+  Object.entries(rules).reduce((output, [key, val]) => {
+    output[`${prefix}/${key}`] = val;
     return output;
   }, {});
 
