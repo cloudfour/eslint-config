@@ -1,0 +1,28 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.5
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-450202:
+    - babel-eslint > @babel/traverse > @babel/types > lodash:
+        patched: '2019-07-09T22:58:38.182Z'
+    - eslint-plugin-import > lodash:
+        patched: '2019-07-09T22:58:38.182Z'
+    - babel-eslint > @babel/traverse > lodash:
+        patched: '2019-07-09T22:58:38.182Z'
+    - '@babel/core > @babel/generator > lodash':
+        patched: '2019-07-09T22:58:38.182Z'
+    - '@babel/core > @babel/template > @babel/types > lodash':
+        patched: '2019-07-09T22:58:38.182Z'
+    - '@babel/core > lodash':
+        patched: '2019-07-09T22:58:38.182Z'
+    - '@babel/core > @babel/traverse > @babel/helper-function-name > @babel/types > lodash':
+        patched: '2019-07-09T22:58:38.182Z'
+    - babel-eslint > @babel/traverse > @babel/helper-function-name > @babel/types > lodash:
+        patched: '2019-07-09T22:58:38.182Z'
+    - '@babel/core > @babel/helpers > @babel/traverse > @babel/generator > @babel/types > lodash':
+        patched: '2019-07-09T22:58:38.182Z'
+    - babel-eslint > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
+        patched: '2019-07-09T22:58:38.182Z'
+    - '@babel/core > @babel/helpers > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash':
+        patched: '2019-07-09T22:58:38.182Z'

@@ -36,7 +36,8 @@
     "eslint-plugin-node": "^9.0.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "eslint-plugin-unicorn": "^9.0.0"
+    "eslint-plugin-unicorn": "^9.0.0",
+    "snyk": "^1.192.4"
   },
   "peerDependencies": {
     "eslint": "^5.9.0 || ^6.0.0"
@@ -56,12 +57,15 @@
     "prepublishOnly": "npm ci && npm run build && npm run check-lint",
     "postpublish": "git tag v$npm_package_version && git push --tags",
     "build": "node build.js",
-    "test": "jest"
+    "test": "jest",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "prettier": {
     "singleQuote": true
   },
   "eslintConfig": {
     "extends": "plugin:@cloudfour/recommended"
-  }
+  },
+  "snyk": true
 }
