@@ -1,3 +1,5 @@
+/* eslint-disable @cloudfour/unicorn/consistent-function-scoping */
+
 /**
  * @fileoverview Disallow reassignment of function parameters.
  * @author Nat Burns
