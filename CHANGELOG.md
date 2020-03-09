@@ -1,3 +1,13 @@
+# 7.0.0 - 2020-03-09
+
+## Major/Breaking Changes
+
+- Updated `eslint-plugin-unicorn` to v17
+
+## Minor Changes
+
+- Updated `eslint-config-xo` to v0.29.1
+
 # 6.0.0 - 2020-02-07
 
 ## Major/Breaking Changes
