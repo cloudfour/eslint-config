@@ -48,7 +48,7 @@
     "eslint-config-standard": "14.1.1",
     "eslint-config-xo": "0.29.1",
     "jest": "25.1.0",
-    "prettier": "1.19.1"
+    "prettier": "2.0.2"
   },
   "scripts": {
     "check-lint": "eslint . && prettier --list-different '**/*.js'",
