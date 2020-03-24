@@ -1,5 +1,7 @@
 # 8.0.0 - 2020-03-09
 
+Edit: @calebeby pointed out that this didn't need to be a major release because prettier is a devDependency, so it won't affect our users. Sorry for the false alarm!
+
 ## Major/Breaking Changes
 
 - Updated `prettier` to v2
