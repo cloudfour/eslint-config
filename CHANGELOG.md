@@ -1,3 +1,14 @@
+# 8.0.0 - 2020-03-09
+
+## Major/Breaking Changes
+
+- Updated `prettier` to v2
+
+## Minor Changes
+
+- Updated `eslint-config-prettier` to v6.10.1
+- Updated `eslint-config-standard` to v14.1.1
+
 # 7.0.0 - 2020-03-09
 
 ## Major/Breaking Changes
