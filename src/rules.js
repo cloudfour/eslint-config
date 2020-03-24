@@ -17,7 +17,7 @@ const rules = {
   ...hoist('standard', standard),
   ...hoist('promise', promise),
   ...hoist('unicorn', unicorn),
-  'no-param-reassign': noParamReassign
+  'no-param-reassign': noParamReassign,
 };
 
 module.exports = rules;

@@ -8,7 +8,7 @@ const resolveStart = '__REQUIRE_RESOLVE__';
 const resolveEnd = '__END_REQUIRE_RESOLVE__';
 
 // Require.resolve needs to be dynamic and cannot be statically stringified with JSON.stringify
-const stringify = data =>
+const stringify = (data) =>
   `module.exports = ${JSON.stringify(data, (k, v) => {
     if (k === 'parser' && v.startsWith(__dirname)) {
       return (
@@ -29,7 +29,7 @@ const stringify = data =>
     }
   );
 
-const createFile = data =>
+const createFile = (data) =>
   // Clean up the file so that it is readable
   prettier.format(stringify(data), { parser: 'babylon', singleQuote: true });
 

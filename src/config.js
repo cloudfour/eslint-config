@@ -12,7 +12,7 @@ const unicorn = require('eslint-plugin-unicorn').configs.recommended;
 /**
  * @param {{[key: string]: any}} rules the rules to process
  */
-const prefix = rules =>
+const prefix = (rules) =>
   Object.entries(rules).reduce((output, [key, val]) => {
     if (key.includes('/') && !key.startsWith('@cloudfour/')) {
       key = `@cloudfour/${key}`;
@@ -22,7 +22,7 @@ const prefix = rules =>
     return output;
   }, {});
 
-const removeUnused = rules =>
+const removeUnused = (rules) =>
   Object.entries(rules).reduce((output, [key, val]) => {
     if (val === 'off' || val === 0 || val[0] === 'off' || val[0] === 0) {
       return output;
@@ -37,16 +37,16 @@ module.exports.configs = {
     parserOptions: {
       ecmaVersion: 2018,
       sourceType: 'module',
-      ecmaFeatures: { jsx: true }
+      ecmaFeatures: { jsx: true },
     },
     env: {
       node: true,
-      es6: true
+      es6: true,
     },
     globals: {
       document: false,
       navigator: false,
-      window: false
+      window: false,
     },
     plugins: ['@cloudfour'],
     rules: removeUnused(
@@ -66,7 +66,7 @@ module.exports.configs = {
         // Custom Rules
         '@cloudfour/no-param-reassign': [
           'error',
-          { ignoreWithinCallbacks: ['reduce'] }
+          { ignoreWithinCallbacks: ['reduce'] },
         ],
 
         // Overrides
@@ -76,8 +76,8 @@ module.exports.configs = {
           {
             allowShortCircuit: false,
             allowTernary: false,
-            allowTaggedTemplates: false
-          }
+            allowTaggedTemplates: false,
+          },
         ],
         'no-return-assign': ['error'],
         'func-names': 'off',
@@ -92,8 +92,8 @@ module.exports.configs = {
         'node/no-unsupported-features/es-syntax': 'off', // Does not account for transpilation
         'node/no-unpublished-require': 'off', // Does not account for "build" scripts
         'node/shebang': 'off', // Tons of false positives
-        'unicorn/prevent-abbreviations': 'off' // Causes more issues than it's worth
+        'unicorn/prevent-abbreviations': 'off', // Causes more issues than it's worth
       })
-    )
-  }
+    ),
+  },
 };

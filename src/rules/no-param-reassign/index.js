@@ -20,7 +20,7 @@ module.exports = {
       description: 'disallow reassigning `function` parameters',
       category: 'Best Practices',
       recommended: false,
-      url: 'https://eslint.org/docs/rules/no-param-reassign'
+      url: 'https://eslint.org/docs/rules/no-param-reassign',
     },
 
     schema: [
@@ -33,21 +33,21 @@ module.exports = {
               ignorePropertyModificationsFor: {
                 type: 'array',
                 items: {
-                  type: 'string'
+                  type: 'string',
                 },
-                uniqueItems: true
+                uniqueItems: true,
               },
               ignoreWithinCallbacks: {
                 type: 'array',
                 items: { type: 'string' },
-                uniqueItems: true
-              }
+                uniqueItems: true,
+              },
             },
-            additionalProperties: false
-          }
-        ]
-      }
-    ]
+            additionalProperties: false,
+          },
+        ],
+      },
+    ],
   },
 
   create(context) {
@@ -144,7 +144,7 @@ module.exports = {
           context.report({
             node: identifier,
             message: "Assignment to function parameter '{{name}}'.",
-            data: { name: identifier.name }
+            data: { name: identifier.name },
           });
         } else if (
           props &&
@@ -154,7 +154,7 @@ module.exports = {
           context.report({
             node: identifier,
             message: "Assignment to property of function parameter '{{name}}'.",
-            data: { name: identifier.name }
+            data: { name: identifier.name },
           });
         }
       }
@@ -194,7 +194,7 @@ module.exports = {
       // `:exit` is needed for the `node.parent` property of identifier nodes.
       'FunctionDeclaration:exit': checkForFunction,
       'FunctionExpression:exit': checkForFunction,
-      'ArrowFunctionExpression:exit': checkForFunction
+      'ArrowFunctionExpression:exit': checkForFunction,
     };
-  }
+  },
 };
