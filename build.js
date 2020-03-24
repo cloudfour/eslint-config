@@ -31,7 +31,7 @@ const stringify = (data) =>
 
 const createFile = (data) =>
   // Clean up the file so that it is readable
-  prettier.format(stringify(data), { parser: 'babylon', singleQuote: true });
+  prettier.format(stringify(data), { parser: 'babel', singleQuote: true });
 
 // Snapshots the merged config to make debugging rules easier and to reduce dependencies
 writeFileSync(join('dist', 'config.js'), createFile({ configs, environments }));
