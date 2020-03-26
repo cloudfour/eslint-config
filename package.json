@@ -51,8 +51,8 @@
     "prettier": "2.0.2"
   },
   "scripts": {
-    "check-lint": "eslint . && prettier --list-different '**/*.js'",
-    "lint": "eslint --fix . && prettier --write '**/*.js'",
+    "check-lint": "eslint '**/*.js' && prettier --check '**/*.js'",
+    "lint": "eslint --fix '**/*.js' && prettier --write '**/*.js'",
     "prepublishOnly": "npm ci && npm run build && npm run check-lint",
     "postpublish": "git tag v$npm_package_version && git push --tags",
     "build": "node build.js",
