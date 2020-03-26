@@ -42,8 +42,8 @@ Add this to your `package.json`:
 
 ```json
   "scripts": {
-    "check-lint": "prettier --list-different '**/*.js' && eslint '**/*.js'",
-    "lint": "prettier --write '**/*.js' && eslint --fix '**/*.js'"
+    "check-lint": "eslint . && prettier --check .",
+    "lint": "eslint --fix . && prettier --write ."
   },
   "eslintConfig": {
     "extends": "plugin:@cloudfour/recommended"
@@ -71,5 +71,5 @@ npm run lint
 
 This config relies on using a version of eslint installed locally to your project. If you also have eslint installed globally, it's possible to run into conflicts. To avoid any problems, either:
 
-* Just use the `npm run check-lint` and `npm run lint` scripts, which will run the local version of eslint.
-* Or, if you prefer to run eslint by hand, use [npx](https://www.npmjs.com/package/npx), which will run the local version of eslint. eg, `npx eslint '**/*.js'`
+- Just use the `npm run check-lint` and `npm run lint` scripts, which will run the local version of eslint.
+- Or, if you prefer to run eslint by hand, use [npx](https://www.npmjs.com/package/npx), which will run the local version of eslint. eg, `npx eslint '**/*.js'`
