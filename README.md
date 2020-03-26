@@ -42,8 +42,8 @@ Add this to your `package.json`:
 
 ```json
   "scripts": {
-    "check-lint": "eslint '**/*.js' && prettier --check '**/*.js'",
-    "lint": "eslint --fix '**/*.js' && prettier --write '**/*.js'"
+    "check-lint": "eslint . && prettier --check .",
+    "lint": "eslint --fix . && prettier --write ."
   },
   "eslintConfig": {
     "extends": "plugin:@cloudfour/recommended"
