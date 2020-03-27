@@ -6,7 +6,7 @@ const mkdir = require('mkdirplz');
 const rm = require('eliminate');
 const walk = require('powerwalker');
 const { promisify } = require('util');
-const { readFile, writeFile } = require('fs');
+const { readFile, writeFile, existsSync } = require('fs');
 const readFileAsync = promisify(readFile);
 const writeFileAsync = promisify(writeFile);
 const babel = require('@babel/core');
@@ -51,7 +51,7 @@ const getRepoDir = (name) => path.join(reposDir, name);
 const cloneRepo = async (name, url) => {
   console.log(kleur.bold().blue(`Cloning repo: ${name} from ${url}`));
   // Clear out all existing repos
-  await rm(reposDir);
+  if (existsSync(reposDir)) await rm(reposDir);
   await mkdir(reposDir);
   await runCommand('git', ['clone', url, getRepoDir(name)]);
   console.log(kleur.bold().blue(`Done cloning repo: ${name}`));
@@ -196,7 +196,10 @@ const main = async () => {
 
   console.log(kleur.bold().blue('Imported files'));
 
-  await runCommand('npm', ['run', 'lint']);
+  await runCommand('npm', ['run', 'lint']).catch((error) =>
+    // eslint-disable-next-line no-process-exit
+    process.exit(error)
+  );
 };
 
 main();
