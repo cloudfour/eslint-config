@@ -155,7 +155,7 @@ const main = async () => {
       // Used for sorting
       // NumNodeTypes is weighted much more strongly
       // because files tend to have a lot of nodes compared to the number of node types
-      const score = numNodeTypes * 10 + numNodes / 1000 - numLintErrors * 10;
+      const score = numNodeTypes * 10 + numNodes / 1000 - numLintErrors * 30;
       return {
         file,
         contents: prettifiedContents,
