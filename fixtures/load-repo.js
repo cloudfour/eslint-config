@@ -71,7 +71,7 @@ const main = async () => {
 
   const interestingFiles = await Promise.all(
     files
-      .filter((f) => f.endsWith('.js') && !f.includes('test'))
+      .filter((f) => f.endsWith('.js') && !f.replace(name, '').includes('test'))
       .map(async (file) => {
         const contents = await readFileAsync(path.join(reposDir, file), 'utf8');
         return { file, contents };
