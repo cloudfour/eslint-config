@@ -58,6 +58,7 @@
   },
   "scripts": {
     "check-lint": "eslint --format=pretty . && prettier --check .",
+    "load-fixture-repo": "node fixtures/load-repo",
     "lint": "eslint --format=pretty --fix . && prettier --write .",
     "prepublishOnly": "npm ci && npm run build && npm run check-lint",
     "postpublish": "git tag v$npm_package_version && git push --tags",

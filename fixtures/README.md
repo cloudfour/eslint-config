@@ -26,7 +26,7 @@ These files help us ensure that future updates to this ESLint config/plugin do n
 
 ## Adding Fixture Files
 
-1. From the project root, run `./fixtures/load-repo.js`
+1. From the project root, run `npm run load-fixture-repo`
 1. Paste in the URL of the git repo to add fixtures from
 1. Wait for the repo to be cloned, and scanned for files
 1. The importer will suggest files to import based on 3 factors:
