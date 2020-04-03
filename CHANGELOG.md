@@ -1,3 +1,13 @@
+# 9.0.0 - 2020-03-09
+
+## Major/Breaking Changes
+
+- Updated `eslint-plugin-unicorn` to v18
+
+## Minor Changes
+
+- Updated `jest` to v25.2.4
+
 # 8.0.0 - 2020-03-09
 
 Edit: @calebeby pointed out that this didn't need to be a major release because prettier is a devDependency, so it won't affect our users. Sorry for the false alarm!
