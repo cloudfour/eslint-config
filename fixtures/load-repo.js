@@ -83,8 +83,8 @@ const main = async () => {
     fix: true,
   });
 
-  const filesWithNumNodeTypes = await Promise.all(
-    interestingFiles.map(async ({ file, contents }) => {
+  const filesWithNumNodeTypesPromises = interestingFiles.map(
+    async ({ file, contents }) => {
       const seenNodeTypes = new Set();
       let numNodes = 0;
       let parsed;
@@ -166,7 +166,11 @@ const main = async () => {
         numNodeTypes,
         loc: contents.split('\n').length,
       };
-    })
+    }
+  );
+
+  const filesWithNumNodeTypes = await Promise.all(
+    filesWithNumNodeTypesPromises
   );
 
   const sortedFiles = filesWithNumNodeTypes
