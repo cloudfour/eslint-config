@@ -198,10 +198,13 @@ const main = async () => {
 
   console.log(kleur.bold().blue('Imported files'));
 
-  await runCommand('npm', ['run', 'lint']).catch((error) =>
+  await runCommand('npm', ['run', 'lint']).catch((error) => {
+    console.log(
+      '\nRead ./fixtures/README.md to learn how to resolve these lint errors'
+    );
     // eslint-disable-next-line no-process-exit
-    process.exit(error)
-  );
+    process.exit(error);
+  });
 };
 
 main();
