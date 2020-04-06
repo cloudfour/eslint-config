@@ -43,16 +43,23 @@
   },
   "devDependencies": {
     "@cloudfour/eslint-plugin": ".",
+    "eliminate": "1.1.2",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.10.1",
     "eslint-config-standard": "14.1.1",
     "eslint-config-xo": "0.29.1",
+    "eslint-formatter-pretty": "3.0.1",
     "jest": "25.2.7",
-    "prettier": "2.0.4"
+    "kleur": "3.0.3",
+    "mkdirplz": "1.0.2",
+    "powerwalker": "0.1.2",
+    "prettier": "2.0.4",
+    "prompts": "2.3.2"
   },
   "scripts": {
-    "check-lint": "eslint . && prettier --check .",
-    "lint": "eslint --fix . && prettier --write .",
+    "check-lint": "eslint --format=pretty . && prettier --check .",
+    "load-fixture-repo": "node fixtures/load-repo",
+    "lint": "eslint --format=pretty --fix . && prettier --write .",
     "prepublishOnly": "npm ci && npm run build && npm run check-lint",
     "postpublish": "git tag v$npm_package_version && git push --tags",
     "build": "node build.js",
