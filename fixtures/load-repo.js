@@ -153,7 +153,9 @@ const main = async () => {
 
       // Generates a "score" to a file based on the # of nodes, # of node types
       // Used for sorting
-      // NumNodeTypes is weighted much more strongly
+      // Each part of the score has a weighting.
+      // NumLintErrors is weighted negatively because files with more lint errors should have a lower score
+      // NumNodeTypes is weighted much more strongly compared to numNodes
       // because files tend to have a lot of nodes compared to the number of node types
       const score = numNodeTypes * 10 + numNodes / 1000 - numLintErrors * 30;
       return {
