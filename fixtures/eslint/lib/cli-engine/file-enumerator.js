@@ -256,7 +256,6 @@ class FileEnumerator {
   /**
    * Iterate files which are matched by given glob patterns.
    * @param {string|string[]} patternOrPatterns The glob patterns to iterate files.
-   * @returns {IterableIterator<FileAndConfig>} The found files.
    */
   *iterateFiles(patternOrPatterns) {
     const { globInputPaths, errorOnUnmatchedPattern } = internalSlotsMap.get(
@@ -414,7 +413,6 @@ class FileEnumerator {
    * @param {boolean} [options.dotfiles] If `true` then it doesn't skip dot files by default.
    * @param {boolean} [options.recursive] If `true` then it dives into sub directories.
    * @param {InstanceType<Minimatch>} [options.selector] The matcher to choose files.
-   * @returns {IterableIterator<FileEntry>} The found files.
    * @private
    */
   *_iterateFilesRecursive(directoryPath, options) {

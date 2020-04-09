@@ -105,7 +105,7 @@ Mocha.Runner.immediately = function (callback) {
  * This is useful when running tests in a browser because window.onerror will
  * only receive the 'message' attribute of the Error.
  *
- * @param err
+ * @param {Error} err
  */
 mocha.throwError = function (err) {
   uncaughtExceptionHandlers.forEach(function (fn) {

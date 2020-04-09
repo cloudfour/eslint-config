@@ -17,8 +17,8 @@ exports.transforms = {
   /**
    * Takes STDOUT of some command and injects it into the markdown
    *
-   * @param content
-   * @param options
+   * @param {string} content
+   * @param {object} options
    */
   usage: (content, options) => {
     const { executable } = options;
@@ -41,9 +41,9 @@ exports.transforms = {
    * since the `TOC` plugin supplies its own which means we can't use the
    * `maxdepth` option, which we need!
    *
-   * @param content
-   * @param options
-   * @param config
+   * @param {string} content
+   * @param {object} options
+   * @param {object} config
    */
   toc: (content, options, config) => {
     const IGNORED_HEADINGS_REGEXP = /features|table of contents/i;
@@ -63,9 +63,9 @@ exports.transforms = {
    * but does not fetch remote URLs, tries to replace relative paths, and
    * formats in a way our markdown linter likes.
    *
-   * @param content
-   * @param options
-   * @param config
+   * @param {string} content
+   * @param {object} options
+   * @param {object} config
    */
   file: (content, options, config) => {
     let output;
