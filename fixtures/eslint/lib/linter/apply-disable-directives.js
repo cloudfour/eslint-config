@@ -1,5 +1,5 @@
 /**
- * @fileoverview A module that filters reported problems based on `eslint-disable` and `eslint-enable` comments
+ * @file A module that filters reported problems based on `eslint-disable` and `eslint-enable` comments
  * @author Teddy Katz
  */
 
@@ -22,7 +22,7 @@ function compareLocations(itemA, itemB) {
  * This is the same as the exported function, except that it
  * doesn't handle disable-line and disable-next-line directives, and it always reports unused
  * disable directives.
- * @param {Object} options options for applying directives. This is the same as the options
+ * @param {object} options options for applying directives. This is the same as the options
  * for the exported function, except that `reportUnusedDisableDirectives` is not supported
  * (this function always reports unused disable directives).
  * @returns {{problems: Problem[], unusedDisableDirectives: Problem[]}} An object with a list
@@ -111,7 +111,7 @@ function applyDirectives(options) {
 /**
  * Given a list of directive comments (i.e. metadata about eslint-disable and eslint-enable comments) and a list
  * of reported problems, determines which problems should be reported.
- * @param {Object} options Information about directives and problems
+ * @param {object} options Information about directives and problems
  * @param {{
  *      type: ("disable"|"enable"|"disable-line"|"disable-next-line"),
  *      ruleId: (string|null),

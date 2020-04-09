@@ -16,6 +16,9 @@ const stripAnsi = require('strip-ansi');
 exports.transforms = {
   /**
    * Takes STDOUT of some command and injects it into the markdown
+   *
+   * @param content
+   * @param options
    */
   usage: (content, options) => {
     const { executable } = options;
@@ -37,6 +40,10 @@ exports.transforms = {
    * nor can we provide a custom filter.  the custom filter would be required
    * since the `TOC` plugin supplies its own which means we can't use the
    * `maxdepth` option, which we need!
+   *
+   * @param content
+   * @param options
+   * @param config
    */
   toc: (content, options, config) => {
     const IGNORED_HEADINGS_REGEXP = /features|table of contents/i;
@@ -55,6 +62,10 @@ exports.transforms = {
    * Inserts the contents of a file; takes same options as builtin CODE plugin,
    * but does not fetch remote URLs, tries to replace relative paths, and
    * formats in a way our markdown linter likes.
+   *
+   * @param content
+   * @param options
+   * @param config
    */
   file: (content, options, config) => {
     let output;

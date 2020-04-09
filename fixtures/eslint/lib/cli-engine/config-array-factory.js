@@ -1,5 +1,5 @@
 /**
- * @fileoverview The factory of `ConfigArray` objects.
+ * @file The factory of `ConfigArray` objects.
  *
  * This class provides methods to create `ConfigArray` instance.
  *
@@ -83,21 +83,21 @@ const configFilenames = [
 /** @typedef {ConfigArray[0]} ConfigArrayElement */
 
 /**
- * @typedef {Object} ConfigArrayFactoryOptions
+ * @typedef {object} ConfigArrayFactoryOptions
  * @property {Map<string,Plugin>} [additionalPluginPool] The map for additional plugins.
  * @property {string} [cwd] The path to the current working directory.
  * @property {string} [resolvePluginsRelativeTo] A path to the directory that plugins should be resolved from. Defaults to `cwd`.
  */
 
 /**
- * @typedef {Object} ConfigArrayFactoryInternalSlots
+ * @typedef {object} ConfigArrayFactoryInternalSlots
  * @property {Map<string,Plugin>} additionalPluginPool The map for additional plugins.
  * @property {string} cwd The path to the current working directory.
  * @property {string} resolvePluginsRelativeTo An absolute path the the directory that plugins should be resolved from.
  */
 
 /**
- * @typedef {Object} ConfigArrayFactoryLoadingContext
+ * @typedef {object} ConfigArrayFactoryLoadingContext
  * @property {string} filePath The path to the current configuration.
  * @property {string} matchBasePath The base path to resolve relative paths in `overrides[].files`, `overrides[].excludedFiles`, and `ignorePatterns`.
  * @property {string} name The name of the current configuration.
@@ -407,7 +407,7 @@ class ConfigArrayFactory {
   /**
    * Create `ConfigArray` instance from a config data.
    * @param {ConfigData|null} configData The config data to create.
-   * @param {Object} [options] The options.
+   * @param {object} [options] The options.
    * @param {string} [options.basePath] The base path to resolve relative paths in `overrides[].files`, `overrides[].excludedFiles`, and `ignorePatterns`.
    * @param {string} [options.filePath] The path to this config data.
    * @param {string} [options.name] The config name.
@@ -428,7 +428,7 @@ class ConfigArrayFactory {
   /**
    * Load a config file.
    * @param {string} filePath The path to a config file.
-   * @param {Object} [options] The options.
+   * @param {object} [options] The options.
    * @param {string} [options.basePath] The base path to resolve relative paths in `overrides[].files`, `overrides[].excludedFiles`, and `ignorePatterns`.
    * @param {string} [options.name] The config name.
    * @returns {ConfigArray} Loaded config.
@@ -443,7 +443,7 @@ class ConfigArrayFactory {
   /**
    * Load the config file on a given directory if exists.
    * @param {string} directoryPath The path to a directory.
-   * @param {Object} [options] The options.
+   * @param {object} [options] The options.
    * @param {string} [options.basePath] The base path to resolve relative paths in `overrides[].files`, `overrides[].excludedFiles`, and `ignorePatterns`.
    * @param {string} [options.name] The config name.
    * @returns {ConfigArray} Loaded config. An empty `ConfigArray` if any config doesn't exist.

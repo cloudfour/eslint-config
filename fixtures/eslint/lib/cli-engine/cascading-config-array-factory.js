@@ -1,5 +1,5 @@
 /**
- * @fileoverview `CascadingConfigArrayFactory` class.
+ * @file `CascadingConfigArrayFactory` class.
  *
  * `CascadingConfigArrayFactory` class has a responsibility:
  *
@@ -47,7 +47,7 @@ const debug = require('debug')('eslint:cascading-config-array-factory');
 /** @typedef {ReturnType<ConfigArrayFactory["create"]>} ConfigArray */
 
 /**
- * @typedef {Object} CascadingConfigArrayFactoryOptions
+ * @typedef {object} CascadingConfigArrayFactoryOptions
  * @property {Map<string,Plugin>} [additionalPluginPool] The map for additional plugins.
  * @property {ConfigData} [baseConfig] The config by `baseConfig` option.
  * @property {ConfigData} [cliConfig] The config by CLI options (`--env`, `--global`, `--ignore-pattern`, `--parser`, `--parser-options`, `--plugin`, and `--rule`). CLI options overwrite the setting in config files.
@@ -59,7 +59,7 @@ const debug = require('debug')('eslint:cascading-config-array-factory');
  */
 
 /**
- * @typedef {Object} CascadingConfigArrayFactoryInternalSlots
+ * @typedef {object} CascadingConfigArrayFactoryInternalSlots
  * @property {ConfigArray} baseConfigArray The config array of `baseConfig` option.
  * @property {ConfigData} baseConfigData The config data of `baseConfig` option. This is used to reset `baseConfigArray`.
  * @property {ConfigArray} cliConfigArray The config array of CLI options.
@@ -251,7 +251,7 @@ class CascadingConfigArrayFactory {
    * If `filePath` was not given, it returns the config which contains only
    * `baseConfigData` and `cliConfigData`.
    * @param {string} [filePath] The file path to a file.
-   * @param {Object} [options] The options.
+   * @param {object} [options] The options.
    * @param {boolean} [options.ignoreNotFoundError] If `true` then it doesn't throw `ConfigurationNotFoundError`.
    * @returns {ConfigArray} The config array of the file.
    */

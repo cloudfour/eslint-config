@@ -1,5 +1,5 @@
 /**
- * @fileoverview `FileEnumerator` class.
+ * @file `FileEnumerator` class.
  *
  * `FileEnumerator` class has two responsibilities:
  *
@@ -60,7 +60,7 @@ const IGNORED = 2;
 /** @typedef {ReturnType<CascadingConfigArrayFactory["getConfigArrayForFile"]>} ConfigArray */
 
 /**
- * @typedef {Object} FileEnumeratorOptions
+ * @typedef {object} FileEnumeratorOptions
  * @property {CascadingConfigArrayFactory} [configArrayFactory] The factory for config arrays.
  * @property {string} [cwd] The base directory to start lookup.
  * @property {string[]} [extensions] The extensions to match files for directory patterns.
@@ -70,14 +70,14 @@ const IGNORED = 2;
  */
 
 /**
- * @typedef {Object} FileAndConfig
+ * @typedef {object} FileAndConfig
  * @property {string} filePath The path to a target file.
  * @property {ConfigArray} config The config entries of that file.
  * @property {boolean} ignored If `true` then this file should be ignored and warned because it was directly specified.
  */
 
 /**
- * @typedef {Object} FileEntry
+ * @typedef {object} FileEntry
  * @property {string} filePath The path to a target file.
  * @property {ConfigArray} config The config entries of that file.
  * @property {NONE|IGNORED_SILENTLY|IGNORED} flag The flag.
@@ -87,7 +87,7 @@ const IGNORED = 2;
  */
 
 /**
- * @typedef {Object} FileEnumeratorInternalSlots
+ * @typedef {object} FileEnumeratorInternalSlots
  * @property {CascadingConfigArrayFactory} configArrayFactory The factory for config arrays.
  * @property {string} cwd The base directory to start lookup.
  * @property {RegExp|null} extensionRegExp The RegExp to test if a string ends with specific file extensions.
@@ -410,7 +410,7 @@ class FileEnumerator {
   /**
    * Iterate files in a given path.
    * @param {string} directoryPath The path to the target directory.
-   * @param {Object} options The options to iterate files.
+   * @param {object} options The options to iterate files.
    * @param {boolean} [options.dotfiles] If `true` then it doesn't skip dot files by default.
    * @param {boolean} [options.recursive] If `true` then it dives into sub directories.
    * @param {InstanceType<Minimatch>} [options.selector] The matcher to choose files.
@@ -488,7 +488,7 @@ class FileEnumerator {
   /**
    * Check if a given file should be ignored.
    * @param {string} filePath The path to a file to check.
-   * @param {Object} options Options
+   * @param {object} options Options
    * @param {ConfigArray} [options.config] The config for this file.
    * @param {boolean} [options.dotfiles] If `true` then this is not ignore dot files by default.
    * @param {boolean} [options.direct] If `true` then this is a direct specified file.

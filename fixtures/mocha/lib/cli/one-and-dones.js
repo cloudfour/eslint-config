@@ -14,7 +14,7 @@ const Mocha = require('../mocha');
 /**
  * Dumps a sorted list of the enumerable, lower-case keys of some object
  * to `STDOUT`.
- * @param {Object} obj - Object, ostensibly having some enumerable keys
+ * @param {object} obj - Object, ostensibly having some enumerable keys
  * @ignore
  * @private
  */

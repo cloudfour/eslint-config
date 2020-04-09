@@ -1,5 +1,5 @@
 /**
- * @fileoverview A rule to suggest using arrow functions as callbacks.
+ * @file A rule to suggest using arrow functions as callbacks.
  * @author Toru Nagashima
  */
 
@@ -55,7 +55,7 @@ function getVariableOfArguments(scope) {
 /**
  * Checks whether or not a given node is a callback.
  * @param {ASTNode} node A node to check.
- * @returns {Object}
+ * @returns {object}
  *   {boolean} retv.isCallback - `true` if the node is a callback.
  *   {boolean} retv.isLexicalThis - `true` if the node is with `.bind(this)`.
  */

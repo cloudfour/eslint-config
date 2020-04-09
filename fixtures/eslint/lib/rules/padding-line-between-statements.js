@@ -1,5 +1,5 @@
 /**
- * @fileoverview Rule to require or disallow newlines between statements
+ * @file Rule to require or disallow newlines between statements
  * @author Toru Nagashima
  */
 
@@ -26,7 +26,7 @@ const CJS_IMPORT = /^require\(/u;
 /**
  * Creates tester which check if a node starts with specific keyword.
  * @param {string} keyword The keyword to test.
- * @returns {Object} the created tester.
+ * @returns {object} the created tester.
  * @private
  */
 function newKeywordTester(keyword) {
@@ -39,7 +39,7 @@ function newKeywordTester(keyword) {
 /**
  * Creates tester which check if a node starts with specific keyword and spans a single line.
  * @param {string} keyword The keyword to test.
- * @returns {Object} the created tester.
+ * @returns {object} the created tester.
  * @private
  */
 function newSinglelineKeywordTester(keyword) {
@@ -53,7 +53,7 @@ function newSinglelineKeywordTester(keyword) {
 /**
  * Creates tester which check if a node starts with specific keyword and spans multiple lines.
  * @param {string} keyword The keyword to test.
- * @returns {Object} the created tester.
+ * @returns {object} the created tester.
  * @private
  */
 function newMultilineKeywordTester(keyword) {
@@ -67,7 +67,7 @@ function newMultilineKeywordTester(keyword) {
 /**
  * Creates tester which check if a node is specific type.
  * @param {string} type The node type to test.
- * @returns {Object} the created tester.
+ * @returns {object} the created tester.
  * @private
  */
 function newNodeTypeTester(type) {
@@ -527,7 +527,7 @@ module.exports = {
      * Finds the last matched configure from configureList.
      * @param {ASTNode} prevNode The previous statement to match.
      * @param {ASTNode} nextNode The current statement to match.
-     * @returns {Object} The tester of the last matched configure.
+     * @returns {object} The tester of the last matched configure.
      * @private
      */
     function getPaddingType(prevNode, nextNode) {

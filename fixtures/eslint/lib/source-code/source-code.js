@@ -1,5 +1,5 @@
 /**
- * @fileoverview Abstraction of JavaScript source code.
+ * @file Abstraction of JavaScript source code.
  * @author Nicholas C. Zakas
  */
 'use strict';
@@ -156,12 +156,12 @@ function isSpaceBetween(sourceCode, first, second, checkInsideOfJSXText) {
 class SourceCode extends TokenStore {
   /**
    * Represents parsed source code.
-   * @param {string|Object} textOrConfig The source code text or config object.
+   * @param {string|object} textOrConfig The source code text or config object.
    * @param {string} textOrConfig.text The source code text.
    * @param {ASTNode} textOrConfig.ast The Program node of the AST representing the code. This AST should be created from the text that BOM was stripped.
-   * @param {Object|null} textOrConfig.parserServices The parser services.
+   * @param {object|null} textOrConfig.parserServices The parser services.
    * @param {ScopeManager|null} textOrConfig.scopeManager The scope of this source code.
-   * @param {Object|null} textOrConfig.visitorKeys The visitor keys to traverse AST.
+   * @param {object|null} textOrConfig.visitorKeys The visitor keys to traverse AST.
    * @param {ASTNode} [astIfNoConfig] The Program node of the AST representing the code. This AST should be created from the text that BOM was stripped.
    */
   constructor(textOrConfig, astIfNoConfig) {
@@ -203,7 +203,7 @@ class SourceCode extends TokenStore {
 
     /**
      * The parser services of this source code.
-     * @type {Object}
+     * @type {object}
      */
     this.parserServices = parserServices || {};
 
@@ -215,7 +215,7 @@ class SourceCode extends TokenStore {
 
     /**
      * The visitor keys to traverse AST.
-     * @type {Object}
+     * @type {object}
      */
     this.visitorKeys = visitorKeys || Traverser.DEFAULT_VISITOR_KEYS;
 
@@ -324,7 +324,7 @@ class SourceCode extends TokenStore {
   /**
    * Gets all comments for the given node.
    * @param {ASTNode} node The AST node to get the comments for.
-   * @returns {Object} An object containing a leading and trailing array
+   * @returns {object} An object containing a leading and trailing array
    *      of comments indexed by their position.
    * @public
    */
@@ -546,7 +546,7 @@ class SourceCode extends TokenStore {
   /**
    * Converts a source text index into a (line, column) pair.
    * @param {number} index The index of a character in a file
-   * @returns {Object} A {line, column} location object with a 0-indexed column
+   * @returns {object} A {line, column} location object with a 0-indexed column
    * @public
    */
   getLocFromIndex(index) {
@@ -588,7 +588,7 @@ class SourceCode extends TokenStore {
 
   /**
    * Converts a (line, column) pair into a range index.
-   * @param {Object} loc A line/column location
+   * @param {object} loc A line/column location
    * @param {number} loc.line The line number of the location (1-indexed)
    * @param {number} loc.column The column number of the location (0-indexed)
    * @returns {number} The range index of the location in the file.

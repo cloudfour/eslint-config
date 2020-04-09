@@ -32,12 +32,12 @@ function isStatement(node) {
  * Given "bad" source text (e.g. an code sample that causes a rule to crash), tries to return a smaller
  * piece of source text which is also "bad", to make it easier for a human to figure out where the
  * problem is.
- * @param {Object} options Options to process
+ * @param {object} options Options to process
  * @param {string} options.sourceText Initial piece of "bad" source text
  * @param {function(string): boolean} options.predicate A predicate that returns `true` for bad source text and `false` for good source text
  * @param {Parser} [options.parser] The parser used to parse the source text. Defaults to a modified
  * version of espree that uses recent parser options.
- * @param {Object} [options.visitorKeys] The visitor keys of the AST. Defaults to eslint-visitor-keys.
+ * @param {object} [options.visitorKeys] The visitor keys of the AST. Defaults to eslint-visitor-keys.
  * @returns {string} Another piece of "bad" source text, which may or may not be smaller than the original source text.
  */
 function reduceBadExampleSize({

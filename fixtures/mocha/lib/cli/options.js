@@ -87,8 +87,8 @@ const nargOpts = types.array
 /**
  * Wrapper around `yargs-parser` which applies our settings
  * @param {string|string[]} args - Arguments to parse
- * @param {Object} defaultValues - Default values of mocharc.json
- * @param  {...Object} configObjects - `configObjects` for yargs-parser
+ * @param {object} defaultValues - Default values of mocharc.json
+ * @param  {...object} configObjects - `configObjects` for yargs-parser
  * @private
  * @ignore
  */
@@ -143,7 +143,7 @@ const parse = (args = [], defaultValues = {}, ...configObjects) => {
 
 /**
  * Given path to config file in `args.config`, attempt to load & parse config file.
- * @param {Object} [args] - Arguments object
+ * @param {object} [args] - Arguments object
  * @param {string|boolean} [args.config] - Path to config file or `false` to skip
  * @public
  * @memberof module:lib/cli/options
@@ -160,7 +160,7 @@ module.exports.loadRc = loadRc;
 
 /**
  * Given path to `package.json` in `args.package`, attempt to load config from `mocha` prop.
- * @param {Object} [args] - Arguments object
+ * @param {object} [args] - Arguments object
  * @param {string|boolean} [args.config] - Path to `package.json` or `false` to skip
  * @public
  * @memberof module:lib/cli/options

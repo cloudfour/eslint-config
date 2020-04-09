@@ -10,7 +10,7 @@ const createMissingArgumentError = errors.createMissingArgumentError;
  * @param {Suite[]} suites
  * @param {Context} context
  * @param {Mocha} mocha
- * @return {Object} An object containing common functions.
+ * @returns {object} An object containing common functions.
  */
 module.exports = function (suites, context, mocha) {
   /**
@@ -35,7 +35,7 @@ module.exports = function (suites, context, mocha) {
      * root suite execution.
      *
      * @param {Suite} suite The root suite.
-     * @return {Function} A function which runs the root suite
+     * @returns {() => void} A function which runs the root suite
      */
     runWithSuite: function runWithSuite(suite) {
       return function run() {
@@ -47,7 +47,7 @@ module.exports = function (suites, context, mocha) {
      * Execute before running tests.
      *
      * @param {string} name
-     * @param {Function} fn
+     * @param {() => void} fn
      */
     before(name, fn) {
       suites[0].beforeAll(name, fn);
@@ -57,7 +57,7 @@ module.exports = function (suites, context, mocha) {
      * Execute after running tests.
      *
      * @param {string} name
-     * @param {Function} fn
+     * @param {() => void} fn
      */
     after(name, fn) {
       suites[0].afterAll(name, fn);
@@ -67,7 +67,7 @@ module.exports = function (suites, context, mocha) {
      * Execute before each test case.
      *
      * @param {string} name
-     * @param {Function} fn
+     * @param {() => void} fn
      */
     beforeEach(name, fn) {
       suites[0].beforeEach(name, fn);
@@ -77,7 +77,7 @@ module.exports = function (suites, context, mocha) {
      * Execute after each test case.
      *
      * @param {string} name
-     * @param {Function} fn
+     * @param {() => void} fn
      */
     afterEach(name, fn) {
       suites[0].afterEach(name, fn);
@@ -88,7 +88,7 @@ module.exports = function (suites, context, mocha) {
        * Create an exclusive Suite; convenience function
        * See docstring for create() below.
        *
-       * @param {Object} opts
+       * @param {object} opts
        * @returns {Suite}
        */
       only: function only(opts) {
@@ -100,7 +100,7 @@ module.exports = function (suites, context, mocha) {
        * Create a Suite, but skip it; convenience function
        * See docstring for create() below.
        *
-       * @param {Object} opts
+       * @param {object} opts
        * @returns {Suite}
        */
       skip: function skip(opts) {
@@ -111,9 +111,9 @@ module.exports = function (suites, context, mocha) {
       /**
        * Creates a suite.
        *
-       * @param {Object} opts Options
+       * @param {object} opts Options
        * @param {string} opts.title Title of Suite
-       * @param {Function} [opts.fn] Suite Function (not always applicable)
+       * @param {() => void} [opts.fn] Suite Function (not always applicable)
        * @param {boolean} [opts.pending] Is Suite pending?
        * @param {string} [opts.file] Filepath where this Suite resides
        * @param {boolean} [opts.isOnly] Is Suite exclusive?
@@ -160,9 +160,9 @@ module.exports = function (suites, context, mocha) {
       /**
        * Exclusive test-case.
        *
-       * @param {Object} mocha
-       * @param {Function} test
-       * @returns {*}
+       * @param {object} mocha
+       * @param {() => void} test
+       * @returns {any}
        */
       only(mocha, test) {
         test.parent.appendOnlyTest(test);
