@@ -8,9 +8,15 @@ const prettierUnicorn = require('eslint-config-prettier/unicorn');
 // ESLint plugins
 const node = require('eslint-plugin-node').configs.recommended;
 const unicorn = require('eslint-plugin-unicorn').configs.recommended;
+const jsdoc = require('eslint-plugin-jsdoc').configs.recommended;
+
+/** @typedef {0 | 1 | 2 | 'off' | 'warn' | 'error'} ESLintRuleVal */
+/** @typedef {ESLintRuleVal | [ESLintRuleVal, ...unknown[]]} ESLintRuleConfig */
 
 /**
- * @param {{[key: string]: any}} rules the rules to process
+ * Adds the `@cloudfour/` prefix in front of each rule
+ *
+ * @param {{[key: string]: ESLintRuleConfig}} rules the rules to process
  */
 const prefix = (rules) =>
   Object.entries(rules).reduce((output, [key, val]) => {
@@ -22,6 +28,11 @@ const prefix = (rules) =>
     return output;
   }, {});
 
+/**
+ * Removes rules that are set to "off"
+ *
+ * @param {{[key: string]: ESLintRuleConfig}} rules the rules to process
+ */
 const removeUnused = (rules) =>
   Object.entries(rules).reduce((output, [key, val]) => {
     if (val === 'off' || val === 0 || val[0] === 'off' || val[0] === 0) {
@@ -29,6 +40,24 @@ const removeUnused = (rules) =>
     }
 
     output[key] = val;
+    return output;
+  }, {});
+
+/**
+ * Changes all rules that are set to "warn" to "error"
+ *
+ * @param {{[key: string]: ESLintRuleConfig}} rules the rules to process
+ */
+const changeWarnToError = (rules) =>
+  Object.entries(rules).reduce((output, [key, val]) => {
+    if (val === 'warn' || val === 1) {
+      output[key] = 'error';
+    } else if (Array.isArray(val) && (val[0] === 'warn' || val[0] === 1)) {
+      output[key] = ['error', ...val.slice(1)];
+    } else {
+      output[key] = val;
+    }
+
     return output;
   }, {});
 
@@ -43,6 +72,19 @@ module.exports.configs = {
       node: true,
       es6: true,
     },
+    settings: {
+      jsdoc: {
+        mode: 'typescript',
+        tagNamePreference: {
+          TODO: 'todo',
+        },
+        preferredTypes: {
+          '*': 'any',
+          Function: '() => void',
+          function: '() => void',
+        },
+      },
+    },
     globals: {
       document: false,
       navigator: false,
@@ -54,6 +96,7 @@ module.exports.configs = {
         // Plugins' recommended configs
         ...node.rules,
         ...unicorn.rules,
+        ...changeWarnToError(jsdoc.rules),
 
         // "standards"
         ...xo.rules,
@@ -70,7 +113,6 @@ module.exports.configs = {
         ],
 
         // Overrides
-        'valid-jsdoc': 'off',
         'no-unused-expressions': [
           'error',
           {
@@ -93,6 +135,17 @@ module.exports.configs = {
         'node/no-unpublished-require': 'off', // Does not account for "build" scripts
         'node/shebang': 'off', // Tons of false positives
         'unicorn/prevent-abbreviations': 'off', // Causes more issues than it's worth
+
+        // Disabling jsdoc rules that check the types themselves
+        // If you want to have type checking on a project, use a real type checker (typescript) instead
+        'jsdoc/newline-after-description': 'off',
+        'jsdoc/no-undefined-types': 'off',
+        'jsdoc/valid-types': 'off',
+        'jsdoc/require-returns': 'off',
+        'jsdoc/require-param-description': 'off',
+        'jsdoc/require-property-description': 'off',
+        'jsdoc/require-returns-description': 'off',
+        'jsdoc/require-jsdoc': 'off',
       })
     ),
   },
