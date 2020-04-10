@@ -256,6 +256,7 @@ class FileEnumerator {
   /**
    * Iterate files which are matched by given glob patterns.
    * @param {string|string[]} patternOrPatterns The glob patterns to iterate files.
+   * @yields {FileAndConfig} The found files.
    */
   *iterateFiles(patternOrPatterns) {
     const { globInputPaths, errorOnUnmatchedPattern } = internalSlotsMap.get(
