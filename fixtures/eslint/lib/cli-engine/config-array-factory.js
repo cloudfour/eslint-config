@@ -578,7 +578,7 @@ class ConfigArrayFactory {
    * Normalize a given `.eslintignore` data to config array elements.
    * @param {string[]} ignorePatterns The patterns to ignore files.
    * @param {ConfigArrayFactoryLoadingContext} ctx The loading context.
-   * @yields {ConfigArrayElement}
+   * @yields {ConfigArrayElement} The normalized config.
    * @private
    */
   *_normalizeESLintIgnoreData(ignorePatterns, ctx) {
@@ -610,7 +610,7 @@ class ConfigArrayFactory {
    * Normalize a given config to an array.
    * @param {ConfigData|OverrideConfigData} configData The config data to normalize.
    * @param {ConfigArrayFactoryLoadingContext} ctx The loading context.
-   * @yields {ConfigArrayElement}
+   * @yields {ConfigArrayElement} The normalized config.
    * @private
    */
   *_normalizeObjectConfigData(configData, ctx) {
@@ -647,7 +647,7 @@ class ConfigArrayFactory {
    * Normalize a given config to an array.
    * @param {ConfigData} configData The config data to normalize.
    * @param {ConfigArrayFactoryLoadingContext} ctx The loading context.
-   * @yields {ConfigArrayElement}
+   * @yields {ConfigArrayElement} The normalized config.
    * @private
    */
   *_normalizeObjectConfigDataBody(
@@ -1026,7 +1026,7 @@ class ConfigArrayFactory {
    * Take file expression processors as config array elements.
    * @param {Record<string,DependentPlugin>} plugins The plugin definitions.
    * @param {ConfigArrayFactoryLoadingContext} ctx The loading context.
-   * @yields {ConfigArrayElement}
+   * @yields {ConfigArrayElement} The config array elements of file expression processors.
    * @private
    */
   *_takeFileExtensionProcessors(plugins, ctx) {
