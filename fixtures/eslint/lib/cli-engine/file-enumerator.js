@@ -414,6 +414,7 @@ class FileEnumerator {
    * @param {boolean} [options.dotfiles] If `true` then it doesn't skip dot files by default.
    * @param {boolean} [options.recursive] If `true` then it dives into sub directories.
    * @param {InstanceType<Minimatch>} [options.selector] The matcher to choose files.
+   * @yields {IterableIterator<FileEntry>} The found files.
    * @private
    */
   *_iterateFilesRecursive(directoryPath, options) {
