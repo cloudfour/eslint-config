@@ -1,5 +1,5 @@
 /**
- * @fileoverview Common utils for AST.
+ * @file Common utils for AST.
  * @author Gyandeep Singh
  */
 
@@ -228,8 +228,8 @@ function isMethodWhichHasThisArg(node) {
 
 /**
  * Creates the negate function of the given function.
- * @param {Function} f The function to negate.
- * @returns {Function} Negated function.
+ * @param {() => void} f The function to negate.
+ * @returns {() => void} Negated function.
  */
 function negate(f) {
   return (token) => !f(token);
@@ -448,8 +448,8 @@ module.exports = {
 
   /**
    * Determines whether two adjacent tokens are on the same line.
-   * @param {Object} left The left token object.
-   * @param {Object} right The right token object.
+   * @param {object} left The left token object.
+   * @param {object} right The right token object.
    * @returns {boolean} Whether or not the tokens are on the same line.
    * @public
    */

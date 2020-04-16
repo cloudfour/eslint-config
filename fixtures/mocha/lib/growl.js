@@ -22,7 +22,7 @@ const { EVENT_RUN_END } = require('./runner').constants;
  * @see {@link https://github.com/tj/node-growl/blob/master/README.md|Prerequisite Installs}
  * @see {@link Mocha#growl}
  * @see {@link Mocha#isGrowlCapable}
- * @return {boolean} whether Growl notification support can be expected
+ * @returns {boolean} whether Growl notification support can be expected
  */
 exports.isCapable = () => {
   if (!process.browser) {
@@ -94,7 +94,7 @@ const display = (runner) => {
  *
  * @private
  * @callback Growl~growlCB
- * @param {*} err - Error object, or <code>null</code> if successful.
+ * @param {any} err - Error object, or <code>null</code> if successful.
  */
 function onCompletion(err) {
   if (err) {
@@ -109,7 +109,7 @@ function onCompletion(err) {
  * Returns Mocha logo image path.
  *
  * @private
- * @return {string} Pathname of Mocha logo
+ * @returns {string} Pathname of Mocha logo
  */
 const logo = () => {
   return path.join(__dirname, '..', 'assets', 'mocha-logo-96.png');
@@ -125,7 +125,7 @@ const logo = () => {
  *
  * @private
  * @see {@link https://github.com/tj/node-growl/blob/master/lib/growl.js#L28-L126|setupCmd}
- * @return {string[]} names of Growl support binaries
+ * @returns {string[]} names of Growl support binaries
  */
 const getSupportBinaries = () => {
   const binaries = {

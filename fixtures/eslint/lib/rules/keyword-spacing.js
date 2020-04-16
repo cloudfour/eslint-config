@@ -1,5 +1,5 @@
 /**
- * @fileoverview Rule to enforce spacing before and after keywords.
+ * @file Rule to enforce spacing before and after keywords.
  * @author Toru Nagashima
  */
 
@@ -230,8 +230,8 @@ module.exports = {
 
     /**
      * Parses the option object and determines check methods for each keyword.
-     * @param {Object|undefined} options The option object to parse.
-     * @returns {Object} - Normalized option object.
+     * @param {object|undefined} options The option object to parse.
+     * @returns {object} - Normalized option object.
      *      Keys are keywords (there are for every keyword).
      *      Values are instances of `{"before": function, "after": function}`.
      */

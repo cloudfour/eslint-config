@@ -1,5 +1,5 @@
 /**
- * @fileoverview Config initialization wizard.
+ * @file Config initialization wizard.
  * @author Ilya Volodin
  */
 
@@ -35,7 +35,7 @@ const DEFAULT_ECMA_VERSION = 2018;
 /* istanbul ignore next: hard to test fs function */
 /**
  * Create .eslintrc file in the current working directory
- * @param {Object} config object that contains user's answers
+ * @param {object} config object that contains user's answers
  * @param {string} format The file format to write to.
  * @returns {void}
  */
@@ -68,7 +68,7 @@ function writeFile(config, format) {
  * This adds the gotten value to cache at the first time, then reuses it.
  * In a process, this function is called twice, but `npmUtils.fetchPeerDependencies` needs to access network which is relatively slow.
  * @param {string} moduleName The module name to get.
- * @returns {Object} The peer dependencies of the given module.
+ * @returns {object} The peer dependencies of the given module.
  * This object is the object of `peerDependencies` field of `package.json`.
  * Returns null if npm was not found.
  */
@@ -89,7 +89,7 @@ getPeerDependencies.cache = new Map();
 
 /**
  * Return necessary plugins, configs, parsers, etc. based on the config
- * @param   {Object} config  config object
+ * @param   {object} config  config object
  * @param   {boolean} [installESLint=true]  If `false` is given, it does not install eslint.
  * @returns {string[]} An array of modules to be installed.
  */
@@ -150,9 +150,9 @@ function getModulesList(config, installESLint) {
  *
  * Note: This clones the config object and returns a new config to avoid mutating
  * the original config parameter.
- * @param   {Object} answers  answers received from inquirer
- * @param   {Object} config   config object
- * @returns {Object}          config object with configured rules
+ * @param   {object} answers  answers received from inquirer
+ * @param   {object} config   config object
+ * @returns {object}          config object with configured rules
  */
 function configureRules(answers, config) {
   const BAR_TOTAL = 20;
@@ -275,8 +275,8 @@ function configureRules(answers, config) {
 
 /**
  * Process user's answers and create config object
- * @param {Object} answers answers received from inquirer
- * @returns {Object} config object
+ * @param {object} answers answers received from inquirer
+ * @returns {object} config object
  */
 function processAnswers(answers) {
   let config = {
@@ -383,7 +383,7 @@ function getLocalESLintVersion() {
 
 /**
  * Get the shareable config name of the chosen style guide.
- * @param {Object} answers The answers object.
+ * @param {object} answers The answers object.
  * @returns {string} The shareable config name.
  */
 function getStyleGuideName(answers) {
@@ -396,7 +396,7 @@ function getStyleGuideName(answers) {
 
 /**
  * Check whether the local ESLint version conflicts with the required version of the chosen shareable config.
- * @param {Object} answers The answers object.
+ * @param {object} answers The answers object.
  * @returns {boolean} `true` if the local ESLint is found then it conflicts with the required version of the chosen shareable config.
  */
 function hasESLintVersionConflict(answers) {

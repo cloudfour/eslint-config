@@ -86,8 +86,8 @@ const propTypes = {
  * Will specift if there are results in the list, and if so, how many,
  * and what keys are relevant.
  *
- * @param {Object} param the downshift state and other relevant properties
- * @return {String} the a11y status message
+ * @param {object} param the downshift state and other relevant properties
+ * @returns {string} the a11y status message
  */
 function getA11yStatusMessage({ isOpen, resultCount }) {
   if (!isOpen) {

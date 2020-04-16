@@ -1,5 +1,5 @@
 /**
- * @fileoverview `IgnorePattern` class.
+ * @file `IgnorePattern` class.
  *
  * `IgnorePattern` class has the set of glob patterns and the base path.
  *

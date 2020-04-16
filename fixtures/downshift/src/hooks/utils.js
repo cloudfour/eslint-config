@@ -112,9 +112,9 @@ function useEnhancedReducer(reducer, initialState, props) {
 /**
  * Default state reducer that returns the changes.
  *
- * @param {Object} s state.
- * @param {Object} a action with changes.
- * @returns {Object} changes.
+ * @param {object} s state.
+ * @param {object} a action with changes.
+ * @returns {object} changes.
  */
 function stateReducer(s, a) {
   return a.changes;
@@ -123,7 +123,7 @@ function stateReducer(s, a) {
 /**
  * Returns a message to be added to aria-live region when item is selected.
  *
- * @param {Object} selectionParameters Parameters required to build the message.
+ * @param {object} selectionParameters Parameters required to build the message.
  * @returns {string} The a11y message.
  */
 function getA11ySelectionMessage(selectionParameters) {

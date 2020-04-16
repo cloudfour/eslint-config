@@ -1,5 +1,5 @@
 /**
- * @fileoverview Main Linter Class
+ * @file Main Linter Class
  * @author Gyandeep Singh
  * @author aladdin-add
  */
@@ -62,7 +62,7 @@ const DEFAULT_ERROR_LOC = {
  */
 
 /**
- * @typedef {Object} DisableDirective
+ * @typedef {object} DisableDirective
  * @property {("disable"|"enable"|"disable-line"|"disable-next-line")} type
  * @property {number} line
  * @property {number} column
@@ -71,7 +71,7 @@ const DEFAULT_ERROR_LOC = {
 
 /**
  * The private data for `Linter` instance.
- * @typedef {Object} LinterInternalSlots
+ * @typedef {object} LinterInternalSlots
  * @property {ConfigArray|null} lastConfigArray The `ConfigArray` instance that the last `verify()` call used.
  * @property {SourceCode|null} lastSourceCode The `SourceCode` instance that the last `verify()` call used.
  * @property {Map<string, Parser>} parserMap The loaded parsers.
@@ -79,7 +79,7 @@ const DEFAULT_ERROR_LOC = {
  */
 
 /**
- * @typedef {Object} VerifyOptions
+ * @typedef {object} VerifyOptions
  * @property {boolean} [allowInlineConfig] Allow/disallow inline comments' ability
  *      to change config once it is set. Defaults to true if not supplied.
  *      Useful if you want to validate JS without comments overriding rules.
@@ -91,7 +91,7 @@ const DEFAULT_ERROR_LOC = {
  */
 
 /**
- * @typedef {Object} ProcessorOptions
+ * @typedef {object} ProcessorOptions
  * @property {(filename:string, text:string) => boolean} [filterCodeBlock] the
  *      predicate function that selects adopt code blocks.
  * @property {Processor["postprocess"]} [postprocess] postprocessor for report
@@ -105,13 +105,13 @@ const DEFAULT_ERROR_LOC = {
  */
 
 /**
- * @typedef {Object} FixOptions
+ * @typedef {object} FixOptions
  * @property {boolean | ((message: LintMessage) => boolean)} [fix] Determines
  *      whether fixes should be applied.
  */
 
 /**
- * @typedef {Object} InternalOptions
+ * @typedef {object} InternalOptions
  * @property {string | null} warnInlineConfig The config name what `noInlineConfig` setting came from. If `noInlineConfig` setting didn't exist, this is null. If this is a config name, then the linter warns directive comments.
  * @property {"off" | "warn" | "error"} reportUnusedDisableDirectives (boolean values were normalized)
  */
@@ -125,8 +125,8 @@ const DEFAULT_ERROR_LOC = {
  * and any globals declared by special block comments, are present in the global
  * scope.
  * @param {Scope} globalScope The global scope.
- * @param {Object} configGlobals The globals declared in configuration
- * @param {{exportedVariables: Object, enabledGlobals: Object}} commentDirectives Directives from comment configuration
+ * @param {object} configGlobals The globals declared in configuration
+ * @param {{exportedVariables: object, enabledGlobals: object}} commentDirectives Directives from comment configuration
  * @returns {void}
  */
 function addDeclaredGlobals(
@@ -219,9 +219,9 @@ function createMissingRuleMessage(ruleId) {
 
 /**
  * Creates a linting problem
- * @param {Object} options to create linting error
+ * @param {object} options to create linting error
  * @param {string} [options.ruleId] the ruleId to report
- * @param {Object} [options.loc] the loc to report
+ * @param {object} [options.loc] the loc to report
  * @param {string} [options.message] the error message to report
  * @param {string} [options.severity] the error message to report
  * @returns {LintMessage} created problem, returns a missing-rule problem if only provided ruleId.
@@ -249,13 +249,13 @@ function createLintingProblem(options) {
 
 /**
  * Creates a collection of disable directives from a comment
- * @param {Object} options to create disable directives
+ * @param {object} options to create disable directives
  * @param {("disable"|"enable"|"disable-line"|"disable-next-line")} options.type The type of directive comment
  * @param {{line: number, column: number}} options.loc The 0-based location of the comment token
  * @param {string} options.value The value after the directive in the comment
  * comment specified no specific rules, so it applies to all rules (e.g. `eslint-disable`)
- * @param {function(string): {create: Function}} options.ruleMapper A map from rule IDs to defined rules
- * @returns {Object} Directives and problems from the comment
+ * @param {function(string): {create: () => void}} options.ruleMapper A map from rule IDs to defined rules
+ * @returns {object} Directives and problems from the comment
  */
 function createDisableDirectives(options) {
   const { type, loc, value, ruleMapper } = options;
@@ -298,7 +298,7 @@ function stripDirectiveComment(value) {
  * where reporting is disabled or enabled and merges them with reporting config.
  * @param {string} filename The file being checked.
  * @param {ASTNode} ast The top node of the AST.
- * @param {function(string): {create: Function}} ruleMapper A map from rule IDs to defined rules
+ * @param {function(string): {create: () => void}} ruleMapper A map from rule IDs to defined rules
  * @param {string|null} warnInlineConfig If a string then it should warn directive comments as disabled. The string value is the config name what the setting came from.
  * @returns {{configuredRules: Object, enabledGlobals: {value:string,comment:Token}[], exportedVariables: Object, problems: Problem[], disableDirectives: DisableDirective[]}}
  * A collection of the directive comments that were found, along with any problems that occurred when parsing
@@ -502,7 +502,7 @@ const eslintEnvPattern = /\/\*\s*eslint-env\s(.+?)\*\//gu;
 /**
  * Checks whether or not there is a comment which has "eslint-env *" in a given text.
  * @param {string} text A source code text to check.
- * @returns {Object|null} A result of parseListConfig() with "eslint-env *" comment.
+ * @returns {object|null} A result of parseListConfig() with "eslint-env *" comment.
  */
 function findEslintEnv(text) {
   let match, retv;
@@ -809,7 +809,7 @@ function getScope(scopeManager, currentNode) {
  * Marks a variable as used in the current scope
  * @param {ScopeManager} scopeManager The scope manager for this AST. The scope may be mutated by this function.
  * @param {ASTNode} currentNode The node currently being traversed
- * @param {Object} parserOptions The options used to parse this text
+ * @param {object} parserOptions The options used to parse this text
  * @param {string} name The name of the variable that should be marked as used.
  * @returns {boolean} True if the variable was found and marked as used, false if not.
  */
@@ -841,7 +841,7 @@ function markVariableAsUsed(scopeManager, currentNode, parserOptions, name) {
  * Runs a rule, and gets its listeners
  * @param {Rule} rule A normalized rule with a `create` method
  * @param {Context} ruleContext The context that should be passed to the rule
- * @returns {Object} A map of selector listeners provided by the rule
+ * @returns {object} A map of selector listeners provided by the rule
  */
 function createRuleListeners(rule, ruleContext) {
   try {
@@ -909,11 +909,11 @@ const BASE_TRAVERSAL_CONTEXT = Object.freeze(
 /**
  * Runs the given rules on the given SourceCode object
  * @param {SourceCode} sourceCode A SourceCode object for the given text
- * @param {Object} configuredRules The rules configuration
+ * @param {object} configuredRules The rules configuration
  * @param {function(string): Rule} ruleMapper A mapper function from rule names to rules
- * @param {Object} parserOptions The options that were passed to the parser
+ * @param {object} parserOptions The options that were passed to the parser
  * @param {string} parserName The name of the parser in the config
- * @param {Object} settings The settings that were enabled in the config
+ * @param {object} settings The settings that were enabled in the config
  * @param {string} filename The reported filename of the code
  * @param {boolean} disableFixes If true, it doesn't make `fix` properties.
  * @param {string | undefined} cwd cwd of the cli
@@ -1145,7 +1145,7 @@ const internalSlotsMap = new WeakMap();
 class Linter {
   /**
    * Initialize the Linter.
-   * @param {Object} [config] the config object
+   * @param {object} [config] the config object
    * @param {string} [config.cwd]  path to a directory that should be considered as the current working directory, can be undefined.
    */
   constructor({ cwd } = {}) {
@@ -1462,7 +1462,7 @@ class Linter {
   /**
    * Defines a new linting rule.
    * @param {string} ruleId A unique rule identifier
-   * @param {Function | Rule} ruleModule Function from context to object mapping AST node types to event handlers
+   * @param {() => void|Rule} ruleModule Function from context to object mapping AST node types to event handlers
    * @returns {void}
    */
   defineRule(ruleId, ruleModule) {
@@ -1471,7 +1471,7 @@ class Linter {
 
   /**
    * Defines many new linting rules.
-   * @param {Record<string, Function | Rule>} rulesToDefine map from unique rule identifier to rule
+   * @param {Record<string, () => void|Rule>} rulesToDefine map from unique rule identifier to rule
    * @returns {void}
    */
   defineRules(rulesToDefine) {

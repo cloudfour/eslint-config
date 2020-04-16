@@ -1,5 +1,5 @@
 /**
- * @fileoverview Disallow reassignment of function parameters.
+ * @file Disallow reassignment of function parameters.
  * @author Nat Burns
  */
 'use strict';

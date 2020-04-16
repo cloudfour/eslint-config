@@ -1,5 +1,5 @@
 /**
- * @fileoverview The event generator for AST nodes.
+ * @file The event generator for AST nodes.
  * @author Toru Nagashima
  */
 
@@ -18,10 +18,10 @@ const lodash = require('lodash');
 
 /**
  * An object describing an AST selector
- * @typedef {Object} ASTSelector
+ * @typedef {object} ASTSelector
  * @property {string} rawSelector The string that was parsed into this selector
  * @property {boolean} isExit `true` if this should be emitted when exiting the node rather than when entering
- * @property {Object} parsedSelector An object (from esquery) describing the matching behavior of the selector
+ * @property {object} parsedSelector An object (from esquery) describing the matching behavior of the selector
  * @property {string[]|null} listenerTypes A list of node types that could possibly cause the selector to match,
  * or `null` if all node types could cause a match
  * @property {number} attributeCount The total number of classes, pseudo-classes, and attribute queries in this selector
@@ -34,7 +34,7 @@ const lodash = require('lodash');
 
 /**
  * Gets the possible types of a selector
- * @param {Object} parsedSelector An object (from esquery) describing the matching behavior of the selector
+ * @param {object} parsedSelector An object (from esquery) describing the matching behavior of the selector
  * @returns {string[]|null} The node types that could possibly trigger this selector, or `null` if all node types could trigger it
  */
 function getPossibleTypes(parsedSelector) {
@@ -82,7 +82,7 @@ function getPossibleTypes(parsedSelector) {
 
 /**
  * Counts the number of class, pseudo-class, and attribute queries in this selector
- * @param {Object} parsedSelector An object (from esquery) describing the selector's matching behavior
+ * @param {object} parsedSelector An object (from esquery) describing the selector's matching behavior
  * @returns {number} The number of class, pseudo-class, and attribute queries in this selector
  */
 function countClassAttributes(parsedSelector) {
@@ -117,7 +117,7 @@ function countClassAttributes(parsedSelector) {
 
 /**
  * Counts the number of identifier queries in this selector
- * @param {Object} parsedSelector An object (from esquery) describing the selector's matching behavior
+ * @param {object} parsedSelector An object (from esquery) describing the selector's matching behavior
  * @returns {number} The number of identifier queries
  */
 function countIdentifiers(parsedSelector) {
@@ -168,7 +168,7 @@ function compareSpecificity(selectorA, selectorB) {
 /**
  * Parses a raw selector string, and throws a useful error if parsing fails.
  * @param {string} rawSelector A raw AST selector
- * @returns {Object} An object (from esquery) describing the matching behavior of this selector
+ * @returns {object} An object (from esquery) describing the matching behavior of this selector
  * @throws {Error} An error if the selector is invalid
  */
 function tryParseSelector(rawSelector) {
