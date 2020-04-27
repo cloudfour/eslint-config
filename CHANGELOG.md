@@ -1,3 +1,18 @@
+# 10.0.0 - 2020-04-27
+
+## Major/Breaking Changes
+
+- Updated `eslint-plugin-unicorn` to v19
+- Add `eslint-plugin-jsdoc` v24 to lint JSDoc comments (#97)
+
+## Minor Changes
+
+- Updated `jest` to v25.4.0
+- Updated `prettier` to v2.0.5
+- Updated `eslint-config-prettier` to v6.11.0
+- Add fixtures to make testing new releases more reliable (#91)
+- Disabled a few unicorn v19 rules (#104)
+
 # 9.0.0 - 2020-03-09
 
 ## Major/Breaking Changes
