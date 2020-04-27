@@ -208,8 +208,10 @@ function configureRules(answers, config) {
   debug(`\nRegistry: ${util.inspect(registry.rules, { depth: null })}`);
 
   // Create a list of recommended rules, because we don't want to disable them
-  const recRules = Object.keys(recConfig.rules).filter((ruleId) =>
-    ConfigOps.isErrorSeverity(recConfig.rules[ruleId])
+  const recRules = new Set(
+    Object.keys(recConfig.rules).filter((ruleId) =>
+      ConfigOps.isErrorSeverity(recConfig.rules[ruleId])
+    )
   );
 
   // Find and disable rules which had no error-free configuration
@@ -217,7 +219,7 @@ function configureRules(answers, config) {
 
   Object.keys(failingRegistry.rules).forEach((ruleId) => {
     // If the rule is recommended, set it to error, otherwise disable it
-    disabledConfigs[ruleId] = recRules.includes(ruleId) ? 2 : 0;
+    disabledConfigs[ruleId] = recRules.has(ruleId) ? 2 : 0;
   });
 
   // Now that we know which rules to disable, strip out configs with errors
