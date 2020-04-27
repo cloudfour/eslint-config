@@ -13,7 +13,7 @@
 - Add fixtures to make testing new releases more reliable (#91)
 - Disabled a few unicorn v19 rules (#104)
 
-# 9.0.0 - 2020-03-09
+# 9.0.0 - 2020-03-30
 
 ## Major/Breaking Changes
 
@@ -23,7 +23,7 @@
 
 - Updated `jest` to v25.2.4
 
-# 8.0.0 - 2020-03-09
+# 8.0.0 - 2020-03-24
 
 Edit: @calebeby pointed out that this didn't need to be a major release because prettier is a devDependency, so it won't affect our users. Sorry for the false alarm!
 
