@@ -134,7 +134,17 @@ module.exports.configs = {
         'node/no-unsupported-features/es-syntax': 'off', // Does not account for transpilation
         'node/no-unpublished-require': 'off', // Does not account for "build" scripts
         'node/shebang': 'off', // Tons of false positives
+
         'unicorn/prevent-abbreviations': 'off', // Causes more issues than it's worth
+        // Null is ok, even though Sindre Sorhus doesn't like it
+        // It is ok to avoid using null and use undefined instead
+        // but enforcing it in all code via a lint rule is too annoying
+        'unicorn/no-null': 'off',
+        // This rule is meant to avoid the edge case of breaking changes occuring
+        // due to the `index` parameter being passed unexpectedly into the callback function,
+        // causing unexpected behavior if the callback expects something that is not the index
+        // But this is an edge case that can be avoided through careful manual review
+        'unicorn/no-fn-reference-in-iterator': 'off',
 
         // Disabling jsdoc rules that check the types themselves
         // If you want to have type checking on a project, use a real type checker (typescript) instead
