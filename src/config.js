@@ -145,6 +145,10 @@ module.exports.configs = {
         // causing unexpected behavior if the callback expects something that is not the index
         // But this is an edge case that can be avoided through careful manual review
         'unicorn/no-fn-reference-in-iterator': 'off',
+        // This rule changes arrays to sets if you call .includes on it
+        // Converting from array to set has a cost itself, just like .includes has a cost
+        // We decided to leave the decision of using arrays vs sets to human reviewers
+        'unicorn/prefer-set-has': 'off',
 
         // Disabling jsdoc rules that check the types themselves
         // If you want to have type checking on a project, use a real type checker (typescript) instead
