@@ -1,3 +1,14 @@
+# 11.0.0 - 2020-05-11
+
+## Major/Breaking Changes
+
+- Updated `eslint-plugin-jsdoc` to v25
+
+## Minor Changes
+
+- Updated `jest` to v26.0.1
+- Updated `eslint` to v7
+
 # 10.0.0 - 2020-04-27
 
 ## Major/Breaking Changes
