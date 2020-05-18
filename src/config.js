@@ -64,7 +64,7 @@ const changeWarnToError = (rules) =>
 module.exports.configs = {
   recommended: {
     parserOptions: {
-      ecmaVersion: 2018,
+      ecmaVersion: 2020,
       sourceType: 'module',
       ecmaFeatures: { jsx: true },
     },
@@ -149,6 +149,8 @@ module.exports.configs = {
         // Converting from array to set has a cost itself, just like .includes has a cost
         // We decided to leave the decision of using arrays vs sets to human reviewers
         'unicorn/prefer-set-has': 'off',
+        // Reduce is often useful. Don't need a lint rule to tell us not to use it
+        'unicorn/no-reduce': 'off',
 
         // Disabling jsdoc rules that check the types themselves
         // If you want to have type checking on a project, use a real type checker (typescript) instead

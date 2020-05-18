@@ -378,7 +378,7 @@ function getLocalESLintVersion() {
     const eslint = require(eslintPath);
 
     return eslint.linter.version || null;
-  } catch (error) {
+  } catch {
     return null;
   }
 }
@@ -637,7 +637,7 @@ function promptUser() {
           log.info(
             'A package.json is necessary to install plugins such as style guides. Run `npm init` to create a package.json file and try again.'
           );
-          return undefined;
+          return;
         }
 
         if (
