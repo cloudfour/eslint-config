@@ -118,7 +118,7 @@ const main = async () => {
           },
           filenameRelative,
         });
-      } catch (error) {
+      } catch {
         return invalidResult;
       }
 

@@ -1122,10 +1122,6 @@ function normalizeCwd(cwd) {
   if (typeof process === 'object') {
     return process.cwd();
   }
-
-  // It's more explicit to assign the undefined
-  // eslint-disable-next-line no-undefined
-  return undefined;
 }
 
 /**

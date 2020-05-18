@@ -1429,7 +1429,7 @@ module.exports = {
 
       try {
         tokens = espree.tokenize(leftValue, espreeOptions);
-      } catch (error) {
+      } catch {
         return false;
       }
 
@@ -1458,7 +1458,7 @@ module.exports = {
 
       try {
         tokens = espree.tokenize(rightValue, espreeOptions);
-      } catch (error) {
+      } catch {
         return false;
       }
 
