@@ -52,7 +52,7 @@
     "eslint-formatter-pretty": "4.0.0",
     "jest": "26.0.1",
     "jest-circus": "26.0.1",
-    "kleur": "3.0.3",
+    "kleur": "4.0.0",
     "mkdirplz": "1.0.2",
     "powerwalker": "0.1.2",
     "prettier": "2.0.5",
