@@ -35,7 +35,7 @@ export default class ExternalModule {
     this.moduleSideEffects = moduleSideEffects;
 
     const parts = id.split(/[/\\]/);
-    this.variableName = makeLegal(parts.pop()!);
+    this.variableName = makeLegal(parts.pop());
 
     this.nameSuggestions = Object.create(null);
     this.declarations = Object.create(null);
@@ -52,7 +52,8 @@ export default class ExternalModule {
     let declaration = this.declarations[name];
     if (declaration) return declaration;
 
-    this.declarations[name] = declaration = new ExternalVariable(this, name);
+    declaration = new ExternalVariable(this, name);
+    this.declarations[name] = declaration;
     this.exportedVariables.set(declaration, name);
     return declaration;
   }
@@ -63,11 +64,11 @@ export default class ExternalModule {
         ? options.paths(this.id)
         : options.paths[this.id];
     if (!this.renderPath) {
-      if (!isAbsolute(this.id)) {
-        this.renderPath = this.id;
-      } else {
+      if (isAbsolute(this.id)) {
         this.renderPath = normalize(relative(inputBase, this.id));
         this.renormalizeRenderPath = true;
+      } else {
+        this.renderPath = this.id;
       }
     }
 

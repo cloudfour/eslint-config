@@ -79,7 +79,7 @@ function getCyclePath(
   let nextModule = parent;
   while (nextModule !== module) {
     path.push(relativeId(nextModule.id));
-    nextModule = parents.get(nextModule)!;
+    nextModule = parents.get(nextModule);
   }
 
   path.push(path[0]);

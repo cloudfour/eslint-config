@@ -69,7 +69,7 @@ export function mergeOptions(
     warn,
     /^_$|output$|config/
   );
-  (inputOptions).output = outputOptions;
+  inputOptions.output = outputOptions;
   return inputOptions;
 }
 
@@ -87,7 +87,7 @@ function getCommandOptions(
       typeof rawCommandOptions.globals === 'string'
         ? rawCommandOptions.globals
             .split(',')
-            .reduce((globals, globalDefinition) => {
+            .reduce((globals: any, globalDefinition: any) => {
               const [id, variableName] = globalDefinition.split(':');
               globals[id] = variableName;
               if (!external.includes(id)) {
@@ -113,8 +113,8 @@ function mergeInputOptions(
   const inputOptions: CompleteInputOptions<keyof InputOptions> = {
     acorn: getOption('acorn'),
     acornInjectPlugins: config.acornInjectPlugins as
-      | Function
-      | Function[]
+      | (() => void)
+      | (() => void)[]
       | undefined,
     cache: config.cache as false | RollupCache | undefined,
     context: getOption('context'),
@@ -163,11 +163,7 @@ const getOnWarn = (
   defaultOnWarnHandler: WarningHandler
 ): WarningHandler =>
   config.onwarn
-    ? (warning) =>
-        (config.onwarn)(
-          warning,
-          defaultOnWarnHandler
-        )
+    ? (warning: any) => config.onwarn(warning, defaultOnWarnHandler)
     : defaultOnWarnHandler;
 
 const getObjectOption = (

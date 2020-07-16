@@ -141,11 +141,11 @@ export default (command) => {
       json(),
       {
         load: (id) => {
-          if (~id.indexOf('crypto.ts'))
+          if (id.includes('crypto.ts'))
             return fs.readFileSync('browser/crypto.ts', 'utf-8');
-          if (~id.indexOf('fs.ts'))
+          if (id.includes('fs.ts'))
             return fs.readFileSync('browser/fs.ts', 'utf-8');
-          if (~id.indexOf('path.ts'))
+          if (id.includes('path.ts'))
             return fs.readFileSync('browser/path.ts', 'utf-8');
         },
       },

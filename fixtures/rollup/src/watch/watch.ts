@@ -30,7 +30,7 @@ export class Watcher {
     this.buildDelay = configs.reduce(
       (buildDelay, { watch }: any) =>
         watch && typeof watch.buildDelay === 'number'
-          ? Math.max(buildDelay, (watch as WatcherOptions).buildDelay!)
+          ? Math.max(buildDelay, (watch as WatcherOptions).buildDelay)
           : buildDelay,
       this.buildDelay
     );
@@ -84,6 +84,7 @@ export class Watcher {
 
     try {
       for (const task of this.tasks) {
+        // eslint-disable-next-line no-await-in-loop
         await task.run();
       }
 
@@ -126,13 +127,12 @@ export class Task {
     this.closed = false;
     this.watched = new Set();
 
-    this.skipWrite =
-      config.watch && Boolean((config.watch).skipWrite);
+    this.skipWrite = config.watch && Boolean(config.watch.skipWrite);
     this.options = mergeOptions(config);
     this.outputs = this.options.output;
     this.outputFiles = this.outputs.map((output) => {
       if (output.file || output.dir)
-        return path.resolve(output.file || output.dir!);
+        return path.resolve(output.file || output.dir);
       return undefined as any;
     });
 
@@ -187,8 +187,8 @@ export class Task {
       }
 
       this.updateWatchedFiles(result);
-      this.skipWrite ||
-        (await Promise.all(this.outputs.map((output) => result.write(output))));
+      if (!this.skipWrite)
+        await Promise.all(this.outputs.map((output) => result.write(output)));
       this.watcher.emit('event', {
         code: 'BUNDLE_END',
         duration: Date.now() - start,
@@ -221,7 +221,7 @@ export class Task {
     const previouslyWatched = this.watched;
     this.watched = new Set();
     this.watchFiles = result.watchFiles;
-    this.cache = result.cache!;
+    this.cache = result.cache;
     for (const id of this.watchFiles) {
       this.watchFile(id);
     }

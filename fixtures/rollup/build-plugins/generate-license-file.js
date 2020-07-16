@@ -71,14 +71,14 @@ function generateLicenseFile(dependencies) {
 
 export default function getLicenseHandler() {
   const licenses = new Map();
+  function addLicenses(dependencies) {
+    for (const dependency of dependencies) {
+      licenses.set(dependency.name, dependency);
+    }
+  }
+
   return {
     collectLicenses() {
-      function addLicenses(dependencies) {
-        for (const dependency of dependencies) {
-          licenses.set(dependency.name, dependency);
-        }
-      }
-
       return license({ thirdParty: addLicenses });
     },
     writeLicense() {

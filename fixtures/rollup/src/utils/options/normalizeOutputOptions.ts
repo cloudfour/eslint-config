@@ -266,7 +266,7 @@ const getEntryFileNames = (
   unsetOptions: Set<string>
 ): string => {
   const configEntryFileNames = config.entryFileNames as string | undefined;
-  if (configEntryFileNames == null) {
+  if (configEntryFileNames === null) {
     unsetOptions.add('entryFileNames');
   }
 

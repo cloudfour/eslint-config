@@ -1,5 +1,5 @@
 import * as acorn from 'acorn';
-// @ts-ignore
+// @ts-expect-error
 import { base as basicWalker } from 'acorn-walk';
 import { CommentDescription } from '../Module';
 
@@ -40,12 +40,8 @@ function markPureNode(
     node.annotations = [comment];
   }
 
-  if (node.type === 'ExpressionStatement') {
-    node = (node as any).expression;
-  }
-
   if (node.type === 'CallExpression' || node.type === 'NewExpression') {
-    (node as any).annotatedPure = true;
+    node.annotatedPure = true;
   }
 }
 
