@@ -25,7 +25,11 @@ const stringify = (data) =>
     // Wrap the relative parser path with require.resolve
     new RegExp(`"${resolveStart}(.*?)${resolveEnd}"`, 'g'),
     (_match, replacement) => {
-      return `require.resolve("${replacement}")`;
+      return `require.resolve("${
+        replacement === '@typescript-eslint'
+          ? '@typescript-eslint/parser'
+          : replacement
+      }")`;
     }
   );
 

@@ -4,6 +4,7 @@ const standard = require('eslint-plugin-standard').rules;
 const promise = require('eslint-plugin-promise').rules;
 const unicorn = require('eslint-plugin-unicorn').rules;
 const jsdoc = require('eslint-plugin-jsdoc').rules;
+const typescript = require('@typescript-eslint/eslint-plugin').rules;
 const noParamReassign = require('./rules/no-param-reassign');
 
 /**
@@ -27,6 +28,7 @@ const rules = {
   ...hoist('promise', promise),
   ...hoist('unicorn', unicorn),
   ...hoist('jsdoc', jsdoc),
+  ...hoist('@typescript-eslint', typescript),
   'no-param-reassign': noParamReassign,
 };
 

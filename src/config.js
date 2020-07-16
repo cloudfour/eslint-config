@@ -4,6 +4,8 @@ const standard = require('eslint-config-standard');
 const prettier = require('eslint-config-prettier');
 const prettierStandard = require('eslint-config-prettier/standard');
 const prettierUnicorn = require('eslint-config-prettier/unicorn');
+const prettierTypescript = require('eslint-config-prettier/@typescript-eslint');
+const typescript = require('@typescript-eslint/eslint-plugin');
 
 // ESLint plugins
 const node = require('eslint-plugin-node').configs.recommended;
@@ -153,7 +155,7 @@ module.exports.configs = {
         'unicorn/no-reduce': 'off',
 
         // Disabling jsdoc rules that check the types themselves
-        // If you want to have type checking on a project, use a real type checker (typescript) instead
+        // If you want to have type checking on a project, use typescript instead
         'jsdoc/newline-after-description': 'off',
         'jsdoc/no-undefined-types': 'off',
         'jsdoc/valid-types': 'off',
@@ -164,5 +166,43 @@ module.exports.configs = {
         'jsdoc/require-jsdoc': 'off',
       })
     ),
+    overrides: [
+      {
+        files: ['*.ts', '*.tsx'],
+        parser: require.resolve('@typescript-eslint/parser'), // Force it to resolve from this directory
+        parserOptions: {
+          project: './tsconfig.json',
+        },
+        rules: prefix({
+          ...typescript.configs['eslint-recommended'].overrides[0].rules,
+          ...typescript.configs.recommended.rules,
+          ...typescript.configs['recommended-requiring-type-checking'].rules,
+          ...prettierTypescript.rules,
+
+          'node/no-extraneous-import': 'off', // TS checks this, this rule is slow
+          'no-import-assign': 'off', // TS handles this
+
+          '@typescript-eslint/array-type': ['error', { default: 'array' }], // Require consistency: Use foo[] instead of Array[foo]
+          '@typescript-eslint/ban-ts-comment': [
+            'error',
+            {
+              // True means ban, false means allow
+              'ts-expect-error': false, // This is an escape hatch, allow it
+              'ts-ignore': true,
+              'ts-nocheck': false,
+              'ts-check': false,
+            },
+          ],
+          '@typescript-eslint/explicit-module-boundary-types': 'off', // Type inference is useful even for public functions
+          '@typescript-eslint/no-explicit-any': 'off', // Any is an escape hatch, it should be allowed
+          '@typescript-eslint/no-floating-promises': 'off', // Don't force every promise rejection to be caught. Humans can decide when it makes sense to handle errors and when it doesn't
+          '@typescript-eslint/no-non-null-assertion': 'error', // Default is warn
+          '@typescript-eslint/no-unsafe-assignment': 'off', // Any is an escape hatch, let it be an escape hatch
+          '@typescript-eslint/no-unsafe-call': 'off', // Any is an escape hatch, let it be an escape hatch
+          '@typescript-eslint/no-unsafe-member-access': 'off', // Any is an escape hatch, let it be an escape hatch
+          '@typescript-eslint/no-unsafe-return': 'off', // Any is an escape hatch, let it be an escape hatch
+        }),
+      },
+    ],
   },
 };

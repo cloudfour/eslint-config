@@ -17,9 +17,14 @@ const prompts = require('prompts');
 const fixturesDir = __dirname;
 const reposDir = path.join(fixturesDir, 'repos');
 const prettierOpts = {
-  parser: 'babel',
+  parser: 'typescript',
   ...require('../package.json').prettier,
 };
+
+// Make process exit when a promise rejection is not handled
+process.on('unhandledRejection', (error) => {
+  throw error;
+});
 
 /**
  * Wraps child_process.spawn to make it promise-friendly and output to stderr/stdout
@@ -53,7 +58,7 @@ const cloneRepo = async (name, url) => {
   // Clear out all existing repos
   if (existsSync(reposDir)) await rm(reposDir);
   await mkdir(reposDir);
-  await runCommand('git', ['clone', url, getRepoDir(name)]);
+  await runCommand('git', ['clone', url, getRepoDir(name), '--depth', '1']);
   console.log(kleur.bold().blue(`Done cloning repo: ${name}`));
 };
 
@@ -65,13 +70,19 @@ const main = async () => {
   });
   const name = url.replace(/\.git$/, '').replace(/.*\//, '');
   await cloneRepo(name, url);
+  /** @type {string[]} */
   const files = await walk(name, { filesonly: true, cwd: reposDir });
 
   console.log(kleur.bold().blue('Looking for files to lint'));
 
   const interestingFiles = await Promise.all(
     files
-      .filter((f) => f.endsWith('.js') && !f.replace(name, '').includes('test'))
+      .filter(
+        (f) =>
+          f.match(/.[jt]sx?$/) &&
+          !f.endsWith('.d.ts') && // ignore declaration files
+          !f.replace(name, '').includes('test')
+      )
       .map(async (file) => {
         const contents = await readFileAsync(path.join(reposDir, file), 'utf8');
         return { file, contents };
@@ -81,6 +92,7 @@ const main = async () => {
   const eslint = new CLIEngine({
     configFile: path.join(fixturesDir, '.eslintrc.js'),
     fix: true,
+    ignore: false,
   });
 
   const filesWithNumNodeTypesPromises = interestingFiles.map(
@@ -109,6 +121,7 @@ const main = async () => {
         parsed = await babel.parseAsync(contents, {
           parserOpts: {
             plugins: [
+              'typescript',
               'jsx',
               'classProperties',
               'dynamicImport',
@@ -133,7 +146,9 @@ const main = async () => {
 
       let eslintReport;
       try {
-        eslintReport = eslint.executeOnText(contents).results[0];
+        eslintReport = eslint.executeOnFiles([
+          path.join(fixturesDir, 'repos', file),
+        ]).results[0];
       } catch (error) {
         console.log('eslint error', file, error);
         return invalidResult;
@@ -191,6 +206,11 @@ const main = async () => {
     })),
     message: 'Choose files to import',
   });
+
+  if (chosenFiles.length === 0) {
+    console.log(kleur.bold().yellow('No files selected for import'));
+    return;
+  }
 
   await Promise.all(
     chosenFiles.map(async ({ file, contents }) => {
