@@ -33,7 +33,7 @@
     "@babel/core": "^7.2.0",
     "babel-eslint": "^10.0.1",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsdoc": "^29.0.0",
+    "eslint-plugin-jsdoc": "^30.0.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
