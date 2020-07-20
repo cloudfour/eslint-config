@@ -29,7 +29,7 @@ function injectWrapper(path, wrapper) {
   const amdWrapper = path.pushContainer('body', wrapper)[0];
   const amdFactory = amdWrapper
     .get('expression.arguments')
-    .filter((arg) => arg.isFunctionExpression())[0]
+    .find((arg) => arg.isFunctionExpression())
     .get('body');
   amdFactory.pushContainer('directives', directives);
   amdFactory.pushContainer('body', body);
