@@ -33,10 +33,14 @@ export const commandAliases: { [key: string]: string } = {
 
 export function mergeOptions(
   config: GenericConfigObject,
-  rawCommandOptions: GenericConfigObject = { external: [], globals: undefined },
+  rawCommandOptions: GenericConfigObject = {},
   defaultOnWarnHandler: WarningHandler = defaultOnWarn
 ): MergedRollupOptions {
-  const command = getCommandOptions(rawCommandOptions);
+  const command = getCommandOptions({
+    external: [],
+    globals: undefined,
+    ...rawCommandOptions,
+  });
   const inputOptions = mergeInputOptions(config, command, defaultOnWarnHandler);
   const warn = inputOptions.onwarn;
   if (command.output) {
