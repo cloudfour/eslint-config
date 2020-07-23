@@ -208,7 +208,10 @@ module.exports.configs = {
           '@typescript-eslint/prefer-optional-chain': 'error', // More readable syntax
           'no-unused-vars': 'off', // TS checks this via noUnusedLocals / noUnusedParameters
           '@typescript-eslint/no-unused-vars': 'off', // TS checks this via noUnusedLocals / noUnusedParameters
+          '@typescript-eslint/no-empty-function': 'off', // Non-TS version of rule is not used either
           '@typescript-eslint/unbound-method': 'off', // It is pretty common for this already being handled outside of what TS/ESLint can be aware of
+          'no-unused-expressions': 'off',
+          '@typescript-eslint/no-unused-expressions': ['error'], // This rule is like the built in ESLint rule but it supports optional chaining
         }),
       },
     ],
