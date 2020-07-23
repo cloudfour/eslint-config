@@ -61,13 +61,13 @@ new AssetGraph({ root: 'docs/_dist' })
         }
       });
 
-      const firstCssRel = asset.outgoingRelations.filter((r) => {
+      const firstCssRel = asset.outgoingRelations.find((r) => {
         return (
           r.type === 'HtmlStyle' &&
           r.crossorigin === false &&
           r.href !== undefined
         );
-      })[0];
+      });
 
       if (firstCssRel) {
         const header = `Link: <${firstCssRel.href}>; rel=preload; as=style`;

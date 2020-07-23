@@ -1,3 +1,18 @@
+# 12.0.0 - 2020-07-20
+
+## Major/Breaking Changes
+
+- Update dependency `eslint-plugin-unicorn` to v21
+
+## Minor Changes
+
+- Update dependency `eslint` to v7.5.0
+- Update dependency `eslint-config-xo` to v0.32.1
+- Update dependency `eslint-formatter-pretty` to v4
+- Update dependency `eslint-plugin-jsdoc` to v30
+- Update dependency `kleur` to v4.0.2
+- Update `jest` monorepo to v26.1.0
+
 # 11.0.0 - 2020-05-11
 
 ## Major/Breaking Changes

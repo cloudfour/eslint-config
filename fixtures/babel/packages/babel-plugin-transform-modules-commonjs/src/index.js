@@ -103,14 +103,14 @@ export default declare((api, options) => {
         );
       } else if (left.isPattern()) {
         const ids = left.getOuterBindingIdentifiers();
-        const localName = Object.keys(ids).filter((localName) => {
+        const localName = Object.keys(ids).find((localName) => {
           if (localName !== 'module' && localName !== 'exports') return false;
 
           return (
             this.scope.getBinding(localName) ===
             path.scope.getBinding(localName)
           );
-        })[0];
+        });
 
         if (localName) {
           const right = path.get('right');
