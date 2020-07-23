@@ -63,6 +63,7 @@ export type AfterResponseHook = (
   | Promise<Response | CancelableRequest<Response>>;
 
 // These should be merged into Options in core/index.ts
+// eslint-disable-next-line @cloudfour/typescript-eslint/no-namespace
 export namespace PromiseOnly {
   export interface Hooks {
     beforeRetry?: BeforeRetryHook[];

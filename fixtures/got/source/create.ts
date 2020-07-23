@@ -118,7 +118,6 @@ const create = (defaults: InstanceDefaults): Got => {
       );
 
       // These should point to the new promise
-      // eslint-disable-next-line promise/prefer-await-to-then
       typedResult.then = promiseThen;
       typedResult.catch = promiseCatch;
       typedResult.finally = promiseFianlly;
@@ -128,7 +127,10 @@ const create = (defaults: InstanceDefaults): Got => {
   });
 
   // Got interface
-  const got: Got = ((url: string | URL, options?: Options): GotReturn => {
+  const got: Got = ((
+    originalUrl: string | URL,
+    originalOptions?: Options
+  ): GotReturn => {
     let iteration = 0;
     const iterateHandlers = (newOptions: NormalizedOptions): GotReturn => {
       return defaults.handlers[iteration++](
@@ -139,7 +141,9 @@ const create = (defaults: InstanceDefaults): Got => {
       );
     };
 
-    // TODO: Remove this in Got 12.
+    let options = originalOptions;
+    let url = originalUrl;
+
     if (is.plainObject(url)) {
       const mergedOptions = {
         ...(url as Options),
@@ -194,19 +198,19 @@ const create = (defaults: InstanceDefaults): Got => {
 
   got.extend = (...instancesOrOptions) => {
     const optionsArray: Options[] = [defaults.options];
-    let handlers: HandlerFunction[] = [...defaults._rawHandlers!];
+    let handlers: HandlerFunction[] = [...defaults._rawHandlers];
     let isMutableDefaults: boolean | undefined;
 
     for (const value of instancesOrOptions) {
       if (isGotInstance(value)) {
         optionsArray.push(value.defaults.options);
-        handlers.push(...value.defaults._rawHandlers!);
+        handlers.push(...value.defaults._rawHandlers);
         isMutableDefaults = value.defaults.mutableDefaults;
       } else {
         optionsArray.push(value);
 
         if ('handlers' in value) {
-          handlers.push(...value.handlers!);
+          handlers.push(...value.handlers);
         }
 
         isMutableDefaults = value.mutableDefaults;
@@ -231,13 +235,10 @@ const create = (defaults: InstanceDefaults): Got => {
     url: string | URL,
     options?: OptionsWithPagination<T, R>
   ) {
-    // TODO: Remove this `@ts-expect-error` when upgrading to TypeScript 4.
-    // Error: Argument of type 'Merge<Options, PaginationOptions<T, R>> | undefined' is not assignable to parameter of type 'Options | undefined'.
-    // @ts-expect-error
     let normalizedOptions = normalizeArguments(url, options, defaults.options);
     normalizedOptions.resolveBodyOnly = false;
 
-    const pagination = normalizedOptions.pagination!;
+    const pagination = normalizedOptions.pagination;
 
     if (!is.object(pagination)) {
       throw new TypeError('`options.pagination` must be implemented');
@@ -255,7 +256,7 @@ const create = (defaults: InstanceDefaults): Got => {
 
       // TODO: Throw when result is not an instance of Response
       // eslint-disable-next-line no-await-in-loop
-      const result = (await got(normalizedOptions));
+      const result = await got(normalizedOptions);
 
       // eslint-disable-next-line no-await-in-loop
       const parsed = await pagination.transform(result);

@@ -122,7 +122,6 @@ export default class PromisableRequest extends Request {
     if (is.undefined(options.retry.maxRetryAfter)) {
       options.retry.maxRetryAfter = Math.min(
         // TypeScript is not smart enough to handle `.filter(x => is.number(x))`.
-        // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
         ...[options.timeout.request, options.timeout.connect].filter(is.number)
       );
     }
@@ -179,14 +178,15 @@ export default class PromisableRequest extends Request {
       );
     }
 
-    return mergedOptions!;
+    return mergedOptions;
   }
 
-  _beforeError(error: Error): void {
+  _beforeError(originalError: Error): void {
     if (this.destroyed) {
       return;
     }
 
+    let error = originalError;
     if (!(error instanceof RequestError)) {
       error = new RequestError(error.message, error, this);
     }

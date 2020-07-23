@@ -114,7 +114,7 @@ export default (
 
   if (typeof delays.socket !== 'undefined') {
     const socketTimeoutHandler = (): void => {
-      timeoutHandler(delays.socket!, 'socket');
+      timeoutHandler(delays.socket, 'socket');
     };
 
     request.setTimeout(delays.socket, socketTimeoutHandler);
@@ -151,7 +151,7 @@ export default (
 
       if (typeof delays.connect !== 'undefined') {
         const timeConnect = (): (() => void) =>
-          addTimeout(delays.connect!, timeoutHandler, 'connect');
+          addTimeout(delays.connect, timeoutHandler, 'connect');
 
         if (hasPath) {
           once(socket, 'connect', timeConnect());
@@ -170,7 +170,7 @@ export default (
       ) {
         once(socket, 'connect', (): void => {
           const cancelTimeout = addTimeout(
-            delays.secureConnect!,
+            delays.secureConnect,
             timeoutHandler,
             'secureConnect'
           );
@@ -181,7 +181,7 @@ export default (
 
     if (typeof delays.send !== 'undefined') {
       const timeRequest = (): (() => void) =>
-        addTimeout(delays.send!, timeoutHandler, 'send');
+        addTimeout(delays.send, timeoutHandler, 'send');
       /* istanbul ignore next: hard to test */
       if (socket.connecting) {
         once(socket, 'connect', (): void => {
@@ -196,7 +196,7 @@ export default (
   if (typeof delays.response !== 'undefined') {
     once(request, 'upload-complete', (): void => {
       const cancelTimeout = addTimeout(
-        delays.response!,
+        delays.response,
         timeoutHandler,
         'response'
       );

@@ -75,7 +75,7 @@ suite
   })
   .add('got - stream', {
     defer: true,
-    fn: async (deferred: { resolve: () => void }) => {
+    fn: (deferred: { resolve: () => void }) => {
       got
         .stream(url, gotOptions)
         .resume()
@@ -86,7 +86,7 @@ suite
   })
   .add('got - promise core', {
     defer: true,
-    fn: async (deferred: { resolve: () => void }) => {
+    fn: (deferred: { resolve: () => void }) => {
       const stream = new PromisableRequest(url, gotOptions);
       stream.resume().once('end', () => {
         deferred.resolve();
@@ -95,7 +95,7 @@ suite
   })
   .add('got - stream core', {
     defer: true,
-    fn: async (deferred: { resolve: () => void }) => {
+    fn: (deferred: { resolve: () => void }) => {
       const stream = new Request(url, gotOptions);
       stream.resume().once('end', () => {
         deferred.resolve();
@@ -104,7 +104,7 @@ suite
   })
   .add('got - stream core - normalized options', {
     defer: true,
-    fn: async (deferred: { resolve: () => void }) => {
+    fn: (deferred: { resolve: () => void }) => {
       const stream = new Request(undefined as any, normalizedGotOptions);
       stream.resume().once('end', () => {
         deferred.resolve();

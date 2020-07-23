@@ -29,7 +29,7 @@ const calculateRetryDelay: Returns<RetryFunction, number> = ({
   }
 
   const hasMethod = retryOptions.methods.includes(error.options.method);
-  const hasErrorCode = retryOptions.errorCodes.includes(error.code!);
+  const hasErrorCode = retryOptions.errorCodes.includes(error.code);
   const hasStatusCode =
     isErrorWithResponse(error) &&
     retryOptions.statusCodes.includes(error.response.statusCode);
@@ -46,7 +46,7 @@ const calculateRetryDelay: Returns<RetryFunction, number> = ({
     ) {
       let after = Number(response.headers['retry-after']);
       if (Number.isNaN(after)) {
-        after = Date.parse(response.headers['retry-after']!) - Date.now();
+        after = Date.parse(response.headers['retry-after']) - Date.now();
       } else {
         after *= 1000;
       }
