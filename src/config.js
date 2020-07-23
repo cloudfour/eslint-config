@@ -23,7 +23,8 @@ const jsdoc = require('eslint-plugin-jsdoc').configs.recommended;
 const prefix = (rules) =>
   Object.entries(rules).reduce((output, [key, val]) => {
     if (key.includes('/') && !key.startsWith('@cloudfour/')) {
-      key = `@cloudfour/${key}`;
+      // If the key already starts with an @, remove it (for example typescript-eslint)
+      key = `@cloudfour/${key.replace(/^@/, '')}`;
     }
 
     output[key] = val;

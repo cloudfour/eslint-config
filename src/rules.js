@@ -28,7 +28,7 @@ const rules = {
   ...hoist('promise', promise),
   ...hoist('unicorn', unicorn),
   ...hoist('jsdoc', jsdoc),
-  ...hoist('@typescript-eslint', typescript),
+  ...hoist('typescript-eslint', typescript),
   'no-param-reassign': noParamReassign,
 };
 
