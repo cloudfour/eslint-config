@@ -80,6 +80,9 @@ const aliases: readonly HTTPAlias[] = [
 
 export const defaultHandler: HandlerFunction = (options, next) => next(options);
 
+/**
+ * @param hooks This is an example parameter description
+ */
 const callInitHooks = (
   hooks: InitHook[] | undefined,
   options?: Options

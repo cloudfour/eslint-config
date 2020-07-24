@@ -184,6 +184,15 @@ module.exports.configs = {
           'node/no-extraneous-import': 'off', // TS checks this, this rule is slow
           'no-import-assign': 'off', // TS handles this
 
+          // With TS, the only reason to have a @param tag
+          // is if a particular parameter needs a description,
+          // which is not true for all parameters
+          'jsdoc/require-param': 'off',
+          'jsdoc/require-param-type': 'off', // Types should be in type annotations instead
+          'jsdoc/require-param-description': 'error', // The only reason to have an @param in TS is to add a description
+          'jsdoc/require-returns-type': 'off', // Return types should be in type annotations instead
+          'jsdoc/require-returns-description': 'error', // The only reason to have an @returns in TS is to add a description
+
           '@typescript-eslint/array-type': ['error', { default: 'array' }], // Require consistency: Use foo[] instead of Array[foo]
           '@typescript-eslint/ban-ts-comment': [
             'error',
