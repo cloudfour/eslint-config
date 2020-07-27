@@ -139,7 +139,7 @@ export default (
       if (
         typeof delays.lookup !== 'undefined' &&
         !hasPath &&
-        typeof (socket.address() as net.AddressInfo).address === 'undefined'
+        typeof socket.address().address === 'undefined'
       ) {
         const cancelTimeout = addTimeout(
           delays.lookup,

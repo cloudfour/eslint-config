@@ -18,8 +18,6 @@
   "files": [
     "dist/config.js",
     "src/rules.js",
-    "src/rules/**/*.js",
-    "!src/rules/**/*.test.js",
     "index.js"
   ],
   "engines": {
@@ -52,8 +50,6 @@
     "eslint-config-standard": "14.1.1",
     "eslint-config-xo": "0.32.1",
     "eslint-formatter-pretty": "4.0.0",
-    "jest": "26.1.0",
-    "jest-circus": "26.1.0",
     "kleur": "4.0.2",
     "mkdirplz": "1.0.2",
     "powerwalker": "0.1.2",
@@ -67,17 +63,12 @@
     "lint": "eslint --format=pretty --fix . && prettier --write .",
     "prepublishOnly": "npm ci && npm run build && npm run check-lint",
     "postpublish": "git tag v$npm_package_version && git push --tags",
-    "build": "node build.js",
-    "test": "jest"
+    "build": "node build.js"
   },
   "prettier": {
     "singleQuote": true
   },
   "eslintConfig": {
     "extends": "plugin:@cloudfour/recommended"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "testRunner": "jest-circus/runner"
   }
 }

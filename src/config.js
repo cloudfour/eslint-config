@@ -109,12 +109,6 @@ module.exports.configs = {
         ...prettierStandard.rules, // Undoes stylistic rules in standard plugin
         ...prettierUnicorn.rules, // Undoes stylistic rules in unicorn plugin
 
-        // Custom Rules
-        '@cloudfour/no-param-reassign': [
-          'error',
-          { ignoreWithinCallbacks: ['reduce'] },
-        ],
-
         // Overrides
         'no-unused-expressions': [
           'error',
