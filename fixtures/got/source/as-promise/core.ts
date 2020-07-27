@@ -181,12 +181,11 @@ export default class PromisableRequest extends Request {
     return mergedOptions;
   }
 
-  _beforeError(originalError: Error): void {
+  _beforeError(error: Error): void {
     if (this.destroyed) {
       return;
     }
 
-    let error = originalError;
     if (!(error instanceof RequestError)) {
       error = new RequestError(error.message, error, this);
     }

@@ -130,10 +130,7 @@ const create = (defaults: InstanceDefaults): Got => {
   });
 
   // Got interface
-  const got: Got = ((
-    originalUrl: string | URL,
-    originalOptions?: Options
-  ): GotReturn => {
+  const got: Got = ((url: string | URL, options?: Options): GotReturn => {
     let iteration = 0;
     const iterateHandlers = (newOptions: NormalizedOptions): GotReturn => {
       return defaults.handlers[iteration++](
@@ -144,9 +141,6 @@ const create = (defaults: InstanceDefaults): Got => {
       );
     };
 
-    let options = originalOptions;
-    let url = originalUrl;
-
     if (is.plainObject(url)) {
       const mergedOptions = {
         ...(url as Options),
@@ -155,7 +149,6 @@ const create = (defaults: InstanceDefaults): Got => {
 
       setNonEnumerableProperties([url as Options, options], mergedOptions);
 
-      options = mergedOptions;
       url = undefined as any;
     }
 

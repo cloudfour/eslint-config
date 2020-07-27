@@ -22,7 +22,7 @@ const keys: Exclude<keyof URLOptions, 'searchParams' | 'path'>[] = [
   'search',
 ];
 
-export default (initialOrigin: string, options: URLOptions): URL => {
+export default (origin: string, options: URLOptions): URL => {
   if (options.path) {
     if (options.pathname) {
       throw new TypeError(
@@ -49,9 +49,7 @@ export default (initialOrigin: string, options: URLOptions): URL => {
     );
   }
 
-  let origin = initialOrigin;
-
-  if (!initialOrigin) {
+  if (!origin) {
     if (!options.protocol) {
       throw new TypeError('No URL protocol specified');
     }
