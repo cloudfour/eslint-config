@@ -89,7 +89,6 @@ function callOnChangeProps(action, state, newState) {
 function useEnhancedReducer(reducer, initialState, props) {
   const enhancedReducer = useCallback(
     (state, action) => {
-      // eslint-disable-next-line @cloudfour/no-param-reassign
       state = getState(state, action.props);
 
       const { stateReducer: stateReduceLocal } = action.props;

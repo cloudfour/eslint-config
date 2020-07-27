@@ -27,10 +27,6 @@ with `cloudfour/`, because the plugins are exposed through this "super-plugin".
 }
 ```
 
-This also exposes a custom rule:
-
-- `@cloudfour/no-param-reassign`: Like the built in `no-param-reassign`, but accepts a list of functions to ignore
-
 ## Installation
 
 ```sh
