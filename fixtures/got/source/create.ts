@@ -250,7 +250,6 @@ const create = (defaults: InstanceDefaults): Got => {
         await delay(pagination.backoff);
       }
 
-      // TODO: Throw when result is not an instance of Response
       // eslint-disable-next-line no-await-in-loop
       const result = await got(normalizedOptions);
 
