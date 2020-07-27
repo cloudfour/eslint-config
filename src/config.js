@@ -134,6 +134,7 @@ module.exports.configs = {
         'prefer-destructuring': ['error', { array: false }],
         'prefer-rest-params': 'error',
         'prefer-template': 'error',
+        'no-param-reassign': 'off', // We don't use `arguments`, and assigning to parameters can be useful
         'no-promise-executor-return': 'off', // Allow implicit return in promise executor
         'node/no-unsupported-features/es-syntax': 'off', // Does not account for transpilation
         'node/no-unpublished-require': 'off', // Does not account for "build" scripts
