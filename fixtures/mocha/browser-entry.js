@@ -131,7 +131,6 @@ mocha.ui = function (ui) {
 
 mocha.setup = function (opts) {
   if (typeof opts === 'string') {
-    // eslint-disable-next-line @cloudfour/no-param-reassign
     opts = { ui: opts };
   }
 
