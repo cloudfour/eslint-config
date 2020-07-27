@@ -1,3 +1,4 @@
+const path = require('path');
 module.exports = {
   rules: {
     // These rules are disabled because they are very likely to trigger
@@ -6,5 +7,8 @@ module.exports = {
     '@cloudfour/node/no-missing-require': 'off',
     '@cloudfour/node/no-missing-import': 'off',
     '@cloudfour/node/no-extraneous-import': 'off',
+  },
+  parserOptions: {
+    project: path.join(__dirname, 'tsconfig.json'),
   },
 };

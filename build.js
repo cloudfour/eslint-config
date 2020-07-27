@@ -10,14 +10,18 @@ const resolveEnd = '__END_REQUIRE_RESOLVE__';
 // Require.resolve needs to be dynamic and cannot be statically stringified with JSON.stringify
 const stringify = (data) =>
   `module.exports = ${JSON.stringify(data, (k, v) => {
-    if (k === 'parser' && v.startsWith(__dirname)) {
-      return (
-        resolveStart +
-        v // Replace the static node_modules path with a relative path
-          .replace(join(__dirname, `node_modules${sep}`), '')
-          .replace(/\/.*$/, '') +
-        resolveEnd
+    if (k === 'parser' && typeof v === 'string' && v.startsWith(__dirname)) {
+      const pathWithoutNodeModules = v.replace(
+        join(__dirname, `node_modules${sep}`),
+        ''
       );
+      // Takes the file path and changes it to just the name of the package the path was in
+      const packagePath = pathWithoutNodeModules.startsWith('@')
+        ? // If it is a part of a npm org, then it will be two levels deep: @___/___
+          /^@[^/]*\/[^/]*/.exec(pathWithoutNodeModules)[0]
+        : // Otherwise, it will just be one level deep: ___
+          /^[^/]*/.exec(pathWithoutNodeModules)[0];
+      return `${resolveStart}${packagePath}${resolveEnd}`;
     }
 
     return v;
