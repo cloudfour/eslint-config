@@ -193,7 +193,7 @@ module.exports.configs = {
           'jsdoc/require-returns-type': 'off', // Return types should be in type annotations instead
           'jsdoc/require-returns-description': 'error', // The only reason to have an @returns in TS is to add a description
 
-          '@typescript-eslint/array-type': ['error', { default: 'array' }], // Require consistency: Use foo[] instead of Array[foo]
+          '@typescript-eslint/array-type': ['error', { default: 'array' }], // Require consistency: Use foo[] instead of Array<foo>
           '@typescript-eslint/ban-ts-comment': [
             'error',
             {
