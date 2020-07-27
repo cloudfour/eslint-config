@@ -14,6 +14,7 @@ The plugins that this exposes are:
 - [`promise`](https://github.com/xjamundx/eslint-plugin-promise)
 - [`unicorn`](https://github.com/sindresorhus/eslint-plugin-unicorn)
 - [`jsdoc`](https://github.com/gajus/eslint-plugin-jsdoc)
+- [`@typescript-eslint`](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin)
 
 To override settings for any of these plugins, you must prefix the configuration
 with `cloudfour/`, because the plugins are exposed through this "super-plugin".
