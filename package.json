@@ -50,7 +50,7 @@
     "eslint-config-standard": "14.1.1",
     "eslint-config-xo": "0.32.1",
     "eslint-formatter-pretty": "4.0.0",
-    "kleur": "4.0.2",
+    "kleur": "4.0.3",
     "mkdirplz": "1.0.2",
     "powerwalker": "0.1.2",
     "prettier": "2.0.5",
