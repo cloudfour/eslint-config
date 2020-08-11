@@ -64,6 +64,7 @@
     "load-fixture-repo": "node fixtures/load-repo",
     "lint": "eslint --format=pretty --fix . && prettier --write .",
     "build": "node build.js",
+    "changeset": "changeset",
     "version": "changeset version && prettier --write .",
     "release": "npm run build && changeset publish"
   },
