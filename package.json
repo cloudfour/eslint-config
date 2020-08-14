@@ -45,7 +45,6 @@
   "devDependencies": {
     "@changesets/changelog-github": "0.2.6",
     "@changesets/cli": "2.10.0",
-    "@cloudfour/eslint-plugin": ".",
     "eliminate": "1.1.2",
     "eslint": "7.6.0",
     "eslint-config-prettier": "6.11.0",
