@@ -2,11 +2,11 @@
 
 ### Major Changes
 
-- [`18551f9`](https://github.com/cloudfour/eslint-config/commit/18551f93aee031b6cd43f9479d67f9b137c43c63) [#144](https://github.com/cloudfour/eslint-config/pull/144) Thanks [@calebeby](https://github.com/calebeby)! - Remove rule: @cloudfour/no-param-reassign
+- [`5943663`](https://github.com/cloudfour/eslint-config/commit/594366386a8e9313005f1955160ec8260476c7e8) [#137](https://github.com/cloudfour/eslint-config/pull/137) Thanks [@calebeby](https://github.com/calebeby)! - Remove rule: @cloudfour/no-param-reassign
 
   This change is breaking if you have `// eslint-disable-next-line @cloudfour/no-param-reassign` in your code, or if you are manually enabling/configuring this rule. In either case, the migration path is to remove the rule configuration
 
-* [`18551f9`](https://github.com/cloudfour/eslint-config/commit/18551f93aee031b6cd43f9479d67f9b137c43c63) [#144](https://github.com/cloudfour/eslint-config/pull/144) Thanks [@calebeby](https://github.com/calebeby)! - Add support for linting TypeScript files
+- [`3112bb7`](https://github.com/cloudfour/eslint-config/commit/3112bb704d3eed0b4dcb1dbd1146c8927ee79127) [#136](https://github.com/cloudfour/eslint-config/pull/136) Thanks [@calebeby](https://github.com/calebeby)! - Add support for linting TypeScript files
 
   If you have .ts or .tsx files, ESLint should automatically start linting them once you update.
 
