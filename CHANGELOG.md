@@ -1,5 +1,19 @@
 # 12.0.0 - 2020-07-20
 
+## 13.0.0
+
+### Major Changes
+
+- [`18551f9`](https://github.com/cloudfour/eslint-config/commit/18551f93aee031b6cd43f9479d67f9b137c43c63) [#144](https://github.com/cloudfour/eslint-config/pull/144) Thanks [@calebeby](https://github.com/calebeby)! - Remove rule: @cloudfour/no-param-reassign
+
+  This change is breaking if you have `// eslint-disable-next-line @cloudfour/no-param-reassign` in your code, or if you are manually enabling/configuring this rule. In either case, the migration path is to remove the rule configuration
+
+* [`18551f9`](https://github.com/cloudfour/eslint-config/commit/18551f93aee031b6cd43f9479d67f9b137c43c63) [#144](https://github.com/cloudfour/eslint-config/pull/144) Thanks [@calebeby](https://github.com/calebeby)! - Add support for linting TypeScript files
+
+  If you have .ts or .tsx files, ESLint should automatically start linting them once you update.
+
+  If typescript-eslint is unable to automatically infer your `tsconfig.json` location, you may need to [manually configure that](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/TYPED_LINTING.md)
+
 ## Major/Breaking Changes
 
 - Update dependency `eslint-plugin-unicorn` to v21
