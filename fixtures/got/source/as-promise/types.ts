@@ -120,7 +120,8 @@ export class ParseError extends RequestError {
 
 export interface CancelableRequest<
   T extends Response | Response['body'] = Response['body']
-> extends PCancelable<T>, RequestEvents<CancelableRequest<T>> {
+> extends PCancelable<T>,
+    RequestEvents<CancelableRequest<T>> {
   json: <ReturnType>() => CancelableRequest<ReturnType>;
   buffer: () => CancelableRequest<Buffer>;
   text: () => CancelableRequest<string>;
