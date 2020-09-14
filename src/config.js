@@ -193,7 +193,7 @@ module.exports.configs = {
             'error',
             {
               // True means ban, false means allow
-              'ts-expect-error': false, // This is an escape hatch, allow it
+              'ts-expect-error': 'allow-with-description', // This is an escape hatch, allow it
               'ts-ignore': true,
               'ts-nocheck': false,
               'ts-check': false,

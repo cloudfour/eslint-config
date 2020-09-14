@@ -1,5 +1,4 @@
 import * as acorn from 'acorn';
-// @ts-expect-error
 import { base as basicWalker } from 'acorn-walk';
 import { CommentDescription } from '../Module';
 
