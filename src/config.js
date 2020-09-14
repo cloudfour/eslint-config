@@ -189,16 +189,7 @@ module.exports.configs = {
           'jsdoc/require-returns-description': 'error', // The only reason to have an @returns in TS is to add a description
 
           '@typescript-eslint/array-type': ['error', { default: 'array' }], // Require consistency: Use foo[] instead of Array<foo>
-          '@typescript-eslint/ban-ts-comment': [
-            'error',
-            {
-              // True means ban, false means allow
-              'ts-expect-error': 'allow-with-description', // This is an escape hatch, allow it
-              'ts-ignore': true,
-              'ts-nocheck': false,
-              'ts-check': false,
-            },
-          ],
+          '@typescript-eslint/ban-ts-comment': 'error',
           '@typescript-eslint/explicit-module-boundary-types': 'off', // Type inference is useful even for public functions
           '@typescript-eslint/no-explicit-any': 'off', // Any is an escape hatch, it should be allowed
           '@typescript-eslint/no-floating-promises': 'off', // Don't force every promise rejection to be caught. Humans can decide when it makes sense to handle errors and when it doesn't
