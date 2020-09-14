@@ -1,10 +1,5 @@
-import {
-  ParseError,
-  HTTPError,
-  MaxRedirectsError,
-  RetryObject,
-  RetryFunction,
-} from './types';
+import type { RetryObject, RetryFunction } from './types';
+import { ParseError, HTTPError, MaxRedirectsError } from './types';
 
 type Returns<T extends (...args: any) => unknown, V> = (
   ...args: Parameters<T>

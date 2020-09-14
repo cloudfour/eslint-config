@@ -1,6 +1,6 @@
-import * as acorn from 'acorn';
+import type * as acorn from 'acorn';
 import { base as basicWalker } from 'acorn-walk';
-import { CommentDescription } from '../Module';
+import type { CommentDescription } from '../Module';
 
 // Patch up acorn-walk until class-fields are officially supported
 basicWalker.FieldDefinition = function (node: any, st: any, c: any) {

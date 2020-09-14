@@ -1,19 +1,16 @@
-import {
+import type {
   ExternalOption,
   InputOptions,
   MergedRollupOptions,
   OutputOptions,
   RollupCache,
   WarningHandler,
-  WarningHandlerWithDefault,
 } from '../../rollup/types';
+import { WarningHandlerWithDefault } from '../../rollup/types';
 import { ensureArray } from '../ensureArray';
-import { CommandConfigObject } from './normalizeInputOptions';
-import {
-  defaultOnWarn,
-  GenericConfigObject,
-  warnUnknownOptions,
-} from './options';
+import type { CommandConfigObject } from './normalizeInputOptions';
+import type { GenericConfigObject } from './options';
+import { defaultOnWarn, warnUnknownOptions } from './options';
 
 export const commandAliases: { [key: string]: string } = {
   c: 'config',

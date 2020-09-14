@@ -1,4 +1,4 @@
-import {
+import type {
   GlobalsOption,
   InternalModuleFormat,
   ManualChunksOption,
@@ -11,7 +11,8 @@ import {
 } from '../../rollup/types';
 import { ensureArray } from '../ensureArray';
 import { errInvalidExportOptionValue, error, warnDeprecation } from '../error';
-import { GenericConfigObject, warnUnknownOptions } from './options';
+import type { GenericConfigObject } from './options';
+import { warnUnknownOptions } from './options';
 
 export function normalizeOutputOptions(
   config: GenericConfigObject,

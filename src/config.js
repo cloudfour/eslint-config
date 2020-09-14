@@ -187,7 +187,10 @@ module.exports.configs = {
           'jsdoc/require-param-description': 'error', // The only reason to have an @param in TS is to add a description
           'jsdoc/require-returns-type': 'off', // Return types should be in type annotations instead
           'jsdoc/require-returns-description': 'error', // The only reason to have an @returns in TS is to add a description
-
+          // Auto-fixes type imports to use the `import type` syntax
+          // This syntax is preferred because it makes the TS -> JS transformation easier
+          // because it doesn't require checking which imports are only referenced as types
+          '@typescript-eslint/consistent-type-imports': 'error',
           '@typescript-eslint/array-type': ['error', { default: 'array' }], // Require consistency: Use foo[] instead of Array<foo>
           '@typescript-eslint/ban-ts-comment': 'error',
           '@typescript-eslint/explicit-module-boundary-types': 'off', // Type inference is useful even for public functions

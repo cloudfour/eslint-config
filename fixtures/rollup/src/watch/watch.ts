@@ -1,7 +1,7 @@
 import * as path from 'path';
 import createFilter from 'rollup-pluginutils/src/createFilter';
 import { rollupInternal } from '../rollup/rollup';
-import {
+import type {
   MergedRollupOptions,
   OutputOptions,
   RollupBuild,
@@ -10,7 +10,7 @@ import {
   WatcherOptions,
 } from '../rollup/types';
 import { mergeOptions } from '../utils/options/mergeOptions';
-import { GenericConfigObject } from '../utils/options/options';
+import type { GenericConfigObject } from '../utils/options/options';
 import { FileWatcher } from './fileWatcher';
 
 export class Watcher {

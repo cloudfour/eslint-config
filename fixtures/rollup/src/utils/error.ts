@@ -1,6 +1,6 @@
 import { locate } from 'locate-character';
-import Module from '../Module';
-import {
+import type Module from '../Module';
+import type {
   NormalizedInputOptions,
   RollupError,
   RollupLogProps,
