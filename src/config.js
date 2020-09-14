@@ -176,7 +176,7 @@ module.exports.configs = {
           ...typescript.configs['recommended-requiring-type-checking'].rules,
           ...prettierTypescript.rules,
 
-          // TS handles checking these, and these rules are slow
+          // TS handles checking these
           'node/no-missing-import': 'off',
           'node/no-missing-require': 'off',
 
