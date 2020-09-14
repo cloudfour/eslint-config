@@ -190,7 +190,11 @@ module.exports.configs = {
           // Auto-fixes type imports to use the `import type` syntax
           // This syntax is preferred because it makes the TS -> JS transformation easier
           // because it doesn't require checking which imports are only referenced as types
-          '@typescript-eslint/consistent-type-imports': 'error',
+          '@typescript-eslint/consistent-type-imports': [
+            'error',
+            // We have set it to allow import('...') for types because that is the only kind of import that is allowed in global type augmentations
+            { disallowTypeAnnotations: false },
+          ],
           '@typescript-eslint/array-type': ['error', { default: 'array' }], // Require consistency: Use foo[] instead of Array<foo>
           '@typescript-eslint/ban-ts-comment': 'error',
           '@typescript-eslint/explicit-module-boundary-types': 'off', // Type inference is useful even for public functions
