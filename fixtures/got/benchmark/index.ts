@@ -114,7 +114,7 @@ suite
   .add('request - callback', {
     defer: true,
     fn: (deferred: { resolve: () => void }) => {
-      request(urlString, requestOptions, (error: Error) => {
+      request(urlString, requestOptions, (error?: Error) => {
         if (error) {
           throw error;
         }

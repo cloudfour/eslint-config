@@ -1,4 +1,4 @@
-import {
+import type {
   GlobalsOption,
   InternalModuleFormat,
   ManualChunksOption,
@@ -11,7 +11,8 @@ import {
 } from '../../rollup/types';
 import { ensureArray } from '../ensureArray';
 import { errInvalidExportOptionValue, error, warnDeprecation } from '../error';
-import { GenericConfigObject, warnUnknownOptions } from './options';
+import type { GenericConfigObject } from './options';
+import { warnUnknownOptions } from './options';
 
 export function normalizeOutputOptions(
   config: GenericConfigObject,
@@ -265,7 +266,10 @@ const getEntryFileNames = (
   config: GenericConfigObject,
   unsetOptions: Set<string>
 ): string => {
-  const configEntryFileNames = config.entryFileNames as string | undefined;
+  const configEntryFileNames = config.entryFileNames as
+    | string
+    | undefined
+    | null;
   if (configEntryFileNames === null) {
     unsetOptions.add('entryFileNames');
   }
@@ -284,7 +288,10 @@ function getExports(
     return error(errInvalidExportOptionValue(configExports));
   }
 
-  return (configExports as 'default' | 'named' | 'none' | 'auto') || 'auto';
+  return (
+    (configExports as 'default' | 'named' | 'none' | 'auto' | undefined) ||
+    'auto'
+  );
 }
 
 const getIndent = (

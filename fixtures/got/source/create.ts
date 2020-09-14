@@ -1,17 +1,18 @@
-import { URL } from 'url';
+import type { URL } from 'url';
 import { CancelError } from 'p-cancelable';
 import is from '@sindresorhus/is';
-import asPromise, {
-  // Request & Response
-  PromisableRequest,
-  Response,
-
+import type {
   // Options
   Options,
   NormalizedOptions,
 
   // Hooks
   InitHook,
+} from './as-promise';
+import asPromise, {
+  // Request & Response
+  PromisableRequest,
+  Response,
 
   // Errors
   ParseError,
@@ -24,7 +25,7 @@ import asPromise, {
   UnsupportedProtocolError,
   UploadError,
 } from './as-promise';
-import {
+import type {
   GotReturn,
   ExtendOptions,
   Got,

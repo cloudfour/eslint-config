@@ -1,4 +1,4 @@
-import { ClientRequest, IncomingMessage } from 'http';
+import type { ClientRequest, IncomingMessage } from 'http';
 import unhandler from './unhandle';
 import net = require('net');
 
@@ -67,7 +67,7 @@ export default (
       event
     ) as unknown) as NodeJS.Timeout;
 
-    timeout.unref?.();
+    timeout.unref();
 
     const cancel = (): void => {
       clearTimeout(timeout);
@@ -156,7 +156,7 @@ export default (
         if (hasPath) {
           once(socket, 'connect', timeConnect());
         } else {
-          once(socket, 'lookup', (error: Error): void => {
+          once(socket, 'lookup', (error: Error | null): void => {
             if (error === null) {
               once(socket, 'connect', timeConnect());
             }

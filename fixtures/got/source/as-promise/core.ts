@@ -1,19 +1,15 @@
-import { URL } from 'url';
+import type { URL } from 'url';
 import is, { assert } from '@sindresorhus/is';
-import {
+import type {
   Options,
   NormalizedOptions,
   Defaults,
   ResponseType,
-  ParseError,
   Response,
 } from './types';
-import Request, {
-  knownHookEvents,
-  RequestError,
-  Method,
-  ParseJsonFunction,
-} from '../core';
+import { ParseError } from './types';
+import type { Method, ParseJsonFunction } from '../core';
+import Request, { knownHookEvents, RequestError } from '../core';
 
 if (!knownHookEvents.includes('beforeRetry' as any)) {
   knownHookEvents.push('beforeRetry' as any, 'afterResponse' as any);
@@ -23,7 +19,7 @@ export const knownBodyTypes = ['json', 'buffer', 'text'];
 
 export const parseBody = (
   response: Response,
-  responseType: ResponseType,
+  responseType: string | ResponseType,
   parseJson: ParseJsonFunction,
   encoding?: BufferEncoding
 ): unknown => {
@@ -44,7 +40,7 @@ export const parseBody = (
 
     throw new ParseError(
       {
-        message: `Unknown body type '${responseType as string}'`,
+        message: `Unknown body type '${responseType}'`,
         name: 'Error',
       },
       response

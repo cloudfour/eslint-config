@@ -1,13 +1,13 @@
 import { CancelError } from 'p-cancelable';
-import {
+import type {
   NormalizedOptions,
   Options,
   Response,
   Method,
   TimeoutError,
-  RequestError,
   RequestEvents,
 } from '../core';
+import { RequestError } from '../core';
 import PCancelable = require('p-cancelable');
 
 export type ResponseType = 'json' | 'buffer' | 'text';
