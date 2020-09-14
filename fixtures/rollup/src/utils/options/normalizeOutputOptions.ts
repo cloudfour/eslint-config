@@ -266,7 +266,10 @@ const getEntryFileNames = (
   config: GenericConfigObject,
   unsetOptions: Set<string>
 ): string => {
-  const configEntryFileNames = config.entryFileNames as string | undefined;
+  const configEntryFileNames = config.entryFileNames as
+    | string
+    | undefined
+    | null;
   if (configEntryFileNames === null) {
     unsetOptions.add('entryFileNames');
   }
@@ -285,7 +288,10 @@ function getExports(
     return error(errInvalidExportOptionValue(configExports));
   }
 
-  return (configExports as 'default' | 'named' | 'none' | 'auto') || 'auto';
+  return (
+    (configExports as 'default' | 'named' | 'none' | 'auto' | undefined) ||
+    'auto'
+  );
 }
 
 const getIndent = (

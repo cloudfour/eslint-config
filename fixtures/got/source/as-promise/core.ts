@@ -19,7 +19,7 @@ export const knownBodyTypes = ['json', 'buffer', 'text'];
 
 export const parseBody = (
   response: Response,
-  responseType: ResponseType,
+  responseType: string | ResponseType,
   parseJson: ParseJsonFunction,
   encoding?: BufferEncoding
 ): unknown => {
@@ -40,7 +40,7 @@ export const parseBody = (
 
     throw new ParseError(
       {
-        message: `Unknown body type '${responseType as string}'`,
+        message: `Unknown body type '${responseType}'`,
         name: 'Error',
       },
       response

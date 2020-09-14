@@ -202,7 +202,8 @@ module.exports.configs = {
           '@typescript-eslint/no-unsafe-member-access': 'off', // Any is an escape hatch, let it be an escape hatch
           '@typescript-eslint/no-unsafe-return': 'off', // Any is an escape hatch, let it be an escape hatch
           '@typescript-eslint/restrict-template-expressions': 'off', // Allow using any-typed-values in template expressions
-
+          '@typescript-eslint/no-unnecessary-condition': 'error', // This catches a lot of dead code that TS itself doesn't flag
+          '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
           '@typescript-eslint/prefer-optional-chain': 'error', // More readable syntax
           'no-unused-vars': 'off', // TS checks this via noUnusedLocals / noUnusedParameters
           '@typescript-eslint/no-unused-vars': 'off', // TS checks this via noUnusedLocals / noUnusedParameters
