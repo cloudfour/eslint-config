@@ -176,7 +176,10 @@ module.exports.configs = {
           ...typescript.configs['recommended-requiring-type-checking'].rules,
           ...prettierTypescript.rules,
 
-          'node/no-extraneous-import': 'off', // TS checks this, this rule is slow
+          // TS handles checking these
+          'node/no-missing-import': 'off',
+          'node/no-missing-require': 'off',
+
           'no-import-assign': 'off', // TS handles this
 
           // With TS, the only reason to have a @param tag
