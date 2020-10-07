@@ -134,6 +134,7 @@ module.exports.configs = {
         'node/no-unpublished-require': 'off', // Does not account for "build" scripts
         'node/shebang': 'off', // Tons of false positives
 
+        'unicorn/import-style': 'off', // It doesn't seem useful to force people to use named, default, or namespace imports
         'unicorn/prevent-abbreviations': 'off', // Causes more issues than it's worth
         // Null is ok, even though Sindre Sorhus doesn't like it
         // It is ok to avoid using null and use undefined instead
