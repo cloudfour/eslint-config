@@ -118,6 +118,7 @@ module.exports.configs = {
             allowTaggedTemplates: false,
           },
         ],
+        '@cloudfour/prefer-early-return': 'error',
         'no-return-assign': ['error'],
         'func-names': 'off',
         'prefer-const': 'error',

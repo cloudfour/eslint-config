@@ -373,12 +373,11 @@ export function warnDeprecationWithOptions(
   warn: WarningHandler,
   strictDeprecations: boolean
 ): void {
-  if (activeDeprecation || strictDeprecations) {
-    const warning = errDeprecation(deprecation);
-    if (strictDeprecations) {
-      return error(warning);
-    }
-
-    warn(warning);
+  if (!activeDeprecation && !strictDeprecations) return;
+  const warning = errDeprecation(deprecation);
+  if (strictDeprecations) {
+    return error(warning);
   }
+
+  warn(warning);
 }
