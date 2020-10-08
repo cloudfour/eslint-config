@@ -39,17 +39,16 @@ const originalOnerrorHandler = global.onerror;
  */
 
 process.removeListener = function (e, fn) {
-  if (e === 'uncaughtException') {
-    if (originalOnerrorHandler) {
-      global.addEventListener('error', originalOnerrorHandler);
-    } else {
-      global.addEventListener('error', function () {});
-    }
+  if (e !== 'uncaughtException') return;
+  if (originalOnerrorHandler) {
+    global.addEventListener('error', originalOnerrorHandler);
+  } else {
+    global.addEventListener('error', function () {});
+  }
 
-    const i = uncaughtExceptionHandlers.indexOf(fn);
-    if (i !== -1) {
-      uncaughtExceptionHandlers.splice(i, 1);
-    }
+  const i = uncaughtExceptionHandlers.indexOf(fn);
+  if (i !== -1) {
+    uncaughtExceptionHandlers.splice(i, 1);
   }
 };
 

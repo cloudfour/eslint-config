@@ -318,24 +318,23 @@ function loadConfigFile(filePath) {
  */
 function writeDebugLogForLoading(request, relativeTo, filePath) {
   /* istanbul ignore next */
-  if (debug.enabled) {
-    let nameAndVersion = null;
+  if (!debug.enabled) return;
+  let nameAndVersion = null;
 
-    try {
-      const packageJsonPath = ModuleResolver.resolve(
-        `${request}/package.json`,
-        relativeTo
-      );
-      const { version = 'unknown' } = require(packageJsonPath);
+  try {
+    const packageJsonPath = ModuleResolver.resolve(
+      `${request}/package.json`,
+      relativeTo
+    );
+    const { version = 'unknown' } = require(packageJsonPath);
 
-      nameAndVersion = `${request}@${version}`;
-    } catch (error) {
-      debug('package.json was not found:', error.message);
-      nameAndVersion = request;
-    }
-
-    debug('Loaded: %s (%s)', nameAndVersion, filePath);
+    nameAndVersion = `${request}@${version}`;
+  } catch (error) {
+    debug('package.json was not found:', error.message);
+    nameAndVersion = request;
   }
+
+  debug('Loaded: %s (%s)', nameAndVersion, filePath);
 }
 
 /**
