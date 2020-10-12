@@ -1,5 +1,5 @@
 ---
-'@cloudfour/eslint-plugin': patch
+'@cloudfour/eslint-plugin': minor
 ---
 
 Update `eslint-plugin-unicorn` to v22
