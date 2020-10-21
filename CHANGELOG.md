@@ -1,5 +1,40 @@
 # @cloudfour/eslint-plugin
 
+## 15.0.0
+
+### Major Changes
+
+- [`2d8f332`](https://github.com/cloudfour/eslint-config/commit/2d8f3320896e156e06720774e09fb82275443bdf) [#171](https://github.com/cloudfour/eslint-config/pull/171) Thanks [@calebeby](https://github.com/calebeby)! - Add `@cloudfour/prefer-early-return` rule (enabled by default)
+
+  This rule suggests to change code like this:
+
+  ```js
+  function a() {
+    if (_) {
+      a();
+      b();
+      c();
+    }
+  }
+  ```
+
+  into:
+
+  ```js
+  function a() {
+    if (!_) return;
+    a();
+    b();
+    c();
+  }
+  ```
+
+### Minor Changes
+
+- [`f4e2715`](https://github.com/cloudfour/eslint-config/commit/f4e2715df26dfc5cb57b14cf32263b78bd65e9ea) [#164](https://github.com/cloudfour/eslint-config/pull/164) Thanks [@renovate](https://github.com/apps/renovate)! - Update [`eslint-plugin-unicorn` to v22](https://github.com/sindresorhus/eslint-plugin-unicorn/releases/v22.0.0)
+
+  The new [`unicorn/import-style`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v22.0.0/docs/rules/import-style.md) rule is disabled by default, so this is not a breaking change.
+
 ## 14.0.0
 
 ### Major Changes
