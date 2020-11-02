@@ -81,7 +81,8 @@ function timeslice() {
     immediateQueue.shift()();
   }
 
-  immediateTimeout = immediateQueue.length > 0 ? setTimeout(timeslice, 0) : null;
+  immediateTimeout =
+    immediateQueue.length > 0 ? setTimeout(timeslice, 0) : null;
 }
 
 /**
