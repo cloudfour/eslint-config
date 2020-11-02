@@ -36,7 +36,6 @@
     "eslint-plugin-jsdoc": "^30.0.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-unicorn": "^22.0.0"
   },
   "peerDependencies": {
@@ -48,7 +47,7 @@
     "eliminate": "1.1.2",
     "eslint": "7.12.1",
     "eslint-config-prettier": "6.15.0",
-    "eslint-config-standard": "15.0.1",
+    "eslint-config-standard": "16.0.1",
     "eslint-config-xo": "0.33.1",
     "eslint-formatter-pretty": "4.0.0",
     "kleur": "4.1.3",
