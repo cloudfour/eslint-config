@@ -22,51 +22,47 @@ export default function downshiftUseComboboxReducer(state, action) {
       };
       break;
     case stateChangeTypes.InputKeyDownArrowDown:
-      if (state.isOpen) {
-        changes = {
-          highlightedIndex: getNextWrappingIndex(
-            shiftKey ? 5 : 1,
-            state.highlightedIndex,
-            props.items.length,
-            action.getItemNodeFromIndex,
-            props.circularNavigation
-          ),
-        };
-      } else {
-        changes = {
-          highlightedIndex: getHighlightedIndexOnOpen(
-            props,
-            state,
-            1,
-            action.getItemNodeFromIndex
-          ),
-          isOpen: true,
-        };
-      }
+      changes = state.isOpen
+        ? {
+            highlightedIndex: getNextWrappingIndex(
+              shiftKey ? 5 : 1,
+              state.highlightedIndex,
+              props.items.length,
+              action.getItemNodeFromIndex,
+              props.circularNavigation
+            ),
+          }
+        : {
+            highlightedIndex: getHighlightedIndexOnOpen(
+              props,
+              state,
+              1,
+              action.getItemNodeFromIndex
+            ),
+            isOpen: true,
+          };
 
       break;
     case stateChangeTypes.InputKeyDownArrowUp:
-      if (state.isOpen) {
-        changes = {
-          highlightedIndex: getNextWrappingIndex(
-            shiftKey ? -5 : -1,
-            state.highlightedIndex,
-            props.items.length,
-            action.getItemNodeFromIndex,
-            props.circularNavigation
-          ),
-        };
-      } else {
-        changes = {
-          highlightedIndex: getHighlightedIndexOnOpen(
-            props,
-            state,
-            -1,
-            action.getItemNodeFromIndex
-          ),
-          isOpen: true,
-        };
-      }
+      changes = state.isOpen
+        ? {
+            highlightedIndex: getNextWrappingIndex(
+              shiftKey ? -5 : -1,
+              state.highlightedIndex,
+              props.items.length,
+              action.getItemNodeFromIndex,
+              props.circularNavigation
+            ),
+          }
+        : {
+            highlightedIndex: getHighlightedIndexOnOpen(
+              props,
+              state,
+              -1,
+              action.getItemNodeFromIndex
+            ),
+            isOpen: true,
+          };
 
       break;
     case stateChangeTypes.InputKeyDownEnter:
