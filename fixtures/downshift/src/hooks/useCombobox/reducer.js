@@ -22,8 +22,7 @@ export default function downshiftUseComboboxReducer(state, action) {
       };
       break;
     case stateChangeTypes.InputKeyDownArrowDown:
-      if (state.isOpen) {
-        changes = {
+      changes = state.isOpen ? {
           highlightedIndex: getNextWrappingIndex(
             shiftKey ? 5 : 1,
             state.highlightedIndex,
@@ -31,9 +30,7 @@ export default function downshiftUseComboboxReducer(state, action) {
             action.getItemNodeFromIndex,
             props.circularNavigation
           ),
-        };
-      } else {
-        changes = {
+        } : {
           highlightedIndex: getHighlightedIndexOnOpen(
             props,
             state,
@@ -42,12 +39,10 @@ export default function downshiftUseComboboxReducer(state, action) {
           ),
           isOpen: true,
         };
-      }
 
       break;
     case stateChangeTypes.InputKeyDownArrowUp:
-      if (state.isOpen) {
-        changes = {
+      changes = state.isOpen ? {
           highlightedIndex: getNextWrappingIndex(
             shiftKey ? -5 : -1,
             state.highlightedIndex,
@@ -55,9 +50,7 @@ export default function downshiftUseComboboxReducer(state, action) {
             action.getItemNodeFromIndex,
             props.circularNavigation
           ),
-        };
-      } else {
-        changes = {
+        } : {
           highlightedIndex: getHighlightedIndexOnOpen(
             props,
             state,
@@ -66,7 +59,6 @@ export default function downshiftUseComboboxReducer(state, action) {
           ),
           isOpen: true,
         };
-      }
 
       break;
     case stateChangeTypes.InputKeyDownEnter:

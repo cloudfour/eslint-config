@@ -199,19 +199,15 @@ export default declare((api, options) => {
               const init =
                 wrapInterop(path, loadExpr, metadata.interop) || loadExpr;
 
-              if (metadata.lazy) {
-                header = template.ast`
+              header = metadata.lazy ? template.ast`
                   function ${metadata.name}() {
                     const data = ${init};
                     ${metadata.name} = function(){ return data; };
                     return data;
                   }
-                `;
-              } else {
-                header = template.ast`
+                ` : template.ast`
                   var ${metadata.name} = ${init};
                 `;
-              }
             }
 
             header.loc = metadata.loc;

@@ -171,7 +171,6 @@ export default declare((api, options) => {
 
         const { node, parent, scope } = path;
         const left = node.left;
-        let declar;
 
         const stepKey = scope.generateUid('step');
         const stepValue = t.memberExpression(
@@ -179,17 +178,11 @@ export default declare((api, options) => {
           t.identifier('value')
         );
 
-        if (t.isVariableDeclaration(left)) {
-          // For (let i of test)
-          declar = t.variableDeclaration(left.kind, [
-            t.variableDeclarator(left.declarations[0].id, stepValue),
-          ]);
-        } else {
-          // For (i of test), for ({ i } of test)
-          declar = t.expressionStatement(
-            t.assignmentExpression('=', left, stepValue)
-          );
-        }
+        const declar = t.isVariableDeclaration(left)
+          ? t.variableDeclaration(left.kind, [
+              t.variableDeclarator(left.declarations[0].id, stepValue),
+            ])
+          : t.expressionStatement(t.assignmentExpression('=', left, stepValue));
 
         // Ensure that it's a block so we can take all its statements
         path.ensureBlock();

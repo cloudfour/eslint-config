@@ -75,12 +75,9 @@ function mdxProps(props) {
  */
 function categoryToMdx(category, props) {
   const categoryTitle = startCase(category);
-  let categoryBody;
-  if (category.includes('color')) {
-    categoryBody = mdxColors(props);
-  } else {
-    categoryBody = mdxProps(props);
-  }
+  const categoryBody = category.includes('color')
+    ? mdxColors(props)
+    : mdxProps(props);
 
   return `
 ## ${categoryTitle}
