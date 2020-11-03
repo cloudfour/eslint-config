@@ -18,7 +18,9 @@
   "files": [
     "dist/config.js",
     "src/rules.js",
-    "index.js"
+    "index.js",
+    "src/rules/**/*.js",	
+    "!src/rules/**/*.test.js"
   ],
   "engines": {
     "node": ">=8.0.0"
