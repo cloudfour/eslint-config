@@ -1,6 +1,6 @@
 {
   "name": "@cloudfour/eslint-plugin",
-  "version": "15.0.0",
+  "version": "15.0.1",
   "description": "Cloud Four's shareable ESLint configuration",
   "author": "Cloud Four <info@cloudfour.com> (http://cloudfour.com)",
   "homepage": "https://github.com/cloudfour/eslint-config",
@@ -18,7 +18,9 @@
   "files": [
     "dist/config.js",
     "src/rules.js",
-    "index.js"
+    "index.js",
+    "src/rules/**/*.js",
+    "!src/rules/**/*.test.js"
   ],
   "engines": {
     "node": ">=8.0.0"
