@@ -1,5 +1,11 @@
 # @cloudfour/eslint-plugin
 
+## 15.0.1
+
+### Patch Changes
+
+- [`e14e2ba`](https://github.com/cloudfour/eslint-config/commit/e14e2baf3215a07007ff710bd7a414edb4def692) [#193](https://github.com/cloudfour/eslint-config/pull/193) Thanks [@calebeby](https://github.com/calebeby)! - Fix published files so `@cloudfour/prefer-early-return` is included
+
 ## 15.0.0
 
 ### Major Changes
