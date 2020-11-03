@@ -1,4 +1,9 @@
 {
   "extends": ["config:base", ":automergeMinor"],
-  "reviewers": ["team:dev"]
+  "reviewers": ["team:dev"],
+  "force": {
+    "constraints": {
+      "node": "< 15.0.0"
+    }
+  }
 }
