@@ -1,5 +1,33 @@
 # @cloudfour/eslint-plugin
 
+## 16.0.0
+
+### Major Changes
+
+- [`404c42d`](https://github.com/cloudfour/eslint-config/commit/404c42d6f55fb30e11de6949530fd23cc0bef81a) [#176](https://github.com/cloudfour/eslint-config/pull/176) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-unicorn` to [`23.0.0`](https://github.com/sindresorhus/eslint-plugin-unicorn/releases/tag/v23.0.0)
+
+  - New rule: [`unicorn/prefer-math-trunc`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v23.0.0/docs/rules/prefer-math-trunc.md) (enabled by default)
+  - New rule: [`unicorn/prefer-ternary`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v23.0.0/docs/rules/prefer-ternary.md) (enabled by default)
+  - New rule: [`numeric-separators-style`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v23.0.0/docs/rules/numeric-separators-style.md) (not enabled by default yet)
+
+* [`a1f68c2`](https://github.com/cloudfour/eslint-config/commit/a1f68c2d3754b6ecb72e28914b40224602b50650) [#187](https://github.com/cloudfour/eslint-config/pull/187) Thanks [@spaceninja](https://github.com/spaceninja)! - Upgraded to v15 of eslint-config-standard, which adds several rules:
+
+  - Require indentation for values of ternary expressions (indent)
+  - Enforce newlines between operands of ternary expressions if the expression spans multiple lines (multiline-ternary)
+  - Disallow loops with a body that allows only one iteration (no-unreachable-loop)
+  - Disallow useless backreferences in regular expressions (no-useless-backreference)
+  - Enforce default clauses in switch statements to be last (default-case-last)
+  - Disallow Number Literals That Lose Precision (no-loss-of-precision)
+
+- [`7f732b6`](https://github.com/cloudfour/eslint-config/commit/7f732b63a2a3fa2ec3cea53bf4592afb896e2840) [#191](https://github.com/cloudfour/eslint-config/pull/191) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-config-standard` to `16.0.1`
+
+  - Remove `eslint-plugin-standard` since all of the rules from it now live in other plugins
+  - `camelcase` rule now allows variables starting with `UNSAFE_` (from react) and known globals
+  - `no-unused-vars` now ignores unused caught errors (`unicorn/prefer-optional-catch-binding` handles this use case)
+  - `prefer-regex-literals`: Enabled [`disallowRedundantWrapping` option](https://eslint.org/docs/rules/prefer-regex-literals#disallowredundantwrapping)
+  - `array-callback-return`: Change [`allowImplicit`](https://eslint.org/docs/rules/array-callback-return#allowimplicit) to `false`.
+  - `use-isnan`: Change [`enforceForIndexOf`](https://eslint.org/docs/rules/use-isnan#enforceforindexof) to `true`.
+
 ## 15.0.1
 
 ### Patch Changes
