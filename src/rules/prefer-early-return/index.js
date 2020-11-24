@@ -7,7 +7,7 @@ module.exports = {
       category: 'Best Practices',
       recommended: false,
       uri:
-        'https://github.com/cloudfour/eslint-config/blob/master/src/rules/prefer-early-return/README.md',
+        'https://github.com/cloudfour/eslint-config/blob/main/src/rules/prefer-early-return/README.md',
     },
     schema: [
       {

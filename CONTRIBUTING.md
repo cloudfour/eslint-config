@@ -26,4 +26,4 @@ If you are submitting a pull request that includes changes that will affect plac
 
 ## Releasing
 
-- [Changesets Action](https://github.com/changesets/action) will create and maintain release PR's whenever changes are pushed to master. Merge the "Publish Next Version" PR to release all unreleased changes on `master`. All of the changes will get combined into a single release. Changesets will handle updating the changelog, pushing git tags, and publishing to npm.
+- [Changesets Action](https://github.com/changesets/action) will create and maintain release PR's whenever changes are pushed to main. Merge the "Publish Next Version" PR to release all unreleased changes on `main`. All of the changes will get combined into a single release. Changesets will handle updating the changelog, pushing git tags, and publishing to npm.
