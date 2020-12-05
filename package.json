@@ -47,7 +47,7 @@
     "@changesets/changelog-github": "0.2.7",
     "@changesets/cli": "2.12.0",
     "eliminate": "1.1.2",
-    "eslint": "7.14.0",
+    "eslint": "7.15.0",
     "eslint-config-prettier": "6.15.0",
     "eslint-config-standard": "16.0.2",
     "eslint-config-xo": "0.33.1",
