@@ -2,9 +2,6 @@
 const xo = require('eslint-config-xo');
 const standard = require('eslint-config-standard');
 const prettier = require('eslint-config-prettier');
-const prettierStandard = require('eslint-config-prettier/standard');
-const prettierUnicorn = require('eslint-config-prettier/unicorn');
-const prettierTypescript = require('eslint-config-prettier/@typescript-eslint');
 const typescript = require('@typescript-eslint/eslint-plugin');
 
 // ESLint plugins
@@ -105,9 +102,7 @@ module.exports.configs = {
         ...xo.rules,
         ...standard.rules,
 
-        ...prettier.rules, // Undoes core stylistic rules
-        ...prettierStandard.rules, // Undoes stylistic rules in standard plugin
-        ...prettierUnicorn.rules, // Undoes stylistic rules in unicorn plugin
+        ...prettier.rules, // Undoes stylistic rules
 
         // Overrides
         'no-unused-expressions': [
@@ -176,7 +171,6 @@ module.exports.configs = {
           ...typescript.configs['eslint-recommended'].overrides[0].rules,
           ...typescript.configs.recommended.rules,
           ...typescript.configs['recommended-requiring-type-checking'].rules,
-          ...prettierTypescript.rules,
 
           // TS handles checking these
           'node/no-missing-import': 'off',
