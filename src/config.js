@@ -171,7 +171,6 @@ module.exports.configs = {
           ...typescript.configs['eslint-recommended'].overrides[0].rules,
           ...typescript.configs.recommended.rules,
           ...typescript.configs['recommended-requiring-type-checking'].rules,
-          ...prettier.rules, // Undoes stylistic rules
 
           // TS handles checking these
           'node/no-missing-import': 'off',
