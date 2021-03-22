@@ -54,18 +54,19 @@ export function mergeOptions(
 
   warnUnknownOptions(
     command,
-    Object.keys(inputOptions).concat(
-      Object.keys(outputOptions[0]).filter(
+    [
+      ...Object.keys(inputOptions),
+      ...Object.keys(outputOptions[0]).filter(
         (option) => option !== 'sourcemapPathTransform'
       ),
-      Object.keys(commandAliases),
+      ...Object.keys(commandAliases),
       'config',
       'environment',
       'plugin',
       'silent',
       'stdin',
-      'waitForBundleInput'
-    ),
+      'waitForBundleInput',
+    ],
     'CLI flags',
     warn,
     /^_$|output$|config/
@@ -156,7 +157,7 @@ const getExternal = (
     ? (source: string, importer: string | undefined, isResolved: boolean) =>
         configExternal(source, importer, isResolved) ||
         overrides.external.includes(source)
-    : ensureArray(configExternal).concat(overrides.external);
+    : [...ensureArray(configExternal), overrides.external];
 };
 
 const getOnWarn = (

@@ -223,7 +223,7 @@ class SourceCode extends TokenStore {
     const shebangMatched = this.text.match(astUtils.shebangPattern);
     const hasShebang =
       shebangMatched &&
-      ast.comments.length &&
+      ast.comments.length > 0 &&
       ast.comments[0].value === shebangMatched[1];
 
     if (hasShebang) {

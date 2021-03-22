@@ -116,7 +116,13 @@ module.exports.configs = {
         '@cloudfour/prefer-early-return': 'error',
         'no-return-assign': ['error'],
         'func-names': 'off',
-        'prefer-const': 'error',
+        'prefer-const': [
+          'error',
+          // If there is a destructuring assignment
+          // and some of the properties should be const
+          // but others shouldn't be, let it use let
+          { destructuring: 'all' },
+        ],
         'no-var': 'error',
         'object-shorthand': 'error',
         'prefer-object-spread': 'error',
@@ -153,6 +159,9 @@ module.exports.configs = {
           // There isn't a good reason to force use of Number.POSITIVE_INFINITY instead of Infinity
           { checkInfinity: false },
         ],
+        // This rule suggests incorrect code with the destructured object is modified
+        // That is a fairly common case, and it is too annoying to always disable the rule on each line
+        'unicorn/consistent-destructuring': 'off',
 
         // Disabling jsdoc rules that check the types themselves
         // If you want to have type checking on a project, use typescript instead

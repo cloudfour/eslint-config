@@ -214,8 +214,8 @@ export default declare((api, options) => {
 
             header.loc = metadata.loc;
 
-            headers.push(header);
             headers.push(
+              header,
               ...buildNamespaceInitStatements(meta, metadata, loose)
             );
           }

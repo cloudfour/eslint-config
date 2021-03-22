@@ -466,7 +466,7 @@ function askInstallModules(modules, packageJsonExists) {
         message: 'Would you like to install them now with npm?',
         default: true,
         when() {
-          return modules.length && packageJsonExists;
+          return modules.length > 0 && packageJsonExists;
         },
       },
     ])

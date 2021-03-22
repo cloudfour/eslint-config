@@ -1314,12 +1314,10 @@ class Linter {
 
     return applyDisableDirectives({
       directives: commentDirectives.disableDirectives,
-      problems: lintingProblems
-        .concat(commentDirectives.problems)
-        .sort(
-          (problemA, problemB) =>
-            problemA.line - problemB.line || problemA.column - problemB.column
-        ),
+      problems: [...lintingProblems, commentDirectives.problems].sort(
+        (problemA, problemB) =>
+          problemA.line - problemB.line || problemA.column - problemB.column
+      ),
       reportUnusedDisableDirectives: options.reportUnusedDisableDirectives,
     });
   }

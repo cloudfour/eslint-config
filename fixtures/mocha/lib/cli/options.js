@@ -63,13 +63,11 @@ const coerceOpts = Object.assign(
     (acc, arg) => Object.assign(acc, { [arg]: (v) => [...new Set(list(v))] }),
     {}
   ),
-  types.boolean
-    .concat(types.string, types.number)
-    .reduce(
-      (acc, arg) =>
-        Object.assign(acc, { [arg]: (v) => (Array.isArray(v) ? v.pop() : v) }),
-      {}
-    )
+  [...types.boolean, ...types.string, ...types.number].reduce(
+    (acc, arg) =>
+      Object.assign(acc, { [arg]: (v) => (Array.isArray(v) ? v.pop() : v) }),
+    {}
+  )
 );
 
 /**
@@ -80,9 +78,10 @@ const coerceOpts = Object.assign(
  * @private
  * @ignore
  */
-const nargOpts = types.array
-  .concat(types.string, types.number)
-  .reduce((acc, arg) => Object.assign(acc, { [arg]: 1 }), {});
+const nargOpts = [...types.array, ...types.string, ...types.number].reduce(
+  (acc, arg) => Object.assign(acc, { [arg]: 1 }),
+  {}
+);
 
 /**
  * Wrapper around `yargs-parser` which applies our settings
@@ -125,7 +124,7 @@ const parse = (args = [], defaultValues = {}, ...configObjects) => {
     string: types.string,
     array: types.array,
     number: types.number,
-    boolean: types.boolean.concat(nodeArgs.map((pair) => pair[0])),
+    boolean: [...types.boolean, ...nodeArgs.map((pair) => pair[0])],
   });
   if (result.error) {
     console.error(ansi.red(`Error: ${result.error.message}`));
@@ -134,9 +133,9 @@ const parse = (args = [], defaultValues = {}, ...configObjects) => {
   }
 
   // Reapply "=" arg values from above
-  nodeArgs.forEach(([key, value]) => {
+  for (const [key, value] of nodeArgs) {
     result.argv[key] = value;
-  });
+  }
 
   return result.argv;
 };
@@ -224,19 +223,19 @@ const loadOptions = (argv = []) => {
 
   if (rcConfig) {
     args.config = false;
-    args._ = args._.concat(rcConfig._ || []);
+    args._ = [...args._, ...(rcConfig._ || [])];
   }
 
   if (pkgConfig) {
     args.package = false;
-    args._ = args._.concat(pkgConfig._ || []);
+    args._ = [...args._, ...(pkgConfig._ || [])];
   }
 
   args = parse(args._, mocharc, args, rcConfig || {}, pkgConfig || {});
 
   // Recombine positional arguments and "spec"
   if (args.spec) {
-    args._ = args._.concat(args.spec);
+    args._ = [args._, ...args.spec];
     delete args.spec;
   }
 

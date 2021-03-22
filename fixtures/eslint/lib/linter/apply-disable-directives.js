@@ -202,8 +202,9 @@ module.exports = ({
 
   return reportUnusedDisableDirectives === 'off'
     ? lineDirectivesResult.problems
-    : lineDirectivesResult.problems
-        .concat(blockDirectivesResult.unusedDisableDirectives)
-        .concat(lineDirectivesResult.unusedDisableDirectives)
-        .sort(compareLocations);
+    : [
+        ...lineDirectivesResult.problems,
+        ...blockDirectivesResult.unusedDisableDirectives,
+        ...lineDirectivesResult.unusedDisableDirectives,
+      ].sort(compareLocations);
 };

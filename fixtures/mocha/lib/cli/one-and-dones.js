@@ -65,6 +65,10 @@ exports.ONE_AND_DONES = {
  * @type Set<string>
  * @private
  */
-exports.ONE_AND_DONE_ARGS = new Set(
-  ['help', 'h', 'version', 'V'].concat(Object.keys(exports.ONE_AND_DONES))
-);
+exports.ONE_AND_DONE_ARGS = new Set([
+  'help',
+  'h',
+  'version',
+  'V',
+  ...Object.keys(exports.ONE_AND_DONES),
+]);

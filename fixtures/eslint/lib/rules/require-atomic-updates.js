@@ -97,14 +97,13 @@ class SegmentInfo {
       const info = this.info.get(prevSegment);
 
       if (info) {
-        info.outdatedReadVariableNames.forEach(
-          Set.prototype.add,
-          outdatedReadVariableNames
-        );
-        info.freshReadVariableNames.forEach(
-          Set.prototype.add,
-          freshReadVariableNames
-        );
+        for (const variableName of info.outdatedReadVariableNames) {
+          outdatedReadVariableNames.add(variableName);
+        }
+
+        for (const variableName of info.freshReadVariableNames) {
+          freshReadVariableNames.add(variableName);
+        }
       }
     }
 
@@ -140,10 +139,10 @@ class SegmentInfo {
       const info = this.info.get(segment);
 
       if (info) {
-        info.freshReadVariableNames.forEach(
-          Set.prototype.add,
-          info.outdatedReadVariableNames
-        );
+        for (const variableName of info.freshReadVariableNames) {
+          info.outdatedReadVariableNames.add(variableName);
+        }
+
         info.freshReadVariableNames.clear();
       }
     }

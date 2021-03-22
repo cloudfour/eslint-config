@@ -437,12 +437,12 @@ class CascadingConfigArrayFactory {
           );
         }
 
-        finalConfigArray = finalConfigArray.concat(personalConfigArray);
+        finalConfigArray = [...finalConfigArray, ...personalConfigArray];
       }
 
       // Apply CLI options.
       if (cliConfigArray.length > 0) {
-        finalConfigArray = finalConfigArray.concat(cliConfigArray);
+        finalConfigArray = [finalConfigArray, ...cliConfigArray];
       }
 
       // Validate rule settings and environments.
