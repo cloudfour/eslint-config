@@ -23,7 +23,8 @@ const NEXT_TOKEN_M = /^[{*]$/u;
 const TEMPLATE_OPEN_PAREN = /\$\{$/u;
 const TEMPLATE_CLOSE_PAREN = /^\}/u;
 const CHECK_TYPE = /^(?:JSXElement|RegularExpression|String|Template)$/u;
-const KEYS = keywords.concat([
+const KEYS = [
+  ...keywords,
   'as',
   'async',
   'await',
@@ -33,7 +34,7 @@ const KEYS = keywords.concat([
   'of',
   'set',
   'yield',
-]);
+];
 
 // Check duplications.
 (function () {

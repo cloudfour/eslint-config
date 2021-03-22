@@ -106,8 +106,8 @@ const parse = (args = [], defaultValues = {}, ...configObjects) => {
       if (isNodeFlag(flag, false)) {
         flag = flag.replace(/^--?/, '');
         return arg.includes('=')
-          ? acc.concat([[flag, pair[1]]])
-          : acc.concat([[flag, true]]);
+          ? [...acc, [flag, pair[1]]]
+          : [...acc, [flag, true]];
       }
 
       return acc;

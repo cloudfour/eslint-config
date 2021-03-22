@@ -174,7 +174,7 @@ module.exports = (config) => {
 function addSauceTests(cfg) {
   cfg.reporters.push('saucelabs');
   const browsers = Object.keys(browserPlatformPairs);
-  cfg.browsers = cfg.browsers.concat(browsers);
+  cfg.browsers = [...cfg.browsers, ...browsers];
   cfg.customLaunchers = browsers.reduce((acc, browser) => {
     const platform = browserPlatformPairs[browser];
     const [browserName, version] = browser.split('@');

@@ -140,13 +140,19 @@ module.exports.configs = {
         // due to the `index` parameter being passed unexpectedly into the callback function,
         // causing unexpected behavior if the callback expects something that is not the index
         // But this is an edge case that can be avoided through careful manual review
-        'unicorn/no-fn-reference-in-iterator': 'off',
+        // and sometimes through TS
+        'unicorn/no-array-callback-reference': 'off',
         // This rule changes arrays to sets if you call .includes on it
         // Converting from array to set has a cost itself, just like .includes has a cost
         // We decided to leave the decision of using arrays vs sets to human reviewers
         'unicorn/prefer-set-has': 'off',
         // Reduce is often useful. Don't need a lint rule to tell us not to use it
-        'unicorn/no-reduce': 'off',
+        'unicorn/no-array-reduce': 'off',
+        'unicorn/prefer-number-properties': [
+          'error',
+          // There isn't a good reason to force use of Number.POSITIVE_INFINITY instead of Infinity
+          { checkInfinity: false },
+        ],
 
         // Disabling jsdoc rules that check the types themselves
         // If you want to have type checking on a project, use typescript instead

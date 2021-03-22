@@ -171,13 +171,13 @@ function addDeclaredGlobals(
   }
 
   // Mark all exported variables as such
-  Object.keys(exportedVariables).forEach((name) => {
+  for (const name of Object.keys(exportedVariables)) {
     const variable = globalScope.set.get(name);
 
     if (variable) {
       variable.eslintUsed = true;
     }
-  });
+  }
 
   /*
    * "through" contains all references which definitions cannot be found.
@@ -310,170 +310,170 @@ function getDirectiveComments(filename, ast, ruleMapper, warnInlineConfig) {
   const problems = [];
   const disableDirectives = [];
 
-  ast.comments
-    .filter((token) => token.type !== 'Shebang')
-    .forEach((comment) => {
-      const trimmedCommentText = stripDirectiveComment(comment.value);
-      const match = /^(eslint(?:-env|-enable|-disable(?:(?:-next)?-line)?)?|exported|globals?)(?:\s|$)/u.exec(
-        trimmedCommentText
+  for (const comment of ast.comments.filter(
+    (token) => token.type !== 'Shebang'
+  )) {
+    const trimmedCommentText = stripDirectiveComment(comment.value);
+    const match = /^(eslint(?:-env|-enable|-disable(?:(?:-next)?-line)?)?|exported|globals?)(?:\s|$)/u.exec(
+      trimmedCommentText
+    );
+
+    if (!match) {
+      continue;
+    }
+
+    const directiveText = match[1];
+    const lineCommentSupported = /^eslint-disable-(next-)?line$/u.test(
+      directiveText
+    );
+
+    if (comment.type === 'Line' && !lineCommentSupported) {
+      continue;
+    }
+
+    if (warnInlineConfig) {
+      const kind =
+        comment.type === 'Block'
+          ? `/*${directiveText}*/`
+          : `//${directiveText}`;
+
+      problems.push(
+        createLintingProblem({
+          ruleId: null,
+          message: `'${kind}' has no effect because you have 'noInlineConfig' setting in ${warnInlineConfig}.`,
+          loc: comment.loc,
+          severity: 1,
+        })
       );
+      continue;
+    }
 
-      if (!match) {
-        return;
-      }
+    if (
+      lineCommentSupported &&
+      comment.loc.start.line !== comment.loc.end.line
+    ) {
+      const message = `${directiveText} comment should not span multiple lines.`;
 
-      const directiveText = match[1];
-      const lineCommentSupported = /^eslint-disable-(next-)?line$/u.test(
-        directiveText
+      problems.push(
+        createLintingProblem({
+          ruleId: null,
+          message,
+          loc: comment.loc,
+        })
       );
+      continue;
+    }
 
-      if (comment.type === 'Line' && !lineCommentSupported) {
-        return;
-      }
+    const directiveValue = trimmedCommentText.slice(
+      match.index + directiveText.length
+    );
 
-      if (warnInlineConfig) {
-        const kind =
-          comment.type === 'Block'
-            ? `/*${directiveText}*/`
-            : `//${directiveText}`;
-
-        problems.push(
-          createLintingProblem({
-            ruleId: null,
-            message: `'${kind}' has no effect because you have 'noInlineConfig' setting in ${warnInlineConfig}.`,
-            loc: comment.loc,
-            severity: 1,
-          })
+    switch (directiveText) {
+      case 'eslint-disable':
+      case 'eslint-enable':
+      case 'eslint-disable-next-line':
+      case 'eslint-disable-line': {
+        const directiveType = directiveText.slice('eslint-'.length);
+        const options = {
+          type: directiveType,
+          loc: comment.loc,
+          value: directiveValue,
+          ruleMapper,
+        };
+        const { directives, directiveProblems } = createDisableDirectives(
+          options
         );
-        return;
+
+        disableDirectives.push(...directives);
+        problems.push(...directiveProblems);
+        break;
       }
 
-      if (
-        lineCommentSupported &&
-        comment.loc.start.line !== comment.loc.end.line
-      ) {
-        const message = `${directiveText} comment should not span multiple lines.`;
-
-        problems.push(
-          createLintingProblem({
-            ruleId: null,
-            message,
-            loc: comment.loc,
-          })
+      case 'exported':
+        Object.assign(
+          exportedVariables,
+          commentParser.parseStringConfig(directiveValue, comment)
         );
-        return;
-      }
+        break;
 
-      const directiveValue = trimmedCommentText.slice(
-        match.index + directiveText.length
-      );
+      case 'globals':
+      case 'global':
+        for (const [id, { value }] of Object.entries(
+          commentParser.parseStringConfig(directiveValue, comment)
+        )) {
+          let normalizedValue;
 
-      switch (directiveText) {
-        case 'eslint-disable':
-        case 'eslint-enable':
-        case 'eslint-disable-next-line':
-        case 'eslint-disable-line': {
-          const directiveType = directiveText.slice('eslint-'.length);
-          const options = {
-            type: directiveType,
-            loc: comment.loc,
-            value: directiveValue,
-            ruleMapper,
-          };
-          const { directives, directiveProblems } = createDisableDirectives(
-            options
-          );
+          try {
+            normalizedValue = ConfigOps.normalizeConfigGlobal(value);
+          } catch (error) {
+            problems.push(
+              createLintingProblem({
+                ruleId: null,
+                loc: comment.loc,
+                message: error.message,
+              })
+            );
+            continue;
+          }
 
-          disableDirectives.push(...directives);
-          problems.push(...directiveProblems);
-          break;
+          if (enabledGlobals[id]) {
+            enabledGlobals[id].comments.push(comment);
+            enabledGlobals[id].value = normalizedValue;
+          } else {
+            enabledGlobals[id] = {
+              comments: [comment],
+              value: normalizedValue,
+            };
+          }
         }
 
-        case 'exported':
-          Object.assign(
-            exportedVariables,
-            commentParser.parseStringConfig(directiveValue, comment)
-          );
-          break;
+        break;
 
-        case 'globals':
-        case 'global':
-          for (const [id, { value }] of Object.entries(
-            commentParser.parseStringConfig(directiveValue, comment)
-          )) {
-            let normalizedValue;
+      case 'eslint': {
+        const parseResult = commentParser.parseJsonConfig(
+          directiveValue,
+          comment.loc
+        );
 
-            try {
-              normalizedValue = ConfigOps.normalizeConfigGlobal(value);
-            } catch (error) {
+        if (parseResult.success) {
+          for (const name of Object.keys(parseResult.config)) {
+            const rule = ruleMapper(name);
+            const ruleValue = parseResult.config[name];
+
+            if (rule === null) {
               problems.push(
-                createLintingProblem({
-                  ruleId: null,
-                  loc: comment.loc,
-                  message: error.message,
-                })
+                createLintingProblem({ ruleId: name, loc: comment.loc })
               );
               continue;
             }
 
-            if (enabledGlobals[id]) {
-              enabledGlobals[id].comments.push(comment);
-              enabledGlobals[id].value = normalizedValue;
-            } else {
-              enabledGlobals[id] = {
-                comments: [comment],
-                value: normalizedValue,
-              };
+            try {
+              validator.validateRuleOptions(rule, name, ruleValue);
+            } catch (error) {
+              problems.push(
+                createLintingProblem({
+                  ruleId: name,
+                  message: error.message,
+                  loc: comment.loc,
+                })
+              );
+
+              // Do not apply the config, if found invalid options.
+              continue;
             }
+
+            configuredRules[name] = ruleValue;
           }
-
-          break;
-
-        case 'eslint': {
-          const parseResult = commentParser.parseJsonConfig(
-            directiveValue,
-            comment.loc
-          );
-
-          if (parseResult.success) {
-            Object.keys(parseResult.config).forEach((name) => {
-              const rule = ruleMapper(name);
-              const ruleValue = parseResult.config[name];
-
-              if (rule === null) {
-                problems.push(
-                  createLintingProblem({ ruleId: name, loc: comment.loc })
-                );
-                return;
-              }
-
-              try {
-                validator.validateRuleOptions(rule, name, ruleValue);
-              } catch (error) {
-                problems.push(
-                  createLintingProblem({
-                    ruleId: name,
-                    message: error.message,
-                    loc: comment.loc,
-                  })
-                );
-
-                // Do not apply the config, if found invalid options.
-                return;
-              }
-
-              configuredRules[name] = ruleValue;
-            });
-          } else {
-            problems.push(parseResult.error);
-          }
-
-          break;
+        } else {
+          problems.push(parseResult.error);
         }
 
-        // No default
+        break;
       }
-    });
+
+      // No default
+    }
+  }
 
   return {
     configuredRules,
@@ -977,19 +977,19 @@ function runRules(
 
   const lintingProblems = [];
 
-  Object.keys(configuredRules).forEach((ruleId) => {
+  for (const ruleId of Object.keys(configuredRules)) {
     const severity = ConfigOps.getRuleSeverity(configuredRules[ruleId]);
 
     // Not load disabled rules
     if (severity === 0) {
-      return;
+      continue;
     }
 
     const rule = ruleMapper(ruleId);
 
     if (rule === null) {
       lintingProblems.push(createLintingProblem({ ruleId }));
-      return;
+      continue;
     }
 
     const messageIds = rule.meta && rule.meta.messages;
@@ -1035,19 +1035,19 @@ function runRules(
     const ruleListeners = createRuleListeners(rule, ruleContext);
 
     // Add all the selectors from the rule as listeners
-    Object.keys(ruleListeners).forEach((selector) => {
+    for (const selector of Object.keys(ruleListeners)) {
       emitter.on(
         selector,
         timing.enabled
           ? timing.time(ruleId, ruleListeners[selector])
           : ruleListeners[selector]
       );
-    });
-  });
+    }
+  }
 
   const eventGenerator = new CodePathAnalyzer(new NodeEventGenerator(emitter));
 
-  nodeQueue.forEach((traversalInfo) => {
+  for (const traversalInfo of nodeQueue) {
     currentNode = traversalInfo.node;
 
     try {
@@ -1060,7 +1060,7 @@ function runRules(
       error.currentNode = currentNode;
       throw error;
     }
-  });
+  }
 
   return lintingProblems;
 }
@@ -1471,9 +1471,9 @@ class Linter {
    * @returns {void}
    */
   defineRules(rulesToDefine) {
-    Object.getOwnPropertyNames(rulesToDefine).forEach((ruleId) => {
+    for (const ruleId of Object.getOwnPropertyNames(rulesToDefine)) {
       this.defineRule(ruleId, rulesToDefine[ruleId]);
-    });
+    }
   }
 
   /**

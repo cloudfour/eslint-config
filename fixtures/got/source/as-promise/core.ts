@@ -85,18 +85,16 @@ export default class PromisableRequest extends Request {
     // `options.retry`
     const { retry } = options;
 
-    if (defaults) {
-      options.retry = { ...defaults.retry };
-    } else {
-      options.retry = {
-        calculateDelay: (retryObject) => retryObject.computedValue,
-        limit: 0,
-        methods: [],
-        statusCodes: [],
-        errorCodes: [],
-        maxRetryAfter: undefined,
-      };
-    }
+    options.retry = defaults
+      ? { ...defaults.retry }
+      : {
+          calculateDelay: (retryObject) => retryObject.computedValue,
+          limit: 0,
+          methods: [],
+          statusCodes: [],
+          errorCodes: [],
+          maxRetryAfter: undefined,
+        };
 
     if (is.object(retry)) {
       options.retry = {

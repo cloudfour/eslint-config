@@ -455,7 +455,7 @@ class SourceCode extends TokenStore {
           parent.type !== 'NewExpression'
         ) {
           while (
-            !this.getCommentsBefore(parent).length &&
+            this.getCommentsBefore(parent).length === 0 &&
             !/Function/u.test(parent.type) &&
             parent.type !== 'MethodDefinition' &&
             parent.type !== 'Property'

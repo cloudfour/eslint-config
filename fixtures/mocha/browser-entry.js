@@ -76,8 +76,8 @@ const immediateQueue = [];
 let immediateTimeout;
 
 function timeslice() {
-  const immediateStart = new Date().getTime();
-  while (immediateQueue.length && new Date().getTime() - immediateStart < 100) {
+  const immediateStart = Date.now();
+  while (immediateQueue.length > 0 && Date.now() - immediateStart < 100) {
     immediateQueue.shift()();
   }
 
@@ -104,9 +104,10 @@ Mocha.Runner.immediately = function (callback) {
  * @param {Error} err
  */
 mocha.throwError = function (err) {
-  uncaughtExceptionHandlers.forEach(function (fn) {
+  for (const fn of uncaughtExceptionHandlers) {
     fn(err);
-  });
+  }
+
   throw err;
 };
 

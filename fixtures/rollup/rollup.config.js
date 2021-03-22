@@ -25,7 +25,7 @@ const commitHash = (function () {
 const now = new Date(
   process.env.SOURCE_DATE_EPOCH
     ? process.env.SOURCE_DATE_EPOCH * 1000
-    : new Date().getTime()
+    : Date.now()
 ).toUTCString();
 
 const banner = `/*

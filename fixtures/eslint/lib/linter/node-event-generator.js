@@ -239,7 +239,7 @@ class NodeEventGenerator {
     this.anyTypeEnterSelectors = [];
     this.anyTypeExitSelectors = [];
 
-    emitter.eventNames().forEach((rawSelector) => {
+    for (const rawSelector of emitter.eventNames()) {
       const selector = parseSelector(rawSelector);
 
       if (selector.listenerTypes) {
@@ -247,14 +247,15 @@ class NodeEventGenerator {
           ? this.exitSelectorsByNodeType
           : this.enterSelectorsByNodeType;
 
-        selector.listenerTypes.forEach((nodeType) => {
+        for (const nodeType of selector.listenerTypes) {
           if (!typeMap.has(nodeType)) {
             typeMap.set(nodeType, []);
           }
 
           typeMap.get(nodeType).push(selector);
-        });
-        return;
+        }
+
+        continue;
       }
 
       const selectors = selector.isExit
@@ -262,16 +263,14 @@ class NodeEventGenerator {
         : this.anyTypeEnterSelectors;
 
       selectors.push(selector);
-    });
+    }
 
     this.anyTypeEnterSelectors.sort(compareSpecificity);
     this.anyTypeExitSelectors.sort(compareSpecificity);
-    this.enterSelectorsByNodeType.forEach((selectorList) =>
-      selectorList.sort(compareSpecificity)
-    );
-    this.exitSelectorsByNodeType.forEach((selectorList) =>
-      selectorList.sort(compareSpecificity)
-    );
+    for (const selectorList of this.enterSelectorsByNodeType)
+      selectorList.sort(compareSpecificity);
+    for (const selectorList of this.exitSelectorsByNodeType)
+      selectorList.sort(compareSpecificity);
   }
 
   /**
