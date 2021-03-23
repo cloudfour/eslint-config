@@ -1,5 +1,77 @@
 # @cloudfour/eslint-plugin
 
+## 16.0.0
+
+### Major Changes
+
+- [#206](https://github.com/cloudfour/eslint-config/pull/206) [`4e2b9fb`](https://github.com/cloudfour/eslint-config/commit/4e2b9fb0454cf6d0165d9557232caf1db5f42392) Thanks [@spaceninja](https://github.com/spaceninja)! - Update dependency `eslint-config-prettier` to [v7](https://togithub.com/prettier/eslint-config-prettier/blob/master/CHANGELOG.md#Version-700-2020-12-05)
+
+  - Changed: At least ESLint 7.0.0 is now required.
+
+* [#176](https://github.com/cloudfour/eslint-config/pull/176) [`404c42d`](https://github.com/cloudfour/eslint-config/commit/404c42d6f55fb30e11de6949530fd23cc0bef81a) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-unicorn` to [`23.0.0`](https://github.com/sindresorhus/eslint-plugin-unicorn/releases/tag/v23.0.0)
+
+  - New rule: [`unicorn/prefer-math-trunc`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v23.0.0/docs/rules/prefer-math-trunc.md) (enabled by default)
+  - New rule: [`unicorn/prefer-ternary`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v23.0.0/docs/rules/prefer-ternary.md) (enabled by default)
+  - New rule: [`numeric-separators-style`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v23.0.0/docs/rules/numeric-separators-style.md) (not enabled by default yet)
+
+- [#187](https://github.com/cloudfour/eslint-config/pull/187) [`a1f68c2`](https://github.com/cloudfour/eslint-config/commit/a1f68c2d3754b6ecb72e28914b40224602b50650) Thanks [@spaceninja](https://github.com/spaceninja)! - Upgraded to v15 of eslint-config-standard, which adds several rules:
+
+  - Require indentation for values of ternary expressions (indent)
+  - Enforce newlines between operands of ternary expressions if the expression spans multiple lines (multiline-ternary)
+  - Disallow loops with a body that allows only one iteration (no-unreachable-loop)
+  - Disallow useless backreferences in regular expressions (no-useless-backreference)
+  - Enforce default clauses in switch statements to be last (default-case-last)
+  - Disallow Number Literals That Lose Precision (no-loss-of-precision)
+
+* [#242](https://github.com/cloudfour/eslint-config/pull/242) [`58c7204`](https://github.com/cloudfour/eslint-config/commit/58c7204c38092f137dba8a6c94425c0b7d06ceb2) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-unicorn` to `v29`
+
+  New rules:
+
+  - [`@cloudfour/unicorn/no-array-for-each`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-for-each.md)
+  - [`@cloudfour/unicorn/no-array-push-push`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-push-push.md)
+  - [`@cloudfour/unicorn/no-this-assignment`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-this-assignment.md)
+  - [`@cloudfour/unicorn/no-lonely-if`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-lonely-if.md)
+  - [`@cloudfour/unicorn/empty-brace-spaces`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/empty-brace-spaces.md) (not enabled by default)
+  - [`@cloudfour/unicorn/prefer-date-now`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-date-now.md)
+  - [`@cloudfour/unicorn/no-new-array`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-new-array.md)
+  - [`@cloudfour/unicorn/prefer-array-index-of`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-index-of.md)
+  - [`@cloudfour/unicorn/prefer-regexp-test`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-regexp-test.md)
+  - [`@cloudfour/unicorn/consistent-destructuring`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-destructuring.md) (not enabled by default)
+  - [`@cloudfour/unicorn/prefer-array-some`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-some.md)
+  - [`@cloudfour/unicorn/prefer-default-parameters`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-default-parameters.md)
+  - [`@cloudfour/unicorn/no-static-only-class`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-static-only-class.md)
+  - [`@cloudfour/unicorn/prefer-array-flat`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-flat.md) (not enabled by default)
+
+  Disabled rules:
+
+  - [`@cloudfour/unicorn/import-index`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/import-index.md) (due to Node ESM resolution implementation)
+
+  Rename rules:
+
+  - `@cloudfour/unicorn/no-fn-reference-in-iterator` → `@cloudfour/unicorn/no-array-callback-reference`
+  - `@cloudfour/unicorn/no-array-instanceof` → `@cloudfour/unicorn/no-instanceof-array`
+  - `@cloudfour/unicorn/no-reduce` → `@cloudfour/unicorn/no-array-reduce`
+  - `@cloudfour/unicorn/prefer-dataset` → `@cloudfour/unicorn/prefer-dom-node-dataset`
+  - `@cloudfour/unicorn/prefer-flat-map` → `@cloudfour/unicorn/prefer-array-flat-map`
+  - `@cloudfour/unicorn/prefer-replace-all` → `@cloudfour/unicorn/prefer-string-replace-all`
+  - `@cloudfour/unicorn/prefer-starts-ends-with` → `@cloudfour/unicorn/prefer-string-starts-ends-with`
+  - `@cloudfour/unicorn/prefer-text-content` → `@cloudfour/unicorn/prefer-dom-node-text-content`
+  - `@cloudfour/unicorn/prefer-trim-start-end` → `@cloudfour/unicorn/prefer-string-trim-start-end`
+  - `@cloudfour/unicorn/prefer-event-key` → `@cloudfour/unicorn/prefer-keyboard-event-key`
+  - `@cloudfour/unicorn/prefer-node-append` → `@cloudfour/unicorn/prefer-dom-node-append`
+  - `@cloudfour/unicorn/prefer-node-remove` → `@cloudfour/unicorn/prefer-dom-node-remove`
+
+  There were many improvements/changes to individual rules, listed [here](https://github.com/cloudfour/eslint-config/pull/242)
+
+- [#191](https://github.com/cloudfour/eslint-config/pull/191) [`7f732b6`](https://github.com/cloudfour/eslint-config/commit/7f732b63a2a3fa2ec3cea53bf4592afb896e2840) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-config-standard` to `16.0.1`
+
+  - Remove `eslint-plugin-standard` since all of the rules from it now live in other plugins
+  - `camelcase` rule now allows variables starting with `UNSAFE_` (from react) and known globals
+  - `no-unused-vars` now ignores unused caught errors (`unicorn/prefer-optional-catch-binding` handles this use case)
+  - `prefer-regex-literals`: Enabled [`disallowRedundantWrapping` option](https://eslint.org/docs/rules/prefer-regex-literals#disallowredundantwrapping)
+  - `array-callback-return`: Change [`allowImplicit`](https://eslint.org/docs/rules/array-callback-return#allowimplicit) to `false`.
+  - `use-isnan`: Change [`enforceForIndexOf`](https://eslint.org/docs/rules/use-isnan#enforceforindexof) to `true`.
+
 ## 15.0.1
 
 ### Patch Changes
