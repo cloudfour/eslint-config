@@ -243,7 +243,7 @@ export class Task {
     if (!this.filter(id)) return;
     this.watched.add(id);
 
-    if (this.outputFiles.some((file) => file === id)) {
+    if (this.outputFiles.includes(id)) {
       throw new Error('Cannot import the generated bundle');
     }
 

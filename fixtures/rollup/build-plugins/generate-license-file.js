@@ -26,7 +26,7 @@ function generateLicenseFile(dependencies) {
           names.add(author.name);
         }
 
-        for (const person of maintainers.concat(contributors)) {
+        for (const person of [...maintainers, contributors]) {
           if (person && person.name) {
             names.add(person.name);
           }

@@ -223,7 +223,7 @@ class SourceCode extends TokenStore {
     const shebangMatched = this.text.match(astUtils.shebangPattern);
     const hasShebang =
       shebangMatched &&
-      ast.comments.length &&
+      ast.comments.length > 0 &&
       ast.comments[0].value === shebangMatched[1];
 
     if (hasShebang) {
@@ -455,7 +455,7 @@ class SourceCode extends TokenStore {
           parent.type !== 'NewExpression'
         ) {
           while (
-            !this.getCommentsBefore(parent).length &&
+            this.getCommentsBefore(parent).length === 0 &&
             !/Function/u.test(parent.type) &&
             parent.type !== 'MethodDefinition' &&
             parent.type !== 'Property'

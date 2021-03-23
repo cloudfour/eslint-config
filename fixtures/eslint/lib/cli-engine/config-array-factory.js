@@ -941,7 +941,7 @@ class ConfigArrayFactory {
       '__placeholder__.js'
     );
 
-    if (name.match(/\s+/u)) {
+    if (/\s+/u.test(name)) {
       const error = Object.assign(
         new Error(`Whitespace found in plugin name '${name}'`),
         {

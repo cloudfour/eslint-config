@@ -44,9 +44,9 @@ function itemToString(item) {
 function getPropTypesValidator(caller, propTypes) {
   // istanbul ignore next
   return function validate(options = {}) {
-    Object.keys(propTypes).forEach((key) => {
+    for (const key of Object.keys(propTypes)) {
       PropTypes.checkPropTypes(propTypes, options, key, caller.name);
-    });
+    }
   };
 }
 
@@ -73,13 +73,13 @@ function callOnChangeProps(action, state, newState) {
   const { props, type } = action;
   const changes = {};
 
-  Object.keys(state).forEach((key) => {
+  for (const key of Object.keys(state)) {
     invokeOnChangeHandler(key, props, state, newState);
 
     if (newState[key] !== state[key]) {
       changes[key] = newState[key];
     }
-  });
+  }
 
   if (props.onStateChange && Object.keys(changes).length > 0) {
     props.onStateChange({ type, ...changes });

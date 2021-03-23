@@ -368,7 +368,7 @@ function fireEvent(element, event) {
 
 const createEvent = {};
 
-Object.keys(eventMap).forEach((key) => {
+for (const key of Object.keys(eventMap)) {
   const { EventType, defaultInit } = eventMap[key];
   const eventName = key.toLowerCase();
 
@@ -409,15 +409,16 @@ Object.keys(eventMap).forEach((key) => {
     const event = window.document.createEvent(EventType);
     const { bubbles, cancelable, detail, ...otherInit } = eventInit;
     event.initEvent(eventName, bubbles, cancelable, detail);
-    Object.keys(otherInit).forEach((eventKey) => {
+    for (const eventKey of Object.keys(otherInit)) {
       event[eventKey] = otherInit[eventKey];
-    });
+    }
+
     return event;
   };
 
   fireEvent[key] = (node, init) =>
     fireEvent(node, createEvent[key](node, init));
-});
+}
 
 // Function written after some investigation here:
 // https://github.com/facebook/react/issues/10135#issuecomment-401496776
@@ -436,10 +437,10 @@ function setNativeValue(element, value) {
   }
 }
 
-Object.keys(eventAliasMap).forEach((aliasKey) => {
+for (const aliasKey of Object.keys(eventAliasMap)) {
   const key = eventAliasMap[aliasKey];
   fireEvent[aliasKey] = (...args) => fireEvent[key](...args);
-});
+}
 
 export { fireEvent, createEvent };
 

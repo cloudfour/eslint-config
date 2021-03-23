@@ -22,19 +22,19 @@ const showKeys = (obj) => {
   console.log();
   const keys = Object.keys(obj);
   const maxKeyLength = keys.reduce((max, key) => Math.max(max, key.length), 0);
-  keys
+  for (const key of keys
     .filter(
       (key) => /^[a-z]/.test(key) && !obj[key].browserOnly && !obj[key].abstract
     )
-    .sort()
-    .forEach((key) => {
-      const description = obj[key].description;
-      console.log(
-        `    ${align.left(key, maxKeyLength + 1)}${
-          description ? `- ${description}` : ''
-        }`
-      );
-    });
+    .sort()) {
+    const description = obj[key].description;
+    console.log(
+      `    ${align.left(key, maxKeyLength + 1)}${
+        description ? `- ${description}` : ''
+      }`
+    );
+  }
+
   console.log();
 };
 
@@ -65,6 +65,10 @@ exports.ONE_AND_DONES = {
  * @type Set<string>
  * @private
  */
-exports.ONE_AND_DONE_ARGS = new Set(
-  ['help', 'h', 'version', 'V'].concat(Object.keys(exports.ONE_AND_DONES))
-);
+exports.ONE_AND_DONE_ARGS = new Set([
+  'help',
+  'h',
+  'version',
+  'V',
+  ...Object.keys(exports.ONE_AND_DONES),
+]);

@@ -132,10 +132,12 @@ module.exports = function (suites, context, mocha) {
           suite.parent.appendOnlySuite(suite);
         }
 
-        if (suite.pending) {
-          if (mocha.options.forbidPending && shouldBeTested(suite)) {
-            throw new Error('Pending test forbidden');
-          }
+        if (
+          suite.pending &&
+          mocha.options.forbidPending &&
+          shouldBeTested(suite)
+        ) {
+          throw new Error('Pending test forbidden');
         }
 
         if (typeof opts.fn === 'function') {

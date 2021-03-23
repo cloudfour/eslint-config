@@ -3,7 +3,7 @@ import ReplaceSupers from '@babel/helper-replace-supers';
 import nameFunction from '@babel/helper-function-name';
 
 export function hasOwnDecorators(node) {
-  return Boolean(node.decorators && node.decorators.length);
+  return Boolean(node.decorators && node.decorators.length > 0);
 }
 
 export function hasDecorators(node) {

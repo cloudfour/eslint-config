@@ -217,10 +217,10 @@ function configureRules(answers, config) {
   // Find and disable rules which had no error-free configuration
   const failingRegistry = registry.getFailingRulesRegistry();
 
-  Object.keys(failingRegistry.rules).forEach((ruleId) => {
+  for (const ruleId of Object.keys(failingRegistry.rules)) {
     // If the rule is recommended, set it to error, otherwise disable it
     disabledConfigs[ruleId] = recRules.has(ruleId) ? 2 : 0;
-  });
+  }
 
   // Now that we know which rules to disable, strip out configs with errors
   registry = registry.stripFailingConfigs();
@@ -304,9 +304,9 @@ function processAnswers(answers) {
   }
 
   // Add in browser and node environments if necessary
-  answers.env.forEach((env) => {
+  for (const env of answers.env) {
     config.env[env] = true;
-  });
+  }
 
   // Add in library information
   if (answers.framework === 'react') {
@@ -466,7 +466,7 @@ function askInstallModules(modules, packageJsonExists) {
         message: 'Would you like to install them now with npm?',
         default: true,
         when() {
-          return modules.length && packageJsonExists;
+          return modules.length > 0 && packageJsonExists;
         },
       },
     ])

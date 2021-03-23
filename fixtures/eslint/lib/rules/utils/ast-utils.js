@@ -1352,7 +1352,7 @@ module.exports = {
         const exprs = node.expressions;
 
         return (
-          exprs.length !== 0 &&
+          exprs.length > 0 &&
           module.exports.couldBeError(exprs[exprs.length - 1])
         );
       }

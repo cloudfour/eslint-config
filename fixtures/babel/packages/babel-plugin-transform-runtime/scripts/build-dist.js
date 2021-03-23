@@ -57,33 +57,33 @@ function writeCoreJS({
 }) {
   const pkgDirname = getRuntimeRoot(`@babel/runtime-corejs${corejs}`);
 
-  Object.keys(BuiltIns).forEach((name) => {
+  for (const name of Object.keys(BuiltIns)) {
     const { stable, path } = BuiltIns[name];
     if (stable || proposals) paths.push(path);
-  });
+  }
 
-  Object.keys(StaticProperties).forEach((builtin) => {
+  for (const builtin of Object.keys(StaticProperties)) {
     const props = StaticProperties[builtin];
-    Object.keys(props).forEach((name) => {
+    for (const name of Object.keys(props)) {
       const { stable, path } = props[name];
       if (stable || proposals) paths.push(path);
-    });
-  });
+    }
+  }
 
   if (InstanceProperties) {
-    Object.keys(InstanceProperties).forEach((name) => {
+    for (const name of Object.keys(InstanceProperties)) {
       const { stable, path } = InstanceProperties[name];
       if (stable || proposals) paths.push(`instance/${path}`);
-    });
+    }
   }
 
   const runtimeRoot = proposals ? 'core-js' : 'core-js-stable';
-  paths.forEach(function (corejsPath) {
+  for (const corejsPath of paths) {
     outputFile(
       path.join(pkgDirname, runtimeRoot, `${corejsPath}.js`),
       `module.exports = require("${corejsRoot}/${corejsPath}");`
     );
-  });
+  }
 }
 
 function writeHelpers(runtimeName, { corejs } = {}) {
