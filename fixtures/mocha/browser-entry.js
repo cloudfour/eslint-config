@@ -43,7 +43,7 @@ process.removeListener = function (e, fn) {
   if (originalOnerrorHandler) {
     global.addEventListener('error', originalOnerrorHandler);
   } else {
-    global.addEventListener('error', function () {});
+    global.addEventListener('error', () => {});
   }
 
   const i = uncaughtExceptionHandlers.indexOf(fn);
@@ -58,7 +58,7 @@ process.removeListener = function (e, fn) {
 
 process.on = function (e, fn) {
   if (e === 'uncaughtException') {
-    global.addEventListener('error', function (err, url, line) {
+    global.addEventListener('error', (err, url, line) => {
       fn(new Error(`${err} (${url}:${line})`));
       return !mocha.options.allowUncaught;
     });
@@ -161,7 +161,7 @@ mocha.run = function (fn) {
     mocha.invert();
   }
 
-  return Mocha.prototype.run.call(mocha, function (err) {
+  return Mocha.prototype.run.call(mocha, (err) => {
     // The DOM Document is not available in Web Workers.
     const document = global.document;
     if (

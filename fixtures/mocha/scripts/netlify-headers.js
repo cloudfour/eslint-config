@@ -30,7 +30,7 @@ new AssetGraph({ root: 'docs/_dist' })
   .populate({
     followRelations: { type: 'HtmlAnchor', crossorigin: false },
   })
-  .queue(function (assetGraph) {
+  .queue((assetGraph) => {
     const assets = assetGraph.findAssets({
       type: 'Html',
       isInline: false,
