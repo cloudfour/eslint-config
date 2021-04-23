@@ -154,6 +154,8 @@ module.exports.configs = {
         'unicorn/prefer-set-has': 'off',
         // Reduce is often useful. Don't need a lint rule to tell us not to use it
         'unicorn/no-array-reduce': 'off',
+        'unicorn/prefer-module': 'off', // A lot of projects still use commonjs by default for non-browser code. We can revisit this rule once commonjs is basically never used.
+        'unicorn/prefer-switch': 'off', // Switch statements are often longer than if/else chains, and they are still read aloud as "if ... is ... then"
         'unicorn/prefer-number-properties': [
           'error',
           // There isn't a good reason to force use of Number.POSITIVE_INFINITY instead of Infinity
