@@ -1,4 +1,4 @@
-import type { ClientRequest, IncomingMessage } from 'http';
+import type { ClientRequest, IncomingMessage } from 'node:http';
 import unhandler from './unhandle';
 import net = require('net');
 

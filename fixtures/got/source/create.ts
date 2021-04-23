@@ -1,4 +1,4 @@
-import type { URL } from 'url';
+import type { URL } from 'node:url';
 import { CancelError } from 'p-cancelable';
 import is from '@sindresorhus/is';
 import type {
