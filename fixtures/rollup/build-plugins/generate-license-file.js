@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import license from 'rollup-plugin-license';
 
 function generateLicenseFile(dependencies) {

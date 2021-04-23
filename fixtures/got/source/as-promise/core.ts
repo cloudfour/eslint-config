@@ -1,4 +1,4 @@
-import type { URL } from 'url';
+import type { URL } from 'node:url';
 import is, { assert } from '@sindresorhus/is';
 import type {
   Options,

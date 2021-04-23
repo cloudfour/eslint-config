@@ -1,5 +1,5 @@
 'use strict';
-import { URL } from 'url';
+import { URL } from 'node:url';
 import axios from 'axios';
 import fetch from 'node-fetch';
 import got from '../source';
