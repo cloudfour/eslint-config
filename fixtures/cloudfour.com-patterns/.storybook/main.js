@@ -30,7 +30,8 @@ module.exports = {
     // @see https://github.com/storybookjs/storybook/issues/5708#issuecomment-515384927
     config.module.rules = config.module.rules.map((data) => {
       if (/svg\|/.test(String(data.test))) {
-        data.test = /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani)(\?.*)?$/;
+        data.test =
+          /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani)(\?.*)?$/;
       }
 
       return data;

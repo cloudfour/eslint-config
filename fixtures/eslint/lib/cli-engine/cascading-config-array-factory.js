@@ -321,9 +321,8 @@ class CascadingConfigArrayFactory {
     if (directoryPath === homePath && cwd !== homePath) {
       debug('Stop traversing because of considered root.');
       if (configsExistInSubdirs) {
-        const filePath = ConfigArrayFactory.getPathToConfigFileInDirectory(
-          directoryPath
-        );
+        const filePath =
+          ConfigArrayFactory.getPathToConfigFileInDirectory(directoryPath);
 
         if (filePath) {
           emitDeprecationWarning(filePath, 'ESLINT_PERSONAL_CONFIG_SUPPRESS');
@@ -397,12 +396,8 @@ class CascadingConfigArrayFactory {
    * @private
    */
   _finalizeConfigArray(configArray, directoryPath, ignoreNotFoundError) {
-    const {
-      cliConfigArray,
-      configArrayFactory,
-      finalizeCache,
-      useEslintrc,
-    } = internalSlotsMap.get(this);
+    const { cliConfigArray, configArrayFactory, finalizeCache, useEslintrc } =
+      internalSlotsMap.get(this);
 
     let finalConfigArray = finalizeCache.get(configArray);
 

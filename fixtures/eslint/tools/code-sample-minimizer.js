@@ -205,8 +205,9 @@ function reduceBadExampleSize({
   }
 
   pruneIrrelevantSubtrees(parseResult.program);
-  const relevantChild = recast.print(extractRelevantChild(parseResult.program))
-    .code;
+  const relevantChild = recast.print(
+    extractRelevantChild(parseResult.program)
+  ).code;
 
   assert(
     reproducesBadCase(relevantChild),

@@ -23,14 +23,17 @@ const {
 // Helpers
 // ------------------------------------------------------------------------------
 
-const anyFunctionPattern = /^(?:Function(?:Declaration|Expression)|ArrowFunctionExpression)$/u;
+const anyFunctionPattern =
+  /^(?:Function(?:Declaration|Expression)|ArrowFunctionExpression)$/u;
 const anyLoopPattern = /^(?:DoWhile|For|ForIn|ForOf|While)Statement$/u;
 const arrayOrTypedArrayPattern = /Array$/u;
-const arrayMethodPattern = /^(?:every|filter|find|findIndex|forEach|map|some)$/u;
+const arrayMethodPattern =
+  /^(?:every|filter|find|findIndex|forEach|map|some)$/u;
 const bindOrCallOrApplyPattern = /^(?:bind|call|apply)$/u;
 const thisTagPattern = /^[\s*]*@this/mu;
 
-const COMMENTS_IGNORE_PATTERN = /^\s*(?:eslint|jshint\s+|jslint\s+|istanbul\s+|globals?\s+|exported\s+|jscs)/u;
+const COMMENTS_IGNORE_PATTERN =
+  /^\s*(?:eslint|jshint\s+|jslint\s+|istanbul\s+|globals?\s+|exported\s+|jscs)/u;
 const LINEBREAKS = new Set(['\r\n', '\r', '\n', '\u2028', '\u2029']);
 
 // A set of node types that can contain a list of statements
@@ -41,7 +44,8 @@ const STATEMENT_LIST_PARENTS = new Set([
 ]);
 
 const DECIMAL_INTEGER_PATTERN = /^(0|[1-9]\d*)$/u;
-const OCTAL_ESCAPE_PATTERN = /^(?:[^\\]|\\[^0-7]|\\0(?![0-9]))*\\(?:[1-7]|0[0-9])/u;
+const OCTAL_ESCAPE_PATTERN =
+  /^(?:[^\\]|\\[^0-7]|\\0(?![0-9]))*\\(?:[1-7]|0[0-9])/u;
 
 /**
  * Checks reference if is non initializer and writable.

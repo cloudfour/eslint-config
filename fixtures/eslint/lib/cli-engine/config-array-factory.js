@@ -930,10 +930,8 @@ class ConfigArrayFactory {
   _loadPlugin(name, ctx) {
     debug('Loading plugin %j from %s', name, ctx.filePath);
 
-    const {
-      additionalPluginPool,
-      resolvePluginsRelativeTo,
-    } = internalSlotsMap.get(this);
+    const { additionalPluginPool, resolvePluginsRelativeTo } =
+      internalSlotsMap.get(this);
     const request = naming.normalizePackageName(name, 'eslint-plugin');
     const id = naming.getShorthandName(request, 'eslint-plugin');
     const relativeTo = path.join(
