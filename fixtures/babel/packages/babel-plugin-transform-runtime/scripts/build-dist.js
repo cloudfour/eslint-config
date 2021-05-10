@@ -10,8 +10,10 @@ const t = require('@babel/types');
 const transformRuntime = require('..');
 
 const runtimeVersion = require('@babel/runtime/package.json').version;
-const corejs2Definitions = require('../lib/runtime-corejs2-definitions').default();
-const corejs3Definitions = require('../lib/runtime-corejs3-definitions').default();
+const corejs2Definitions =
+  require('../lib/runtime-corejs2-definitions').default();
+const corejs3Definitions =
+  require('../lib/runtime-corejs3-definitions').default();
 
 writeHelpers('@babel/runtime');
 writeHelpers('@babel/runtime-corejs2', { corejs: 2 });

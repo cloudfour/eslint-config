@@ -39,13 +39,8 @@ const getMultipleError = (c, text) =>
 const getMissingError = (c, text) =>
   `Unable to find an element with the text: ${text}. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.`;
 
-const [
-  queryByText,
-  getAllByText,
-  getByText,
-  findAllByText,
-  findByText,
-] = buildQueries(queryAllByText, getMultipleError, getMissingError);
+const [queryByText, getAllByText, getByText, findAllByText, findByText] =
+  buildQueries(queryAllByText, getMultipleError, getMissingError);
 
 export {
   queryByText,

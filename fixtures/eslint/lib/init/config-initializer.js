@@ -625,10 +625,9 @@ function promptUser() {
         const config = processAnswers(earlyAnswers);
         const modules = getModulesList(config);
 
-        return askInstallModules(
-          modules,
-          earlyAnswers.packageJsonExists
-        ).then(() => writeFile(config, earlyAnswers.format));
+        return askInstallModules(modules, earlyAnswers.packageJsonExists).then(
+          () => writeFile(config, earlyAnswers.format)
+        );
       }
 
       // Early exit if you are using a style guide
@@ -671,10 +670,9 @@ function promptUser() {
 
         const modules = getModulesList(config);
 
-        return askInstallModules(
-          modules,
-          earlyAnswers.packageJsonExists
-        ).then(() => writeFile(config, earlyAnswers.format));
+        return askInstallModules(modules, earlyAnswers.packageJsonExists).then(
+          () => writeFile(config, earlyAnswers.format)
+        );
       }
 
       if (earlyAnswers.source === 'auto') {

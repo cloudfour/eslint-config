@@ -314,9 +314,10 @@ function getDirectiveComments(filename, ast, ruleMapper, warnInlineConfig) {
     (token) => token.type !== 'Shebang'
   )) {
     const trimmedCommentText = stripDirectiveComment(comment.value);
-    const match = /^(eslint(?:-env|-enable|-disable(?:(?:-next)?-line)?)?|exported|globals?)(?:\s|$)/u.exec(
-      trimmedCommentText
-    );
+    const match =
+      /^(eslint(?:-env|-enable|-disable(?:(?:-next)?-line)?)?|exported|globals?)(?:\s|$)/u.exec(
+        trimmedCommentText
+      );
 
     if (!match) {
       continue;
@@ -380,9 +381,8 @@ function getDirectiveComments(filename, ast, ruleMapper, warnInlineConfig) {
           value: directiveValue,
           ruleMapper,
         };
-        const { directives, directiveProblems } = createDisableDirectives(
-          options
-        );
+        const { directives, directiveProblems } =
+          createDisableDirectives(options);
 
         disableDirectives.push(...directives);
         problems.push(...directiveProblems);

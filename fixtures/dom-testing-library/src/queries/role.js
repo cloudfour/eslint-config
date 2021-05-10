@@ -139,13 +139,8 @@ Unable to find an ${
 ${roleMessage}`.trim();
 };
 
-const [
-  queryByRole,
-  getAllByRole,
-  getByRole,
-  findAllByRole,
-  findByRole,
-] = buildQueries(queryAllByRole, getMultipleError, getMissingError);
+const [queryByRole, getAllByRole, getByRole, findAllByRole, findByRole] =
+  buildQueries(queryAllByRole, getMultipleError, getMissingError);
 
 export {
   queryByRole,

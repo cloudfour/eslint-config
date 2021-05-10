@@ -259,9 +259,8 @@ class FileEnumerator {
    * @yields {FileAndConfig} The found files.
    */
   *iterateFiles(patternOrPatterns) {
-    const { globInputPaths, errorOnUnmatchedPattern } = internalSlotsMap.get(
-      this
-    );
+    const { globInputPaths, errorOnUnmatchedPattern } =
+      internalSlotsMap.get(this);
     const patterns = Array.isArray(patternOrPatterns)
       ? patternOrPatterns
       : [patternOrPatterns];
@@ -499,11 +498,8 @@ class FileEnumerator {
     filePath,
     { config: providedConfig, dotfiles = false, direct = false }
   ) {
-    const {
-      configArrayFactory,
-      defaultIgnores,
-      ignoreFlag,
-    } = internalSlotsMap.get(this);
+    const { configArrayFactory, defaultIgnores, ignoreFlag } =
+      internalSlotsMap.get(this);
 
     if (ignoreFlag) {
       const config =

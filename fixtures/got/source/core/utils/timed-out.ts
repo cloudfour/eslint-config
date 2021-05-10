@@ -60,12 +60,12 @@ export default (
     callback: (delay: number, event: string) => void,
     event: string
   ): typeof noop => {
-    const timeout = (setTimeout(
+    const timeout = setTimeout(
       callback,
       delay,
       delay,
       event
-    ) as unknown) as NodeJS.Timeout;
+    ) as unknown as NodeJS.Timeout;
 
     timeout.unref();
 
