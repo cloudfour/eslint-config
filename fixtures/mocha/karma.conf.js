@@ -193,7 +193,7 @@ function addSauceTests(cfg) {
     public: 'public',
     connectOptions: {
       connectRetries: 2,
-      connectRetryTimeout: 30000,
+      connectRetryTimeout: 30_000,
       detached: cfg.sauceLabs.startConnect,
       tunnelIdentifier: cfg.sauceLabs.tunnelIdentifier,
     },
@@ -203,6 +203,6 @@ function addSauceTests(cfg) {
   cfg.retryLimit = 1;
 
   // For slow browser booting, ostensibly
-  cfg.captureTimeout = 120000;
-  cfg.browserNoActivityTimeout = 20000;
+  cfg.captureTimeout = 120_000;
+  cfg.browserNoActivityTimeout = 20_000;
 }
