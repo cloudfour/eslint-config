@@ -14,7 +14,6 @@
  *     While iterating files, it loads the configuration file of each directory
  *     before iterate files on the directory, so we can use the configuration
  *     files to determine target files.
- *
  * @example
  * const enumerator = new FileEnumerator();
  * const linter = new Linter();
@@ -25,7 +24,6 @@
  *
  *     console.log(messages);
  * }
- *
  * @author Toru Nagashima <https://github.com/mysticatea>
  */
 'use strict';

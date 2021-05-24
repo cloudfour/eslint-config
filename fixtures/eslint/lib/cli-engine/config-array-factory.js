@@ -30,7 +30,6 @@
  *
  * But this class doesn't handle cascading. `CascadingConfigArrayFactory` class
  * handles cascading and hierarchy.
- *
  * @author Toru Nagashima <https://github.com/mysticatea>
  */
 'use strict';

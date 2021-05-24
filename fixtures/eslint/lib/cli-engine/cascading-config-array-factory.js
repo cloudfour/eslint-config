@@ -14,7 +14,6 @@
  *     Clear the internal cache. You have to call this method when
  *     `additionalPluginPool` was updated if `baseConfig` or `cliConfig` depends
  *     on the additional plugins. (`CLIEngine#addPlugin()` method calls this.)
- *
  * @author Toru Nagashima <https://github.com/mysticatea>
  */
 'use strict';

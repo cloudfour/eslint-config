@@ -13,11 +13,9 @@ const { EVENT_RUN_END } = require('./runner').constants;
 /**
  * @summary
  * Checks if Growl notification support seems likely.
- *
  * @description
  * Glosses over the distinction between an unsupported platform
  * and one that lacks prerequisite software installations.
- *
  * @public
  * @see {@link https://github.com/tj/node-growl/blob/master/README.md|Prerequisite Installs}
  * @see {@link Mocha#growl}
@@ -87,11 +85,9 @@ const display = (runner) => {
 /**
  * @summary
  * Callback for result of attempted Growl notification.
- *
  * @description
  * Despite its appearance, this is <strong>not</strong> an Error-first
  * callback -- all parameters are populated regardless of success.
- *
  * @private
  * @callback Growl~growlCB
  * @param {any} err - Error object, or <code>null</code> if successful.
@@ -118,11 +114,9 @@ const logo = () => {
 /**
  * @summary
  * Gets platform-specific Growl support binaries.
- *
  * @description
  * Somewhat brittle dependency on `growl` package implementation, but it
  * rarely changes.
- *
  * @private
  * @see {@link https://github.com/tj/node-growl/blob/master/lib/growl.js#L28-L126|setupCmd}
  * @returns {string[]} names of Growl support binaries
