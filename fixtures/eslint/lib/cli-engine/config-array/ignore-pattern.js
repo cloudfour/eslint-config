@@ -24,7 +24,6 @@
  *
  * `ConfigArrayFactory` creates `IgnorePattern` objects when it processes
  * `ignorePatterns` properties.
- *
  * @author Toru Nagashima <https://github.com/mysticatea>
  */
 'use strict';
