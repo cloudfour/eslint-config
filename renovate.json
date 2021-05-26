@@ -1,6 +1,7 @@
 {
   "extends": ["config:base", ":automergeMinor"],
   "reviewers": ["team:dev"],
+  "dependencyDashboard": true,
   "force": {
     "constraints": {
       "node": "< 15.0.0"
