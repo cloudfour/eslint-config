@@ -139,6 +139,7 @@ module.exports = ({
     .sort(compareLocations);
 
   const lineDirectives = lodash
+    // eslint-disable-next-line @cloudfour/unicorn/no-array-method-this-argument
     .flatMap(directives, (directive) => {
       switch (directive.type) {
         case 'disable':
