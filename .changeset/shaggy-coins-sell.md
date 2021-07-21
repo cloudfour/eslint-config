@@ -22,4 +22,3 @@ Update `eslint-plugin-unicorn` to `v34`
 - [`@cloudfour/unicorn/require-array-join-separator`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/require-array-join-separator.md)
 - [`@cloudfour/unicorn/require-number-to-fixed-digits-argument`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/require-number-to-fixed-digits-argument.md)
 - [`@cloudfour/unicorn/require-post-message-target-origin`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/require-post-message-target-origin.md)
-- [`padding-line-between-statements`](https://eslint.org/docs/rules/padding-line-between-statements)
