@@ -1,5 +1,11 @@
 # @cloudfour/eslint-plugin
 
+## 17.0.1
+
+### Patch Changes
+
+- [`ec422d2`](https://github.com/cloudfour/eslint-config/commit/ec422d214d53c4d721ac0c5ab7196d6b08a188e6) Thanks [@calebeby](https://github.com/calebeby)! - Fix main field
+
 ## 17.0.0
 
 ### Major Changes
