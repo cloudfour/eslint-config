@@ -47,7 +47,7 @@
     "@changesets/changelog-github": "0.4.0",
     "@changesets/cli": "2.16.0",
     "eliminate": "1.1.2",
-    "eslint": "7.29.0",
+    "eslint": "7.31.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-config-standard": "16.0.3",
     "eslint-config-xo": "0.36.0",
@@ -57,7 +57,7 @@
     "powerwalker": "0.1.2",
     "prettier": "2.3.2",
     "prompts": "2.4.1",
-    "typescript": "4.3.4"
+    "typescript": "4.3.5"
   },
   "scripts": {
     "check-lint": "eslint --format=pretty . && prettier --check .",
