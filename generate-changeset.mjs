@@ -66,6 +66,9 @@ const main = async () => {
     await runCommand('git', ['fetch'], { cwd: dir });
     await runCommand('git', ['reset', '--hard', 'origin/main'], { cwd: dir });
   }
+  log('Updating this branch to be up to date with main');
+  await runCommand('git', ['fetch']);
+  await runCommand('git', ['merge', 'origin/main']);
   log('Installing/updating dependencies on main');
   await runCommand('npm', ['install'], { cwd: dir });
   log('Building on main');
