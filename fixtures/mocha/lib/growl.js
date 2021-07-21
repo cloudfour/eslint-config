@@ -107,9 +107,7 @@ function onCompletion(err) {
  * @private
  * @returns {string} Pathname of Mocha logo
  */
-const logo = () => {
-  return path.join(__dirname, '..', 'assets', 'mocha-logo-96.png');
-};
+const logo = () => path.join(__dirname, '..', 'assets', 'mocha-logo-96.png');
 
 /**
  * @summary

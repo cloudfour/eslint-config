@@ -133,14 +133,13 @@ const create = (defaults: InstanceDefaults): Got => {
   // Got interface
   const got: Got = ((url: string | URL, options?: Options): GotReturn => {
     let iteration = 0;
-    const iterateHandlers = (newOptions: NormalizedOptions): GotReturn => {
-      return defaults.handlers[iteration++](
+    const iterateHandlers = (newOptions: NormalizedOptions): GotReturn =>
+      defaults.handlers[iteration++](
         newOptions,
         iteration === defaults.handlers.length
           ? getPromiseOrStream
           : iterateHandlers
       );
-    };
 
     if (is.plainObject(url)) {
       const mergedOptions = {
@@ -301,9 +300,7 @@ const create = (defaults: InstanceDefaults): Got => {
   got.paginate = (<T, R>(
     url: string | URL,
     options?: OptionsWithPagination<T, R>
-  ) => {
-    return paginateEach(url, options);
-  }) as GotPaginate;
+  ) => paginateEach(url, options)) as GotPaginate;
 
   got.paginate.all = (async <T, R>(
     url: string | URL,
@@ -330,9 +327,8 @@ const create = (defaults: InstanceDefaults): Got => {
     got[method] = ((url: string | URL, options?: Options): GotReturn =>
       got(url, { ...options, method })) as GotRequestFunction;
 
-    got.stream[method] = ((url: string | URL, options?: StreamOptions) => {
-      return got(url, { ...options, method, isStream: true });
-    }) as GotStream;
+    got.stream[method] = ((url: string | URL, options?: StreamOptions) =>
+      got(url, { ...options, method, isStream: true })) as GotStream;
   }
 
   Object.assign(got, { ...errors, mergeOptions });
