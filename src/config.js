@@ -135,6 +135,17 @@ module.exports.configs = {
         'prefer-template': 'error',
         'no-param-reassign': 'off', // We don't use `arguments`, and assigning to parameters can be useful
         'no-promise-executor-return': 'off', // Allow implicit return in promise executor
+        'capitalized-comments': [
+          'error',
+          'always',
+          {
+            ignorePattern:
+              'pragma|ignore|prettier-ignore|webpack\\w+:|c8|return|const|let|var|await|function|console',
+            ignoreInlineComments: true,
+            ignoreConsecutiveComments: true,
+          },
+        ],
+
         'node/no-unsupported-features/es-syntax': 'off', // Does not account for transpilation
         'node/no-unpublished-require': 'off', // Does not account for "build" scripts
         'node/shebang': 'off', // Tons of false positives
