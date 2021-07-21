@@ -1,5 +1,70 @@
 # @cloudfour/eslint-plugin
 
+## 17.0.0
+
+### Major Changes
+
+- [`bbde55f`](https://github.com/cloudfour/eslint-config/commit/bbde55f53b18e7a9a29f4d9873d7f2954cdf8c2e) Thanks [@calebeby](https://github.com/calebeby)! - Update eslint-plugin-jsdoc to v35
+
+  New rules, enabled by default:
+
+  - [`@cloudfour/jsdoc/multiline-blocks`](https://github.com/gajus/eslint-plugin-jsdoc#eslint-plugin-jsdoc-rules-multiline-blocks)
+  - [`@cloudfour/jsdoc/no-multi-asterisks`](https://github.com/gajus/eslint-plugin-jsdoc#eslint-plugin-jsdoc-rules-no-multi-asterisks)
+  - [`@cloudfour/jsdoc/tag-lines`](https://github.com/gajus/eslint-plugin-jsdoc#eslint-plugin-jsdoc-rules-tag-lines)
+
+* [#252](https://github.com/cloudfour/eslint-config/pull/252) [`f88d3f6`](https://github.com/cloudfour/eslint-config/commit/f88d3f657797347db7b9701472480d571f9d0a34) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-config-xo` to `v0.36.0`
+
+  - Add more deprecated Node.js modules to [`no-restricted-imports`](https://eslint.org/docs/rules/no-restricted-imports)
+  - Remove unnecessary [`no-restricted-syntax`](https://eslint.org/docs/rules/no-restricted-syntax) rule
+  - Enable [`prefer-arrow-callback`](https://eslint.org/docs/rules/prefer-arrow-callback)
+  - Enable [`prefer-numeric-literals`](https://eslint.org/docs/rules/prefer-numeric-literals)
+
+- [#279](https://github.com/cloudfour/eslint-config/pull/279) [`4728476`](https://github.com/cloudfour/eslint-config/commit/4728476a98b99ed4a5041538e18132e5b2ef6175) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-unicorn` to `v34`
+
+  **New Rules**
+
+  - [`@cloudfour/unicorn/no-array-method-this-argument`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/no-array-method-this-argument.md)
+  - [`@cloudfour/unicorn/prefer-at`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/prefer-at.md)
+  - [`@cloudfour/unicorn/prefer-object-has-own`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/prefer-object-has-own.md)
+  - [`@cloudfour/unicorn/prefer-prototype-methods`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/prefer-prototype-methods.md)
+  - [`@cloudfour/unicorn/prefer-top-level-await`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/prefer-top-level-await.md)
+  - [`@cloudfour/unicorn/require-array-join-separator`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/require-array-join-separator.md)
+  - [`@cloudfour/unicorn/require-number-to-fixed-digits-argument`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/require-number-to-fixed-digits-argument.md)
+  - [`@cloudfour/unicorn/require-post-message-target-origin`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/require-post-message-target-origin.md)
+
+  **Newly Enabled Rules**
+
+  - [`@cloudfour/unicorn/no-array-method-this-argument`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/no-array-method-this-argument.md)
+  - [`@cloudfour/unicorn/prefer-prototype-methods`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/prefer-prototype-methods.md)
+  - [`@cloudfour/unicorn/require-array-join-separator`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/require-array-join-separator.md)
+  - [`@cloudfour/unicorn/require-number-to-fixed-digits-argument`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/require-number-to-fixed-digits-argument.md)
+  - [`@cloudfour/unicorn/require-post-message-target-origin`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/require-post-message-target-origin.md)
+
+* [#274](https://github.com/cloudfour/eslint-config/pull/274) [`186580d`](https://github.com/cloudfour/eslint-config/commit/186580d0c0b95a9857cee43ca32e923cf5c627b4) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-config-xo` to `v0.37.0`
+
+  **Newly Enabled Rules**
+
+  - [`arrow-body-style`](https://eslint.org/docs/rules/arrow-body-style)
+
+- [#262](https://github.com/cloudfour/eslint-config/pull/262) [`cd2038f`](https://github.com/cloudfour/eslint-config/commit/cd2038f56bbf502a5b6601f6faf96cd34a64f7eb) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-unicorn` to v32
+
+  - New rule: [`@cloudfour/unicorn/no-document-cookie`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-document-cookie.md) (enabled by default)
+  - Enable rule: [`@cloudfour/unicorn/numeric-separators-style`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/numeric-separators-style.md)
+  - Enable rule: [`@cloudfour/unicorn/prefer-array-flat`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-flat.md)
+  - Enable rule: [`@cloudfour/unicorn/prefer-array-flat-map`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-flat-map.md)
+
+* [#256](https://github.com/cloudfour/eslint-config/pull/256) [`ad9f8bd`](https://github.com/cloudfour/eslint-config/commit/ad9f8bddc186082dea179cf7859538a1f77fb273) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-unicorn` to v31
+
+  - Enabled new rule [`@cloudfour/unicorn/prefer-node-protocol`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-node-protocol.md)
+
+### Minor Changes
+
+- [#280](https://github.com/cloudfour/eslint-config/pull/280) [`ed92e21`](https://github.com/cloudfour/eslint-config/commit/ed92e2109445359e126da3646213c132be04004f) Thanks [@calebeby](https://github.com/calebeby)! - Disable [`padding-line-between-statements`](https://eslint.org/docs/rules/padding-line-between-statements)
+
+  We decided that since devs can use blank lines to create logical groupings in code, it is best not to have ESLint enforce adding newlines
+
+* [#285](https://github.com/cloudfour/eslint-config/pull/285) [`243954a`](https://github.com/cloudfour/eslint-config/commit/243954acc0a31f5099c4e686a011872e26912cd9) Thanks [@calebeby](https://github.com/calebeby)! - Make capitalized-comments ignore most commented code
+
 ## 16.0.0
 
 ### Major Changes
