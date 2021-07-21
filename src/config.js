@@ -138,6 +138,15 @@ module.exports.configs = {
         'node/no-unsupported-features/es-syntax': 'off', // Does not account for transpilation
         'node/no-unpublished-require': 'off', // Does not account for "build" scripts
         'node/shebang': 'off', // Tons of false positives
+        'node/no-missing-import': [
+          'error',
+          {
+            // This ESLint rule does not know that node builtin modules can be prefixed with node:
+            allowModules: require('module')
+              .builtinModules.filter((m) => !m.startsWith('_'))
+              .map((m) => `node:${m}`),
+          },
+        ],
 
         'unicorn/import-style': 'off', // It doesn't seem useful to force people to use named, default, or namespace imports
         'unicorn/prevent-abbreviations': 'off', // Causes more issues than it's worth
