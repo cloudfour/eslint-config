@@ -28,9 +28,7 @@ const stringify = (data) =>
   })}`.replace(
     // Wrap the relative parser path with require.resolve
     new RegExp(`"${resolveStart}(.*?)${resolveEnd}"`, 'g'),
-    (_match, replacement) => {
-      return `require.resolve("${replacement}")`;
-    }
+    (_match, replacement) => `require.resolve("${replacement}")`
   );
 
 const createFile = (data) =>
