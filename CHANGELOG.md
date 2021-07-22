@@ -1,5 +1,11 @@
 # @cloudfour/eslint-plugin
 
+## 17.1.0
+
+### Minor Changes
+
+- [#287](https://github.com/cloudfour/eslint-config/pull/287) [`3cb6588`](https://github.com/cloudfour/eslint-config/commit/3cb65887f785e9b944efc4dba3b5b600100d94c6) Thanks [@calebeby](https://github.com/calebeby)! - Disable unicorn/prefer-node-protocol
+
 ## 17.0.1
 
 ### Patch Changes
