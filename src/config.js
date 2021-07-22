@@ -138,7 +138,6 @@ module.exports.configs = {
         'node/no-unsupported-features/es-syntax': 'off', // Does not account for transpilation
         'node/no-unpublished-require': 'off', // Does not account for "build" scripts
         'node/shebang': 'off', // Tons of false positives
-        'node/no-missing-import': 'off', // It does not support node: prefix, and the allowOptions option does not accept strings with colons
 
         'unicorn/import-style': 'off', // It doesn't seem useful to force people to use named, default, or namespace imports
         'unicorn/prevent-abbreviations': 'off', // Causes more issues than it's worth
