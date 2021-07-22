@@ -135,6 +135,17 @@ module.exports.configs = {
         'prefer-template': 'error',
         'no-param-reassign': 'off', // We don't use `arguments`, and assigning to parameters can be useful
         'no-promise-executor-return': 'off', // Allow implicit return in promise executor
+        'capitalized-comments': [
+          'error',
+          'always',
+          {
+            ignorePattern:
+              'pragma|ignore|prettier-ignore|webpack\\w+:|c8|return|const|let|var|await|function|console',
+            ignoreInlineComments: true,
+            ignoreConsecutiveComments: true,
+          },
+        ],
+
         'node/no-unsupported-features/es-syntax': 'off', // Does not account for transpilation
         'node/no-unpublished-require': 'off', // Does not account for "build" scripts
         'node/shebang': 'off', // Tons of false positives
@@ -164,6 +175,11 @@ module.exports.configs = {
           // There isn't a good reason to force use of Number.POSITIVE_INFINITY instead of Infinity
           { checkInfinity: false },
         ],
+        // The node: protocol for imports is supported for imports starting in node 12
+        // and for require()'s starting in node 16.
+        // Since for most projects, we are transpiling imports to requires,
+        // This rule is not ready until we only support node 16+
+        'unicorn/prefer-node-protocol': 'off',
         // This rule suggests incorrect code with the destructured object is modified
         // That is a fairly common case, and it is too annoying to always disable the rule on each line
         'unicorn/consistent-destructuring': 'off',

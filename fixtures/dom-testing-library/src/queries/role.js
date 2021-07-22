@@ -71,13 +71,13 @@ function queryAllByRole(
         matcher(implicitRole, node, role, matchNormalizer)
       );
     })
-    .filter((element) => {
-      return hidden === false
+    .filter((element) =>
+      hidden === false
         ? isInaccessible(element, {
             isSubtreeInaccessible: cachedIsSubtreeInaccessible,
           }) === false
-        : true;
-    })
+        : true
+    )
     .filter((element) => {
       if (name === undefined) {
         // Don't care
