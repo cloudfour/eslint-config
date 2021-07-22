@@ -1,6 +1,6 @@
 // @ts-check
 
-import { spawn } from 'node:child_process';
+import { spawn } from 'child_process';
 import { promises as fs } from 'fs';
 import { join } from 'path';
 import kleur from 'kleur';
@@ -53,18 +53,26 @@ const loadConfig = async (dir) => {
 const indent = (input, indenter) =>
   indenter + input.split('\n').join(`\n${indenter}`);
 
+/** @param {string} ruleName */
+const printRuleForCLI = (ruleName) => {
+  const isBuiltIn = !ruleName.includes('/');
+  return isBuiltIn ? ruleName : `@cloudfour/${ruleName}`;
+};
+
+const printRuleConfig = (rule) => JSON.stringify(rule, null, 2);
+
 const main = async () => {
   const dir = join(process.cwd(), 'tmp-eslint-config');
-  if (!(await stat(dir))) {
-    log('Cloning second copy of repo...');
-    const url = 'https://github.com/cloudfour/eslint-config';
-    await runCommand('git', ['clone', url, dir]);
-  } else {
+  if (await stat(dir)) {
     log('Updating second copy of repo to latest main');
     await runCommand('git', ['reset', '--hard', 'HEAD'], { cwd: dir });
     await runCommand('git', ['checkout', 'main'], { cwd: dir });
     await runCommand('git', ['fetch'], { cwd: dir });
     await runCommand('git', ['reset', '--hard', 'origin/main'], { cwd: dir });
+  } else {
+    log('Cloning second copy of repo...');
+    const url = 'https://github.com/cloudfour/eslint-config';
+    await runCommand('git', ['clone', url, dir]);
   }
   log('Updating this branch to be up to date with main');
   await runCommand('git', ['fetch']);
@@ -97,12 +105,6 @@ const main = async () => {
       ? `https://eslint.org/docs/rules/${fullName}`
       : rule?.meta?.docs?.url;
     return url ? `[\`${fullName}\`](${url})` : `\`${fullName}\``;
-  };
-
-  /** @param {string} ruleName */
-  const printRuleForCLI = (ruleName) => {
-    const isBuiltIn = !ruleName.includes('/');
-    return isBuiltIn ? ruleName : `@cloudfour/${ruleName}`;
   };
 
   /**
@@ -154,10 +156,8 @@ ${rules.map((r) => printRuleForCLI(r)).join('\n')}
     .map(([ruleName]) => ruleName);
   printRuleList(newlyDisabledRules, 'Newly Disabled Rules');
 
-  const printRuleConfig = (rule) => JSON.stringify(rule, null, 2);
-
   let hasOutputReconfiguredRules = false;
-  for (const ruleName in branchConfig) {
+  for (const ruleName of Object.keys(branchConfig)) {
     const branchConfigPrinted = printRuleConfig(branchConfig[ruleName]);
     const mainConfigPrinted = printRuleConfig(mainConfig[ruleName]);
     if (
@@ -203,6 +203,7 @@ ${indent(branchConfigPrinted, '  + ')}
         message: 'Summary',
       },
     ],
+    // eslint-disable-next-line no-process-exit, @cloudfour/unicorn/no-process-exit
     { onCancel: () => process.exit(1) }
   );
 
