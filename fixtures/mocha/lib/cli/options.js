@@ -59,14 +59,14 @@ const configuration = { ...YARGS_PARSER_CONFIG, 'camel-case-expansion': false };
  * @ignore
  */
 const coerceOpts = Object.assign(
-  types.array.reduce(
-    (acc, arg) => Object.assign(acc, { [arg]: (v) => [...new Set(list(v))] }),
-    {}
+  Object.fromEntries(
+    types.array.map((arg) => [arg, (v) => [...new Set(list(v))]])
   ),
-  [...types.boolean, ...types.string, ...types.number].reduce(
-    (acc, arg) =>
-      Object.assign(acc, { [arg]: (v) => (Array.isArray(v) ? v.pop() : v) }),
-    {}
+  Object.fromEntries(
+    [...types.boolean, ...types.string, ...types.number].map((arg) => [
+      arg,
+      (v) => (Array.isArray(v) ? v.pop() : v),
+    ])
   )
 );
 
@@ -78,9 +78,8 @@ const coerceOpts = Object.assign(
  * @private
  * @ignore
  */
-const nargOpts = [...types.array, ...types.string, ...types.number].reduce(
-  (acc, arg) => Object.assign(acc, { [arg]: 1 }),
-  {}
+const nargOpts = Object.fromEntries(
+  [...types.array, ...types.string, ...types.number].map((arg) => [arg, 1])
 );
 
 /**

@@ -29,7 +29,7 @@ function queryAllByText(
     baseArray = [container];
   }
 
-  return [...baseArray, ...[...container.querySelectorAll(selector)]]
+  return [...baseArray, ...container.querySelectorAll(selector)]
     .filter((node) => !ignore || !node.matches(ignore))
     .filter((node) => matcher(getNodeText(node), node, text, matchNormalizer));
 }

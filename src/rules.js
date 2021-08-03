@@ -15,10 +15,9 @@ const preferEarlyReturn = require('./rules/prefer-early-return');
  * @param {{[key: string]: unknown}} rules
  */
 const hoist = (prefix, rules) =>
-  Object.entries(rules).reduce((output, [key, val]) => {
-    output[`${prefix}/${key}`] = val;
-    return output;
-  }, {});
+  Object.fromEntries(
+    Object.entries(rules).map(([key, val]) => [`${prefix}/${key}`, val])
+  );
 
 const rules = {
   ...hoist('node', node),
