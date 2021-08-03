@@ -53,10 +53,17 @@ const loadConfig = async (dir) => {
 const indent = (input, indenter) =>
   indenter + input.split('\n').join(`\n${indenter}`);
 
+const prefix = '@cloudfour/';
+
+/** @param {string} ruleName */
+const removePrefix = (ruleName) =>
+  ruleName.startsWith(prefix) ? ruleName.slice(prefix.length) : ruleName;
+
 /** @param {string} ruleName */
 const printRuleForCLI = (ruleName) => {
   const isBuiltIn = !ruleName.includes('/');
-  return isBuiltIn ? ruleName : `@cloudfour/${ruleName}`;
+  ruleName = removePrefix(ruleName);
+  return isBuiltIn ? ruleName : prefix + ruleName;
 };
 
 const printRuleConfig = (rule) => JSON.stringify(rule, null, 2);
@@ -90,16 +97,11 @@ const main = async () => {
   const [mainRules, mainConfig] = await loadConfig(dir);
   const [branchRules, branchConfig] = await loadConfig(process.cwd());
 
-  const prefix = '@cloudfour/';
-  /** @param {string} ruleName */
-  const removePrefix = (ruleName) =>
-    ruleName.startsWith(prefix) ? ruleName.slice(prefix.length) : ruleName;
-
   /** @param {string} _ruleName */
   const printRuleLink = (_ruleName) => {
     const isBuiltIn = !_ruleName.includes('/');
     const ruleName = removePrefix(_ruleName);
-    const fullName = isBuiltIn ? ruleName : `@cloudfour/${ruleName}`;
+    const fullName = isBuiltIn ? ruleName : prefix + ruleName;
     const rule = branchRules[ruleName] || mainRules[ruleName];
     const url = isBuiltIn
       ? `https://eslint.org/docs/rules/${fullName}`
