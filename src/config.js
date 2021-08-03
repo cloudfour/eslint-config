@@ -18,30 +18,27 @@ const jsdoc = require('eslint-plugin-jsdoc').configs.recommended;
  * @param {{[key: string]: ESLintRuleConfig}} rules the rules to process
  */
 const prefix = (rules) =>
-  Object.entries(rules).reduce((output, [key, val]) => {
-    if (key.includes('/') && !key.startsWith('@cloudfour/')) {
+  Object.fromEntries(
+    Object.entries(rules).map(([key, val]) => {
       // If the key already starts with an @, remove it (for example typescript-eslint)
-      key = `@cloudfour/${key.replace(/^@/, '')}`;
-    }
-
-    output[key] = val;
-    return output;
-  }, {});
+      if (key.includes('/') && !key.startsWith('@cloudfour/'))
+        key = `@cloudfour/${key.replace(/^@/, '')}`;
+      return [key, val];
+    })
+  );
 
 /**
  * Removes rules that are set to "off"
  *
- * @param {{[key: string]: ESLintRuleConfig}} rules the rules to process
+ * @param {Record<string, ESLintRuleConfig>} rules the rules to process
  */
 const removeUnused = (rules) =>
-  Object.entries(rules).reduce((output, [key, val]) => {
-    if (val === 'off' || val === 0 || val[0] === 'off' || val[0] === 0) {
-      return output;
-    }
-
-    output[key] = val;
-    return output;
-  }, {});
+  Object.fromEntries(
+    Object.entries(rules).filter(
+      ([, val]) =>
+        !(val === 'off' || val === 0 || val[0] === 'off' || val[0] === 0)
+    )
+  );
 
 /**
  * Changes all rules that are set to "warn" to "error"
@@ -49,17 +46,14 @@ const removeUnused = (rules) =>
  * @param {{[key: string]: ESLintRuleConfig}} rules the rules to process
  */
 const changeWarnToError = (rules) =>
-  Object.entries(rules).reduce((output, [key, val]) => {
-    if (val === 'warn' || val === 1) {
-      output[key] = 'error';
-    } else if (Array.isArray(val) && (val[0] === 'warn' || val[0] === 1)) {
-      output[key] = ['error', ...val.slice(1)];
-    } else {
-      output[key] = val;
-    }
-
-    return output;
-  }, {});
+  Object.fromEntries(
+    Object.entries(rules).map(([key, val]) => {
+      if (val === 'warn' || val === 1) return [key, 'error'];
+      if (Array.isArray(val) && (val[0] === 'warn' || val[0] === 1))
+        return [key, ['error', ...val.slice(1)]];
+      return [key, val];
+    })
+  );
 
 module.exports.configs = {
   recommended: {

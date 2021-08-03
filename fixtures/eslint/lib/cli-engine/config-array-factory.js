@@ -853,17 +853,15 @@ class ConfigArrayFactory {
    * @private
    */
   _loadPlugins(names, ctx) {
-    return names.reduce((map, name) => {
-      if (isFilePath(name)) {
-        throw new Error('Plugins array cannot includes file paths.');
-      }
+    return Object.fromEntries(
+      names.map((name) => {
+        if (isFilePath(name))
+          throw new Error('Plugins array cannot includes file paths.');
 
-      const plugin = this._loadPlugin(name, ctx);
-
-      map[plugin.id] = plugin;
-
-      return map;
-    }, {});
+        const plugin = this._loadPlugin(name, ctx);
+        return [plugin.id, plugin];
+      })
+    );
   }
 
   /**

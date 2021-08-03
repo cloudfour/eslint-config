@@ -593,6 +593,7 @@ function resolveParserOptions(
 ) {
   const parserOptionsFromEnv = enabledEnvironments
     .filter((env) => env.parserOptions)
+    // eslint-disable-next-line @cloudfour/unicorn/prefer-object-from-entries
     .reduce(
       (parserOptions, env) => lodash.merge(parserOptions, env.parserOptions),
       {}
@@ -893,6 +894,7 @@ const DEPRECATED_SOURCECODE_PASSTHROUGHS = {
 };
 
 const BASE_TRAVERSAL_CONTEXT = Object.freeze(
+  // eslint-disable-next-line @cloudfour/unicorn/prefer-object-from-entries
   Object.keys(DEPRECATED_SOURCECODE_PASSTHROUGHS).reduce(
     (contextInfo, methodName) =>
       Object.assign(contextInfo, {

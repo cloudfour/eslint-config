@@ -116,6 +116,7 @@ function createBaseConfigArray({
       plugins: {
         '': new ConfigDependency({
           definition: {
+            // eslint-disable-next-line @cloudfour/unicorn/prefer-object-from-entries
             rules: rulePaths.reduce(
               (map, rulesPath) => Object.assign(map, loadRules(rulesPath, cwd)),
               {}

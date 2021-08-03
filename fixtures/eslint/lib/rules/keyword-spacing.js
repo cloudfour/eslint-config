@@ -93,17 +93,19 @@ module.exports = {
           after: { type: 'boolean', default: true },
           overrides: {
             type: 'object',
-            properties: KEYS.reduce((retv, key) => {
-              retv[key] = {
-                type: 'object',
-                properties: {
-                  before: { type: 'boolean' },
-                  after: { type: 'boolean' },
+            properties: Object.fromEntries(
+              KEYS.map((key) => [
+                key,
+                {
+                  type: 'object',
+                  properties: {
+                    before: { type: 'boolean' },
+                    after: { type: 'boolean' },
+                  },
+                  additionalProperties: false,
                 },
-                additionalProperties: false,
-              };
-              return retv;
-            }, {}),
+              ])
+            ),
             additionalProperties: false,
           },
         },
