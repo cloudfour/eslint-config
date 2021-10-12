@@ -224,6 +224,14 @@ module.exports.configs = {
             // We have set it to allow import('...') for types because that is the only kind of import that is allowed in global type augmentations
             { disallowTypeAnnotations: false },
           ],
+          // Don't try to use the result of expression whose type is `void`
+          '@typescript-eslint/no-confusing-void-expression': [
+            'error',
+            { ignoreArrowShorthand: true },
+          ],
+          // Don't use the void operator an an expression whose type is already `void`
+          '@typescript-eslint/no-meaningless-void-operator': 'error',
+          '@typescript-eslint/no-unnecessary-type-constraint': 'error',
           '@typescript-eslint/array-type': ['error', { default: 'array' }], // Require consistency: Use foo[] instead of Array<foo>
           '@typescript-eslint/ban-ts-comment': 'error',
           '@typescript-eslint/explicit-module-boundary-types': 'off', // Type inference is useful even for public functions
