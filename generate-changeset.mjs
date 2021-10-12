@@ -132,7 +132,7 @@ ${rules.map((r) => printRuleForCLI(r)).join('\n')}
   const newRules = Object.keys(branchRules).filter(
     (rule) => !(rule in mainRules)
   );
-  printRuleList(newRules, 'New Rules');
+  printRuleList(newRules, 'New Rules (not enabled by default)');
 
   const deletedRules = Object.keys(mainRules).filter(
     (rule) => !(rule in branchRules)
