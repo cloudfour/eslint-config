@@ -132,7 +132,7 @@ ${rules.map((r) => printRuleForCLI(r)).join('\n')}
   const newRules = Object.keys(branchRules).filter(
     (rule) => !(rule in mainRules)
   );
-  printRuleList(newRules, 'New Rules (not enabled by default)');
+  printRuleList(newRules, 'New Rules');
 
   const deletedRules = Object.keys(mainRules).filter(
     (rule) => !(rule in branchRules)
@@ -140,7 +140,10 @@ ${rules.map((r) => printRuleForCLI(r)).join('\n')}
   printRuleList(deletedRules, 'Deleted Rules');
 
   const isEnabled = (rule) =>
-    Array.isArray(rule) ? isEnabled(rule[0]) : rule === 'error' || rule === 2;
+    rule !== undefined &&
+    (Array.isArray(rule)
+      ? isEnabled(rule[0])
+      : rule === 'error' || rule === 2 || rule === 'warn' || rule === 1);
 
   const newlyEnabledRules = Object.entries(branchConfig)
     .filter(
