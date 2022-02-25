@@ -208,7 +208,7 @@ ${indent(branchConfigPrinted, '  + ')}
         message: 'Summary',
       },
     ],
-    // eslint-disable-next-line no-process-exit, @cloudfour/unicorn/no-process-exit
+    // eslint-disable-next-line @cloudfour/n/no-process-exit, @cloudfour/unicorn/no-process-exit
     { onCancel: () => process.exit(1) }
   );
 

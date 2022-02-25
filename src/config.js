@@ -5,7 +5,7 @@ const prettier = require('eslint-config-prettier');
 const typescript = require('@typescript-eslint/eslint-plugin');
 
 // ESLint plugins
-const node = require('eslint-plugin-node').configs.recommended;
+const node = require('eslint-plugin-n').configs.recommended;
 const unicorn = require('eslint-plugin-unicorn').configs.recommended;
 const jsdoc = require('eslint-plugin-jsdoc').configs.recommended;
 
@@ -140,9 +140,9 @@ module.exports.configs = {
           },
         ],
 
-        'node/no-unsupported-features/es-syntax': 'off', // Does not account for transpilation
-        'node/no-unpublished-require': 'off', // Does not account for "build" scripts
-        'node/shebang': 'off', // Tons of false positives
+        'n/no-unsupported-features/es-syntax': 'off', // Does not account for transpilation
+        'n/no-unpublished-require': 'off', // Does not account for "build" scripts
+        'n/shebang': 'off', // Tons of false positives
 
         'unicorn/import-style': 'off', // It doesn't seem useful to force people to use named, default, or namespace imports
         'unicorn/prevent-abbreviations': 'off', // Causes more issues than it's worth
@@ -203,8 +203,8 @@ module.exports.configs = {
           ...typescript.configs['recommended-requiring-type-checking'].rules,
 
           // TS handles checking these
-          'node/no-missing-import': 'off',
-          'node/no-missing-require': 'off',
+          'n/no-missing-import': 'off',
+          'n/no-missing-require': 'off',
 
           'no-import-assign': 'off', // TS handles this
 
