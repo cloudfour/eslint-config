@@ -226,7 +226,7 @@ const main = async () => {
     console.log(
       '\nRead ./fixtures/README.md to learn how to resolve these lint errors'
     );
-    // eslint-disable-next-line no-process-exit
+    // eslint-disable-next-line @cloudfour/n/no-process-exit
     process.exit(error);
   });
 };

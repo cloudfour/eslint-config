@@ -1,4 +1,4 @@
-const node = require('eslint-plugin-node').rules;
+const node = require('eslint-plugin-n').rules;
 const eslintImport = require('eslint-plugin-import').rules;
 const promise = require('eslint-plugin-promise').rules;
 const unicorn = require('eslint-plugin-unicorn').rules;
@@ -8,8 +8,8 @@ const preferEarlyReturn = require('./rules/prefer-early-return');
 
 /**
  * Prefixes each rule of the config
- * Example if `prefix` is `node`:
- * changes rule callback-return to node/callback-return
+ * Example if `prefix` is `n`:
+ * changes rule callback-return to n/callback-return
  *
  * @param {string} prefix
  * @param {{[key: string]: unknown}} rules
@@ -20,7 +20,7 @@ const hoist = (prefix, rules) =>
   );
 
 const rules = {
-  ...hoist('node', node),
+  ...hoist('n', node),
   ...hoist('import', eslintImport),
   ...hoist('promise', promise),
   ...hoist('unicorn', unicorn),

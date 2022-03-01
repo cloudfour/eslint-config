@@ -127,7 +127,7 @@ const parse = (args = [], defaultValues = {}, ...configObjects) => {
   });
   if (result.error) {
     console.error(ansi.red(`Error: ${result.error.message}`));
-    // eslint-disable-next-line no-process-exit, @cloudfour/unicorn/no-process-exit
+    // eslint-disable-next-line @cloudfour/n/no-process-exit, @cloudfour/unicorn/no-process-exit
     process.exit(1);
   }
 
