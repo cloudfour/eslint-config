@@ -186,7 +186,7 @@ class SourceCode extends TokenStore {
      * The flag to indicate that the source code has Unicode BOM.
      * @type boolean
      */
-    this.hasBOM = text.charCodeAt(0) === 0xfe_ff;
+    this.hasBOM = text.codePointAt(0) === 0xfe_ff;
 
     /**
      * The original text source code.
