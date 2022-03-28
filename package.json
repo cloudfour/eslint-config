@@ -43,11 +43,11 @@
     "eslint": "^8.0.0"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "0.4.3",
-    "@changesets/cli": "2.21.1",
-    "@changesets/write": "0.1.7",
+    "@changesets/changelog-github": "0.4.4",
+    "@changesets/cli": "2.22.0",
+    "@changesets/write": "0.1.8",
     "eliminate": "1.1.2",
-    "eslint": "8.10.0",
+    "eslint": "8.12.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-config-standard": "17.0.0-1",
     "eslint-config-xo": "0.40.0",
@@ -55,9 +55,9 @@
     "kleur": "4.1.4",
     "mkdirplz": "1.0.2",
     "powerwalker": "0.1.2",
-    "prettier": "2.5.1",
+    "prettier": "2.6.1",
     "prompts": "2.4.2",
-    "typescript": "4.6.2"
+    "typescript": "4.6.3"
   },
   "scripts": {
     "check-lint": "eslint --format=pretty --ext=.js,.mjs,.cjs . && prettier --check .",
