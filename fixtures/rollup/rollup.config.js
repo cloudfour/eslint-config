@@ -16,7 +16,7 @@ import pkg from './package.json';
 
 const commitHash = (function () {
   try {
-    return fs.readFileSync('.commithash', 'utf-8');
+    return fs.readFileSync('.commithash', 'utf8');
   } catch {
     return 'unknown';
   }
@@ -142,11 +142,11 @@ export default (command) => {
       {
         load: (id) => {
           if (id.includes('crypto.ts'))
-            return fs.readFileSync('browser/crypto.ts', 'utf-8');
+            return fs.readFileSync('browser/crypto.ts', 'utf8');
           if (id.includes('fs.ts'))
-            return fs.readFileSync('browser/fs.ts', 'utf-8');
+            return fs.readFileSync('browser/fs.ts', 'utf8');
           if (id.includes('path.ts'))
-            return fs.readFileSync('browser/path.ts', 'utf-8');
+            return fs.readFileSync('browser/path.ts', 'utf8');
         },
       },
       commonjs(),
