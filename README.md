@@ -8,7 +8,7 @@ The way this works is that it requires all of the plugin dependencies, and expor
 
 The plugins that this exposes are:
 
-- [`node`](https://github.com/mysticatea/eslint-plugin-node)
+- [`n`](https://github.com/weiran-zsd/eslint-plugin-node) (maintained fork of original [`eslint-plugin-node`](https://github.com/mysticatea/eslint-plugin-node))
 - [`import`](https://github.com/benmosher/eslint-plugin-import)
 - [`standard`](https://github.com/standard/eslint-plugin-standard)
 - [`promise`](https://github.com/xjamundx/eslint-plugin-promise)
