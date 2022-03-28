@@ -156,6 +156,9 @@ module.exports.configs = {
         // But this is an edge case that can be avoided through careful manual review
         // and sometimes through TS
         'unicorn/no-array-callback-reference': 'off',
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/pull/1750
+        // This rule got removed from the recommended preset, but that hasn't been published yet.
+        'unicorn/prefer-json-parse-buffer': 'off',
         // This rule changes arrays to sets if you call .includes on it
         // Converting from array to set has a cost itself, just like .includes has a cost
         // We decided to leave the decision of using arrays vs sets to human reviewers
