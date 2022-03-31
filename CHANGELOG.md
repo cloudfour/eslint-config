@@ -1,5 +1,11 @@
 # @cloudfour/eslint-plugin
 
+## 18.0.1
+
+### Patch Changes
+
+- [#362](https://github.com/cloudfour/eslint-config/pull/362) [`0625daf`](https://github.com/cloudfour/eslint-config/commit/0625dafc4233fc34a9f24024962538778b6ecf62) Thanks [@calebeby](https://github.com/calebeby)! - Fix dependency version for eslint-plugin-import
+
 ## 18.0.0
 
 ### Major Changes
