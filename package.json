@@ -47,7 +47,7 @@
     "@changesets/cli": "2.22.0",
     "@changesets/write": "0.1.8",
     "eliminate": "1.1.2",
-    "eslint": "8.12.0",
+    "eslint": "8.13.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-config-standard": "17.0.0",
     "eslint-config-xo": "0.40.0",
