@@ -300,7 +300,7 @@ function stripDirectiveComment(value) {
  * @param {ASTNode} ast The top node of the AST.
  * @param {function(string): {create: () => void}} ruleMapper A map from rule IDs to defined rules
  * @param {string|null} warnInlineConfig If a string then it should warn directive comments as disabled. The string value is the config name what the setting came from.
- * @returns {{configuredRules: Object, enabledGlobals: {value:string,comment:Token}[], exportedVariables: Object, problems: Problem[], disableDirectives: DisableDirective[]}}
+ * @returns {{configuredRules: object, enabledGlobals: {value: string, comment: Token}[], exportedVariables: object, problems: Problem[], disableDirectives: DisableDirective[]}}
  * A collection of the directive comments that were found, along with any problems that occurred when parsing
  */
 function getDirectiveComments(filename, ast, ruleMapper, warnInlineConfig) {
