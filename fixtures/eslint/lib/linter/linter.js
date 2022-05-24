@@ -1223,7 +1223,7 @@ class Linter {
     const enabledEnvs = Object.keys(resolvedEnvConfig)
       .filter((envName) => resolvedEnvConfig[envName])
       .map((envName) => getEnv(slots, envName))
-      .filter((env) => env);
+      .filter(Boolean);
 
     const parserOptions = resolveParserOptions(
       parserName,

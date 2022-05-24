@@ -55,7 +55,7 @@ function getPossibleTypes(parsedSelector) {
     case 'compound': {
       const typesForComponents = parsedSelector.selectors
         .map(getPossibleTypes)
-        .filter((typesForComponent) => typesForComponent);
+        .filter(Boolean);
 
       // If all of the components could match any type, then the compound could also match any type.
       if (typesForComponents.length === 0) {
