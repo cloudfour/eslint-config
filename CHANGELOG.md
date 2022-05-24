@@ -1,5 +1,41 @@
 # @cloudfour/eslint-plugin
 
+## 19.0.0
+
+### Major Changes
+
+- [#364](https://github.com/cloudfour/eslint-config/pull/364) [`20c9859`](https://github.com/cloudfour/eslint-config/commit/20c9859149cc21fc0b67f68376925ac284685026) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency `eslint-plugin-unicorn` to `v42`
+
+  **New Rules**
+
+  - [`@cloudfour/unicorn/no-unreadable-iife`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/no-unreadable-iife.md)
+  - [`@cloudfour/unicorn/no-useless-switch-case`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/no-useless-switch-case.md)
+  - [`@cloudfour/unicorn/prefer-modern-math-apis`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/prefer-modern-math-apis.md)
+  - [`@cloudfour/unicorn/prefer-native-coercion-functions`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/prefer-native-coercion-functions.md)
+
+  **Newly Enabled Rules**
+
+  - [`@cloudfour/unicorn/no-unreadable-iife`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/no-unreadable-iife.md)
+  - [`@cloudfour/unicorn/no-useless-switch-case`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/no-useless-switch-case.md)
+  - [`@cloudfour/unicorn/prefer-modern-math-apis`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/prefer-modern-math-apis.md)
+  - [`@cloudfour/unicorn/prefer-native-coercion-functions`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/prefer-native-coercion-functions.md)
+
+  **Reconfigured Rules**
+
+  - [`@cloudfour/unicorn/template-indent`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/template-indent.md)
+    ```diff
+    - "warn"
+    + "error"
+    ```
+
+* [#366](https://github.com/cloudfour/eslint-config/pull/366) [`d156896`](https://github.com/cloudfour/eslint-config/commit/d156896b0aff88c656098abc12f76dc5d34c376c) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency `eslint-plugin-jsdoc` to `v39`
+
+  No new rules, but there are some parsing and rule enforcement changes.
+
+  Node 12 is no longer supported
+
+  Node 18 is supported
+
 ## 18.0.1
 
 ### Patch Changes
