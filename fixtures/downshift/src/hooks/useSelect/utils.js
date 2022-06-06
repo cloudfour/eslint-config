@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { defaultProps as commonDefaultProps } from '../utils';
+import { defaultProps as commonDefaultProps } from '../utils.js';
 
 // eslint-disable-next-line max-params
 function getItemIndexByCharacterKey(
