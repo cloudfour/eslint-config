@@ -172,11 +172,6 @@ module.exports.configs = {
           // There isn't a good reason to force use of Number.POSITIVE_INFINITY instead of Infinity
           { checkInfinity: false },
         ],
-        // The node: protocol for imports is supported for imports starting in node 12
-        // and for require()'s starting in node 16.
-        // Since for most projects, we are transpiling imports to requires,
-        // This rule is not ready until we only support node 16+
-        'unicorn/prefer-node-protocol': 'off',
         // This rule suggests incorrect code with the destructured object is modified
         // That is a fairly common case, and it is too annoying to always disable the rule on each line
         'unicorn/consistent-destructuring': 'off',
