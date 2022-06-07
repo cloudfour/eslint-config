@@ -1,4 +1,4 @@
-import { getHighlightedIndexOnOpen, getDefaultValue } from '../utils';
+import { getHighlightedIndexOnOpen, getDefaultValue } from '../utils.js';
 import { getNextWrappingIndex, getNextNonDisabledIndex } from '../../utils';
 import * as stateChangeTypes from './stateChangeTypes';
 

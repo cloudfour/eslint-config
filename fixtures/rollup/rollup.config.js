@@ -11,7 +11,7 @@ import addCliEntry from './build-plugins/add-cli-entry.js';
 import conditionalFsEventsImport from './build-plugins/conditional-fsevents-import';
 import emitModulePackageFile from './build-plugins/emit-module-package-file.js';
 import esmDynamicImport from './build-plugins/esm-dynamic-import.js';
-import getLicenseHandler from './build-plugins/generate-license-file';
+import getLicenseHandler from './build-plugins/generate-license-file.js';
 import pkg from './package.json';
 
 const commitHash = (function () {

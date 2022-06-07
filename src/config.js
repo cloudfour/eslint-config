@@ -143,6 +143,7 @@ module.exports.configs = {
         'n/no-unsupported-features/es-syntax': 'off', // Does not account for transpilation
         'n/no-unpublished-require': 'off', // Does not account for "build" scripts
         'n/shebang': 'off', // Tons of false positives
+        'n/file-extension-in-import': ['error', 'always'], // Don't allow extension-less relative imports (e.g. use ./foo.js instead of ./foo)
 
         'unicorn/import-style': 'off', // It doesn't seem useful to force people to use named, default, or namespace imports
         'unicorn/prevent-abbreviations': 'off', // Causes more issues than it's worth

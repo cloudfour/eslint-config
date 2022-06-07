@@ -4,7 +4,7 @@ import {
   getElementIds as getElementIdsCommon,
   defaultProps as defaultPropsCommon,
   getInitialState as getInitialStateCommon,
-} from '../utils';
+} from '../utils.js';
 
 function getElementIds({ id, inputId, ...rest }) {
   const uniqueId = id === undefined ? `downshift-${generateId()}` : id;
