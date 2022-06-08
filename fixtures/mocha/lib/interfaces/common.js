@@ -1,7 +1,7 @@
 'use strict';
 
-const Suite = require('../suite');
 const errors = require('../errors');
+const Suite = require('../suite');
 const createMissingArgumentError = errors.createMissingArgumentError;
 
 /**

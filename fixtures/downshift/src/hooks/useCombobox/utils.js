@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
+
 import { generateId, getA11yStatusMessage } from '../../utils';
 import {
-  getElementIds as getElementIdsCommon,
   defaultProps as defaultPropsCommon,
+  getElementIds as getElementIdsCommon,
   getInitialState as getInitialStateCommon,
 } from '../utils.js';
 

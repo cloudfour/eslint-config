@@ -1,6 +1,6 @@
 import { types as t, template } from '@babel/core';
-import ReplaceSupers from '@babel/helper-replace-supers';
 import nameFunction from '@babel/helper-function-name';
+import ReplaceSupers from '@babel/helper-replace-supers';
 
 export function hasOwnDecorators(node) {
   return Boolean(node.decorators && node.decorators.length > 0);

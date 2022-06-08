@@ -1,5 +1,6 @@
-import { getHighlightedIndexOnOpen, getDefaultValue } from '../utils.js';
-import { getNextWrappingIndex, getNextNonDisabledIndex } from '../../utils';
+import { getNextNonDisabledIndex, getNextWrappingIndex } from '../../utils';
+import { getDefaultValue, getHighlightedIndexOnOpen } from '../utils.js';
+
 import * as stateChangeTypes from './stateChangeTypes';
 
 /* eslint-disable complexity */

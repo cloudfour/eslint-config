@@ -9,22 +9,24 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
-const util = require('util');
 const path = require('path');
+const util = require('util');
+
+const debug = require('debug')('eslint:config-initializer');
 const inquirer = require('inquirer');
 const ProgressBar = require('progress');
 const semver = require('semver');
+
 const recConfig = require('../../conf/eslint-recommended');
 const ConfigOps = require('../shared/config-ops');
 const log = require('../shared/logging');
 const naming = require('../shared/naming');
 const ModuleResolver = require('../shared/relative-module-resolver');
+
 const autoconfig = require('./autoconfig.js');
 const ConfigFile = require('./config-file');
 const npmUtils = require('./npm-utils');
 const { getSourceCodeOfFiles } = require('./source-code-utils');
-
-const debug = require('debug')('eslint:config-initializer');
 
 // ------------------------------------------------------------------------------
 // Private

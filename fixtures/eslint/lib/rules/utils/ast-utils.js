@@ -9,9 +9,10 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
-const esutils = require('esutils');
 const espree = require('espree');
+const esutils = require('esutils');
 const lodash = require('lodash');
+
 const {
   breakableTypePattern,
   createGlobalLinebreakMatcher,

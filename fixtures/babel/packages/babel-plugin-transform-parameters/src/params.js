@@ -1,4 +1,4 @@
-import { template, types as t } from '@babel/core';
+import { types as t, template } from '@babel/core';
 
 const buildDefaultParam = template(`
   let VARIABLE_NAME =

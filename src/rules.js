@@ -1,9 +1,10 @@
-const node = require('eslint-plugin-n').rules;
+const typescript = require('@typescript-eslint/eslint-plugin').rules;
 const eslintImport = require('eslint-plugin-import').rules;
+const jsdoc = require('eslint-plugin-jsdoc').rules;
+const node = require('eslint-plugin-n').rules;
 const promise = require('eslint-plugin-promise').rules;
 const unicorn = require('eslint-plugin-unicorn').rules;
-const jsdoc = require('eslint-plugin-jsdoc').rules;
-const typescript = require('@typescript-eslint/eslint-plugin').rules;
+
 const preferEarlyReturn = require('./rules/prefer-early-return');
 
 /**

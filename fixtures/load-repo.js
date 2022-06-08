@@ -1,16 +1,18 @@
 #!/usr/bin/env node
-const kleur = require('kleur');
-const path = require('path');
+
 const { spawn } = require('child_process');
-const mkdir = require('mkdirplz');
-const rm = require('eliminate');
-const walk = require('powerwalker');
-const { promisify } = require('util');
 const { readFile, writeFile, existsSync } = require('fs');
+const path = require('path');
+const { promisify } = require('util');
+
 const readFileAsync = promisify(readFile);
 const writeFileAsync = promisify(writeFile);
 const babel = require('@babel/core');
+const rm = require('eliminate');
 const CLIEngine = require('eslint').CLIEngine;
+const kleur = require('kleur');
+const mkdir = require('mkdirplz');
+const walk = require('powerwalker');
 const prettier = require('prettier');
 const prompts = require('prompts');
 

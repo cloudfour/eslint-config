@@ -40,18 +40,21 @@
 
 const fs = require('fs');
 const path = require('path');
+
+const debug = require('debug')('eslint:config-array-factory');
 const importFresh = require('import-fresh');
 const stripComments = require('strip-json-comments');
+
 const { validateConfigSchema } = require('../shared/config-validator');
 const naming = require('../shared/naming');
 const ModuleResolver = require('../shared/relative-module-resolver');
+
 const {
   ConfigArray,
   ConfigDependency,
   IgnorePattern,
   OverrideTester,
 } = require('./config-array');
-const debug = require('debug')('eslint:config-array-factory');
 
 // ------------------------------------------------------------------------------
 // Helpers

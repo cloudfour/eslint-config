@@ -1,13 +1,12 @@
 // ESLint configs
-const xo = require('eslint-config-xo');
-const standard = require('eslint-config-standard');
-const prettier = require('eslint-config-prettier');
 const typescript = require('@typescript-eslint/eslint-plugin');
-
+const prettier = require('eslint-config-prettier');
+const standard = require('eslint-config-standard');
+const xo = require('eslint-config-xo');
 // ESLint plugins
+const jsdoc = require('eslint-plugin-jsdoc').configs.recommended;
 const node = require('eslint-plugin-n').configs.recommended;
 const unicorn = require('eslint-plugin-unicorn').configs.recommended;
-const jsdoc = require('eslint-plugin-jsdoc').configs.recommended;
 
 /** @typedef {0 | 1 | 2 | 'off' | 'warn' | 'error'} ESLintRuleVal */
 /** @typedef {ESLintRuleVal | [ESLintRuleVal, ...unknown[]]} ESLintRuleConfig */

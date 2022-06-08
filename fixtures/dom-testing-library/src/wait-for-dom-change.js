@@ -1,12 +1,12 @@
+import { getConfig } from './config';
 import {
-  getWindowFromNode,
+  clearTimeout,
   getDocument,
+  getWindowFromNode,
+  runWithRealTimers,
   setImmediate,
   setTimeout,
-  clearTimeout,
-  runWithRealTimers,
 } from './helpers';
-import { getConfig } from './config';
 
 let hasWarned = false;
 

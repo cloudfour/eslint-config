@@ -1,15 +1,15 @@
 'use strict';
 
 const path = require('path');
-const outputFile = require('output-file-sync');
-const helpers = require('@babel/helpers');
+
 const babel = require('@babel/core');
+const helpers = require('@babel/helpers');
+const runtimeVersion = require('@babel/runtime/package.json').version;
 const template = require('@babel/template');
 const t = require('@babel/types');
+const outputFile = require('output-file-sync');
 
 const transformRuntime = require('..');
-
-const runtimeVersion = require('@babel/runtime/package.json').version;
 const corejs2Definitions =
   require('../lib/runtime-corejs2-definitions').default();
 const corejs3Definitions =

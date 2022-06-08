@@ -1,7 +1,8 @@
+const { basename, extname } = require('path');
+
 const groupBy = require('lodash/groupBy');
 const kebabCase = require('lodash/kebabCase');
 const startCase = require('lodash/startCase');
-const { basename, extname } = require('path');
 
 /**
  * Return a string containing Storybook Docs MDX markup for a color.
