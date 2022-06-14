@@ -1,5 +1,13 @@
 # @cloudfour/eslint-plugin
 
+## 20.0.1
+
+### Patch Changes
+
+- [`46db2ec`](https://github.com/cloudfour/eslint-config/commit/46db2ece0bf2a4ad2b1430f11551a51d138b155c) Thanks [@calebeby](https://github.com/calebeby)! - Pin eslint-plugin-n to 15.2.1
+
+  15.2.2 has a regression and inserts the wrong file extensions.
+
 ## 20.0.0
 
 ### Major Changes
