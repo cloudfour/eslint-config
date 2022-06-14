@@ -1,5 +1,39 @@
 # @cloudfour/eslint-plugin
 
+## 20.0.0
+
+### Major Changes
+
+- [#380](https://github.com/cloudfour/eslint-config/pull/380) [`80af81b`](https://github.com/cloudfour/eslint-config/commit/80af81bda55143f4c40c52f2103a1690229e0084) Thanks [@calebeby](https://github.com/calebeby)! - Enabled [`@cloudfour/n/file-extension-in-import`](https://github.com/weiran-zsd/eslint-plugin-node/blob/HEAD/docs/rules/file-extension-in-import.md).
+
+  ❌ `require('./foo')` → ✅ `require('./foo.js')`
+  ❌ `import * as foo from './foo'` → ✅ `import * as foo from './foo.js'`
+
+  If the file that you are importing is a `.ts` file, you must import it as `.js`, because of a [decision that the TypeScript team made](https://github.com/microsoft/TypeScript/issues/16577#issuecomment-754941937).
+
+  It is auto-fixable.
+
+* [#378](https://github.com/cloudfour/eslint-config/pull/378) [`4545d67`](https://github.com/cloudfour/eslint-config/commit/4545d67018c322d2bd9581b35ce774f0ab0b69db) Thanks [@calebeby](https://github.com/calebeby)! - Enforce using the `node:` protocol for imports to node built-in modules ([`prefer-node-protocol`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/rules/prefer-node-protocol.js)).
+
+  ❌ `require('fs')` → ✅ `require('node:fs')`
+  ❌ `import * as fs from 'fs'` → ✅ `import * as fs from 'node:fs'`
+
+  The `import` form is supported in node v14.13.1+.
+  The `require` form is supported in node v14.18.0+.
+
+  It is auto-fixable.
+
+- [#381](https://github.com/cloudfour/eslint-config/pull/381) [`bee6a36`](https://github.com/cloudfour/eslint-config/commit/bee6a3641b55d1a78e90208c5b6c7201f46fa92f) Thanks [@calebeby](https://github.com/calebeby)! - Sort imports
+
+  **Newly Enabled Rules**
+
+  - [`@cloudfour/import/order`](https://github.com/import-js/eslint-plugin-import/blob/v2.25.4/docs/rules/order.md)
+  - [`sort-imports`](https://eslint.org/docs/rules/sort-imports)
+
+  These rules sort imports into separate categories, with empty lines between the categories, and with the imports within a category sorted alphabetically. The variable bindings within an import statement are also sorted alphabetically.
+
+  These rules are auto-fixable, however in some cases manual sorting may be needed. Occasionally, the auto-fix will detach comments from the import statements they refer to.
+
 ## 19.0.0
 
 ### Major Changes
