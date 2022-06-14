@@ -11,19 +11,24 @@
 // ------------------------------------------------------------------------------
 
 const path = require('path');
+
+const debug = require('debug')('eslint:linter');
 const eslintScope = require('eslint-scope');
 const evk = require('eslint-visitor-keys');
 const espree = require('espree');
 const lodash = require('lodash');
+
 const BuiltInEnvironments = require('../../conf/environments');
+const ruleReplacements = require('../../conf/replacements.json');
 const pkg = require('../../package.json');
 const astUtils = require('../shared/ast-utils');
 const ConfigOps = require('../shared/config-ops');
 const validator = require('../shared/config-validator');
 const Traverser = require('../shared/traverser');
 const { SourceCode } = require('../source-code');
-const CodePathAnalyzer = require('./code-path-analysis/code-path-analyzer');
+
 const applyDisableDirectives = require('./apply-disable-directives');
+const CodePathAnalyzer = require('./code-path-analysis/code-path-analyzer');
 const ConfigCommentParser = require('./config-comment-parser');
 const NodeEventGenerator = require('./node-event-generator');
 const createReportTranslator = require('./report-translator');
@@ -31,9 +36,7 @@ const Rules = require('./rules');
 const createEmitter = require('./safe-emitter');
 const SourceCodeFixer = require('./source-code-fixer');
 const timing = require('./timing');
-const ruleReplacements = require('../../conf/replacements.json');
 
-const debug = require('debug')('eslint:linter');
 const MAX_AUTOFIX_PASSES = 10;
 const DEFAULT_PARSER_NAME = 'espree';
 const commentParser = new ConfigCommentParser();

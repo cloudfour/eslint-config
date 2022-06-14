@@ -1,15 +1,15 @@
-import { declare } from '@babel/helper-plugin-utils';
+import { types as t, template } from '@babel/core';
 import {
-  isModule,
-  rewriteModuleStatementsAndPrepareHeader,
-  hasExports,
-  isSideEffectImport,
   buildNamespaceInitStatements,
   ensureStatementsHoisted,
-  wrapInterop,
   getModuleName,
+  hasExports,
+  isModule,
+  isSideEffectImport,
+  rewriteModuleStatementsAndPrepareHeader,
+  wrapInterop,
 } from '@babel/helper-module-transforms';
-import { template, types as t } from '@babel/core';
+import { declare } from '@babel/helper-plugin-utils';
 import { getImportSource } from 'babel-plugin-dynamic-import-node/utils';
 
 const buildWrapper = template(`

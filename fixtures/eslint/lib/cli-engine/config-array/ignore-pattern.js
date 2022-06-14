@@ -34,8 +34,9 @@
 
 const assert = require('assert');
 const path = require('path');
-const ignore = require('ignore');
+
 const debug = require('debug')('eslint:ignore-pattern');
+const ignore = require('ignore');
 
 /** @typedef {ReturnType<import("ignore").default>} Ignore */
 

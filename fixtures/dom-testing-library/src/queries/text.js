@@ -1,9 +1,9 @@
 import {
-  fuzzyMatches,
-  matches,
-  makeNormalizer,
-  getNodeText,
   buildQueries,
+  fuzzyMatches,
+  getNodeText,
+  makeNormalizer,
+  matches,
 } from './all-utils';
 
 function queryAllByText(

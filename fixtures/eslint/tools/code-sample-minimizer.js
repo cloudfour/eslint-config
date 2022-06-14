@@ -1,9 +1,10 @@
 'use strict';
 
-const evk = require('eslint-visitor-keys');
-const recast = require('recast');
-const espree = require('espree');
 const assert = require('assert');
+
+const evk = require('eslint-visitor-keys');
+const espree = require('espree');
+const recast = require('recast');
 
 /**
  * Determines whether an AST node could be an expression, based on the type

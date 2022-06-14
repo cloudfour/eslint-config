@@ -24,16 +24,19 @@
 
 const os = require('os');
 const path = require('path');
+
+const debug = require('debug')('eslint:cascading-config-array-factory');
+
 const { validateConfigArray } = require('../shared/config-validator');
 const { emitDeprecationWarning } = require('../shared/deprecation-warnings');
-const { ConfigArrayFactory } = require('./config-array-factory');
+
 const {
   ConfigArray,
   ConfigDependency,
   IgnorePattern,
 } = require('./config-array');
+const { ConfigArrayFactory } = require('./config-array-factory');
 const loadRules = require('./load-rules');
-const debug = require('debug')('eslint:cascading-config-array-factory');
 
 // ------------------------------------------------------------------------------
 // Helpers

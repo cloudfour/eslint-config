@@ -9,10 +9,12 @@
 // ------------------------------------------------------------------------------
 
 const { isCommentToken } = require('eslint-utils');
-const TokenStore = require('./token-store');
+const lodash = require('lodash');
+
 const astUtils = require('../shared/ast-utils');
 const Traverser = require('../shared/traverser');
-const lodash = require('lodash');
+
+const TokenStore = require('./token-store');
 
 // ------------------------------------------------------------------------------
 // Private

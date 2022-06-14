@@ -1,6 +1,6 @@
-import { fuzzyMatches, matches, makeNormalizer } from './matches';
-import { waitFor } from './wait-for';
 import { getConfig } from './config';
+import { fuzzyMatches, makeNormalizer, matches } from './matches';
+import { waitFor } from './wait-for';
 
 function getMultipleElementsFoundError(message, container) {
   return getConfig().getElementError(

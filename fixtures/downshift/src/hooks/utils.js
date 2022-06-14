@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import { useCallback, useReducer } from 'react';
+
 import {
-  scrollIntoView,
+  generateId,
   getNextWrappingIndex,
   getState,
-  generateId,
+  scrollIntoView,
 } from '../utils';
 
 const defaultStateValues = {

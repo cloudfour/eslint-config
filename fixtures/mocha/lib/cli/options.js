@@ -7,16 +7,19 @@
  */
 
 const fs = require('fs');
+
 const ansi = require('ansi-colors');
-const yargsParser = require('yargs-parser');
-const { types, aliases } = require('./run-option-metadata');
-const { ONE_AND_DONE_ARGS } = require('./one-and-dones');
-const mocharc = require('../mocharc.json');
-const { list } = require('./run-helpers');
-const { loadConfig, findConfig } = require('./config');
-const findUp = require('find-up');
 const debug = require('debug')('mocha:cli:options');
+const findUp = require('find-up');
+const yargsParser = require('yargs-parser');
+
+const mocharc = require('../mocharc.json');
+
+const { loadConfig, findConfig } = require('./config');
 const { isNodeFlag } = require('./node-flags');
+const { ONE_AND_DONE_ARGS } = require('./one-and-dones');
+const { list } = require('./run-helpers');
+const { types, aliases } = require('./run-option-metadata');
 
 /**
  * The `yargs-parser` namespace

@@ -34,15 +34,17 @@
 
 const fs = require('fs');
 const path = require('path');
+
+const debug = require('debug')('eslint:file-enumerator');
 const getGlobParent = require('glob-parent');
 const isGlob = require('is-glob');
 const { escapeRegExp } = require('lodash');
 const { Minimatch } = require('minimatch');
-const { IgnorePattern } = require('./config-array');
+
 const {
   CascadingConfigArrayFactory,
 } = require('./cascading-config-array-factory');
-const debug = require('debug')('eslint:file-enumerator');
+const { IgnorePattern } = require('./config-array');
 
 // ------------------------------------------------------------------------------
 // Helpers

@@ -1,13 +1,12 @@
 // ESLint configs
-const xo = require('eslint-config-xo');
-const standard = require('eslint-config-standard');
-const prettier = require('eslint-config-prettier');
 const typescript = require('@typescript-eslint/eslint-plugin');
-
+const prettier = require('eslint-config-prettier');
+const standard = require('eslint-config-standard');
+const xo = require('eslint-config-xo');
 // ESLint plugins
+const jsdoc = require('eslint-plugin-jsdoc').configs.recommended;
 const node = require('eslint-plugin-n').configs.recommended;
 const unicorn = require('eslint-plugin-unicorn').configs.recommended;
-const jsdoc = require('eslint-plugin-jsdoc').configs.recommended;
 
 /** @typedef {0 | 1 | 2 | 'off' | 'warn' | 'error'} ESLintRuleVal */
 /** @typedef {ESLintRuleVal | [ESLintRuleVal, ...unknown[]]} ESLintRuleConfig */
@@ -144,6 +143,24 @@ module.exports.configs = {
         'n/no-unpublished-require': 'off', // Does not account for "build" scripts
         'n/shebang': 'off', // Tons of false positives
         'n/file-extension-in-import': ['error', 'always'], // Don't allow extension-less relative imports (e.g. use ./foo.js instead of ./foo)
+        // Used for sorting/grouping import statements
+        'import/order': [
+          'error',
+          {
+            groups: [
+              'builtin',
+              'external',
+              'internal',
+              'parent',
+              'sibling',
+              'index',
+            ],
+            'newlines-between': 'always',
+            alphabetize: { order: 'asc', caseInsensitive: true },
+          },
+        ],
+        // Used for sorting members within an import statement alphabetically
+        'sort-imports': ['error', { ignoreDeclarationSort: true }],
 
         'unicorn/import-style': 'off', // It doesn't seem useful to force people to use named, default, or namespace imports
         'unicorn/prevent-abbreviations': 'off', // Causes more issues than it's worth

@@ -1,7 +1,8 @@
-import { getNextWrappingIndex, getNextNonDisabledIndex } from '../../utils';
-import { getHighlightedIndexOnOpen, getDefaultValue } from '../utils.js';
-import { getItemIndexByCharacterKey } from './utils.js';
+import { getNextNonDisabledIndex, getNextWrappingIndex } from '../../utils';
+import { getDefaultValue, getHighlightedIndexOnOpen } from '../utils.js';
+
 import * as stateChangeTypes from './stateChangeTypes';
+import { getItemIndexByCharacterKey } from './utils.js';
 
 /* eslint-disable complexity */
 export default function downshiftSelectReducer(state, action) {

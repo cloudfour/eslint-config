@@ -1,6 +1,7 @@
-const prettier = require('prettier');
 const { writeFileSync } = require('fs');
 const { join, sep } = require('path');
+
+const prettier = require('prettier');
 
 const { configs, environments } = require('./src/config');
 

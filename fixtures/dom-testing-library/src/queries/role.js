@@ -1,10 +1,12 @@
 import { computeAccessibleName } from 'dom-accessibility-api';
+
 import {
   getImplicitAriaRoles,
-  prettyRoles,
   isInaccessible,
   isSubtreeInaccessible,
+  prettyRoles,
 } from '../role-helpers';
+
 import {
   buildQueries,
   fuzzyMatches,

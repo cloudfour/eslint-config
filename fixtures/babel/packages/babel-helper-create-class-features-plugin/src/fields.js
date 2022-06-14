@@ -1,10 +1,10 @@
 /* eslint-disable max-params */
-import { template, traverse, types as t } from '@babel/core';
+import { types as t, template, traverse } from '@babel/core';
+import memberExpressionToFunctions from '@babel/helper-member-expression-to-functions';
+import optimiseCall from '@babel/helper-optimise-call-expression';
 import ReplaceSupers, {
   environmentVisitor,
 } from '@babel/helper-replace-supers';
-import memberExpressionToFunctions from '@babel/helper-member-expression-to-functions';
-import optimiseCall from '@babel/helper-optimise-call-expression';
 
 import * as ts from './typescript';
 

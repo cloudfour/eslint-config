@@ -9,6 +9,7 @@
  */
 
 const align = require('wide-align');
+
 const Mocha = require('../mocha');
 
 /**

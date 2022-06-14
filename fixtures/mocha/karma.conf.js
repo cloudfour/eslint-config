@@ -1,8 +1,8 @@
 'use strict';
 
 const fs = require('fs');
-const path = require('path');
 const os = require('os');
+const path = require('path');
 const baseBundleDirpath = path.join(__dirname, '.karma');
 
 const hostname = os.hostname();

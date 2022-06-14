@@ -3,10 +3,11 @@
 import { spawn } from 'node:child_process';
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import kleur from 'kleur';
+
 import _writeChangeset from '@changesets/write';
-import prompts from 'prompts';
+import kleur from 'kleur';
 import prettier from 'prettier';
+import prompts from 'prompts';
 
 // @ts-expect-error
 const writeChangeset = _writeChangeset.default;

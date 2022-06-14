@@ -7,7 +7,9 @@
 
 const os = require('os');
 const path = require('path');
+
 const { sync: which } = require('which');
+
 const { EVENT_RUN_END } = require('./runner').constants;
 
 /**

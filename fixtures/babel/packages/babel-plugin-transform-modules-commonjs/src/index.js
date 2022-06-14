@@ -1,16 +1,15 @@
-import { declare } from '@babel/helper-plugin-utils';
+import { types as t, template } from '@babel/core';
 import {
-  isModule,
-  rewriteModuleStatementsAndPrepareHeader,
-  isSideEffectImport,
   buildNamespaceInitStatements,
   ensureStatementsHoisted,
-  wrapInterop,
   getModuleName,
+  isModule,
+  isSideEffectImport,
+  rewriteModuleStatementsAndPrepareHeader,
+  wrapInterop,
 } from '@babel/helper-module-transforms';
+import { declare } from '@babel/helper-plugin-utils';
 import simplifyAccess from '@babel/helper-simple-access';
-import { template, types as t } from '@babel/core';
-
 import { createDynamicImportTransform } from 'babel-plugin-dynamic-import-node/utils';
 
 export default declare((api, options) => {
