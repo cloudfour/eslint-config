@@ -1,6 +1,6 @@
 {
   "name": "@cloudfour/eslint-plugin",
-  "version": "20.0.1",
+  "version": "20.0.2",
   "description": "Cloud Four's shareable ESLint configuration",
   "author": "Cloud Four <info@cloudfour.com> (http://cloudfour.com)",
   "homepage": "https://github.com/cloudfour/eslint-config",
