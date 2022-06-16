@@ -1,5 +1,11 @@
 # @cloudfour/eslint-plugin
 
+## 20.0.2
+
+### Patch Changes
+
+- [`7e35702`](https://github.com/cloudfour/eslint-config/commit/7e35702a0c22311026acde5664a9971bfffe7100) Thanks [@calebeby](https://github.com/calebeby)! - Unpin eslint-plugin-n (includes bugfix)
+
 ## 20.0.1
 
 ### Patch Changes
