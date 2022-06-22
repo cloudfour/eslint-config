@@ -110,6 +110,8 @@ const main = async () => {
     return url ? `[\`${fullName}\`](${url})` : `\`${fullName}\``;
   };
 
+  let output = '';
+
   /**
    * @param {string[]} rules
    * @param {string} groupName
@@ -127,8 +129,6 @@ ${rules.map((r) => printRuleForCLI(r)).join('\n')}
 `
     );
   };
-
-  let output = '';
 
   const newRules = Object.keys(branchRules).filter(
     (rule) => !(rule in mainRules)
