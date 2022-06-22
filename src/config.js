@@ -274,7 +274,6 @@ module.exports.configs = {
           '@typescript-eslint/no-use-before-define': [
             'error',
             {
-              functions: false,
               classes: false,
               variables: false,
               ignoreTypeReferences: true,
