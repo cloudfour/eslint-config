@@ -2,4 +2,4 @@
 '@cloudfour/eslint-plugin': minor
 ---
 
-Throw lint errors when hoisted functions are used before they're defined.
+Disallow the use of variables before they are defined.
