@@ -13,40 +13,31 @@ const { sync: which } = require('which');
 const { EVENT_RUN_END } = require('./runner').constants;
 
 /**
- * @summary
- * Checks if Growl notification support seems likely.
- * @description
- * Glosses over the distinction between an unsupported platform
- * and one that lacks prerequisite software installations.
- * @public
- * @see {@link https://github.com/tj/node-growl/blob/master/README.md|Prerequisite Installs}
- * @see {@link Mocha#growl}
- * @see {@link Mocha#isGrowlCapable}
- * @returns {boolean} whether Growl notification support can be expected
+ * Returns Mocha logo image path.
+ *
+ * @private
+ * @returns {string} Pathname of Mocha logo
  */
-exports.isCapable = () => {
-  if (!process.browser) {
-    return getSupportBinaries().reduce(
-      (acc, binary) => acc || Boolean(which(binary, { nothrow: true })),
-      false
-    );
-  }
-
-  return false;
-};
+const logo = () => path.join(__dirname, '..', 'assets', 'mocha-logo-96.png');
 
 /**
- * Implements desktop notifications as a pseudo-reporter.
- *
- * @public
- * @see {@link Mocha#_growl}
- * @param {Runner} runner - Runner instance.
+ * @summary
+ * Callback for result of attempted Growl notification.
+ * @description
+ * Despite its appearance, this is <strong>not</strong> an Error-first
+ * callback -- all parameters are populated regardless of success.
+ * @private
+ * @callback Growl~growlCB
+ * @param {any} err - Error object, or <code>null</code> if successful.
  */
-exports.notify = (runner) => {
-  runner.once(EVENT_RUN_END, () => {
-    display(runner);
-  });
-};
+function onCompletion(err) {
+  if (err) {
+    // As notifications are tangential to our purpose, just log the error.
+    const message =
+      err.code === 'ENOENT' ? 'prerequisite software not found' : err.message;
+    console.error('notification error:', message);
+  }
+}
 
 /**
  * Displays the notification.
@@ -86,33 +77,6 @@ const display = (runner) => {
 
 /**
  * @summary
- * Callback for result of attempted Growl notification.
- * @description
- * Despite its appearance, this is <strong>not</strong> an Error-first
- * callback -- all parameters are populated regardless of success.
- * @private
- * @callback Growl~growlCB
- * @param {any} err - Error object, or <code>null</code> if successful.
- */
-function onCompletion(err) {
-  if (err) {
-    // As notifications are tangential to our purpose, just log the error.
-    const message =
-      err.code === 'ENOENT' ? 'prerequisite software not found' : err.message;
-    console.error('notification error:', message);
-  }
-}
-
-/**
- * Returns Mocha logo image path.
- *
- * @private
- * @returns {string} Pathname of Mocha logo
- */
-const logo = () => path.join(__dirname, '..', 'assets', 'mocha-logo-96.png');
-
-/**
- * @summary
  * Gets platform-specific Growl support binaries.
  * @description
  * Somewhat brittle dependency on `growl` package implementation, but it
@@ -128,4 +92,40 @@ const getSupportBinaries = () => {
     Windows_NT: ['growlnotify.exe'],
   };
   return binaries[os.type()] || [];
+};
+
+/**
+ * @summary
+ * Checks if Growl notification support seems likely.
+ * @description
+ * Glosses over the distinction between an unsupported platform
+ * and one that lacks prerequisite software installations.
+ * @public
+ * @see {@link https://github.com/tj/node-growl/blob/master/README.md|Prerequisite Installs}
+ * @see {@link Mocha#growl}
+ * @see {@link Mocha#isGrowlCapable}
+ * @returns {boolean} whether Growl notification support can be expected
+ */
+exports.isCapable = () => {
+  if (!process.browser) {
+    return getSupportBinaries().reduce(
+      (acc, binary) => acc || Boolean(which(binary, { nothrow: true })),
+      false
+    );
+  }
+
+  return false;
+};
+
+/**
+ * Implements desktop notifications as a pseudo-reporter.
+ *
+ * @public
+ * @see {@link Mocha#_growl}
+ * @param {Runner} runner - Runner instance.
+ */
+exports.notify = (runner) => {
+  runner.once(EVENT_RUN_END, () => {
+    display(runner);
+  });
 };

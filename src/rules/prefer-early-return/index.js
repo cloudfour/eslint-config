@@ -1,4 +1,13 @@
 /** @type {import('eslint').Rule.RuleModule} */
+
+/**
+ * @param {import('estree').Statement} statement
+ * @returns {statement is import('estree').IfStatement}
+ */
+function isLonelyIfStatement(statement) {
+  return statement.type === 'IfStatement' && statement.alternate === null;
+}
+
 module.exports = {
   meta: {
     docs: {
@@ -71,11 +80,3 @@ module.exports = {
     };
   },
 };
-
-/**
- * @param {import('estree').Statement} statement
- * @returns {statement is import('estree').IfStatement}
- */
-function isLonelyIfStatement(statement) {
-  return statement.type === 'IfStatement' && statement.alternate === null;
-}

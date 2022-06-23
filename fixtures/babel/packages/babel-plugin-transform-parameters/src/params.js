@@ -38,6 +38,21 @@ const iifeVisitor = {
   },
 };
 
+function buildScopeIIFE(shadowedParams, body) {
+  const args = [];
+  const params = [];
+
+  for (const name of shadowedParams) {
+    // We create them twice; the other option is to use t.cloneNode
+    args.push(t.identifier(name));
+    params.push(t.identifier(name));
+  }
+
+  return t.returnStatement(
+    t.callExpression(t.arrowFunctionExpression(params, body), params)
+  );
+}
+
 // eslint-disable-next-line complexity
 export default function convertFunctionParams(path, loose) {
   const params = path.get('params');
@@ -189,19 +204,4 @@ export default function convertFunctionParams(path, loose) {
   }
 
   return true;
-}
-
-function buildScopeIIFE(shadowedParams, body) {
-  const args = [];
-  const params = [];
-
-  for (const name of shadowedParams) {
-    // We create them twice; the other option is to use t.cloneNode
-    args.push(t.identifier(name));
-    params.push(t.identifier(name));
-  }
-
-  return t.returnStatement(
-    t.callExpression(t.arrowFunctionExpression(params, body), params)
-  );
 }
