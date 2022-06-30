@@ -10,7 +10,7 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
-const path = require('path');
+const path = require('node:path');
 
 const debug = require('debug')('eslint:linter');
 const eslintScope = require('eslint-scope');

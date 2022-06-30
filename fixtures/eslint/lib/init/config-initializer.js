@@ -9,8 +9,8 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
-const path = require('path');
-const util = require('util');
+const path = require('node:path');
+const util = require('node:util');
 
 const debug = require('debug')('eslint:config-initializer');
 const inquirer = require('inquirer');

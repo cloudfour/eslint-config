@@ -1,4 +1,4 @@
-const { basename, extname } = require('path');
+const { basename, extname } = require('node:path');
 
 const groupBy = require('lodash/groupBy');
 const kebabCase = require('lodash/kebabCase');

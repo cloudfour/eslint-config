@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-const { spawn } = require('child_process');
-const { readFile, writeFile, existsSync } = require('fs');
-const path = require('path');
-const { promisify } = require('util');
+const { spawn } = require('node:child_process');
+const { readFile, writeFile, existsSync } = require('node:fs');
+const path = require('node:path');
+const { promisify } = require('node:util');
 
 const readFileAsync = promisify(readFile);
 const writeFileAsync = promisify(writeFile);

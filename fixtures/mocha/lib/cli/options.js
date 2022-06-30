@@ -6,7 +6,7 @@
  * @module
  */
 
-const fs = require('fs');
+const fs = require('node:fs');
 
 const ansi = require('ansi-colors');
 const debug = require('debug')('mocha:cli:options');

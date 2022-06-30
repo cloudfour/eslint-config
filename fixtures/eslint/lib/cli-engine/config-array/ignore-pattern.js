@@ -32,8 +32,8 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
-const assert = require('assert');
-const path = require('path');
+const assert = require('node:assert');
+const path = require('node:path');
 
 const debug = require('debug')('eslint:ignore-pattern');
 const ignore = require('ignore');
