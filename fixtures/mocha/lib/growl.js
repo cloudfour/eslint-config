@@ -5,8 +5,8 @@
  * @module Growl
  */
 
-const os = require('os');
-const path = require('path');
+const os = require('node:os');
+const path = require('node:path');
 
 const { sync: which } = require('which');
 

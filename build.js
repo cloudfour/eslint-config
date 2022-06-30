@@ -1,5 +1,5 @@
-const { writeFileSync } = require('fs');
-const { join, sep } = require('path');
+const { writeFileSync } = require('node:fs');
+const { join, sep } = require('node:path');
 
 const prettier = require('prettier');
 

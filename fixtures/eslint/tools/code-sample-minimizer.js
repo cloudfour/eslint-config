@@ -1,6 +1,6 @@
 'use strict';
 
-const assert = require('assert');
+const assert = require('node:assert');
 
 const evk = require('eslint-visitor-keys');
 const espree = require('espree');

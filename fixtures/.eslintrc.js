@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 module.exports = {
   rules: {
     // These rules are disabled because they are very likely to trigger

@@ -38,8 +38,8 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const debug = require('debug')('eslint:config-array-factory');
 const importFresh = require('import-fresh');
