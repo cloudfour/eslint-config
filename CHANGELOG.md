@@ -1,5 +1,28 @@
 # @cloudfour/eslint-plugin
 
+## 21.0.0
+
+### Major Changes
+
+- [#392](https://github.com/cloudfour/eslint-config/pull/392) [`a7d5860`](https://github.com/cloudfour/eslint-config/commit/a7d58606b38b1ad89d72a78e1cfcbea36079c0dd) Thanks [@Paul-Hebert](https://github.com/Paul-Hebert)! - Disallow the use of variables before they are defined. This rule was previously enabled for `let` and `const` declarations, and now it is also enabled for `function`s, `class`es, and `var`s.
+
+* [#395](https://github.com/cloudfour/eslint-config/pull/395) [`ec2c2f3`](https://github.com/cloudfour/eslint-config/commit/ec2c2f382a4d447b5f5a4b5931459c3eda227858) Thanks [@renovate](https://github.com/apps/renovate)! - Update eslint-plugin-unicorn to v43
+
+  **New Rules**
+
+  - [`@cloudfour/unicorn/prefer-event-target`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v43.0.0/docs/rules/prefer-event-target.md)
+  - [`@cloudfour/unicorn/prefer-logical-operator-over-ternary`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v43.0.0/docs/rules/prefer-logical-operator-over-ternary.md)
+
+  **Newly Enabled Rules**
+
+  - [`@cloudfour/unicorn/prefer-event-target`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v43.0.0/docs/rules/prefer-event-target.md)
+  - [`@cloudfour/unicorn/prefer-logical-operator-over-ternary`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v43.0.0/docs/rules/prefer-logical-operator-over-ternary.md)
+  - [`@cloudfour/unicorn/prefer-top-level-await`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v43.0.0/docs/rules/prefer-top-level-await.md)
+
+  Also, the [`prefer-node-protocol`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v43.0.0/docs/rules/prefer-node-protocol.md) rule has been updated to always apply to `require()` statements.
+
+- [#395](https://github.com/cloudfour/eslint-config/pull/395) [`ec2c2f3`](https://github.com/cloudfour/eslint-config/commit/ec2c2f382a4d447b5f5a4b5931459c3eda227858) Thanks [@renovate](https://github.com/apps/renovate)! - Update `ecmaVersion` to 2022 for ESLint parser
+
 ## 20.0.2
 
 ### Patch Changes
