@@ -15,42 +15,6 @@ const browserPlatformPairs = {
   'safari@latest': 'macOS 10.13',
 };
 
-function addSauceTests(cfg) {
-  cfg.reporters.push('saucelabs');
-  const browsers = Object.keys(browserPlatformPairs);
-  cfg.browsers = [...cfg.browsers, ...browsers];
-  cfg.customLaunchers = browsers.reduce((acc, browser) => {
-    const platform = browserPlatformPairs[browser];
-    const [browserName, version] = browser.split('@');
-    acc[browser] = {
-      base: 'SauceLabs',
-      browserName,
-      version,
-      platform,
-    };
-    return acc;
-  }, cfg.customLaunchers);
-
-  // See https://github.com/karma-runner/karma-sauce-launcher
-  // See https://github.com/bermi/sauce-connect-launcher#advanced-usage
-  Object.assign(cfg.sauceLabs, {
-    public: 'public',
-    connectOptions: {
-      connectRetries: 2,
-      connectRetryTimeout: 30_000,
-      detached: cfg.sauceLabs.startConnect,
-      tunnelIdentifier: cfg.sauceLabs.tunnelIdentifier,
-    },
-  });
-
-  cfg.concurrency = Infinity;
-  cfg.retryLimit = 1;
-
-  // For slow browser booting, ostensibly
-  cfg.captureTimeout = 120_000;
-  cfg.browserNoActivityTimeout = 20_000;
-}
-
 module.exports = (config) => {
   let bundleDirpath;
   const cfg = {
@@ -206,3 +170,39 @@ module.exports = (config) => {
 
   config.set(cfg);
 };
+
+function addSauceTests(cfg) {
+  cfg.reporters.push('saucelabs');
+  const browsers = Object.keys(browserPlatformPairs);
+  cfg.browsers = [...cfg.browsers, ...browsers];
+  cfg.customLaunchers = browsers.reduce((acc, browser) => {
+    const platform = browserPlatformPairs[browser];
+    const [browserName, version] = browser.split('@');
+    acc[browser] = {
+      base: 'SauceLabs',
+      browserName,
+      version,
+      platform,
+    };
+    return acc;
+  }, cfg.customLaunchers);
+
+  // See https://github.com/karma-runner/karma-sauce-launcher
+  // See https://github.com/bermi/sauce-connect-launcher#advanced-usage
+  Object.assign(cfg.sauceLabs, {
+    public: 'public',
+    connectOptions: {
+      connectRetries: 2,
+      connectRetryTimeout: 30_000,
+      detached: cfg.sauceLabs.startConnect,
+      tunnelIdentifier: cfg.sauceLabs.tunnelIdentifier,
+    },
+  });
+
+  cfg.concurrency = Infinity;
+  cfg.retryLimit = 1;
+
+  // For slow browser booting, ostensibly
+  cfg.captureTimeout = 120_000;
+  cfg.browserNoActivityTimeout = 20_000;
+}

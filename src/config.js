@@ -128,7 +128,6 @@ module.exports.configs = {
         'prefer-template': 'error',
         'no-param-reassign': 'off', // We don't use `arguments`, and assigning to parameters can be useful
         'no-promise-executor-return': 'off', // Allow implicit return in promise executor
-        'no-use-before-define': ['error'],
         'capitalized-comments': [
           'error',
           'always',
@@ -272,7 +271,15 @@ module.exports.configs = {
           '@typescript-eslint/no-unused-expressions': ['error'], // This rule is like the built in ESLint rule but it supports optional chaining
           // Replacing the built-in rule with the version that works well with TS
           'no-use-before-define': 'off',
-          '@typescript-eslint/no-use-before-define': ['error'],
+          '@typescript-eslint/no-use-before-define': [
+            'error',
+            {
+              functions: false,
+              classes: false,
+              variables: false,
+              ignoreTypeReferences: true,
+            },
+          ],
         }),
       },
     ],
