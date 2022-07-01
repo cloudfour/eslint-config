@@ -1,6 +1,6 @@
 'use strict';
 
-const path = require('path');
+const path = require('node:path');
 
 const babel = require('@babel/core');
 const helpers = require('@babel/helpers');
