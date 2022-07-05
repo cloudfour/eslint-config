@@ -1,22 +1,4 @@
 import { getWindowFromNode } from './helpers';
-
-// Function written after some investigation here:
-// https://github.com/facebook/react/issues/10135#issuecomment-401496776
-function setNativeValue(element, value) {
-  const { set: valueSetter } =
-    Object.getOwnPropertyDescriptor(element, 'value') || {};
-  const prototype = Object.getPrototypeOf(element);
-  const { set: prototypeValueSetter } =
-    Object.getOwnPropertyDescriptor(prototype, 'value') || {};
-  if (prototypeValueSetter && valueSetter !== prototypeValueSetter) {
-    prototypeValueSetter.call(element, value);
-  } /* istanbul ignore next (I don't want to bother) */ else if (valueSetter) {
-    valueSetter.call(element, value);
-  } else {
-    throw new Error('The given element does not have a value setter');
-  }
-}
-
 const eventMap = {
   // Clipboard Events
   copy: {
@@ -436,6 +418,23 @@ for (const key of Object.keys(eventMap)) {
 
   fireEvent[key] = (node, init) =>
     fireEvent(node, createEvent[key](node, init));
+}
+
+// Function written after some investigation here:
+// https://github.com/facebook/react/issues/10135#issuecomment-401496776
+function setNativeValue(element, value) {
+  const { set: valueSetter } =
+    Object.getOwnPropertyDescriptor(element, 'value') || {};
+  const prototype = Object.getPrototypeOf(element);
+  const { set: prototypeValueSetter } =
+    Object.getOwnPropertyDescriptor(prototype, 'value') || {};
+  if (prototypeValueSetter && valueSetter !== prototypeValueSetter) {
+    prototypeValueSetter.call(element, value);
+  } /* istanbul ignore next (I don't want to bother) */ else if (valueSetter) {
+    valueSetter.call(element, value);
+  } else {
+    throw new Error('The given element does not have a value setter');
+  }
 }
 
 for (const aliasKey of Object.keys(eventAliasMap)) {
