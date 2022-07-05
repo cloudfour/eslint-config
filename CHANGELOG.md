@@ -1,5 +1,11 @@
 # @cloudfour/eslint-plugin
 
+## 21.1.0
+
+### Minor Changes
+
+- [#396](https://github.com/cloudfour/eslint-config/pull/396) [`eaa4ea8`](https://github.com/cloudfour/eslint-config/commit/eaa4ea82c1b73a8c5168fae205da6a53b91c9b67) Thanks [@Paul-Hebert](https://github.com/Paul-Hebert)! - Revert changes to `no-use-before-define` rule since it was more heavy-handed than expected.
+
 ## 21.0.0
 
 ### Major Changes
