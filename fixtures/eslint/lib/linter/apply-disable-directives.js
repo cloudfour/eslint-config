@@ -46,7 +46,7 @@ function applyDirectives(options) {
       const directive = options.directives[nextDirectiveIndex++];
 
       switch (directive.type) {
-        case 'disable':
+        case 'disable': {
           if (directive.ruleId === null) {
             currentGlobalDisableDirective = directive;
             disabledRuleMap.clear();
@@ -59,8 +59,9 @@ function applyDirectives(options) {
           }
 
           break;
+        }
 
-        case 'enable':
+        case 'enable': {
           if (directive.ruleId === null) {
             currentGlobalDisableDirective = null;
             disabledRuleMap.clear();
@@ -72,6 +73,7 @@ function applyDirectives(options) {
           }
 
           break;
+        }
 
         // No default
       }
@@ -143,10 +145,11 @@ module.exports = ({
     .flatMap(directives, (directive) => {
       switch (directive.type) {
         case 'disable':
-        case 'enable':
+        case 'enable': {
           return [];
+        }
 
-        case 'disable-line':
+        case 'disable-line': {
           return [
             {
               type: 'disable',
@@ -163,8 +166,9 @@ module.exports = ({
               unprocessedDirective: directive,
             },
           ];
+        }
 
-        case 'disable-next-line':
+        case 'disable-next-line': {
           return [
             {
               type: 'disable',
@@ -181,11 +185,13 @@ module.exports = ({
               unprocessedDirective: directive,
             },
           ];
+        }
 
-        default:
+        default: {
           throw new TypeError(
             `Unrecognized directive type '${directive.type}'`
           );
+        }
       }
     })
     .sort(compareLocations);

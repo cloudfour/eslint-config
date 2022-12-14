@@ -69,11 +69,12 @@ function getCallbackInfo(node) {
       // Checks parents recursively.
 
       case 'LogicalExpression':
-      case 'ConditionalExpression':
+      case 'ConditionalExpression': {
         break;
+      }
 
       // Checks whether the parent node is `.bind(this)` call.
-      case 'MemberExpression':
+      case 'MemberExpression': {
         if (
           parent.object === currentNode &&
           !parent.property.computed &&
@@ -91,18 +92,21 @@ function getCallbackInfo(node) {
         }
 
         break;
+      }
 
       // Checks whether the node is a callback.
       case 'CallExpression':
-      case 'NewExpression':
+      case 'NewExpression': {
         if (parent.callee !== currentNode) {
           retv.isCallback = true;
         }
 
         return retv;
+      }
 
-      default:
+      default: {
         return retv;
+      }
     }
 
     currentNode = parent;

@@ -10,13 +10,14 @@ export default function downshiftSelectReducer(state, action) {
   let changes;
 
   switch (type) {
-    case stateChangeTypes.ItemMouseMove:
+    case stateChangeTypes.ItemMouseMove: {
       changes = {
         highlightedIndex: action.index,
       };
 
       break;
-    case stateChangeTypes.ItemClick:
+    }
+    case stateChangeTypes.ItemClick: {
       changes = {
         isOpen: getDefaultValue(props, 'isOpen'),
         highlightedIndex: getDefaultValue(props, 'highlightedIndex'),
@@ -24,7 +25,8 @@ export default function downshiftSelectReducer(state, action) {
       };
 
       break;
-    case stateChangeTypes.ToggleButtonKeyDownCharacter:
+    }
+    case stateChangeTypes.ToggleButtonKeyDownCharacter: {
       {
         const lowercasedKey = action.key;
         const inputValue = `${state.inputValue}${lowercasedKey}`;
@@ -45,7 +47,8 @@ export default function downshiftSelectReducer(state, action) {
       }
 
       break;
-    case stateChangeTypes.ToggleButtonKeyDownArrowDown:
+    }
+    case stateChangeTypes.ToggleButtonKeyDownArrowDown: {
       changes = {
         highlightedIndex: getHighlightedIndexOnOpen(
           props,
@@ -57,7 +60,8 @@ export default function downshiftSelectReducer(state, action) {
       };
 
       break;
-    case stateChangeTypes.ToggleButtonKeyDownArrowUp:
+    }
+    case stateChangeTypes.ToggleButtonKeyDownArrowUp: {
       changes = {
         highlightedIndex: getHighlightedIndexOnOpen(
           props,
@@ -69,8 +73,9 @@ export default function downshiftSelectReducer(state, action) {
       };
 
       break;
+    }
     case stateChangeTypes.MenuKeyDownEnter:
-    case stateChangeTypes.MenuKeyDownSpaceButton:
+    case stateChangeTypes.MenuKeyDownSpaceButton: {
       changes = {
         isOpen: getDefaultValue(props, 'isOpen'),
         highlightedIndex: getDefaultValue(props, 'highlightedIndex'),
@@ -80,7 +85,8 @@ export default function downshiftSelectReducer(state, action) {
       };
 
       break;
-    case stateChangeTypes.MenuKeyDownHome:
+    }
+    case stateChangeTypes.MenuKeyDownHome: {
       changes = {
         highlightedIndex: getNextNonDisabledIndex(
           1,
@@ -92,7 +98,8 @@ export default function downshiftSelectReducer(state, action) {
       };
 
       break;
-    case stateChangeTypes.MenuKeyDownEnd:
+    }
+    case stateChangeTypes.MenuKeyDownEnd: {
       changes = {
         highlightedIndex: getNextNonDisabledIndex(
           -1,
@@ -104,21 +111,24 @@ export default function downshiftSelectReducer(state, action) {
       };
 
       break;
-    case stateChangeTypes.MenuKeyDownEscape:
+    }
+    case stateChangeTypes.MenuKeyDownEscape: {
       changes = {
         isOpen: false,
         highlightedIndex: -1,
       };
 
       break;
-    case stateChangeTypes.MenuBlur:
+    }
+    case stateChangeTypes.MenuBlur: {
       changes = {
         isOpen: false,
         highlightedIndex: -1,
       };
 
       break;
-    case stateChangeTypes.MenuKeyDownCharacter:
+    }
+    case stateChangeTypes.MenuKeyDownCharacter: {
       {
         const lowercasedKey = action.key;
         const inputValue = `${state.inputValue}${lowercasedKey}`;
@@ -139,7 +149,8 @@ export default function downshiftSelectReducer(state, action) {
       }
 
       break;
-    case stateChangeTypes.MenuKeyDownArrowDown:
+    }
+    case stateChangeTypes.MenuKeyDownArrowDown: {
       changes = {
         highlightedIndex: getNextWrappingIndex(
           shiftKey ? 5 : 1,
@@ -151,7 +162,8 @@ export default function downshiftSelectReducer(state, action) {
       };
 
       break;
-    case stateChangeTypes.MenuKeyDownArrowUp:
+    }
+    case stateChangeTypes.MenuKeyDownArrowUp: {
       changes = {
         highlightedIndex: getNextWrappingIndex(
           shiftKey ? -5 : -1,
@@ -163,14 +175,16 @@ export default function downshiftSelectReducer(state, action) {
       };
 
       break;
-    case stateChangeTypes.MenuMouseLeave:
+    }
+    case stateChangeTypes.MenuMouseLeave: {
       changes = {
         highlightedIndex: -1,
       };
 
       break;
+    }
     case stateChangeTypes.ToggleButtonClick:
-    case stateChangeTypes.FunctionToggleMenu:
+    case stateChangeTypes.FunctionToggleMenu: {
       changes = {
         isOpen: !state.isOpen,
         highlightedIndex: state.isOpen
@@ -179,38 +193,44 @@ export default function downshiftSelectReducer(state, action) {
       };
 
       break;
-    case stateChangeTypes.FunctionOpenMenu:
+    }
+    case stateChangeTypes.FunctionOpenMenu: {
       changes = {
         isOpen: true,
         highlightedIndex: getHighlightedIndexOnOpen(props, state, 0),
       };
 
       break;
-    case stateChangeTypes.FunctionCloseMenu:
+    }
+    case stateChangeTypes.FunctionCloseMenu: {
       changes = {
         isOpen: false,
       };
 
       break;
-    case stateChangeTypes.FunctionSetHighlightedIndex:
+    }
+    case stateChangeTypes.FunctionSetHighlightedIndex: {
       changes = {
         highlightedIndex: action.highlightedIndex,
       };
 
       break;
-    case stateChangeTypes.FunctionSelectItem:
+    }
+    case stateChangeTypes.FunctionSelectItem: {
       changes = {
         selectedItem: action.selectedItem,
       };
 
       break;
-    case stateChangeTypes.FunctionSetInputValue:
+    }
+    case stateChangeTypes.FunctionSetInputValue: {
       changes = {
         inputValue: action.inputValue,
       };
 
       break;
-    case stateChangeTypes.FunctionReset:
+    }
+    case stateChangeTypes.FunctionReset: {
       changes = {
         highlightedIndex: getDefaultValue(props, 'highlightedIndex'),
         isOpen: getDefaultValue(props, 'isOpen'),
@@ -219,8 +239,10 @@ export default function downshiftSelectReducer(state, action) {
       };
 
       break;
-    default:
+    }
+    default: {
       throw new Error('Reducer called without proper action type.');
+    }
   }
 
   return {

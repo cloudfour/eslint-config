@@ -502,10 +502,12 @@ module.exports = {
           switch (tok.value) {
             case 'get':
             case 'set':
-            case 'async':
+            case 'async': {
               return true;
-            default:
+            }
+            default: {
               return false;
+            }
           }
         });
 

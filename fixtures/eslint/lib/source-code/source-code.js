@@ -444,14 +444,16 @@ class SourceCode extends TokenStore {
 
     switch (node.type) {
       case 'ClassDeclaration':
-      case 'FunctionDeclaration':
+      case 'FunctionDeclaration': {
         return findJSDocComment(looksLikeExport(parent) ? parent : node);
+      }
 
-      case 'ClassExpression':
+      case 'ClassExpression': {
         return findJSDocComment(parent.parent);
+      }
 
       case 'ArrowFunctionExpression':
-      case 'FunctionExpression':
+      case 'FunctionExpression': {
         if (
           parent.type !== 'CallExpression' &&
           parent.type !== 'NewExpression'
@@ -479,10 +481,12 @@ class SourceCode extends TokenStore {
         }
 
         return findJSDocComment(node);
+      }
 
       // Falls through
-      default:
+      default: {
         return null;
+      }
     }
   }
 

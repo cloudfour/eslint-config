@@ -89,9 +89,10 @@ export default function convertFunctionParams(path, loose) {
               break;
             }
 
-            case 'FunctionDeclaration':
+            case 'FunctionDeclaration': {
               shadowedParams.add(name);
               break;
+            }
           }
         }
       }
