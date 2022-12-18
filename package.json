@@ -43,7 +43,7 @@
     "eslint": "^8.0.0"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "0.4.7",
+    "@changesets/changelog-github": "0.4.8",
     "@changesets/cli": "2.25.2",
     "@changesets/write": "0.2.2",
     "eliminate": "1.1.2",
