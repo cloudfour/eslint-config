@@ -130,7 +130,7 @@ module.exports = (config) => {
   switch (MOCHA_TEST) {
     case 'bdd':
     case 'tdd':
-    case 'qunit':
+    case 'qunit': {
       if (cfg.sauceLabs) {
         cfg.sauceLabs.testName = `Interface "${MOCHA_TEST}" Integration Tests`;
       }
@@ -138,8 +138,9 @@ module.exports = (config) => {
       cfg.files = [`test/interfaces/${MOCHA_TEST}.spec.js`];
       cfg.client.mocha.ui = MOCHA_TEST;
       break;
+    }
 
-    case 'esm':
+    case 'esm': {
       // Just run against ChromeHeadless, since other browsers may not
       // support
       cfg.browsers = ['ChromeHeadless'];
@@ -151,10 +152,12 @@ module.exports = (config) => {
         { pattern: 'test/browser-specific/esm.spec.mjs', type: 'module' },
       ];
       break;
-    default:
+    }
+    default: {
       if (cfg.sauceLabs) {
         cfg.sauceLabs.testName = 'Unit Tests';
       }
+    }
   }
 
   cfg.files.unshift(

@@ -143,7 +143,7 @@ module.exports = function (suites, context, mocha) {
         if (typeof opts.fn === 'function') {
           opts.fn.call(suite);
           suites.shift();
-        } else if (typeof opts.fn === 'undefined' && !suite.pending) {
+        } else if (opts.fn === undefined && !suite.pending) {
           throw createMissingArgumentError(
             `Suite "${suite.fullTitle()}" was defined but no callback was supplied. ` +
               `Supply a callback or explicitly skip the suite.`,

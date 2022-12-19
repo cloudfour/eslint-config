@@ -39,8 +39,9 @@ const lodash = require('lodash');
  */
 function getPossibleTypes(parsedSelector) {
   switch (parsedSelector.type) {
-    case 'identifier':
+    case 'identifier': {
       return [parsedSelector.value];
+    }
 
     case 'matches': {
       const typesForComponents = parsedSelector.selectors.map(getPossibleTypes);
@@ -72,11 +73,13 @@ function getPossibleTypes(parsedSelector) {
     case 'child':
     case 'descendant':
     case 'sibling':
-    case 'adjacent':
+    case 'adjacent': {
       return getPossibleTypes(parsedSelector.right);
+    }
 
-    default:
+    default: {
       return null;
+    }
   }
 }
 
@@ -90,28 +93,32 @@ function countClassAttributes(parsedSelector) {
     case 'child':
     case 'descendant':
     case 'sibling':
-    case 'adjacent':
+    case 'adjacent': {
       return (
         countClassAttributes(parsedSelector.left) +
         countClassAttributes(parsedSelector.right)
       );
+    }
 
     case 'compound':
     case 'not':
-    case 'matches':
+    case 'matches': {
       return parsedSelector.selectors.reduce(
         (sum, childSelector) => sum + countClassAttributes(childSelector),
         0
       );
+    }
 
     case 'attribute':
     case 'field':
     case 'nth-child':
-    case 'nth-last-child':
+    case 'nth-last-child': {
       return 1;
+    }
 
-    default:
+    default: {
       return 0;
+    }
   }
 }
 
@@ -125,25 +132,29 @@ function countIdentifiers(parsedSelector) {
     case 'child':
     case 'descendant':
     case 'sibling':
-    case 'adjacent':
+    case 'adjacent': {
       return (
         countIdentifiers(parsedSelector.left) +
         countIdentifiers(parsedSelector.right)
       );
+    }
 
     case 'compound':
     case 'not':
-    case 'matches':
+    case 'matches': {
       return parsedSelector.selectors.reduce(
         (sum, childSelector) => sum + countIdentifiers(childSelector),
         0
       );
+    }
 
-    case 'identifier':
+    case 'identifier': {
       return 1;
+    }
 
-    default:
+    default: {
       return 0;
+    }
   }
 }
 

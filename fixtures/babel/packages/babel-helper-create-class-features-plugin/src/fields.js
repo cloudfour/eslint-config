@@ -588,34 +588,39 @@ export function buildFieldsInitNodes(
     }
 
     switch (true) {
-      case isStatic && isPrivate && isField && loose:
+      case isStatic && isPrivate && isField && loose: {
         needsClassRef = true;
         staticNodes.push(
           buildPrivateFieldInitLoose(t.cloneNode(ref), prop, privateNamesMap)
         );
         break;
-      case isStatic && isPrivate && isField && !loose:
+      }
+      case isStatic && isPrivate && isField && !loose: {
         needsClassRef = true;
         staticNodes.push(
           buildPrivateStaticFieldInitSpec(prop, privateNamesMap)
         );
         break;
-      case isStatic && isPublic && isField && loose:
+      }
+      case isStatic && isPublic && isField && loose: {
         needsClassRef = true;
         staticNodes.push(buildPublicFieldInitLoose(t.cloneNode(ref), prop));
         break;
-      case isStatic && isPublic && isField && !loose:
+      }
+      case isStatic && isPublic && isField && !loose: {
         needsClassRef = true;
         staticNodes.push(
           buildPublicFieldInitSpec(t.cloneNode(ref), prop, state)
         );
         break;
-      case isInstance && isPrivate && isField && loose:
+      }
+      case isInstance && isPrivate && isField && loose: {
         instanceNodes.push(
           buildPrivateFieldInitLoose(t.thisExpression(), prop, privateNamesMap)
         );
         break;
-      case isInstance && isPrivate && isField && !loose:
+      }
+      case isInstance && isPrivate && isField && !loose: {
         instanceNodes.push(
           buildPrivateInstanceFieldInitSpec(
             t.thisExpression(),
@@ -624,7 +629,8 @@ export function buildFieldsInitNodes(
           )
         );
         break;
-      case isInstance && isPrivate && isMethod && loose:
+      }
+      case isInstance && isPrivate && isMethod && loose: {
         instanceNodes.unshift(
           buildPrivateMethodInitLoose(t.thisExpression(), prop, privateNamesMap)
         );
@@ -632,7 +638,8 @@ export function buildFieldsInitNodes(
           buildPrivateMethodDeclaration(prop, privateNamesMap, loose)
         );
         break;
-      case isInstance && isPrivate && isMethod && !loose:
+      }
+      case isInstance && isPrivate && isMethod && !loose: {
         instanceNodes.unshift(
           buildPrivateInstanceMethodInitSpec(
             t.thisExpression(),
@@ -644,7 +651,8 @@ export function buildFieldsInitNodes(
           buildPrivateMethodDeclaration(prop, privateNamesMap, loose)
         );
         break;
-      case isStatic && isPrivate && isMethod && !loose:
+      }
+      case isStatic && isPrivate && isMethod && !loose: {
         needsClassRef = true;
         staticNodes.push(
           buildPrivateStaticFieldInitSpec(prop, privateNamesMap)
@@ -653,7 +661,8 @@ export function buildFieldsInitNodes(
           buildPrivateMethodDeclaration(prop, privateNamesMap, loose)
         );
         break;
-      case isStatic && isPrivate && isMethod && loose:
+      }
+      case isStatic && isPrivate && isMethod && loose: {
         needsClassRef = true;
         staticNodes.push(
           buildPrivateStaticMethodInitLoose(
@@ -667,16 +676,20 @@ export function buildFieldsInitNodes(
           buildPrivateMethodDeclaration(prop, privateNamesMap, loose)
         );
         break;
-      case isInstance && isPublic && isField && loose:
+      }
+      case isInstance && isPublic && isField && loose: {
         instanceNodes.push(buildPublicFieldInitLoose(t.thisExpression(), prop));
         break;
-      case isInstance && isPublic && isField && !loose:
+      }
+      case isInstance && isPublic && isField && !loose: {
         instanceNodes.push(
           buildPublicFieldInitSpec(t.thisExpression(), prop, state)
         );
         break;
-      default:
+      }
+      default: {
         throw new Error('Unreachable.');
+      }
     }
   }
 

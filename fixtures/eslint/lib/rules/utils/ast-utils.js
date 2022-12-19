@@ -645,9 +645,10 @@ module.exports = {
          * e.g., obj.foo = nativeFoo || function foo() { ... };
          */
         case 'LogicalExpression':
-        case 'ConditionalExpression':
+        case 'ConditionalExpression': {
           currentNode = parent;
           break;
+        }
 
         /*
          * If the upper function is IIFE, checks the destination of the return value.
@@ -671,13 +672,14 @@ module.exports = {
           break;
         }
 
-        case 'ArrowFunctionExpression':
+        case 'ArrowFunctionExpression': {
           if (currentNode !== parent.body || !isCallee(parent)) {
             return true;
           }
 
           currentNode = parent.parent;
           break;
+        }
 
         /*
          * E.g.
@@ -690,8 +692,9 @@ module.exports = {
          *   class A { static foo() { ... } }
          */
         case 'Property':
-        case 'MethodDefinition':
+        case 'MethodDefinition': {
           return parent.value !== currentNode;
+        }
 
         /*
          * E.g.
@@ -701,7 +704,7 @@ module.exports = {
          *   [Foo = function() { ... }] = a;
          */
         case 'AssignmentExpression':
-        case 'AssignmentPattern':
+        case 'AssignmentPattern': {
           if (parent.left.type === 'MemberExpression') {
             return false;
           }
@@ -716,12 +719,13 @@ module.exports = {
           }
 
           return true;
+        }
 
         /*
          * E.g.
          *   var Foo = function() { ... };
          */
-        case 'VariableDeclarator':
+        case 'VariableDeclarator': {
           return !(
             capIsConstructor &&
             isAnonymous &&
@@ -729,6 +733,7 @@ module.exports = {
             parent.id.type === 'Identifier' &&
             startsWithUpperCase(parent.id.name)
           );
+        }
 
         /*
          * E.g.
@@ -736,7 +741,7 @@ module.exports = {
          *   (function foo() { ... }).call(obj);
          *   (function foo() { ... }).apply(obj, []);
          */
-        case 'MemberExpression':
+        case 'MemberExpression': {
           return (
             parent.object !== currentNode ||
             parent.property.type !== 'Identifier' ||
@@ -745,6 +750,7 @@ module.exports = {
             parent.parent.arguments.length === 0 ||
             isNullOrUndefined(parent.parent.arguments[0])
           );
+        }
 
         /*
          * E.g.
@@ -752,7 +758,7 @@ module.exports = {
          *   Array.from([], function() {}, obj);
          *   list.forEach(function() {}, obj);
          */
-        case 'CallExpression':
+        case 'CallExpression': {
           if (isReflectApply(parent.callee)) {
             return (
               parent.arguments.length !== 3 ||
@@ -778,10 +784,12 @@ module.exports = {
           }
 
           return true;
+        }
 
         // Otherwise `this` is default.
-        default:
+        default: {
           return true;
+        }
       }
     }
 
@@ -798,84 +806,105 @@ module.exports = {
   // eslint-disable-next-line complexity
   getPrecedence(node) {
     switch (node.type) {
-      case 'SequenceExpression':
+      case 'SequenceExpression': {
         return 0;
+      }
 
       case 'AssignmentExpression':
       case 'ArrowFunctionExpression':
-      case 'YieldExpression':
+      case 'YieldExpression': {
         return 1;
+      }
 
-      case 'ConditionalExpression':
+      case 'ConditionalExpression': {
         return 3;
+      }
 
-      case 'LogicalExpression':
+      case 'LogicalExpression': {
         switch (node.operator) {
-          case '||':
+          case '||': {
             return 4;
-          case '&&':
+          }
+          case '&&': {
             return 5;
+          }
 
           // No default
         }
+      }
 
       /* Falls through */
 
-      case 'BinaryExpression':
+      case 'BinaryExpression': {
         switch (node.operator) {
-          case '|':
+          case '|': {
             return 6;
-          case '^':
+          }
+          case '^': {
             return 7;
-          case '&':
+          }
+          case '&': {
             return 8;
+          }
           case '==':
           case '!=':
           case '===':
-          case '!==':
+          case '!==': {
             return 9;
+          }
           case '<':
           case '<=':
           case '>':
           case '>=':
           case 'in':
-          case 'instanceof':
+          case 'instanceof': {
             return 10;
+          }
           case '<<':
           case '>>':
-          case '>>>':
+          case '>>>': {
             return 11;
+          }
           case '+':
-          case '-':
+          case '-': {
             return 12;
+          }
           case '*':
           case '/':
-          case '%':
+          case '%': {
             return 13;
-          case '**':
+          }
+          case '**': {
             return 15;
+          }
 
           // No default
         }
+      }
 
       /* Falls through */
 
       case 'UnaryExpression':
-      case 'AwaitExpression':
+      case 'AwaitExpression': {
         return 16;
+      }
 
-      case 'UpdateExpression':
+      case 'UpdateExpression': {
         return 17;
+      }
 
       case 'CallExpression':
-      case 'ImportExpression':
+      case 'ImportExpression': {
         return 18;
+      }
 
-      case 'NewExpression':
+      case 'NewExpression': {
         return 19;
+      }
 
-      default:
+      default: {
         return 20;
+      }
     }
   },
 
@@ -910,7 +939,7 @@ module.exports = {
    */
   getStaticStringValue(node) {
     switch (node.type) {
-      case 'Literal':
+      case 'Literal': {
         if (node.value === null) {
           if (module.exports.isNullLiteral(node)) {
             return String(node.value); // "null"
@@ -930,12 +959,14 @@ module.exports = {
         }
 
         break;
-      case 'TemplateLiteral':
+      }
+      case 'TemplateLiteral': {
         if (node.expressions.length === 0 && node.quasis.length === 1) {
           return node.quasis[0].value.cooked;
         }
 
         break;
+      }
 
       // No default
     }
@@ -978,13 +1009,15 @@ module.exports = {
 
     switch (node && node.type) {
       case 'Property':
-      case 'MethodDefinition':
+      case 'MethodDefinition': {
         prop = node.key;
         break;
+      }
 
-      case 'MemberExpression':
+      case 'MemberExpression': {
         prop = node.property;
         break;
+      }
 
       // No default
     }
@@ -1347,11 +1380,13 @@ module.exports = {
       case 'MemberExpression':
       case 'TaggedTemplateExpression':
       case 'YieldExpression':
-      case 'AwaitExpression':
-        return true; // Possibly an error object.
+      case 'AwaitExpression': {
+        return true;
+      } // Possibly an error object.
 
-      case 'AssignmentExpression':
+      case 'AssignmentExpression': {
         return module.exports.couldBeError(node.right);
+      }
 
       case 'SequenceExpression': {
         const exprs = node.expressions;
@@ -1362,20 +1397,23 @@ module.exports = {
         );
       }
 
-      case 'LogicalExpression':
+      case 'LogicalExpression': {
         return (
           module.exports.couldBeError(node.left) ||
           module.exports.couldBeError(node.right)
         );
+      }
 
-      case 'ConditionalExpression':
+      case 'ConditionalExpression': {
         return (
           module.exports.couldBeError(node.consequent) ||
           module.exports.couldBeError(node.alternate)
         );
+      }
 
-      default:
+      default: {
         return false;
+      }
     }
   },
 

@@ -292,22 +292,26 @@ function configMissingError(configName, importerName) {
 function loadConfigFile(filePath) {
   switch (path.extname(filePath)) {
     case '.js':
-    case '.cjs':
+    case '.cjs': {
       return loadJSConfigFile(filePath);
+    }
 
-    case '.json':
+    case '.json': {
       if (path.basename(filePath) === 'package.json') {
         return loadPackageJSONConfigFile(filePath);
       }
 
       return loadJSONConfigFile(filePath);
+    }
 
     case '.yaml':
-    case '.yml':
+    case '.yml': {
       return loadYAMLConfigFile(filePath);
+    }
 
-    default:
+    default: {
       return loadLegacyConfigFile(filePath);
+    }
   }
 }
 
