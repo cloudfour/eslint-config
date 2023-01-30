@@ -52,7 +52,7 @@ export default (
   }
 
   request[reentry] = true;
-  const cancelers: typeof noop[] = [];
+  const cancelers: (typeof noop)[] = [];
   const { once, unhandleAll } = unhandler();
 
   const addTimeout = (
