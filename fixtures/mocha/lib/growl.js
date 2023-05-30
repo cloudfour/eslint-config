@@ -2,6 +2,7 @@
 
 /**
  * Desktop Notifications module.
+ *
  * @module Growl
  */
 

@@ -8,6 +8,7 @@ const recast = require('recast');
 
 /**
  * Determines whether an AST node could be an expression, based on the type
+ *
  * @param {ASTNode} node The node
  * @returns {boolean} `true` if the node could be an expression
  */
@@ -22,6 +23,7 @@ function isMaybeExpression(node) {
 
 /**
  * Determines whether an AST node is a statement
+ *
  * @param {ASTNode} node The node
  * @returns {boolean} `true` if the node is a statement
  */
@@ -33,6 +35,7 @@ function isStatement(node) {
  * Given "bad" source text (e.g. an code sample that causes a rule to crash), tries to return a smaller
  * piece of source text which is also "bad", to make it easier for a human to figure out where the
  * problem is.
+ *
  * @param {object} options Options to process
  * @param {string} options.sourceText Initial piece of "bad" source text
  * @param {function(string): boolean} options.predicate A predicate that returns `true` for bad source text and `false` for good source text
@@ -65,6 +68,7 @@ function reduceBadExampleSize({
 
   /**
    * Returns a new unique identifier
+   *
    * @returns {string} A name for a new identifier
    */
   function generateNewIdentifierName() {
@@ -73,6 +77,7 @@ function reduceBadExampleSize({
 
   /**
    * Determines whether a source text sample is "bad"
+   *
    * @param {string} updatedSourceText The sample
    * @returns {boolean} `true` if the sample is "bad"
    */
@@ -95,6 +100,7 @@ function reduceBadExampleSize({
   /**
    * Recursively removes descendant subtrees of the given AST node and replaces
    * them with simplified variants to produce a simplified AST which is still considered "bad".
+   *
    * @param {ASTNode} node An AST node to prune. May be mutated by this call, but the
    * resulting AST will still produce "bad" source code.
    * @returns {void}
@@ -139,6 +145,7 @@ function reduceBadExampleSize({
 
   /**
    * Recursively tries to extract a descendant node from the AST that is "bad" on its own
+   *
    * @param {ASTNode} node A node which produces "bad" source code
    * @returns {ASTNode} A descendent of `node` which is also bad
    */
@@ -174,6 +181,7 @@ function reduceBadExampleSize({
 
   /**
    * Removes and simplifies comments from the source text
+   *
    * @param {string} text A piece of "bad" source text
    * @returns {string} A piece of "bad" source text with fewer and/or simpler comments.
    */

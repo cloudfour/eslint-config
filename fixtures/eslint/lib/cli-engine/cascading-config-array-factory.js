@@ -81,6 +81,7 @@ const internalSlotsMap = new WeakMap();
 
 /**
  * Create the config array from `baseConfig` and `rulePaths`.
+ *
  * @param {CascadingConfigArrayFactoryInternalSlots} slots The slots.
  * @returns {ConfigArray} The config array of the base configs.
  */
@@ -139,6 +140,7 @@ function createBaseConfigArray({
 
 /**
  * Create the config array from CLI options.
+ *
  * @param {CascadingConfigArrayFactoryInternalSlots} slots The slots.
  * @returns {ConfigArray} The config array of the base configs.
  */
@@ -192,6 +194,7 @@ class ConfigurationNotFoundError extends Error {
 class CascadingConfigArrayFactory {
   /**
    * Initialize this enumerator.
+   *
    * @param {CascadingConfigArrayFactoryOptions} options The options.
    */
   constructor({
@@ -241,6 +244,7 @@ class CascadingConfigArrayFactory {
   /**
    * The path to the current working directory.
    * This is used by tests.
+   *
    * @type {string}
    */
   get cwd() {
@@ -253,6 +257,7 @@ class CascadingConfigArrayFactory {
    * Get the config array of a given file.
    * If `filePath` was not given, it returns the config which contains only
    * `baseConfigData` and `cliConfigData`.
+   *
    * @param {string} [filePath] The file path to a file.
    * @param {object} [options] The options.
    * @param {boolean} [options.ignoreNotFoundError] If `true` then it doesn't throw `ConfigurationNotFoundError`.
@@ -278,6 +283,7 @@ class CascadingConfigArrayFactory {
 
   /**
    * Clear config cache.
+   *
    * @returns {void}
    */
   clearCache() {
@@ -290,6 +296,7 @@ class CascadingConfigArrayFactory {
 
   /**
    * Load and normalize config files from the ancestor directories.
+   *
    * @param {string} directoryPath The path to a leaf directory.
    * @param {boolean} configsExistInSubdirs `true` if configurations exist in subdirectories.
    * @returns {ConfigArray} The loaded config.
@@ -376,6 +383,7 @@ class CascadingConfigArrayFactory {
 
   /**
    * Freeze and cache a given config.
+   *
    * @param {string} directoryPath The path to a directory as a cache key.
    * @param {ConfigArray} configArray The config array as a cache value.
    * @returns {ConfigArray} The `configArray` (frozen).
@@ -392,6 +400,7 @@ class CascadingConfigArrayFactory {
   /**
    * Finalize a given config array.
    * Concatenate `--config` and other CLI options.
+   *
    * @param {ConfigArray} configArray The parent config array.
    * @param {string} directoryPath The path to the leaf directory to find config files.
    * @param {boolean} ignoreNotFoundError If `true` then it doesn't throw `ConfigurationNotFoundError`.

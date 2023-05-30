@@ -52,6 +52,7 @@ const KEYS = [
 
 /**
  * Checks whether or not a given token is a "Template" token ends with "${".
+ *
  * @param {Token} token A token to check.
  * @returns {boolean} `true` if the token is a "Template" token ends with "${".
  */
@@ -61,6 +62,7 @@ function isOpenParenOfTemplate(token) {
 
 /**
  * Checks whether or not a given token is a "Template" token starts with "}".
+ *
  * @param {Token} token A token to check.
  * @returns {boolean} `true` if the token is a "Template" token starts with "}".
  */
@@ -125,6 +127,7 @@ module.exports = {
 
     /**
      * Reports a given token if there are not space(s) before the token.
+     *
      * @param {Token} token A token to report.
      * @param {RegExp} pattern A pattern of the previous token to check.
      * @returns {void}
@@ -152,6 +155,7 @@ module.exports = {
 
     /**
      * Reports a given token if there are space(s) before the token.
+     *
      * @param {Token} token A token to report.
      * @param {RegExp} pattern A pattern of the previous token to check.
      * @returns {void}
@@ -179,6 +183,7 @@ module.exports = {
 
     /**
      * Reports a given token if there are not space(s) after the token.
+     *
      * @param {Token} token A token to report.
      * @param {RegExp} pattern A pattern of the next token to check.
      * @returns {void}
@@ -206,6 +211,7 @@ module.exports = {
 
     /**
      * Reports a given token if there are space(s) after the token.
+     *
      * @param {Token} token A token to report.
      * @param {RegExp} pattern A pattern of the next token to check.
      * @returns {void}
@@ -233,6 +239,7 @@ module.exports = {
 
     /**
      * Parses the option object and determines check methods for each keyword.
+     *
      * @param {object|undefined} options The option object to parse.
      * @returns {object} - Normalized option object.
      *      Keys are keywords (there are for every keyword).
@@ -272,6 +279,7 @@ module.exports = {
     /**
      * Reports a given token if usage of spacing followed by the token is
      * invalid.
+     *
      * @param {Token} token A token to report.
      * @param {RegExp} [pattern] Optional. A pattern of the previous
      *      token to check.
@@ -284,6 +292,7 @@ module.exports = {
     /**
      * Reports a given token if usage of spacing preceded by the token is
      * invalid.
+     *
      * @param {Token} token A token to report.
      * @param {RegExp} [pattern] Optional. A pattern of the next
      *      token to check.
@@ -295,6 +304,7 @@ module.exports = {
 
     /**
      * Reports a given token if usage of spacing around the token is invalid.
+     *
      * @param {Token} token A token to report.
      * @returns {void}
      */
@@ -306,6 +316,7 @@ module.exports = {
     /**
      * Reports the first token of a given node if the first token is a keyword
      * and usage of spacing around the token is invalid.
+     *
      * @param {ASTNode|null} node A node to report.
      * @returns {void}
      */
@@ -323,6 +334,7 @@ module.exports = {
      *
      * This is used for unary operators (e.g. `typeof`), `function`, and `super`.
      * Other rules are handling usage of spacing preceded by those keywords.
+     *
      * @param {ASTNode|null} node A node to report.
      * @returns {void}
      */
@@ -337,6 +349,7 @@ module.exports = {
     /**
      * Reports the previous token of a given node if the token is a keyword and
      * usage of spacing around the token is invalid.
+     *
      * @param {ASTNode|null} node A node to report.
      * @returns {void}
      */
@@ -351,6 +364,7 @@ module.exports = {
     /**
      * Reports `async` or `function` keywords of a given node if usage of
      * spacing around those keywords is invalid.
+     *
      * @param {ASTNode} node A node to report.
      * @returns {void}
      */
@@ -369,6 +383,7 @@ module.exports = {
     /**
      * Reports `class` and `extends` keywords of a given node if usage of
      * spacing around those keywords is invalid.
+     *
      * @param {ASTNode} node A node to report.
      * @returns {void}
      */
@@ -380,6 +395,7 @@ module.exports = {
     /**
      * Reports `if` and `else` keywords of a given node if usage of spacing
      * around those keywords is invalid.
+     *
      * @param {ASTNode} node A node to report.
      * @returns {void}
      */
@@ -391,6 +407,7 @@ module.exports = {
     /**
      * Reports `try`, `catch`, and `finally` keywords of a given node if usage
      * of spacing around those keywords is invalid.
+     *
      * @param {ASTNode} node A node to report.
      * @returns {void}
      */
@@ -403,6 +420,7 @@ module.exports = {
     /**
      * Reports `do` and `while` keywords of a given node if usage of spacing
      * around those keywords is invalid.
+     *
      * @param {ASTNode} node A node to report.
      * @returns {void}
      */
@@ -414,6 +432,7 @@ module.exports = {
     /**
      * Reports `for` and `in` keywords of a given node if usage of spacing
      * around those keywords is invalid.
+     *
      * @param {ASTNode} node A node to report.
      * @returns {void}
      */
@@ -425,6 +444,7 @@ module.exports = {
     /**
      * Reports `for` and `of` keywords of a given node if usage of spacing
      * around those keywords is invalid.
+     *
      * @param {ASTNode} node A node to report.
      * @returns {void}
      */
@@ -447,8 +467,9 @@ module.exports = {
      *
      * This rule handles the `*` token in module declarations.
      *
-     *     import*as A from "./a"; /*error Expected space(s) after "import".
-     *                               error Expected space(s) before "as".
+     * import*as A from "./a"; /*error Expected space(s) after "import".
+     * error Expected space(s) before "as".
+     *
      * @param {ASTNode} node A node to report.
      * @returns {void}
      */
@@ -473,6 +494,7 @@ module.exports = {
     /**
      * Reports `as` keyword of a given node if usage of spacing around this
      * keyword is invalid.
+     *
      * @param {ASTNode} node A node to report.
      * @returns {void}
      */
@@ -485,6 +507,7 @@ module.exports = {
     /**
      * Reports `static`, `get`, and `set` keywords of a given node if usage of
      * spacing around those keywords is invalid.
+     *
      * @param {ASTNode} node A node to report.
      * @returns {void}
      */
@@ -524,6 +547,7 @@ module.exports = {
     /**
      * Reports `await` keyword of a given node if usage of spacing before
      * this keyword is invalid.
+     *
      * @param {ASTNode} node A node to report.
      * @returns {void}
      */

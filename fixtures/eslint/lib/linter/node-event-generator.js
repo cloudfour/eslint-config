@@ -18,6 +18,7 @@ const lodash = require('lodash');
 
 /**
  * An object describing an AST selector
+ *
  * @typedef {object} ASTSelector
  * @property {string} rawSelector The string that was parsed into this selector
  * @property {boolean} isExit `true` if this should be emitted when exiting the node rather than when entering
@@ -34,6 +35,7 @@ const lodash = require('lodash');
 
 /**
  * Gets the possible types of a selector
+ *
  * @param {object} parsedSelector An object (from esquery) describing the matching behavior of the selector
  * @returns {string[]|null} The node types that could possibly trigger this selector, or `null` if all node types could trigger it
  */
@@ -85,6 +87,7 @@ function getPossibleTypes(parsedSelector) {
 
 /**
  * Counts the number of class, pseudo-class, and attribute queries in this selector
+ *
  * @param {object} parsedSelector An object (from esquery) describing the selector's matching behavior
  * @returns {number} The number of class, pseudo-class, and attribute queries in this selector
  */
@@ -124,6 +127,7 @@ function countClassAttributes(parsedSelector) {
 
 /**
  * Counts the number of identifier queries in this selector
+ *
  * @param {object} parsedSelector An object (from esquery) describing the selector's matching behavior
  * @returns {number} The number of identifier queries
  */
@@ -160,6 +164,7 @@ function countIdentifiers(parsedSelector) {
 
 /**
  * Compares the specificity of two selector objects, with CSS-like rules.
+ *
  * @param {ASTSelector} selectorA An AST selector descriptor
  * @param {ASTSelector} selectorB Another AST selector descriptor
  * @returns {number}
@@ -178,6 +183,7 @@ function compareSpecificity(selectorA, selectorB) {
 
 /**
  * Parses a raw selector string, and throws a useful error if parsing fails.
+ *
  * @param {string} rawSelector A raw AST selector
  * @returns {object} An object (from esquery) describing the matching behavior of this selector
  * @throws {Error} An error if the selector is invalid
@@ -202,6 +208,7 @@ function tryParseSelector(rawSelector) {
 
 /**
  * Parses a raw selector string, and returns the parsed selector along with specificity and type information.
+ *
  * @param {string} rawSelector A raw AST selector
  * @returns {ASTSelector} A selector descriptor
  */
@@ -286,6 +293,7 @@ class NodeEventGenerator {
 
   /**
    * Checks a selector against a node, and emits it if it matches
+   *
    * @param {ASTNode} node The node to check
    * @param {ASTSelector} selector An AST selector descriptor
    * @returns {void}
@@ -298,6 +306,7 @@ class NodeEventGenerator {
 
   /**
    * Applies all appropriate selectors to a node, in specificity order
+   *
    * @param {ASTNode} node The node to check
    * @param {boolean} isExit `false` if the node is currently being entered, `true` if it's currently being exited
    * @returns {void}
@@ -340,6 +349,7 @@ class NodeEventGenerator {
 
   /**
    * Emits an event of entering AST node.
+   *
    * @param {ASTNode} node A node which was entered.
    * @returns {void}
    */
@@ -353,6 +363,7 @@ class NodeEventGenerator {
 
   /**
    * Emits an event of leaving AST node.
+   *
    * @param {ASTNode} node A node which was left.
    * @returns {void}
    */

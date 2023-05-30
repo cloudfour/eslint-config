@@ -11,6 +11,7 @@
 
 /**
  * Checks whether or not a given variable is a function name.
+ *
  * @param {eslint-scope.Variable} variable A variable to check.
  * @returns {boolean} `true` if the variable is a function name.
  */
@@ -20,6 +21,7 @@ function isFunctionName(variable) {
 
 /**
  * Checks whether or not a given MetaProperty node equals to a given value.
+ *
  * @param {ASTNode} node A MetaProperty node to check.
  * @param {string} metaName The name of `MetaProperty.meta`.
  * @param {string} propertyName The name of `MetaProperty.property`.
@@ -31,6 +33,7 @@ function checkMetaProperty(node, metaName, propertyName) {
 
 /**
  * Gets the variable object of `arguments` which is defined implicitly.
+ *
  * @param {eslint-scope.Scope} scope A scope to get.
  * @returns {eslint-scope.Variable} The found variable object.
  */
@@ -54,6 +57,7 @@ function getVariableOfArguments(scope) {
 
 /**
  * Checks whether or not a given node is a callback.
+ *
  * @param {ASTNode} node A node to check.
  * @returns {object}
  *   {boolean} retv.isCallback - `true` if the node is a callback.
@@ -121,6 +125,7 @@ function getCallbackInfo(node) {
  * Checks whether a simple list of parameters contains any duplicates. This does not handle complex
  * parameter lists (e.g. with destructuring), since complex parameter lists are a SyntaxError with duplicate
  * parameter names anyway. Instead, it always returns `false` for complex parameter lists.
+ *
  * @param {ASTNode[]} paramsList The list of parameters for a function
  * @returns {boolean} `true` if the list of parameters contains any duplicates
  */
@@ -187,6 +192,7 @@ module.exports = {
 
     /**
      * Pushes new function scope with all `false` flags.
+     *
      * @returns {void}
      */
     function enterScope() {
@@ -195,6 +201,7 @@ module.exports = {
 
     /**
      * Pops a function scope from the stack.
+     *
      * @returns {{this: boolean, super: boolean, meta: boolean}} The information of the last scope.
      */
     function exitScope() {

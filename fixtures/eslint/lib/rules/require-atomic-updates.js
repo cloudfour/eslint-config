@@ -7,6 +7,7 @@
 
 /**
  * Make the map from identifiers to each reference.
+ *
  * @param {escope.Scope} scope The scope to get references.
  * @param {Map<Identifier, escope.Reference>} [outReferenceMap] The map from identifier nodes to each reference object.
  * @returns {Map<Identifier, escope.Reference>} `referenceMap`.
@@ -28,6 +29,7 @@ function createReferenceMap(scope, outReferenceMap = new Map()) {
 /**
  * Get `reference.writeExpr` of a given reference.
  * If it's the read reference of MemberExpression in LHS, returns RHS in order to address `a.b = await a`
+ *
  * @param {escope.Reference} reference The reference to get.
  * @returns {Expression|null} The `reference.writeExpr`.
  */
@@ -58,6 +60,7 @@ function getWriteExpr(reference) {
 
 /**
  * Checks if an expression is a variable that can only be observed within the given function.
+ *
  * @param {Variable|null} variable The variable to check
  * @param {boolean} isMemberAccess If `true` then this is a member access.
  * @returns {boolean} `true` if the variable is local to the given function, and is never referenced in a closure.
@@ -86,6 +89,7 @@ class SegmentInfo {
 
   /**
    * Initialize the segment information.
+   *
    * @param {PathSegment} segment The segment to initialize.
    * @returns {void}
    */
@@ -115,6 +119,7 @@ class SegmentInfo {
 
   /**
    * Mark a given variable as read on given segments.
+   *
    * @param {PathSegment[]} segments The segments that it read the variable on.
    * @param {string} variableName The variable name to be read.
    * @returns {void}
@@ -131,6 +136,7 @@ class SegmentInfo {
 
   /**
    * Move `freshReadVariableNames` to `outdatedReadVariableNames`.
+   *
    * @param {PathSegment[]} segments The segments to process.
    * @returns {void}
    */
@@ -150,6 +156,7 @@ class SegmentInfo {
 
   /**
    * Check if a given variable is outdated on the current segments.
+   *
    * @param {PathSegment[]} segments The current segments.
    * @param {string} variableName The variable name to check.
    * @returns {boolean} `true` if the variable is outdated on the segments.

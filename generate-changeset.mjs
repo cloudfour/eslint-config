@@ -14,6 +14,7 @@ const writeChangeset = _writeChangeset.default;
 
 /**
  * Wraps child_process.spawn to make it promise-friendly and output to stderr/stdout
+ *
  * @param {string} command
  * @param {readonly string[]} args
  * @param {import("child_process").SpawnOptionsWithoutStdio} [opts]

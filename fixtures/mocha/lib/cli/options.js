@@ -3,6 +3,7 @@
 /**
  * Main entry point for handling filesystem-based configuration,
  * whether that's a config file or `package.json` or whatever.
+ *
  * @module
  */
 
@@ -23,18 +24,21 @@ const { types, aliases } = require('./run-option-metadata');
 
 /**
  * The `yargs-parser` namespace
+ *
  * @external yargsParser
  * @see {@link https://npm.im/yargs-parser}
  */
 
 /**
  * An object returned by a configured `yargs-parser` representing arguments
+ *
  * @memberof external:yargsParser
  * @interface Arguments
  */
 
 /**
  * Base yargs parser configuration
+ *
  * @private
  */
 const YARGS_PARSER_CONFIG = {
@@ -48,6 +52,7 @@ const YARGS_PARSER_CONFIG = {
  * `package.json`, but it also disables camel case expansion as to
  * avoid outputting non-canonical keynames, as we need to do some
  * lookups.
+ *
  * @private
  * @ignore
  */
@@ -58,6 +63,7 @@ const configuration = { ...YARGS_PARSER_CONFIG, 'camel-case-expansion': false };
  * - ensure unique values for `array`-type options
  * - use its array's last element for `boolean`/`number`/`string`- options given multiple times
  * This is passed as the `coerce` option to `yargs-parser`
+ *
  * @private
  * @ignore
  */
@@ -78,6 +84,7 @@ const coerceOpts = Object.assign(
  * (e.g., `--foo bar baz quux`), so we fix the number of arguments to 1 across
  * the board of non-boolean options.
  * This is passed as the `narg` option to `yargs-parser`
+ *
  * @private
  * @ignore
  */
@@ -87,6 +94,7 @@ const nargOpts = Object.fromEntries(
 
 /**
  * Wrapper around `yargs-parser` which applies our settings
+ *
  * @param {string|string[]} args - Arguments to parse
  * @param {object} defaultValues - Default values of mocharc.json
  * @param  {...object} configObjects - `configObjects` for yargs-parser
@@ -144,6 +152,7 @@ const parse = (args = [], defaultValues = {}, ...configObjects) => {
 
 /**
  * Given path to config file in `args.config`, attempt to load & parse config file.
+ *
  * @param {object} [args] - Arguments object
  * @param {string|boolean} [args.config] - Path to config file or `false` to skip
  * @public
@@ -161,6 +170,7 @@ module.exports.loadRc = loadRc;
 
 /**
  * Given path to `package.json` in `args.package`, attempt to load config from `mocha` prop.
+ *
  * @param {object} [args] - Arguments object
  * @param {string|boolean} [args.config] - Path to `package.json` or `false` to skip
  * @public
@@ -207,6 +217,7 @@ module.exports.loadPkgRc = loadPkgRc;
  * 4. default configuration (`lib/mocharc.json`)
  *
  * If a {@link module:lib/cli/one-and-dones.ONE_AND_DONE_ARGS "one-and-done" option} is present in the `argv` array, no external config files will be read.
+ *
  * @summary Parses options read from `.mocharc.*` and `package.json`.
  * @param {string|string[]} [argv] - Arguments to parse
  * @public

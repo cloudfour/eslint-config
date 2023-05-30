@@ -46,6 +46,7 @@ const ignore = require('ignore');
 
 /**
  * Get the path to the common ancestor directory of given paths.
+ *
  * @param {string[]} sourcePaths The paths to calculate the common ancestor.
  * @returns {string} The path to the common ancestor directory.
  */
@@ -77,6 +78,7 @@ function getCommonAncestorPath(sourcePaths) {
 
 /**
  * Make relative path.
+ *
  * @param {string} from The source path to get relative path.
  * @param {string} to The destination path to get relative path.
  * @returns {string} The relative path.
@@ -93,6 +95,7 @@ function relative(from, to) {
 
 /**
  * Get the trailing slash if existed.
+ *
  * @param {string} filePath The path to check.
  * @returns {string} The trailing slash if existed.
  */
@@ -114,6 +117,7 @@ const DotPatterns = Object.freeze(['.*', '!.eslintrc.*', '!../']);
 class IgnorePattern {
   /**
    * The default patterns.
+   *
    * @type {string[]}
    */
   static get DefaultPatterns() {
@@ -122,6 +126,7 @@ class IgnorePattern {
 
   /**
    * Create the default predicate function.
+   *
    * @param {string} cwd The current working directory.
    * @returns {((filePath:string, dot:boolean) => boolean) & {basePath:string; patterns:string[]}}
    * The preficate function.
@@ -135,6 +140,7 @@ class IgnorePattern {
 
   /**
    * Create the predicate function from multiple `IgnorePattern` objects.
+   *
    * @param {IgnorePattern[]} ignorePatterns The list of ignore patterns.
    * @returns {((filePath:string, dot?:boolean) => boolean) & {basePath:string; patterns:string[]}}
    * The preficate function.
@@ -176,6 +182,7 @@ class IgnorePattern {
 
   /**
    * Initialize a new `IgnorePattern` instance.
+   *
    * @param {string[]} patterns The glob patterns that ignore to lint.
    * @param {string} basePath The base path of `patterns`.
    */
@@ -184,12 +191,14 @@ class IgnorePattern {
 
     /**
      * The glob patterns that ignore to lint.
+     *
      * @type {string[]}
      */
     this.patterns = patterns;
 
     /**
      * The base path of `patterns`.
+     *
      * @type {string}
      */
     this.basePath = basePath;
@@ -199,6 +208,7 @@ class IgnorePattern {
      *
      * It's set `true` for `.eslintignore`, `package.json`, and `--ignore-path` for backward compatibility.
      * It's `false` as-is for `ignorePatterns` property in config files.
+     *
      * @type {boolean}
      */
     this.loose = false;
@@ -208,6 +218,7 @@ class IgnorePattern {
    * Get `patterns` as modified for a given base path. It modifies the
    * absolute paths in the patterns as prepending the difference of two base
    * paths.
+   *
    * @param {string} newBasePath The base path.
    * @returns {string[]} Modifired patterns.
    */

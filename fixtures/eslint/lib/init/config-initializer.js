@@ -37,6 +37,7 @@ const DEFAULT_ECMA_VERSION = 2018;
 /* istanbul ignore next: hard to test fs function */
 /**
  * Create .eslintrc file in the current working directory
+ *
  * @param {object} config object that contains user's answers
  * @param {string} format The file format to write to.
  * @returns {void}
@@ -69,6 +70,7 @@ function writeFile(config, format) {
  * Get the peer dependencies of the given module.
  * This adds the gotten value to cache at the first time, then reuses it.
  * In a process, this function is called twice, but `npmUtils.fetchPeerDependencies` needs to access network which is relatively slow.
+ *
  * @param {string} moduleName The module name to get.
  * @returns {object} The peer dependencies of the given module.
  * This object is the object of `peerDependencies` field of `package.json`.
@@ -91,8 +93,9 @@ getPeerDependencies.cache = new Map();
 
 /**
  * Return necessary plugins, configs, parsers, etc. based on the config
+ *
  * @param   {object} config  config object
- * @param   {boolean} [installESLint=true]  If `false` is given, it does not install eslint.
+ * @param   {boolean} [installESLint]  If `false` is given, it does not install eslint.
  * @returns {string[]} An array of modules to be installed.
  */
 function getModulesList(config, installESLint) {
@@ -152,6 +155,7 @@ function getModulesList(config, installESLint) {
  *
  * Note: This clones the config object and returns a new config to avoid mutating
  * the original config parameter.
+ *
  * @param   {object} answers  answers received from inquirer
  * @param   {object} config   config object
  * @returns {object}          config object with configured rules
@@ -279,6 +283,7 @@ function configureRules(answers, config) {
 
 /**
  * Process user's answers and create config object
+ *
  * @param {object} answers answers received from inquirer
  * @returns {object} config object
  */
@@ -369,6 +374,7 @@ function processAnswers(answers) {
 
 /**
  * Get the version of the local ESLint.
+ *
  * @returns {string|null} The version. If the local ESLint was not found, returns null.
  */
 function getLocalESLintVersion() {
@@ -387,6 +393,7 @@ function getLocalESLintVersion() {
 
 /**
  * Get the shareable config name of the chosen style guide.
+ *
  * @param {object} answers The answers object.
  * @returns {string} The shareable config name.
  */
@@ -400,6 +407,7 @@ function getStyleGuideName(answers) {
 
 /**
  * Check whether the local ESLint version conflicts with the required version of the chosen shareable config.
+ *
  * @param {object} answers The answers object.
  * @returns {boolean} `true` if the local ESLint is found then it conflicts with the required version of the chosen shareable config.
  */
@@ -435,6 +443,7 @@ function hasESLintVersionConflict(answers) {
 
 /**
  * Install modules.
+ *
  * @param   {string[]} modules Modules to be installed.
  * @returns {void}
  */
@@ -446,6 +455,7 @@ function installModules(modules) {
 /* istanbul ignore next: no need to test inquirer */
 /**
  * Ask user to install modules.
+ *
  * @param   {string[]} modules Array of modules to be installed.
  * @param   {boolean} packageJsonExists Indicates if package.json is existed.
  * @returns {Promise} Answer that indicates if user wants to install.
@@ -482,6 +492,7 @@ function askInstallModules(modules, packageJsonExists) {
 /* istanbul ignore next: no need to test inquirer */
 /**
  * Ask use a few questions on command prompt
+ *
  * @returns {Promise} The promise with the result of the prompt
  */
 function promptUser() {

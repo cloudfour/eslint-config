@@ -9,6 +9,7 @@ const lodash = require('lodash');
 
 /**
  * Compares the locations of two objects in a source file
+ *
  * @param {{line: number, column: number}} itemA The first object
  * @param {{line: number, column: number}} itemB The second object
  * @returns {number} A value less than 1 if itemA appears before itemB in the source file, greater than 1 if
@@ -22,6 +23,7 @@ function compareLocations(itemA, itemB) {
  * This is the same as the exported function, except that it
  * doesn't handle disable-line and disable-next-line directives, and it always reports unused
  * disable directives.
+ *
  * @param {object} options options for applying directives. This is the same as the options
  * for the exported function, except that `reportUnusedDisableDirectives` is not supported
  * (this function always reports unused disable directives).
@@ -113,6 +115,7 @@ function applyDirectives(options) {
 /**
  * Given a list of directive comments (i.e. metadata about eslint-disable and eslint-enable comments) and a list
  * of reported problems, determines which problems should be reported.
+ *
  * @param {object} options Information about directives and problems
  * @param {{
  *      type: ("disable"|"enable"|"disable-line"|"disable-next-line"),

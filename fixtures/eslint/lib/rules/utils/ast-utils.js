@@ -50,6 +50,7 @@ const OCTAL_ESCAPE_PATTERN =
 
 /**
  * Checks reference if is non initializer and writable.
+ *
  * @param {Reference} reference A reference to check.
  * @param {int} index The index of the reference in the references.
  * @param {Reference[]} references The array that the reference belongs to.
@@ -77,6 +78,7 @@ function isModifyingReference(reference, index, references) {
 
 /**
  * Checks whether the given string starts with uppercase or not.
+ *
  * @param {string} s The string to check.
  * @returns {boolean} `true` if the string starts with uppercase.
  */
@@ -86,6 +88,7 @@ function startsWithUpperCase(s) {
 
 /**
  * Checks whether or not a node is a constructor.
+ *
  * @param {ASTNode} node A function node to check.
  * @returns {boolean} Wehether or not a node is a constructor.
  */
@@ -95,6 +98,7 @@ function isES5Constructor(node) {
 
 /**
  * Finds a function node from ancestors of a node.
+ *
  * @param {ASTNode} node A start node to find.
  * @returns {Node|null} A found function node.
  */
@@ -115,6 +119,7 @@ function getUpperFunction(node) {
  * - ArrowFunctionExpression
  * - FunctionDeclaration
  * - FunctionExpression
+ *
  * @param {ASTNode|null} node A node to check.
  * @returns {boolean} `true` if the node is a function node.
  */
@@ -131,6 +136,7 @@ function isFunction(node) {
  * - ForOfStatement
  * - ForStatement
  * - WhileStatement
+ *
  * @param {ASTNode|null} node A node to check.
  * @returns {boolean} `true` if the node is a loop node.
  */
@@ -140,6 +146,7 @@ function isLoop(node) {
 
 /**
  * Checks whether the given node is in a loop or not.
+ *
  * @param {ASTNode} node The node to check.
  * @returns {boolean} `true` if the node is in a loop.
  */
@@ -159,6 +166,7 @@ function isInLoop(node) {
 
 /**
  * Checks whether or not a node is `null` or `undefined`.
+ *
  * @param {ASTNode} node A node to check.
  * @returns {boolean} Whether or not the node is a `null` or `undefined`.
  * @public
@@ -173,6 +181,7 @@ function isNullOrUndefined(node) {
 
 /**
  * Checks whether or not a node is callee.
+ *
  * @param {ASTNode} node A node to check.
  * @returns {boolean} Whether or not the node is callee.
  */
@@ -182,6 +191,7 @@ function isCallee(node) {
 
 /**
  * Checks whether or not a node is `Reflect.apply`.
+ *
  * @param {ASTNode} node A node to check.
  * @returns {boolean} Whether or not the node is a `Reflect.apply`.
  */
@@ -198,6 +208,7 @@ function isReflectApply(node) {
 
 /**
  * Checks whether or not a node is `Array.from`.
+ *
  * @param {ASTNode} node A node to check.
  * @returns {boolean} Whether or not the node is a `Array.from`.
  */
@@ -214,6 +225,7 @@ function isArrayFromMethod(node) {
 
 /**
  * Checks whether or not a node is a method which has `thisArg`.
+ *
  * @param {ASTNode} node A node to check.
  * @returns {boolean} Whether or not the node is a method which has `thisArg`.
  */
@@ -233,6 +245,7 @@ function isMethodWhichHasThisArg(node) {
 
 /**
  * Creates the negate function of the given function.
+ *
  * @param {() => void} f The function to negate.
  * @returns {() => void} Negated function.
  */
@@ -242,6 +255,7 @@ function negate(f) {
 
 /**
  * Checks whether or not a node has a `@this` tag in its comments.
+ *
  * @param {ASTNode} node A node to check.
  * @param {SourceCode} sourceCode A SourceCode instance to get comments.
  * @returns {boolean} Whether or not the node has a `@this` tag in its comments.
@@ -264,6 +278,7 @@ function hasJSDocThisTag(node, sourceCode) {
 
 /**
  * Determines if a node is surrounded by parentheses.
+ *
  * @param {SourceCode} sourceCode The ESLint source code object
  * @param {ASTNode} node The node to be checked.
  * @returns {boolean} True if the node is parenthesised.
@@ -284,6 +299,7 @@ function isParenthesised(sourceCode, node) {
 
 /**
  * Checks if the given token is an arrow token or not.
+ *
  * @param {Token} token The token to check.
  * @returns {boolean} `true` if the token is an arrow token.
  */
@@ -293,6 +309,7 @@ function isArrowToken(token) {
 
 /**
  * Checks if the given token is a comma token or not.
+ *
  * @param {Token} token The token to check.
  * @returns {boolean} `true` if the token is a comma token.
  */
@@ -302,6 +319,7 @@ function isCommaToken(token) {
 
 /**
  * Checks if the given token is a dot token or not.
+ *
  * @param {Token} token The token to check.
  * @returns {boolean} `true` if the token is a dot token.
  */
@@ -311,6 +329,7 @@ function isDotToken(token) {
 
 /**
  * Checks if the given token is a semicolon token or not.
+ *
  * @param {Token} token The token to check.
  * @returns {boolean} `true` if the token is a semicolon token.
  */
@@ -320,6 +339,7 @@ function isSemicolonToken(token) {
 
 /**
  * Checks if the given token is a colon token or not.
+ *
  * @param {Token} token The token to check.
  * @returns {boolean} `true` if the token is a colon token.
  */
@@ -329,6 +349,7 @@ function isColonToken(token) {
 
 /**
  * Checks if the given token is an opening parenthesis token or not.
+ *
  * @param {Token} token The token to check.
  * @returns {boolean} `true` if the token is an opening parenthesis token.
  */
@@ -338,6 +359,7 @@ function isOpeningParenToken(token) {
 
 /**
  * Checks if the given token is a closing parenthesis token or not.
+ *
  * @param {Token} token The token to check.
  * @returns {boolean} `true` if the token is a closing parenthesis token.
  */
@@ -347,6 +369,7 @@ function isClosingParenToken(token) {
 
 /**
  * Checks if the given token is an opening square bracket token or not.
+ *
  * @param {Token} token The token to check.
  * @returns {boolean} `true` if the token is an opening square bracket token.
  */
@@ -356,6 +379,7 @@ function isOpeningBracketToken(token) {
 
 /**
  * Checks if the given token is a closing square bracket token or not.
+ *
  * @param {Token} token The token to check.
  * @returns {boolean} `true` if the token is a closing square bracket token.
  */
@@ -365,6 +389,7 @@ function isClosingBracketToken(token) {
 
 /**
  * Checks if the given token is an opening brace token or not.
+ *
  * @param {Token} token The token to check.
  * @returns {boolean} `true` if the token is an opening brace token.
  */
@@ -374,6 +399,7 @@ function isOpeningBraceToken(token) {
 
 /**
  * Checks if the given token is a closing brace token or not.
+ *
  * @param {Token} token The token to check.
  * @returns {boolean} `true` if the token is a closing brace token.
  */
@@ -383,6 +409,7 @@ function isClosingBraceToken(token) {
 
 /**
  * Checks if the given token is a comment token or not.
+ *
  * @param {Token} token The token to check.
  * @returns {boolean} `true` if the token is a comment token.
  */
@@ -394,6 +421,7 @@ function isCommentToken(token) {
 
 /**
  * Checks if the given token is a keyword token or not.
+ *
  * @param {Token} token The token to check.
  * @returns {boolean} `true` if the token is a keyword token.
  */
@@ -403,6 +431,7 @@ function isKeywordToken(token) {
 
 /**
  * Gets the `(` token of the given function node.
+ *
  * @param {ASTNode} node The function node to get.
  * @param {SourceCode} sourceCode The source code object to get tokens.
  * @returns {Token} `(` token.
@@ -415,6 +444,7 @@ function getOpeningParenOfParams(node, sourceCode) {
 
 /**
  * Checks whether or not the tokens of two given nodes are same.
+ *
  * @param {ASTNode} left A node 1 to compare.
  * @param {ASTNode} right A node 2 to compare.
  * @param {SourceCode} sourceCode The ESLint source code object.
@@ -453,6 +483,7 @@ module.exports = {
 
   /**
    * Determines whether two adjacent tokens are on the same line.
+   *
    * @param {object} left The left token object.
    * @param {object} right The right token object.
    * @returns {boolean} Whether or not the tokens are on the same line.
@@ -500,6 +531,7 @@ module.exports = {
 
   /**
    * Checks whether or not a given node is a string literal.
+   *
    * @param {ASTNode} node A node to check.
    * @returns {boolean} `true` if the node is a string literal.
    */
@@ -520,6 +552,7 @@ module.exports = {
    * - ForStatement
    * - SwitchStatement
    * - WhileStatement
+   *
    * @param {ASTNode} node A node to check.
    * @returns {boolean} `true` if the node is breakable.
    */
@@ -529,6 +562,7 @@ module.exports = {
 
   /**
    * Gets references which are non initializer and writable.
+   *
    * @param {Reference[]} references An array of references.
    * @returns {Reference[]} An array of only references which are non initializer and writable.
    * @public
@@ -539,6 +573,7 @@ module.exports = {
 
   /**
    * Validate that a string passed in is surrounded by the specified character
+   *
    * @param  {string} val The text to check.
    * @param  {string} character The character to see if it's surrounded by.
    * @returns {boolean} True if the text is surrounded by the character, false if not.
@@ -550,6 +585,7 @@ module.exports = {
 
   /**
    * Returns whether the provided node is an ESLint directive comment or not
+   *
    * @param {Line|Block} node The comment token to be checked
    * @returns {boolean} `true` if the node is an ESLint directive comment
    */
@@ -568,10 +604,11 @@ module.exports = {
   /**
    * Gets the trailing statement of a given node.
    *
-   *     if (code)
-   *         consequent;
+   * if (code)
+   * consequent;
    *
    * When taking this `IfStatement`, returns `consequent;` statement.
+   *
    * @param {ASTNode} A node to get.
    * @returns {ASTNode|null} The trailing statement's node.
    */
@@ -579,6 +616,7 @@ module.exports = {
 
   /**
    * Finds the variable by a given name in a given scope and its upper scopes.
+   *
    * @param {eslint-scope.Scope} initScope A scope to start find.
    * @param {string} name A variable name to find.
    * @returns {eslint-scope.Variable|null} A found variable or `null`.
@@ -605,7 +643,7 @@ module.exports = {
    * First, this checks the node:
    *
    * - The function name does not start with uppercase. It's a convention to capitalize the names
-   *   of constructor functions. This check is not performed if `capIsConstructor` is set to `false`.
+   * of constructor functions. This check is not performed if `capIsConstructor` is set to `false`.
    * - The function does not have a JSDoc comment that has a @this tag.
    *
    * Next, this checks the location of the node.
@@ -613,14 +651,15 @@ module.exports = {
    *
    * - The location is not on an object literal.
    * - The location is not assigned to a variable which starts with an uppercase letter. Applies to anonymous
-   *   functions only, as the name of the variable is considered to be the name of the function in this case.
-   *   This check is not performed if `capIsConstructor` is set to `false`.
+   * functions only, as the name of the variable is considered to be the name of the function in this case.
+   * This check is not performed if `capIsConstructor` is set to `false`.
    * - The location is not on an ES2015 class.
    * - Its `bind`/`call`/`apply` method is not called directly.
    * - The function is not a callback of array methods (such as `.forEach()`) if `thisArg` is given.
+   *
    * @param {ASTNode} node A function node to check.
    * @param {SourceCode} sourceCode A SourceCode instance to get comments.
-   * @param {boolean} [capIsConstructor = true] `false` disables the assumption that functions which name starts
+   * @param {boolean} [capIsConstructor] `false` disables the assumption that functions which name starts
    * with an uppercase or are assigned to a variable which name starts with an uppercase are constructors.
    * @returns {boolean} The function node is the default `this` binding.
    */
@@ -799,6 +838,7 @@ module.exports = {
 
   /**
    * Get the precedence level based on the node type
+   *
    * @param {ASTNode} node node to evaluate
    * @returns {int} precedence level
    * @private
@@ -910,6 +950,7 @@ module.exports = {
 
   /**
    * Checks whether the given node is an empty block node or not.
+   *
    * @param {ASTNode|null} node The node to check.
    * @returns {boolean} `true` if the node is an empty block.
    */
@@ -921,6 +962,7 @@ module.exports = {
 
   /**
    * Checks whether the given node is an empty function node or not.
+   *
    * @param {ASTNode|null} node The node to check.
    * @returns {boolean} `true` if the node is an empty function.
    */
@@ -934,6 +976,7 @@ module.exports = {
    *
    * This function returns a `string` value for all `Literal` nodes and simple `TemplateLiteral` nodes only.
    * In all other cases, this function returns `null`.
+   *
    * @param {ASTNode} node Expression node.
    * @returns {string|null} String value if it can be determined. Otherwise, `null`.
    */
@@ -982,25 +1025,26 @@ module.exports = {
    *
    * For examples:
    *
-   *     a.b           // => "b"
-   *     a["b"]        // => "b"
-   *     a['b']        // => "b"
-   *     a[`b`]        // => "b"
-   *     a[100]        // => "100"
-   *     a[b]          // => null
-   *     a["a" + "b"]  // => null
-   *     a[tag`b`]     // => null
-   *     a[`${b}`]     // => null
+   * a.b           // => "b"
+   * a["b"]        // => "b"
+   * a['b']        // => "b"
+   * a[`b`]        // => "b"
+   * a[100]        // => "100"
+   * a[b]          // => null
+   * a["a" + "b"]  // => null
+   * a[tag`b`]     // => null
+   * a[`${b}`]     // => null
    *
-   *     let a = {b: 1}            // => "b"
-   *     let a = {["b"]: 1}        // => "b"
-   *     let a = {['b']: 1}        // => "b"
-   *     let a = {[`b`]: 1}        // => "b"
-   *     let a = {[100]: 1}        // => "100"
-   *     let a = {[b]: 1}          // => null
-   *     let a = {["a" + "b"]: 1}  // => null
-   *     let a = {[tag`b`]: 1}     // => null
-   *     let a = {[`${b}`]: 1}     // => null
+   * let a = {b: 1}            // => "b"
+   * let a = {["b"]: 1}        // => "b"
+   * let a = {['b']: 1}        // => "b"
+   * let a = {[`b`]: 1}        // => "b"
+   * let a = {[100]: 1}        // => "100"
+   * let a = {[b]: 1}          // => null
+   * let a = {["a" + "b"]: 1}  // => null
+   * let a = {[tag`b`]: 1}     // => null
+   * let a = {[`${b}`]: 1}     // => null
+   *
    * @param {ASTNode} node The node to get.
    * @returns {string|null} The property name if static. Otherwise, null.
    */
@@ -1035,6 +1079,7 @@ module.exports = {
 
   /**
    * Get directives from directive prologue of a Program or Function node.
+   *
    * @param {ASTNode} node The node to check.
    * @returns {ASTNode[]} The directives found in the directive prologue.
    */
@@ -1073,6 +1118,7 @@ module.exports = {
   /**
    * Determines whether this node is a decimal integer literal. If a node is a decimal integer literal, a dot added
    * after the node will be parsed as a decimal point, rather than a property-access dot.
+   *
    * @param {ASTNode} node The node to check.
    * @returns {boolean} `true` if this node is a decimal integer.
    * @example
@@ -1099,6 +1145,7 @@ module.exports = {
   /**
    * Determines whether this token is a decimal integer numeric token.
    * This is similar to isDecimalInteger(), but for tokens.
+   *
    * @param {Token} token The token to check.
    * @returns {boolean} `true` if this token is a decimal integer.
    */
@@ -1153,6 +1200,7 @@ module.exports = {
    * - `class A { static async foo() {} }`  .... `static async method 'foo'`
    * - `class A { static get foo() {} }`  ...... `static getter 'foo'`
    * - `class A { static set foo(a) {} }`  ..... `static setter 'foo'`
+   *
    * @param {ASTNode} node The function node to get.
    * @returns {string} The name and kind of the function node.
    */
@@ -1210,89 +1258,90 @@ module.exports = {
    * Gets the location of the given function node for reporting.
    *
    * - `function foo() {}`
-   *    ^^^^^^^^^^^^
+   * ^^^^^^^^^^^^
    * - `(function foo() {})`
-   *     ^^^^^^^^^^^^
+   * ^^^^^^^^^^^^
    * - `(function() {})`
-   *     ^^^^^^^^
+   * ^^^^^^^^
    * - `function* foo() {}`
-   *    ^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^
    * - `(function* foo() {})`
-   *     ^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^
    * - `(function*() {})`
-   *     ^^^^^^^^^
+   * ^^^^^^^^^
    * - `() => {}`
-   *       ^^
+   * ^^
    * - `async () => {}`
-   *             ^^
+   * ^^
    * - `({ foo: function foo() {} })`
-   *       ^^^^^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^^^^^
    * - `({ foo: function() {} })`
-   *       ^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^
    * - `({ ['foo']: function() {} })`
-   *       ^^^^^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^^^^^
    * - `({ [foo]: function() {} })`
-   *       ^^^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^^^
    * - `({ foo() {} })`
-   *       ^^^
+   * ^^^
    * - `({ foo: function* foo() {} })`
-   *       ^^^^^^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^^^^^^
    * - `({ foo: function*() {} })`
-   *       ^^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^^
    * - `({ ['foo']: function*() {} })`
-   *       ^^^^^^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^^^^^^
    * - `({ [foo]: function*() {} })`
-   *       ^^^^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^^^^
    * - `({ *foo() {} })`
-   *       ^^^^
+   * ^^^^
    * - `({ foo: async function foo() {} })`
-   *       ^^^^^^^^^^^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^^^^^^^^^^^
    * - `({ foo: async function() {} })`
-   *       ^^^^^^^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^^^^^^^
    * - `({ ['foo']: async function() {} })`
-   *       ^^^^^^^^^^^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^^^^^^^^^^^
    * - `({ [foo]: async function() {} })`
-   *       ^^^^^^^^^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^^^^^^^^^
    * - `({ async foo() {} })`
-   *       ^^^^^^^^^
+   * ^^^^^^^^^
    * - `({ get foo() {} })`
-   *       ^^^^^^^
+   * ^^^^^^^
    * - `({ set foo(a) {} })`
-   *       ^^^^^^^
+   * ^^^^^^^
    * - `class A { constructor() {} }`
-   *              ^^^^^^^^^^^
+   * ^^^^^^^^^^^
    * - `class A { foo() {} }`
-   *              ^^^
+   * ^^^
    * - `class A { *foo() {} }`
-   *              ^^^^
+   * ^^^^
    * - `class A { async foo() {} }`
-   *              ^^^^^^^^^
+   * ^^^^^^^^^
    * - `class A { ['foo']() {} }`
-   *              ^^^^^^^
+   * ^^^^^^^
    * - `class A { *['foo']() {} }`
-   *              ^^^^^^^^
+   * ^^^^^^^^
    * - `class A { async ['foo']() {} }`
-   *              ^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^
    * - `class A { [foo]() {} }`
-   *              ^^^^^
+   * ^^^^^
    * - `class A { *[foo]() {} }`
-   *              ^^^^^^
+   * ^^^^^^
    * - `class A { async [foo]() {} }`
-   *              ^^^^^^^^^^^
+   * ^^^^^^^^^^^
    * - `class A { get foo() {} }`
-   *              ^^^^^^^
+   * ^^^^^^^
    * - `class A { set foo(a) {} }`
-   *              ^^^^^^^
+   * ^^^^^^^
    * - `class A { static foo() {} }`
-   *              ^^^^^^^^^^
+   * ^^^^^^^^^^
    * - `class A { static *foo() {} }`
-   *              ^^^^^^^^^^^
+   * ^^^^^^^^^^^
    * - `class A { static async foo() {} }`
-   *              ^^^^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^^^^
    * - `class A { static get foo() {} }`
-   *              ^^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^^
    * - `class A { static set foo(a) {} }`
-   *              ^^^^^^^^^^^^^^
+   * ^^^^^^^^^^^^^^
+   *
    * @param {ASTNode} node The function node to get.
    * @param {SourceCode} sourceCode The source code object to get tokens.
    * @returns {string} The location of the function node for reporting.
@@ -1326,6 +1375,7 @@ module.exports = {
 
   /**
    * Gets next location when the result is not out of bound, otherwise returns null.
+   *
    * @param {SourceCode} sourceCode The sourceCode
    * @param {{line: number, column: number}} location The location
    * @returns {{line: number, column: number} | null} Next location
@@ -1344,6 +1394,7 @@ module.exports = {
   /**
    * Gets the parenthesized text of a node. This is similar to sourceCode.getText(node), but it also includes any parentheses
    * surrounding the node.
+   *
    * @param {SourceCode} sourceCode The source code object
    * @param {ASTNode} node An expression node
    * @returns {string} The text representing the node, with all surrounding parentheses included
@@ -1419,6 +1470,7 @@ module.exports = {
 
   /**
    * Determines whether the given node is a `null` literal.
+   *
    * @param {ASTNode} node The node to check
    * @returns {boolean} `true` if the node is a `null` literal
    */
@@ -1440,6 +1492,7 @@ module.exports = {
 
   /**
    * Check if a given node is a numeric literal or not.
+   *
    * @param {ASTNode} node The node to check.
    * @returns {boolean} `true` if the node is a number or bigint literal.
    */
@@ -1452,6 +1505,7 @@ module.exports = {
 
   /**
    * Determines whether two tokens can safely be placed next to each other without merging into a single token
+   *
    * @param {Token|string} leftValue The left token. If this is a string, it will be tokenized and the last token will be used.
    * @param {Token|string} rightValue The right token. If this is a string, it will be tokenized and the first token will be used.
    * @returns {boolean} If the tokens cannot be safely placed next to each other, returns `false`. If the tokens can be placed
@@ -1571,6 +1625,7 @@ module.exports = {
 
   /**
    * Get the `loc` object of a given name in a `/*globals` directive comment.
+   *
    * @param {SourceCode} sourceCode The source code to convert index to loc.
    * @param {Comment} comment The `/*globals` directive comment which include the name.
    * @param {string} name The name to find.
@@ -1601,6 +1656,7 @@ module.exports = {
    * "\00", "\01" ... "\09"
    *
    * "\0", when not followed by a digit, is not an octal escape sequence.
+   *
    * @param {string} rawString A string in its raw representation.
    * @returns {boolean} `true` if the string contains at least one octal escape sequence.
    */
