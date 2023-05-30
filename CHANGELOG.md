@@ -1,5 +1,67 @@
 # @cloudfour/eslint-plugin
 
+## 22.0.0
+
+### Major Changes
+
+- [#487](https://github.com/cloudfour/eslint-config/pull/487) [`88ffd72`](https://github.com/cloudfour/eslint-config/commit/88ffd72315f6be0469d440015f45231510586fe8) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-unicorn` from `v43` to `v47`
+
+  **New Rules**
+
+  - [`@cloudfour/unicorn/no-negated-condition`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/no-negated-condition.md)
+  - [`@cloudfour/unicorn/no-typeof-undefined`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/no-typeof-undefined.md)
+  - [`@cloudfour/unicorn/no-unnecessary-await`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/no-unnecessary-await.md)
+  - [`@cloudfour/unicorn/prefer-set-size`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/prefer-set-size.md)
+  - [`@cloudfour/unicorn/switch-case-braces`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/switch-case-braces.md)
+  - [`@cloudfour/unicorn/prefer-blob-reading-methods`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v47.0.0/docs/rules/prefer-blob-reading-methods.md)
+
+  **Newly Enabled Rules**
+
+  - [`@cloudfour/unicorn/no-negated-condition`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/no-negated-condition.md)
+  - [`@cloudfour/unicorn/no-typeof-undefined`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/no-typeof-undefined.md)
+  - [`@cloudfour/unicorn/no-unnecessary-await`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/no-unnecessary-await.md)
+  - [`@cloudfour/unicorn/prefer-set-size`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/prefer-set-size.md)
+  - [`@cloudfour/unicorn/switch-case-braces`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/switch-case-braces.md)
+  - [`@cloudfour/unicorn/prefer-blob-reading-methods`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v47.0.0/docs/rules/prefer-blob-reading-methods.md)
+  - [`@cloudfour/unicorn/prefer-event-target`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v47.0.0/docs/rules/prefer-event-target.md)
+
+  **Newly Disabled Rules**
+
+  - [`@cloudfour/unicorn/prefer-event-target`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/prefer-event-target.md)
+
+- [#497](https://github.com/cloudfour/eslint-config/pull/497) [`2b0364a`](https://github.com/cloudfour/eslint-config/commit/2b0364ac87a657946afeb0e32989b3d1dcfdd178) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-jsdoc` from `v39` to `v46`
+
+  **Reconfigured Rules**
+
+  The `@cloudfour/jsdoc/tag-lines` rule is now configured to enforce one blank line in JSDoc comments between the description of a function and the `@param`/other tags.
+
+  For example, the blank line after the description is enforced here:
+
+  ```js
+  /**
+   * This is the description for the function, the blank line below this is enforced
+   *
+   * @param {string} name A parameter called name
+   */
+  function someFunction(name) {}
+  ```
+
+  **New Rules**
+
+  - [`@cloudfour/jsdoc/informative-docs`](https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/informative-docs.md#repos-sticky-header)
+  - [`@cloudfour/jsdoc/no-blank-block-descriptions`](https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-blank-block-descriptions.md#repos-sticky-header)
+  - [`@cloudfour/jsdoc/no-blank-blocks`](https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-blank-blocks.md#repos-sticky-header)
+
+  **Deleted Rules**
+
+  - [`@cloudfour/jsdoc/newline-after-description`](https://github.com/gajus/eslint-plugin-jsdoc#eslint-plugin-jsdoc-rules-newline-after-description)
+
+  **Newly Enabled Rules**
+
+  - [`@cloudfour/jsdoc/no-defaults`](https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-defaults.md#repos-sticky-header)
+
+- [#498](https://github.com/cloudfour/eslint-config/pull/498) [`ee07640`](https://github.com/cloudfour/eslint-config/commit/ee07640d95f9038d807299e067b321392c058b79) Thanks [@calebeby](https://github.com/calebeby)! - Drop support for Node 14 (now only node 16+ is supported)
+
 ## 21.1.0
 
 ### Minor Changes
