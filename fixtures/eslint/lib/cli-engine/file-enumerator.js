@@ -101,6 +101,7 @@ const internalSlotsMap = new WeakMap();
 
 /**
  * Check if a string is a glob pattern or not.
+ *
  * @param {string} pattern A glob pattern.
  * @returns {boolean} `true` if the string is a glob pattern.
  */
@@ -110,6 +111,7 @@ function isGlobPattern(pattern) {
 
 /**
  * Get stats of a given path.
+ *
  * @param {string} filePath The path to target file.
  * @returns {fs.Stats|null} The stats.
  * @private
@@ -129,6 +131,7 @@ function statSafeSync(filePath) {
 
 /**
  * Get filenames in a given path to a directory.
+ *
  * @param {string} directoryPath The path to target directory.
  * @returns {import("fs").Dirent[]} The filenames.
  * @private
@@ -148,6 +151,7 @@ function readdirSafeSync(directoryPath) {
 
 /**
  * Create a `RegExp` object to detect extensions.
+ *
  * @param {string[] | null} extensions The extensions to create.
  * @returns {RegExp | null} The created `RegExp` object or null.
  */
@@ -203,6 +207,7 @@ class AllFilesIgnoredError extends Error {
 class FileEnumerator {
   /**
    * Initialize this enumerator.
+   *
    * @param {FileEnumeratorOptions} options The options.
    */
   constructor({
@@ -226,6 +231,7 @@ class FileEnumerator {
 
   /**
    * Check if a given file is target or not.
+   *
    * @param {string} filePath The path to a candidate file.
    * @param {ConfigArray} [providedConfig] Optional. The configuration for the file.
    * @returns {boolean} `true` if the file is a target.
@@ -255,6 +261,7 @@ class FileEnumerator {
 
   /**
    * Iterate files which are matched by given glob patterns.
+   *
    * @param {string|string[]} patternOrPatterns The glob patterns to iterate files.
    * @yields {FileAndConfig} The found files.
    */
@@ -319,6 +326,7 @@ class FileEnumerator {
 
   /**
    * Iterate files which are matched by a given glob pattern.
+   *
    * @param {string} pattern The glob pattern to iterate files.
    * @returns {IterableIterator<FileEntry>} The found files.
    */
@@ -345,6 +353,7 @@ class FileEnumerator {
 
   /**
    * Iterate a file which is matched by a given path.
+   *
    * @param {string} filePath The path to the target file.
    * @returns {IterableIterator<FileEntry>} The found files.
    * @private
@@ -362,6 +371,7 @@ class FileEnumerator {
 
   /**
    * Iterate files in a given path.
+   *
    * @param {string} directoryPath The path to the target directory.
    * @param {boolean} dotfiles If `true` then it doesn't skip dot files by default.
    * @returns {IterableIterator<FileEntry>} The found files.
@@ -379,6 +389,7 @@ class FileEnumerator {
 
   /**
    * Iterate files which are matched by a given glob pattern.
+   *
    * @param {string} pattern The glob pattern to iterate files.
    * @param {boolean} dotfiles If `true` then it doesn't skip dot files by default.
    * @returns {IterableIterator<FileEntry>} The found files.
@@ -408,6 +419,7 @@ class FileEnumerator {
 
   /**
    * Iterate files in a given path.
+   *
    * @param {string} directoryPath The path to the target directory.
    * @param {object} options The options to iterate files.
    * @param {boolean} [options.dotfiles] If `true` then it doesn't skip dot files by default.
@@ -486,6 +498,7 @@ class FileEnumerator {
 
   /**
    * Check if a given file should be ignored.
+   *
    * @param {string} filePath The path to a file to check.
    * @param {object} options Options
    * @param {ConfigArray} [options.config] The config for this file.

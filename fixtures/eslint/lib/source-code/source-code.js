@@ -22,6 +22,7 @@ const TokenStore = require('./token-store');
 
 /**
  * Validates that the given AST has the required information.
+ *
  * @param {ASTNode} ast The Program node of the AST to check.
  * @throws {Error} If the AST doesn't contain the correct information.
  * @returns {void}
@@ -47,6 +48,7 @@ function validate(ast) {
 
 /**
  * Check to see if its a ES6 export declaration.
+ *
  * @param {ASTNode} astNode An AST node.
  * @returns {boolean} whether the given node represents an export declaration.
  * @private
@@ -62,6 +64,7 @@ function looksLikeExport(astNode) {
 
 /**
  * Merges two sorted lists into a larger sorted list in O(n) time.
+ *
  * @param {Token[]} tokens The list of tokens.
  * @param {Token[]} comments The list of comments.
  * @returns {Token[]} A sorted list of tokens and comments.
@@ -89,6 +92,7 @@ function sortedMerge(tokens, comments) {
 
 /**
  * Determines if two nodes or tokens overlap.
+ *
  * @param {ASTNode|Token} first The first node or token to check.
  * @param {ASTNode|Token} second The second node or token to check.
  * @returns {boolean} True if the two nodes or tokens overlap.
@@ -105,6 +109,7 @@ function nodesOrTokensOverlap(first, second) {
  * Determines if two nodes or tokens have at least one whitespace character
  * between them. Order does not matter. Returns false if the given nodes or
  * tokens overlap.
+ *
  * @param {SourceCode} sourceCode The source code object.
  * @param {ASTNode|Token} first The first node or token to check between.
  * @param {ASTNode|Token} second The second node or token to check between.
@@ -158,6 +163,7 @@ function isSpaceBetween(sourceCode, first, second, checkInsideOfJSXText) {
 class SourceCode extends TokenStore {
   /**
    * Represents parsed source code.
+   *
    * @param {string|object} textOrConfig The source code text or config object.
    * @param {string} textOrConfig.text The source code text.
    * @param {ASTNode} textOrConfig.ast The Program node of the AST representing the code. This AST should be created from the text that BOM was stripped.
@@ -186,6 +192,7 @@ class SourceCode extends TokenStore {
 
     /**
      * The flag to indicate that the source code has Unicode BOM.
+     *
      * @type boolean
      */
     this.hasBOM = text.codePointAt(0) === 0xfe_ff;
@@ -193,30 +200,35 @@ class SourceCode extends TokenStore {
     /**
      * The original text source code.
      * BOM was stripped from this text.
+     *
      * @type string
      */
     this.text = this.hasBOM ? text.slice(1) : text;
 
     /**
      * The parsed AST for the source code.
+     *
      * @type ASTNode
      */
     this.ast = ast;
 
     /**
      * The parser services of this source code.
+     *
      * @type {object}
      */
     this.parserServices = parserServices || {};
 
     /**
      * The scope of this source code.
+     *
      * @type {ScopeManager|null}
      */
     this.scopeManager = scopeManager || null;
 
     /**
      * The visitor keys to traverse AST.
+     *
      * @type {object}
      */
     this.visitorKeys = visitorKeys || Traverser.DEFAULT_VISITOR_KEYS;
@@ -237,6 +249,7 @@ class SourceCode extends TokenStore {
     /**
      * The source code split into lines according to ECMA-262 specification.
      * This is done to avoid each rule needing to do so separately.
+     *
      * @type string[]
      */
     this.lines = [];
@@ -278,6 +291,7 @@ class SourceCode extends TokenStore {
 
   /**
    * Split the source code into multiple lines based on the line delimiters.
+   *
    * @param {string} text Source code as a string.
    * @returns {string[]} Array of source code lines.
    * @public
@@ -288,6 +302,7 @@ class SourceCode extends TokenStore {
 
   /**
    * Gets the source code for the given node.
+   *
    * @param {ASTNode} [node] The AST node to get the text for.
    * @param {int} [beforeCount] The number of characters before the node to retrieve.
    * @param {int} [afterCount] The number of characters after the node to retrieve.
@@ -307,6 +322,7 @@ class SourceCode extends TokenStore {
 
   /**
    * Gets the entire source text split into an array of lines.
+   *
    * @returns {Array} The source text as an array of lines.
    * @public
    */
@@ -316,6 +332,7 @@ class SourceCode extends TokenStore {
 
   /**
    * Retrieves an array containing all comments in the source code.
+   *
    * @returns {ASTNode[]} An array of comment nodes.
    * @public
    */
@@ -325,6 +342,7 @@ class SourceCode extends TokenStore {
 
   /**
    * Gets all comments for the given node.
+   *
    * @param {ASTNode} node The AST node to get the comments for.
    * @returns {object} An object containing a leading and trailing array
    *      of comments indexed by their position.
@@ -407,6 +425,7 @@ class SourceCode extends TokenStore {
 
   /**
    * Retrieves the JSDoc comment for a given node.
+   *
    * @param {ASTNode} node The AST node to get the comment for.
    * @returns {Token|null} The Block comment token containing the JSDoc comment
    *      for the given node or null if not found.
@@ -416,6 +435,7 @@ class SourceCode extends TokenStore {
   getJSDocComment(node) {
     /**
      * Checks for the presence of a JSDoc comment for the given node and returns it.
+     *
      * @param {ASTNode} astNode The AST node to get the comment for.
      * @returns {Token|null} The Block comment token containing the JSDoc comment
      *      for the given node or null if not found.
@@ -492,6 +512,7 @@ class SourceCode extends TokenStore {
 
   /**
    * Gets the deepest node containing a range index.
+   *
    * @param {int} index Range index of the desired node.
    * @returns {ASTNode} The node if found or null if not found.
    * @public
@@ -522,6 +543,7 @@ class SourceCode extends TokenStore {
    * Determines if two nodes or tokens have at least one whitespace character
    * between them. Order does not matter. Returns false if the given nodes or
    * tokens overlap.
+   *
    * @param {ASTNode|Token} first The first node or token to check between.
    * @param {ASTNode|Token} second The second node or token to check between.
    * @returns {boolean} True if there is a whitespace character between
@@ -538,6 +560,7 @@ class SourceCode extends TokenStore {
    * tokens overlap.
    * For backward compatibility, this method returns true if there are
    * `JSXText` tokens that contain whitespaces between the two.
+   *
    * @param {ASTNode|Token} first The first node or token to check between.
    * @param {ASTNode|Token} second The second node or token to check between.
    * @returns {boolean} True if there is a whitespace character between
@@ -551,6 +574,7 @@ class SourceCode extends TokenStore {
 
   /**
    * Converts a source text index into a (line, column) pair.
+   *
    * @param {number} index The index of a character in a file
    * @returns {object} A {line, column} location object with a 0-indexed column
    * @public
@@ -594,6 +618,7 @@ class SourceCode extends TokenStore {
 
   /**
    * Converts a (line, column) pair into a range index.
+   *
    * @param {object} loc A line/column location
    * @param {number} loc.line The line number of the location (1-indexed)
    * @param {number} loc.column The column number of the location (0-indexed)

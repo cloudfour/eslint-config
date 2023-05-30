@@ -111,6 +111,7 @@ const internalSlotsMap = new WeakMap();
 
 /**
  * Check if a given string is a file path.
+ *
  * @param {string} nameOrPath A module name or file path.
  * @returns {boolean} `true` if the `nameOrPath` is a file path.
  */
@@ -120,6 +121,7 @@ function isFilePath(nameOrPath) {
 
 /**
  * Convenience wrapper for synchronously reading file contents.
+ *
  * @param {string} filePath The filename to read.
  * @returns {string} The file contents, with the BOM removed.
  * @private
@@ -130,6 +132,7 @@ function readFile(filePath) {
 
 /**
  * Loads a YAML configuration from a file.
+ *
  * @param {string} filePath The filename to load.
  * @returns {ConfigData} The configuration object from the file.
  * @throws {Error} If the file cannot be read.
@@ -153,6 +156,7 @@ function loadYAMLConfigFile(filePath) {
 
 /**
  * Loads a JSON configuration from a file.
+ *
  * @param {string} filePath The filename to load.
  * @returns {ConfigData} The configuration object from the file.
  * @throws {Error} If the file cannot be read.
@@ -177,6 +181,7 @@ function loadJSONConfigFile(filePath) {
 
 /**
  * Loads a legacy (.eslintrc) configuration from a file.
+ *
  * @param {string} filePath The filename to load.
  * @returns {ConfigData} The configuration object from the file.
  * @throws {Error} If the file cannot be read.
@@ -202,6 +207,7 @@ function loadLegacyConfigFile(filePath) {
 
 /**
  * Loads a JavaScript configuration from a file.
+ *
  * @param {string} filePath The filename to load.
  * @returns {ConfigData} The configuration object from the file.
  * @throws {Error} If the file cannot be read.
@@ -220,6 +226,7 @@ function loadJSConfigFile(filePath) {
 
 /**
  * Loads a configuration from a package.json file.
+ *
  * @param {string} filePath The filename to load.
  * @returns {ConfigData} The configuration object from the file.
  * @throws {Error} If the file cannot be read.
@@ -247,6 +254,7 @@ function loadPackageJSONConfigFile(filePath) {
 
 /**
  * Loads a `.eslintignore` from a file.
+ *
  * @param {string} filePath The filename to load.
  * @returns {string[]} The ignore patterns from the file.
  * @private
@@ -267,6 +275,7 @@ function loadESLintIgnoreFile(filePath) {
 
 /**
  * Creates an error to notify about a missing config to extend from.
+ *
  * @param {string} configName The name of the missing config.
  * @param {string} importerName The name of the config that imported the missing config
  * @returns {Error} The error object to throw
@@ -285,6 +294,7 @@ function configMissingError(configName, importerName) {
 /**
  * Loads a configuration file regardless of the source. Inspects the file path
  * to determine the correctly way to load the config file.
+ *
  * @param {string} filePath The path to the configuration.
  * @returns {ConfigData|null} The configuration information.
  * @private
@@ -317,6 +327,7 @@ function loadConfigFile(filePath) {
 
 /**
  * Write debug log.
+ *
  * @param {string} request The requested module name.
  * @param {string} relativeTo The file path to resolve the request relative to.
  * @param {string} filePath The resolved file path.
@@ -345,6 +356,7 @@ function writeDebugLogForLoading(request, relativeTo, filePath) {
 
 /**
  * Create a new context with default values.
+ *
  * @param {string | undefined} cwd The current working directory.
  * @param {"config" | "ignore" | "implicit-processor" | undefined} providedType The type of the current configuration. Default is `"config"`.
  * @param {string | undefined} providedName The name of the current configuration. Default is the relative path from `cwd` to `filePath`.
@@ -373,6 +385,7 @@ function createContext(
  * Normalize a given plugin.
  * - Ensure the object to have four properties: configs, environments, processors, and rules.
  * - Ensure the object to not have other properties.
+ *
  * @param {Plugin} plugin The plugin to normalize.
  * @returns {Plugin} The normalized plugin.
  */
@@ -395,6 +408,7 @@ function normalizePlugin(plugin) {
 class ConfigArrayFactory {
   /**
    * Initialize this instance.
+   *
    * @param {ConfigArrayFactoryOptions} [options] The map for additional plugins.
    */
   constructor({
@@ -411,6 +425,7 @@ class ConfigArrayFactory {
 
   /**
    * Create `ConfigArray` instance from a config data.
+   *
    * @param {ConfigData|null} configData The config data to create.
    * @param {object} [options] The options.
    * @param {string} [options.basePath] The base path to resolve relative paths in `overrides[].files`, `overrides[].excludedFiles`, and `ignorePatterns`.
@@ -432,6 +447,7 @@ class ConfigArrayFactory {
 
   /**
    * Load a config file.
+   *
    * @param {string} filePath The path to a config file.
    * @param {object} [options] The options.
    * @param {string} [options.basePath] The base path to resolve relative paths in `overrides[].files`, `overrides[].excludedFiles`, and `ignorePatterns`.
@@ -447,6 +463,7 @@ class ConfigArrayFactory {
 
   /**
    * Load the config file on a given directory if exists.
+   *
    * @param {string} directoryPath The path to a directory.
    * @param {object} [options] The options.
    * @param {string} [options.basePath] The base path to resolve relative paths in `overrides[].files`, `overrides[].excludedFiles`, and `ignorePatterns`.
@@ -489,6 +506,7 @@ class ConfigArrayFactory {
 
   /**
    * Check if a config file on a given directory exists or not.
+   *
    * @param {string} directoryPath The path to a directory.
    * @returns {string | null} The path to the found config file. If not found then null.
    */
@@ -515,6 +533,7 @@ class ConfigArrayFactory {
 
   /**
    * Load `.eslintignore` file.
+   *
    * @param {string} filePath The path to a `.eslintignore` file to load.
    * @returns {ConfigArray} Loaded config. An empty `ConfigArray` if any config doesn't exist.
    */
@@ -531,6 +550,7 @@ class ConfigArrayFactory {
 
   /**
    * Load `.eslintignore` file in the current working directory.
+   *
    * @returns {ConfigArray} Loaded config. An empty `ConfigArray` if any config doesn't exist.
    */
   loadDefaultESLintIgnore() {
@@ -571,6 +591,7 @@ class ConfigArrayFactory {
 
   /**
    * Load a given config file.
+   *
    * @param {ConfigArrayFactoryLoadingContext} ctx The loading context.
    * @returns {IterableIterator<ConfigArrayElement>} Loaded config.
    * @private
@@ -581,6 +602,7 @@ class ConfigArrayFactory {
 
   /**
    * Normalize a given `.eslintignore` data to config array elements.
+   *
    * @param {string[]} ignorePatterns The patterns to ignore files.
    * @param {ConfigArrayFactoryLoadingContext} ctx The loading context.
    * @yields {ConfigArrayElement} The normalized config.
@@ -601,6 +623,7 @@ class ConfigArrayFactory {
 
   /**
    * Normalize a given config to an array.
+   *
    * @param {ConfigData} configData The config data to normalize.
    * @param {ConfigArrayFactoryLoadingContext} ctx The loading context.
    * @returns {IterableIterator<ConfigArrayElement>} The normalized config.
@@ -613,6 +636,7 @@ class ConfigArrayFactory {
 
   /**
    * Normalize a given config to an array.
+   *
    * @param {ConfigData|OverrideConfigData} configData The config data to normalize.
    * @param {ConfigArrayFactoryLoadingContext} ctx The loading context.
    * @yields {ConfigArrayElement} The normalized config.
@@ -650,6 +674,7 @@ class ConfigArrayFactory {
 
   /**
    * Normalize a given config to an array.
+   *
    * @param {ConfigData} configData The config data to normalize.
    * @param {ConfigArrayFactoryLoadingContext} ctx The loading context.
    * @yields {ConfigArrayElement} The normalized config.
@@ -730,6 +755,7 @@ class ConfigArrayFactory {
 
   /**
    * Load configs of an element in `extends`.
+   *
    * @param {string} extendName The name of a base config.
    * @param {ConfigArrayFactoryLoadingContext} ctx The loading context.
    * @returns {IterableIterator<ConfigArrayElement>} The normalized config.
@@ -755,6 +781,7 @@ class ConfigArrayFactory {
 
   /**
    * Load configs of an element in `extends`.
+   *
    * @param {string} extendName The name of a base config.
    * @param {ConfigArrayFactoryLoadingContext} ctx The loading context.
    * @returns {IterableIterator<ConfigArrayElement>} The normalized config.
@@ -782,6 +809,7 @@ class ConfigArrayFactory {
 
   /**
    * Load configs of an element in `extends`.
+   *
    * @param {string} extendName The name of a base config.
    * @param {ConfigArrayFactoryLoadingContext} ctx The loading context.
    * @returns {IterableIterator<ConfigArrayElement>} The normalized config.
@@ -813,6 +841,7 @@ class ConfigArrayFactory {
 
   /**
    * Load configs of an element in `extends`.
+   *
    * @param {string} extendName The name of a base config.
    * @param {ConfigArrayFactoryLoadingContext} ctx The loading context.
    * @returns {IterableIterator<ConfigArrayElement>} The normalized config.
@@ -854,6 +883,7 @@ class ConfigArrayFactory {
 
   /**
    * Load given plugins.
+   *
    * @param {string[]} names The plugin names to load.
    * @param {ConfigArrayFactoryLoadingContext} ctx The loading context.
    * @returns {Record<string,DependentPlugin>} The loaded parser.
@@ -873,6 +903,7 @@ class ConfigArrayFactory {
 
   /**
    * Load a given parser.
+   *
    * @param {string} nameOrPath The package name or the path to a parser file.
    * @param {ConfigArrayFactoryLoadingContext} ctx The loading context.
    * @returns {DependentParser} The loaded parser.
@@ -926,6 +957,7 @@ class ConfigArrayFactory {
 
   /**
    * Load a given plugin.
+   *
    * @param {string} name The plugin name to load.
    * @param {ConfigArrayFactoryLoadingContext} ctx The loading context.
    * @returns {DependentPlugin} The loaded plugin.
@@ -1025,6 +1057,7 @@ class ConfigArrayFactory {
 
   /**
    * Take file expression processors as config array elements.
+   *
    * @param {Record<string,DependentPlugin>} plugins The plugin definitions.
    * @param {ConfigArrayFactoryLoadingContext} ctx The loading context.
    * @yields {ConfigArrayElement} The config array elements of file expression processors.
