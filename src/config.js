@@ -218,6 +218,7 @@ module.exports.configs = {
         'jsdoc/require-returns-description': 'off',
         'jsdoc/require-jsdoc': 'off',
         'jsdoc/require-returns-check': 'off', // Does not handle @returns with void or undefined
+        'jsdoc/tag-lines': ['error', 'any', { startLines: 1 }],
       })
     ),
     overrides: [
