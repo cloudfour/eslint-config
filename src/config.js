@@ -217,6 +217,7 @@ module.exports.configs = {
         'jsdoc/require-property-description': 'off',
         'jsdoc/require-returns-description': 'off',
         'jsdoc/require-jsdoc': 'off',
+        'jsdoc/require-returns-check': 'off', // Does not handle @returns with void or undefined
       })
     ),
     overrides: [
