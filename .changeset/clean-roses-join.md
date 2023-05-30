@@ -2,7 +2,7 @@
 '@cloudfour/eslint-plugin': major
 ---
 
-Update `eslint-plugin-unicorn` to `v45`
+Update `eslint-plugin-unicorn` from `v43` to `v47`
 
 **New Rules**
 
@@ -11,6 +11,7 @@ Update `eslint-plugin-unicorn` to `v45`
 - [`@cloudfour/unicorn/no-unnecessary-await`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/no-unnecessary-await.md)
 - [`@cloudfour/unicorn/prefer-set-size`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/prefer-set-size.md)
 - [`@cloudfour/unicorn/switch-case-braces`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/switch-case-braces.md)
+- [`@cloudfour/unicorn/prefer-blob-reading-methods`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v47.0.0/docs/rules/prefer-blob-reading-methods.md)
 
 **Newly Enabled Rules**
 
@@ -19,6 +20,8 @@ Update `eslint-plugin-unicorn` to `v45`
 - [`@cloudfour/unicorn/no-unnecessary-await`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/no-unnecessary-await.md)
 - [`@cloudfour/unicorn/prefer-set-size`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/prefer-set-size.md)
 - [`@cloudfour/unicorn/switch-case-braces`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/switch-case-braces.md)
+- [`@cloudfour/unicorn/prefer-blob-reading-methods`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v47.0.0/docs/rules/prefer-blob-reading-methods.md)
+- [`@cloudfour/unicorn/prefer-event-target`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v47.0.0/docs/rules/prefer-event-target.md)
 
 **Newly Disabled Rules**
 
