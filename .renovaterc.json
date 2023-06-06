@@ -2,6 +2,7 @@
   "extends": ["config:base", ":automergeMinor"],
   "reviewers": ["team:dev"],
   "dependencyDashboard": true,
+  "stabilityDays": 4,
   "force": {
     "constraints": {
       "node": "< 15.0.0"
