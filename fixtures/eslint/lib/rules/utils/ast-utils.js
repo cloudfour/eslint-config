@@ -956,7 +956,7 @@ module.exports = {
    */
   isEmptyBlock(node) {
     return Boolean(
-      node && node.type === 'BlockStatement' && node.body.length === 0
+      node && node.type === 'BlockStatement' && node.body.length === 0,
     );
   },
 
@@ -1588,7 +1588,7 @@ module.exports = {
 
       if (leftToken.type === 'Punctuator' && leftToken.value === '/') {
         return !['Block', 'Line', 'RegularExpression'].includes(
-          rightToken.type
+          rightToken.type,
         );
       }
 
@@ -1634,7 +1634,7 @@ module.exports = {
   getNameLocationInGlobalDirectiveComment(sourceCode, comment, name) {
     const namePattern = new RegExp(
       `[\\s,]${lodash.escapeRegExp(name)}(?:$|[\\s,:])`,
-      'gu'
+      'gu',
     );
 
     // To ignore the first text "global".
@@ -1645,7 +1645,7 @@ module.exports = {
 
     // Convert the index to loc.
     return sourceCode.getLocFromIndex(
-      comment.range[0] + '/*'.length + (match ? match.index + 1 : 0)
+      comment.range[0] + '/*'.length + (match ? match.index + 1 : 0),
     );
   },
 

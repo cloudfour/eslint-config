@@ -308,10 +308,10 @@ module.exports = {
               const asyncKeyword = node.async ? 'async ' : '';
               const paramsFullText = sourceCode.text.slice(
                 paramsLeftParen.range[0],
-                paramsRightParen.range[1]
+                paramsRightParen.range[1],
               );
               const arrowFunctionText = `${asyncKeyword}${paramsFullText} => ${sourceCode.getText(
-                node.body
+                node.body,
               )}`;
 
               /*

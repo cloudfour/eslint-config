@@ -32,7 +32,7 @@ export class Watcher {
         watch && typeof watch.buildDelay === 'number'
           ? Math.max(buildDelay, (watch as WatcherOptions).buildDelay)
           : buildDelay,
-      this.buildDelay
+      this.buildDelay,
     );
     this.running = true;
     process.nextTick(() => this.run());
@@ -209,7 +209,7 @@ export class Task {
 
       if (error.id) {
         this.cache.modules = this.cache.modules.filter(
-          (module) => module.id !== error.id
+          (module) => module.id !== error.id,
         );
       }
 

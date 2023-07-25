@@ -10,7 +10,7 @@ export default declare((api, options) => {
 
   if (loose === true && assumeArray === true) {
     throw new Error(
-      `The loose and assumeArray options cannot be used together in @babel/plugin-transform-for-of`
+      `The loose and assumeArray options cannot be used together in @babel/plugin-transform-for-of`,
     );
   }
 
@@ -39,7 +39,7 @@ export default declare((api, options) => {
           const item = t.memberExpression(
             t.cloneNode(array),
             t.cloneNode(i),
-            true
+            true,
           );
           let assignment;
           if (t.isVariableDeclaration(left)) {
@@ -47,7 +47,7 @@ export default declare((api, options) => {
             assignment.declarations[0].init = item;
           } else {
             assignment = t.expressionStatement(
-              t.assignmentExpression('=', left, item)
+              t.assignmentExpression('=', left, item),
             );
           }
 
@@ -56,7 +56,7 @@ export default declare((api, options) => {
           if (
             body.isBlockStatement() &&
             Object.keys(path.getBindingIdentifiers()).some((id) =>
-              body.scope.hasOwnBinding(id)
+              body.scope.hasOwnBinding(id),
             )
           ) {
             blockBody = t.blockStatement([assignment, body.node]);
@@ -71,11 +71,11 @@ export default declare((api, options) => {
               t.binaryExpression(
                 '<',
                 t.cloneNode(i),
-                t.memberExpression(t.cloneNode(array), t.identifier('length'))
+                t.memberExpression(t.cloneNode(array), t.identifier('length')),
               ),
               t.updateExpression('++', t.cloneNode(i)),
-              blockBody
-            )
+              blockBody,
+            ),
           );
         },
       },
@@ -133,7 +133,7 @@ export default declare((api, options) => {
     const iterationValue = t.memberExpression(
       t.cloneNode(right),
       t.cloneNode(iterationKey),
-      true
+      true,
     );
 
     const left = node.left;
@@ -142,7 +142,9 @@ export default declare((api, options) => {
       loop.body.body.unshift(left);
     } else {
       loop.body.body.unshift(
-        t.expressionStatement(t.assignmentExpression('=', left, iterationValue))
+        t.expressionStatement(
+          t.assignmentExpression('=', left, iterationValue),
+        ),
       );
     }
 
@@ -175,7 +177,7 @@ export default declare((api, options) => {
         const stepKey = scope.generateUid('step');
         const stepValue = t.memberExpression(
           t.identifier(stepKey),
-          t.identifier('value')
+          t.identifier('value'),
         );
 
         const declar = t.isVariableDeclaration(left)

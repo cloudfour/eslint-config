@@ -8,10 +8,10 @@ function getItemIndexByCharacterKey(
   highlightedIndex,
   items,
   itemToStringParam,
-  getItemNodeFromIndex
+  getItemNodeFromIndex,
 ) {
   const lowerCasedItemStrings = items.map((item) =>
-    itemToStringParam(item).toLowerCase()
+    itemToStringParam(item).toLowerCase(),
   );
   const lowerCasedKeysSoFar = keysSoFar.toLowerCase();
   const isValid = (itemString, index) => {

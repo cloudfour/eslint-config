@@ -1,12 +1,17 @@
-const { writeFileSync } = require('node:fs');
-const { join, sep } = require('node:path');
+import { writeFileSync } from 'node:fs';
+import { dirname, join, sep } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const prettier = require('prettier');
+import { format } from 'prettier';
 
-const { configs, environments } = require('./src/config');
+import configFile from './src/config.js';
+
+const { configs, environments } = configFile;
 
 const resolveStart = '__REQUIRE_RESOLVE__';
 const resolveEnd = '__END_REQUIRE_RESOLVE__';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Require.resolve needs to be dynamic and cannot be statically stringified with JSON.stringify
 const stringify = (data) =>
@@ -14,7 +19,7 @@ const stringify = (data) =>
     if (k === 'parser' && typeof v === 'string' && v.startsWith(__dirname)) {
       const pathWithoutNodeModules = v.replace(
         join(__dirname, `node_modules${sep}`),
-        ''
+        '',
       );
       // Takes the file path and changes it to just the name of the package the path was in
       const packagePath = pathWithoutNodeModules.startsWith('@')
@@ -29,12 +34,13 @@ const stringify = (data) =>
   })}`.replace(
     // Wrap the relative parser path with require.resolve
     new RegExp(`"${resolveStart}(.*?)${resolveEnd}"`, 'g'),
-    (_match, replacement) => `require.resolve("${replacement}")`
+    (_match, replacement) => `require.resolve("${replacement}")`,
   );
 
 const createFile = (data) =>
   // Clean up the file so that it is readable
-  prettier.format(stringify(data), { parser: 'babel', singleQuote: true });
+  format(stringify(data), { parser: 'babel', singleQuote: true });
 
 // Snapshots the merged config to make debugging rules easier and to reduce dependencies
-writeFileSync(join('dist', 'config.js'), createFile({ configs, environments }));
+const text = await createFile({ configs, environments });
+writeFileSync(join('dist', 'config.js'), text);

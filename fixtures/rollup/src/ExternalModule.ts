@@ -28,7 +28,7 @@ export default class ExternalModule {
   constructor(
     private readonly options: NormalizedInputOptions,
     id: string,
-    moduleSideEffects: boolean | 'no-treeshake'
+    moduleSideEffects: boolean | 'no-treeshake',
   ) {
     this.id = id;
     this.execIndex = Infinity;

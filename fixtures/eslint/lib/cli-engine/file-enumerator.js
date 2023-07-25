@@ -158,7 +158,7 @@ function readdirSafeSync(directoryPath) {
 function createExtensionRegExp(extensions) {
   if (extensions) {
     const normalizedExts = extensions.map((ext) =>
-      escapeRegExp(ext.startsWith('.') ? ext.slice(1) : ext)
+      escapeRegExp(ext.startsWith('.') ? ext.slice(1) : ext),
     );
 
     return new RegExp(`.\\.(?:${normalizedExts.join('|')})$`, 'u');
@@ -179,7 +179,7 @@ class NoFilesFoundError extends Error {
     super(
       `No files matching '${pattern}' were found${
         globDisabled ? ' (glob was disabled)' : ''
-      }.`
+      }.`,
     );
     this.messageTemplate = 'file-not-found';
     this.messageData = { pattern, globDisabled };
@@ -311,7 +311,7 @@ class FileEnumerator {
         if (!foundRegardlessOfIgnored) {
           throw new NoFilesFoundError(
             pattern,
-            !globInputPaths && isGlob(pattern)
+            !globInputPaths && isGlob(pattern),
           );
         }
 
@@ -450,7 +450,7 @@ class FileEnumerator {
              * point because we don't know if target files exist in
              * this directory.
              */
-            { ignoreNotFoundError: true }
+            { ignoreNotFoundError: true },
           );
         }
 
@@ -509,7 +509,7 @@ class FileEnumerator {
    */
   _isIgnoredFile(
     filePath,
-    { config: providedConfig, dotfiles = false, direct = false }
+    { config: providedConfig, dotfiles = false, direct = false },
   ) {
     const { configArrayFactory, defaultIgnores, ignoreFlag } =
       internalSlotsMap.get(this);

@@ -271,14 +271,14 @@ class SourceCode extends TokenStore {
       this.lines.push(
         this.text.slice(
           this.lineStartIndices[this.lineStartIndices.length - 1],
-          match.index
-        )
+          match.index,
+        ),
       );
       this.lineStartIndices.push(match.index + match[0].length);
     }
 
     this.lines.push(
-      this.text.slice(this.lineStartIndices[this.lineStartIndices.length - 1])
+      this.text.slice(this.lineStartIndices[this.lineStartIndices.length - 1]),
     );
 
     // Cache for comments found using getComments().
@@ -313,7 +313,7 @@ class SourceCode extends TokenStore {
     if (node) {
       return this.text.slice(
         Math.max(node.range[0] - (beforeCount || 0), 0),
-        node.range[1] + (afterCount || 0)
+        node.range[1] + (afterCount || 0),
       );
     }
 
@@ -586,7 +586,7 @@ class SourceCode extends TokenStore {
 
     if (index < 0 || index > this.text.length) {
       throw new RangeError(
-        `Index out of range (requested index ${index}, but source text has length ${this.text.length}).`
+        `Index out of range (requested index ${index}, but source text has length ${this.text.length}).`,
       );
     }
 
@@ -632,19 +632,19 @@ class SourceCode extends TokenStore {
       typeof loc.column !== 'number'
     ) {
       throw new TypeError(
-        'Expected `loc` to be an object with numeric `line` and `column` properties.'
+        'Expected `loc` to be an object with numeric `line` and `column` properties.',
       );
     }
 
     if (loc.line <= 0) {
       throw new RangeError(
-        `Line number out of range (line ${loc.line} requested). Line numbers should be 1-based.`
+        `Line number out of range (line ${loc.line} requested). Line numbers should be 1-based.`,
       );
     }
 
     if (loc.line > this.lineStartIndices.length) {
       throw new RangeError(
-        `Line number out of range (line ${loc.line} requested, but only ${this.lineStartIndices.length} lines present).`
+        `Line number out of range (line ${loc.line} requested, but only ${this.lineStartIndices.length} lines present).`,
       );
     }
 
@@ -673,7 +673,7 @@ class SourceCode extends TokenStore {
           loc.column
         } requested, but the length of line ${loc.line} is ${
           lineEndIndex - lineStartIndex
-        }).`
+        }).`,
       );
     }
 

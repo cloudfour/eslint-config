@@ -20,7 +20,7 @@ export interface RetryObject {
 }
 
 export type RetryFunction = (
-  retryObject: RetryObject
+  retryObject: RetryObject,
 ) => number | Promise<number>;
 
 export interface RequiredRetryOptions {
@@ -39,7 +39,7 @@ export interface PaginationOptions<T, R> {
     paginate?: (
       response: Response<R>,
       allItems: T[],
-      currentItems: T[]
+      currentItems: T[],
     ) => Options | false;
     shouldContinue?: (item: T, allItems: T[], currentItems: T[]) => boolean;
     countLimit?: number;
@@ -52,11 +52,11 @@ export interface PaginationOptions<T, R> {
 export type BeforeRetryHook = (
   options: NormalizedOptions,
   error?: RequestError,
-  retryCount?: number
+  retryCount?: number,
 ) => void | Promise<void>;
 export type AfterResponseHook = (
   response: Response,
-  retryWithMergedOptions: (options: Options) => CancelableRequest<Response>
+  retryWithMergedOptions: (options: Options) => CancelableRequest<Response>,
 ) =>
   | Response
   | CancelableRequest<Response>
@@ -107,7 +107,7 @@ export class ParseError extends RequestError {
     super(
       `${error.message} in "${options.url.toString()}"`,
       error,
-      response.request
+      response.request,
     );
     this.name = 'ParseError';
 
@@ -119,7 +119,7 @@ export class ParseError extends RequestError {
 }
 
 export interface CancelableRequest<
-  T extends Response | Response['body'] = Response['body']
+  T extends Response | Response['body'] = Response['body'],
 > extends PCancelable<T>,
     RequestEvents<CancelableRequest<T>> {
   json: <ReturnType>() => CancelableRequest<ReturnType>;

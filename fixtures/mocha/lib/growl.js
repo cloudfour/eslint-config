@@ -29,7 +29,7 @@ exports.isCapable = () => {
   if (!process.browser) {
     return getSupportBinaries().reduce(
       (acc, binary) => acc || Boolean(which(binary, { nothrow: true })),
-      false
+      false,
     );
   }
 

@@ -69,14 +69,14 @@ const configuration = { ...YARGS_PARSER_CONFIG, 'camel-case-expansion': false };
  */
 const coerceOpts = Object.assign(
   Object.fromEntries(
-    types.array.map((arg) => [arg, (v) => [...new Set(list(v))]])
+    types.array.map((arg) => [arg, (v) => [...new Set(list(v))]]),
   ),
   Object.fromEntries(
     [...types.boolean, ...types.string, ...types.number].map((arg) => [
       arg,
       (v) => (Array.isArray(v) ? v.pop() : v),
-    ])
-  )
+    ]),
+  ),
 );
 
 /**
@@ -89,7 +89,7 @@ const coerceOpts = Object.assign(
  * @ignore
  */
 const nargOpts = Object.fromEntries(
-  [...types.array, ...types.string, ...types.number].map((arg) => [arg, 1])
+  [...types.array, ...types.string, ...types.number].map((arg) => [arg, 1]),
 );
 
 /**
@@ -121,7 +121,7 @@ const parse = (args = [], defaultValues = {}, ...configObjects) => {
 
       return acc;
     },
-    []
+    [],
   );
 
   const result = yargsParser.detailed(args, {

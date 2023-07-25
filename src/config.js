@@ -23,7 +23,7 @@ const prefix = (rules) =>
       if (key.includes('/') && !key.startsWith('@cloudfour/'))
         key = `@cloudfour/${key.replace(/^@/, '')}`;
       return [key, val];
-    })
+    }),
   );
 
 /**
@@ -35,8 +35,8 @@ const removeUnused = (rules) =>
   Object.fromEntries(
     Object.entries(rules).filter(
       ([, val]) =>
-        !(val === 'off' || val === 0 || val[0] === 'off' || val[0] === 0)
-    )
+        !(val === 'off' || val === 0 || val[0] === 'off' || val[0] === 0),
+    ),
   );
 
 /**
@@ -51,7 +51,7 @@ const changeWarnToError = (rules) =>
       if (Array.isArray(val) && (val[0] === 'warn' || val[0] === 1))
         return [key, ['error', ...val.slice(1)]];
       return [key, val];
-    })
+    }),
   );
 
 module.exports.configs = {
@@ -219,7 +219,7 @@ module.exports.configs = {
         'jsdoc/require-jsdoc': 'off',
         'jsdoc/require-returns-check': 'off', // Does not handle @returns with void or undefined
         'jsdoc/tag-lines': ['error', 'any', { startLines: 1 }],
-      })
+      }),
     ),
     overrides: [
       {

@@ -86,12 +86,12 @@ const interestingFiles = await Promise.all(
       (f) =>
         f.match(/.[jt]sx?$/) &&
         !f.endsWith('.d.ts') && // ignore declaration files
-        !f.replace(name, '').includes('test')
+        !f.replace(name, '').includes('test'),
     )
     .map(async (file) => {
       const contents = await readFile(join(reposDir, file), 'utf8');
       return { file, contents };
-    })
+    }),
 );
 
 const eslint = new ESLint({
@@ -187,7 +187,7 @@ const filesWithNumNodeTypesPromises = interestingFiles.map(
       numNodeTypes,
       loc: contents.split('\n').length,
     };
-  }
+  },
 );
 
 const filesWithNumNodeTypes = await Promise.all(filesWithNumNodeTypesPromises);
@@ -217,14 +217,14 @@ if (chosenFiles.length === 0) {
       const outPath = join(fixturesDir, file);
       await mkdir(dirname(outPath));
       await writeFile(outPath, contents);
-    })
+    }),
   );
 
   console.log(kleur.bold().blue('Imported files'));
 
   await runCommand('npm', ['run', 'lint']).catch((error) => {
     console.log(
-      '\nRead ./fixtures/README.md to learn how to resolve these lint errors'
+      '\nRead ./fixtures/README.md to learn how to resolve these lint errors',
     );
     // eslint-disable-next-line @cloudfour/n/no-process-exit
     process.exit(error);

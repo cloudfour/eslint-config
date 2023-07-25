@@ -108,7 +108,7 @@ function countClassAttributes(parsedSelector) {
     case 'matches': {
       return parsedSelector.selectors.reduce(
         (sum, childSelector) => sum + countClassAttributes(childSelector),
-        0
+        0,
       );
     }
 
@@ -148,7 +148,7 @@ function countIdentifiers(parsedSelector) {
     case 'matches': {
       return parsedSelector.selectors.reduce(
         (sum, childSelector) => sum + countIdentifiers(childSelector),
-        0
+        0,
       );
     }
 
@@ -198,7 +198,7 @@ function tryParseSelector(rawSelector) {
       typeof error.location.start.offset === 'number'
     ) {
       throw new SyntaxError(
-        `Syntax error in selector "${rawSelector}" at position ${error.location.start.offset}: ${error.message}`
+        `Syntax error in selector "${rawSelector}" at position ${error.location.start.offset}: ${error.message}`,
       );
     }
 
@@ -337,7 +337,7 @@ class NodeEventGenerator {
         (anyTypeSelectorsIndex < anyTypeSelectors.length &&
           compareSpecificity(
             anyTypeSelectors[anyTypeSelectorsIndex],
-            selectorsByNodeType[selectorsByTypeIndex]
+            selectorsByNodeType[selectorsByTypeIndex],
           ) < 0)
       ) {
         this.applySelector(node, anyTypeSelectors[anyTypeSelectorsIndex++]);

@@ -5,7 +5,7 @@ import { waitFor } from './wait-for';
 function getMultipleElementsFoundError(message, container) {
   return getConfig().getElementError(
     `${message}\n\n(If this is intentional, then use the \`*AllBy*\` variant of the query (like \`queryAllByText\`, \`getAllByText\`, or \`findAllByText\`)).`,
-    container
+    container,
   );
 }
 
@@ -13,7 +13,7 @@ function queryAllByAttribute(
   attribute,
   container,
   text,
-  { exact = true, collapseWhitespace, trim, normalizer } = {}
+  { exact = true, collapseWhitespace, trim, normalizer } = {},
 ) {
   const matcher = exact ? matches : fuzzyMatches;
   const matchNormalizer = makeNormalizer({
@@ -22,7 +22,7 @@ function queryAllByAttribute(
     normalizer,
   });
   return [...container.querySelectorAll(`[${attribute}]`)].filter((node) =>
-    matcher(node.getAttribute(attribute), node, text, matchNormalizer)
+    matcher(node.getAttribute(attribute), node, text, matchNormalizer),
   );
 }
 
@@ -31,7 +31,7 @@ function queryByAttribute(attribute, container, text, ...args) {
   if (els.length > 1) {
     throw getMultipleElementsFoundError(
       `Found multiple elements by [${attribute}=${text}]`,
-      container
+      container,
     );
   }
 
@@ -47,7 +47,7 @@ function makeSingleQuery(allQuery, getMultipleError) {
     if (els.length > 1) {
       throw getMultipleElementsFoundError(
         getMultipleError(container, ...args),
-        container
+        container,
       );
     }
 
@@ -63,7 +63,7 @@ function makeGetAllQuery(allQuery, getMissingError) {
     if (els.length === 0) {
       throw getConfig().getElementError(
         getMissingError(container, ...args),
-        container
+        container,
       );
     }
 

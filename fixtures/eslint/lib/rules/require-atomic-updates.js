@@ -78,7 +78,7 @@ function isLocalVariableWithoutEscape(variable, isMemberAccess) {
   const functionScope = variable.scope.variableScope;
 
   return variable.references.every(
-    (reference) => reference.from.variableScope === functionScope
+    (reference) => reference.from.variableScope === functionScope,
   );
 }
 

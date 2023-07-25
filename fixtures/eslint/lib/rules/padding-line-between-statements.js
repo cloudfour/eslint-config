@@ -18,7 +18,7 @@ const astUtils = require('./utils/ast-utils');
 const LT = `[${[...astUtils.LINEBREAKS].join('')}]`;
 const PADDING_LINE_SEQUENCE = new RegExp(
   String.raw`^(\s*?${LT})\s*${LT}(\s*;?)$`,
-  'u'
+  'u',
 );
 const CJS_EXPORT = /^(?:module\s*\.\s*)?exports(?:\s*\.|\s*\[|$)/u;
 const CJS_IMPORT = /^require\(/u;
@@ -206,7 +206,7 @@ function getActualLastToken(sourceCode, node) {
       prevToken.range[0] >= node.range[0] &&
       astUtils.isSemicolonToken(semiToken) &&
       semiToken.loc.start.line !== prevToken.loc.end.line &&
-      semiToken.loc.end.line === nextToken.loc.start.line
+      semiToken.loc.end.line === nextToken.loc.start.line,
   );
 
   return isSemicolonLessStyle ? prevToken : semiToken;

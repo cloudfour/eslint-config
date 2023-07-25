@@ -101,7 +101,7 @@ function mdxStoriesFormat(result) {
   const props = result.get('props').toJS();
   const categories = groupBy(props, 'category');
   const mdxCategories = Object.keys(categories).map((category) =>
-    categoryToMdx(category, categories[category])
+    categoryToMdx(category, categories[category]),
   );
   return `
 import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';

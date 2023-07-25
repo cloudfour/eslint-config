@@ -50,7 +50,7 @@ new AssetGraph({ root: 'docs/_dist' })
 
       for (const header of headers) {
         const node = asset.parseTree.querySelector(
-          `meta[http-equiv=${header}]`
+          `meta[http-equiv=${header}]`,
         );
 
         if (node) {
@@ -65,7 +65,7 @@ new AssetGraph({ root: 'docs/_dist' })
         (r) =>
           r.type === 'HtmlStyle' &&
           r.crossorigin === false &&
-          r.href !== undefined
+          r.href !== undefined,
       );
 
       if (firstCssRel) {
@@ -75,7 +75,7 @@ new AssetGraph({ root: 'docs/_dist' })
       }
 
       const resourceHintRelations = asset.outgoingRelations.filter((r) =>
-        ['HtmlPreloadLink', 'HtmlPrefetchLink'].includes(r.type)
+        ['HtmlPreloadLink', 'HtmlPrefetchLink'].includes(r.type),
       );
 
       for (const rel of resourceHintRelations) {
@@ -85,7 +85,7 @@ new AssetGraph({ root: 'docs/_dist' })
       }
 
       const preconnectRelations = asset.outgoingRelations.filter((r) =>
-        ['HtmlPreconnectLink'].includes(r.type)
+        ['HtmlPreconnectLink'].includes(r.type),
       );
 
       for (const rel of preconnectRelations) {

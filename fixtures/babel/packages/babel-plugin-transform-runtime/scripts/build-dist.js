@@ -83,7 +83,7 @@ function writeCoreJS({
   for (const corejsPath of paths) {
     outputFile(
       path.join(pkgDirname, runtimeRoot, `${corejsPath}.js`),
-      `module.exports = require("${corejsRoot}/${corejsPath}");`
+      `module.exports = require("${corejsRoot}/${corejsPath}");`,
     );
   }
 }
@@ -101,7 +101,7 @@ function writeHelperFiles(runtimeName, { esm, corejs }) {
       pkgDirname,
       'helpers',
       esm ? 'esm' : '',
-      `${helperName}.js`
+      `${helperName}.js`,
     );
 
     outputFile(
@@ -109,7 +109,7 @@ function writeHelperFiles(runtimeName, { esm, corejs }) {
       buildHelper(runtimeName, pkgDirname, helperFilename, helperName, {
         esm,
         corejs,
-      })
+      }),
     );
   }
 }
@@ -119,7 +119,7 @@ function getRuntimeRoot(runtimeName) {
     __dirname,
     '..',
     '..',
-    runtimeName.replace(/^@babel\//, 'babel-')
+    runtimeName.replace(/^@babel\//, 'babel-'),
   );
 }
 
@@ -129,7 +129,7 @@ function buildHelper(
   pkgDirname,
   helperFilename,
   helperName,
-  { esm, corejs }
+  { esm, corejs },
 ) {
   const tree = t.program([], [], esm ? 'module' : 'script');
   const dependencies = {};
@@ -152,7 +152,7 @@ function buildHelper(
     helperName,
     (dep) => dependencies[dep],
     esm ? null : template.expression.ast`module.exports`,
-    bindings
+    bindings,
   );
   tree.body.push(...helper.nodes);
 
@@ -172,7 +172,7 @@ function buildHelper(
       buildRuntimeRewritePlugin(
         runtimeName,
         path.relative(path.dirname(helperFilename), pkgDirname),
-        helperName
+        helperName,
       ),
     ],
     overrides: [

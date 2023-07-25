@@ -54,7 +54,7 @@ export function buildPrivateNamesNodes(privateNamesMap, loose, state) {
       initNodes.push(
         template.statement.ast`
           var ${id} = ${state.addHelper('classPrivateFieldLooseKey')}("${name}")
-        `
+        `,
       );
     } else if (isMethod && !isStatic) {
       if (isAccessor) {
@@ -237,7 +237,7 @@ const privateNameHandlerSpec = {
         this.receiver(member),
         t.cloneNode(id),
       ]),
-      t.identifier('value')
+      t.identifier('value'),
     );
   },
 
@@ -260,7 +260,7 @@ const privateNameHandlerLoose = {
         BASE: file.addHelper('classPrivateFieldLooseBase'),
         REF: object,
         PROP: privateNamesMap.get(name).id,
-      })
+      }),
     );
   },
 };
@@ -270,7 +270,7 @@ export function transformPrivateNamesUsage(
   path,
   privateNamesMap,
   loose,
-  state
+  state,
 ) {
   const body = path.get('body');
 
@@ -418,8 +418,8 @@ function buildPublicFieldInitLoose(ref, prop) {
     t.assignmentExpression(
       '=',
       t.memberExpression(ref, key, computed || t.isLiteral(key)),
-      value
-    )
+      value,
+    ),
   );
 }
 
@@ -432,7 +432,7 @@ function buildPublicFieldInitSpec(ref, prop, state) {
       ref,
       computed || t.isLiteral(key) ? key : t.stringLiteral(key.name),
       value,
-    ])
+    ]),
   );
 }
 
@@ -487,7 +487,7 @@ function buildPrivateMethodDeclaration(prop, privateNamesMap, loose = false) {
     params,
     body,
     generator,
-    async
+    async,
   );
   const isGetter = getId && !getterDeclared && params.length === 0;
   const isSetter = setId && !setterDeclared && params.length > 0;
@@ -516,7 +516,7 @@ function buildPrivateMethodDeclaration(prop, privateNamesMap, loose = false) {
     return t.variableDeclaration('var', [
       t.variableDeclarator(
         id,
-        t.functionExpression(id, params, body, generator, async)
+        t.functionExpression(id, params, body, generator, async),
       ),
     ]);
   }
@@ -566,7 +566,7 @@ export function buildFieldsInitNodes(
   props,
   privateNamesMap,
   state,
-  loose
+  loose,
 ) {
   const staticNodes = [];
   const instanceNodes = [];
@@ -591,14 +591,14 @@ export function buildFieldsInitNodes(
       case isStatic && isPrivate && isField && loose: {
         needsClassRef = true;
         staticNodes.push(
-          buildPrivateFieldInitLoose(t.cloneNode(ref), prop, privateNamesMap)
+          buildPrivateFieldInitLoose(t.cloneNode(ref), prop, privateNamesMap),
         );
         break;
       }
       case isStatic && isPrivate && isField && !loose: {
         needsClassRef = true;
         staticNodes.push(
-          buildPrivateStaticFieldInitSpec(prop, privateNamesMap)
+          buildPrivateStaticFieldInitSpec(prop, privateNamesMap),
         );
         break;
       }
@@ -610,13 +610,13 @@ export function buildFieldsInitNodes(
       case isStatic && isPublic && isField && !loose: {
         needsClassRef = true;
         staticNodes.push(
-          buildPublicFieldInitSpec(t.cloneNode(ref), prop, state)
+          buildPublicFieldInitSpec(t.cloneNode(ref), prop, state),
         );
         break;
       }
       case isInstance && isPrivate && isField && loose: {
         instanceNodes.push(
-          buildPrivateFieldInitLoose(t.thisExpression(), prop, privateNamesMap)
+          buildPrivateFieldInitLoose(t.thisExpression(), prop, privateNamesMap),
         );
         break;
       }
@@ -625,17 +625,21 @@ export function buildFieldsInitNodes(
           buildPrivateInstanceFieldInitSpec(
             t.thisExpression(),
             prop,
-            privateNamesMap
-          )
+            privateNamesMap,
+          ),
         );
         break;
       }
       case isInstance && isPrivate && isMethod && loose: {
         instanceNodes.unshift(
-          buildPrivateMethodInitLoose(t.thisExpression(), prop, privateNamesMap)
+          buildPrivateMethodInitLoose(
+            t.thisExpression(),
+            prop,
+            privateNamesMap,
+          ),
         );
         staticNodes.push(
-          buildPrivateMethodDeclaration(prop, privateNamesMap, loose)
+          buildPrivateMethodDeclaration(prop, privateNamesMap, loose),
         );
         break;
       }
@@ -644,21 +648,21 @@ export function buildFieldsInitNodes(
           buildPrivateInstanceMethodInitSpec(
             t.thisExpression(),
             prop,
-            privateNamesMap
-          )
+            privateNamesMap,
+          ),
         );
         staticNodes.push(
-          buildPrivateMethodDeclaration(prop, privateNamesMap, loose)
+          buildPrivateMethodDeclaration(prop, privateNamesMap, loose),
         );
         break;
       }
       case isStatic && isPrivate && isMethod && !loose: {
         needsClassRef = true;
         staticNodes.push(
-          buildPrivateStaticFieldInitSpec(prop, privateNamesMap)
+          buildPrivateStaticFieldInitSpec(prop, privateNamesMap),
         );
         staticNodes.unshift(
-          buildPrivateMethodDeclaration(prop, privateNamesMap, loose)
+          buildPrivateMethodDeclaration(prop, privateNamesMap, loose),
         );
         break;
       }
@@ -669,11 +673,11 @@ export function buildFieldsInitNodes(
             t.cloneNode(ref),
             prop,
             state,
-            privateNamesMap
-          )
+            privateNamesMap,
+          ),
         );
         staticNodes.unshift(
-          buildPrivateMethodDeclaration(prop, privateNamesMap, loose)
+          buildPrivateMethodDeclaration(prop, privateNamesMap, loose),
         );
         break;
       }
@@ -683,7 +687,7 @@ export function buildFieldsInitNodes(
       }
       case isInstance && isPublic && isField && !loose: {
         instanceNodes.push(
-          buildPublicFieldInitSpec(t.thisExpression(), prop, state)
+          buildPublicFieldInitSpec(t.thisExpression(), prop, state),
         );
         break;
       }
@@ -706,7 +710,7 @@ export function buildFieldsInitNodes(
       if (path.isClassExpression()) {
         path.scope.push({ id: ref });
         path.replaceWith(
-          t.assignmentExpression('=', t.cloneNode(ref), path.node)
+          t.assignmentExpression('=', t.cloneNode(ref), path.node),
         );
       } else if (!path.node.id) {
         // Anonymous class declaration

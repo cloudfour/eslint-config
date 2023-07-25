@@ -27,7 +27,7 @@ const commitHash = (function () {
 const now = new Date(
   process.env.SOURCE_DATE_EPOCH
     ? process.env.SOURCE_DATE_EPOCH * 1000
-    : Date.now()
+    : Date.now(),
 ).toUTCString();
 
 const banner = `/*
@@ -44,7 +44,7 @@ const onwarn = (warning) => {
   // eslint-disable-next-line no-console
   console.error(
     'Building Rollup produced warnings that need to be resolved. ' +
-      'Please keep in mind that the browser build may never have external dependencies!'
+      'Please keep in mind that the browser build may never have external dependencies!',
   );
   throw new Error(warning.message);
 };

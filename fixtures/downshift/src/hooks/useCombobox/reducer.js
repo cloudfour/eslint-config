@@ -32,7 +32,7 @@ export default function downshiftUseComboboxReducer(state, action) {
               state.highlightedIndex,
               props.items.length,
               action.getItemNodeFromIndex,
-              props.circularNavigation
+              props.circularNavigation,
             ),
           }
         : {
@@ -40,7 +40,7 @@ export default function downshiftUseComboboxReducer(state, action) {
               props,
               state,
               1,
-              action.getItemNodeFromIndex
+              action.getItemNodeFromIndex,
             ),
             isOpen: true,
           };
@@ -55,7 +55,7 @@ export default function downshiftUseComboboxReducer(state, action) {
               state.highlightedIndex,
               props.items.length,
               action.getItemNodeFromIndex,
-              props.circularNavigation
+              props.circularNavigation,
             ),
           }
         : {
@@ -63,7 +63,7 @@ export default function downshiftUseComboboxReducer(state, action) {
               props,
               state,
               -1,
-              action.getItemNodeFromIndex
+              action.getItemNodeFromIndex,
             ),
             isOpen: true,
           };
@@ -97,7 +97,7 @@ export default function downshiftUseComboboxReducer(state, action) {
           0,
           props.items.length,
           action.getItemNodeFromIndex,
-          false
+          false,
         ),
       };
       break;
@@ -109,7 +109,7 @@ export default function downshiftUseComboboxReducer(state, action) {
           props.items.length - 1,
           props.items.length,
           action.getItemNodeFromIndex,
-          false
+          false,
         ),
       };
       break;

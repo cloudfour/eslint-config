@@ -93,7 +93,7 @@ function reduceBadExampleSize({
 
   assert(
     reproducesBadCase(sourceText),
-    'Original source text should reproduce issue'
+    'Original source text should reproduce issue',
   );
   const parseResult = recast.parse(sourceText, { parser });
 
@@ -151,7 +151,7 @@ function reduceBadExampleSize({
    */
   function extractRelevantChild(node) {
     const childNodes = visitorKeys[node.type].flatMap((key) =>
-      Array.isArray(node[key]) ? node[key] : [node[key]]
+      Array.isArray(node[key]) ? node[key] : [node[key]],
     );
 
     for (const childNode of childNodes) {
@@ -200,7 +200,9 @@ function reduceBadExampleSize({
           // Try deleting the contents of the comment
           text.slice(0, comment.range[0] + 2) +
             text.slice(
-              comment.type === 'Block' ? comment.range[1] - 2 : comment.range[1]
+              comment.type === 'Block'
+                ? comment.range[1] - 2
+                : comment.range[1],
             ),
         ]) {
           if (reproducesBadCase(potentialSimplification)) {
@@ -215,18 +217,18 @@ function reduceBadExampleSize({
 
   pruneIrrelevantSubtrees(parseResult.program);
   const relevantChild = recast.print(
-    extractRelevantChild(parseResult.program)
+    extractRelevantChild(parseResult.program),
   ).code;
 
   assert(
     reproducesBadCase(relevantChild),
-    'Extracted relevant source text should reproduce issue'
+    'Extracted relevant source text should reproduce issue',
   );
   const result = removeIrrelevantComments(relevantChild);
 
   assert(
     reproducesBadCase(result),
-    'Source text with irrelevant comments removed should reproduce issue'
+    'Source text with irrelevant comments removed should reproduce issue',
   );
   return result;
 }

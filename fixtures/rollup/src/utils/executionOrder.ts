@@ -6,8 +6,10 @@ interface OrderedExecutionUnit {
   execIndex: number;
 }
 
-const compareExecIndex = <T extends OrderedExecutionUnit>(unitA: T, unitB: T) =>
-  unitA.execIndex > unitB.execIndex ? 1 : -1;
+const compareExecIndex = <T extends OrderedExecutionUnit>(
+  unitA: T,
+  unitB: T,
+) => (unitA.execIndex > unitB.execIndex ? 1 : -1);
 
 export function sortByExecutionOrder(units: OrderedExecutionUnit[]) {
   units.sort(compareExecIndex);
@@ -73,7 +75,7 @@ export function analyseModuleExecution(entryModules: Module[]) {
 function getCyclePath(
   module: Module | ExternalModule,
   parent: Module,
-  parents: Map<Module | ExternalModule, Module | null>
+  parents: Map<Module | ExternalModule, Module | null>,
 ) {
   const path = [relativeId(module.id)];
   let nextModule = parent;

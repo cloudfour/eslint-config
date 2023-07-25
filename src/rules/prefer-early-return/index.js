@@ -59,7 +59,7 @@ module.exports = {
       if (hasSimplifiableConditionalBody(body)) {
         context.report(
           body,
-          'Prefer an early return to a conditionally-wrapped function body'
+          'Prefer an early return to a conditionally-wrapped function body',
         );
       }
     }

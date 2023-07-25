@@ -41,7 +41,7 @@ const log = (message) =>
 /** @param {string} dir */
 const loadConfig = async (dir) => {
   const configModule = await import(join(dir, 'index.js')).then(
-    (m) => m.default
+    (m) => m.default,
   );
   const allRules = configModule.rules;
   const config = configModule.configs.recommended.rules;
@@ -126,17 +126,17 @@ ${rules.map((r) => `- ${printRuleLink(r)}`).join('\n')}
   console.log(
     `${kleur.blue(kleur.bold(groupName))}
 ${rules.map((r) => printRuleForCLI(r)).join('\n')}
-`
+`,
   );
 };
 
 const newRules = Object.keys(branchRules).filter(
-  (rule) => !(rule in mainRules)
+  (rule) => !(rule in mainRules),
 );
 printRuleList(newRules, 'New Rules');
 
 const deletedRules = Object.keys(mainRules).filter(
-  (rule) => !(rule in branchRules)
+  (rule) => !(rule in branchRules),
 );
 printRuleList(deletedRules, 'Deleted Rules');
 
@@ -148,7 +148,7 @@ const isEnabled = (rule) =>
 
 const newlyEnabledRules = Object.entries(branchConfig)
   .filter(
-    ([ruleName, value]) => isEnabled(value) && !isEnabled(mainConfig[ruleName])
+    ([ruleName, value]) => isEnabled(value) && !isEnabled(mainConfig[ruleName]),
   )
   .map(([ruleName]) => ruleName);
 printRuleList(newlyEnabledRules, 'Newly Enabled Rules');
@@ -156,7 +156,7 @@ printRuleList(newlyEnabledRules, 'Newly Enabled Rules');
 const newlyDisabledRules = Object.entries(mainConfig)
   .filter(
     ([ruleName, value]) =>
-      isEnabled(value) && !isEnabled(branchConfig[ruleName])
+      isEnabled(value) && !isEnabled(branchConfig[ruleName]),
   )
   .map(([ruleName]) => ruleName);
 printRuleList(newlyDisabledRules, 'Newly Disabled Rules');
@@ -209,7 +209,7 @@ const { versionBump, summary } = await prompts(
     },
   ],
   // eslint-disable-next-line @cloudfour/n/no-process-exit, @cloudfour/unicorn/no-process-exit
-  { onCancel: () => process.exit(1) }
+  { onCancel: () => process.exit(1) },
 );
 
 output = `${summary}\n${output}`;

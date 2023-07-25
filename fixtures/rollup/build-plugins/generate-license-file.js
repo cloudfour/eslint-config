@@ -52,7 +52,7 @@ function generateLicenseFile(dependencies) {
 
         licenses.add(license);
         return text;
-      }
+      },
     )
     .join('\n---------------------------------------\n\n');
   const licenseText =

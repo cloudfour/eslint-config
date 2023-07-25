@@ -98,7 +98,7 @@ export default declare((api, options) => {
 
         const right = path.get('right');
         right.replaceWith(
-          t.sequenceExpression([right.node, getAssertion(localName)])
+          t.sequenceExpression([right.node, getAssertion(localName)]),
         );
       } else if (left.isPattern()) {
         const ids = left.getOuterBindingIdentifiers();
@@ -114,7 +114,7 @@ export default declare((api, options) => {
         if (localName) {
           const right = path.get('right');
           right.replaceWith(
-            t.sequenceExpression([right.node, getAssertion(localName)])
+            t.sequenceExpression([right.node, getAssertion(localName)]),
           );
         }
       }
@@ -181,7 +181,7 @@ export default declare((api, options) => {
                 /\.mjs$/.test(state.filename)
                   ? mjsStrictNamespace
                   : strictNamespace,
-            }
+            },
           );
 
           for (const [source, metadata] of meta.source) {
@@ -215,7 +215,7 @@ export default declare((api, options) => {
 
             headers.push(
               header,
-              ...buildNamespaceInitStatements(meta, metadata, loose)
+              ...buildNamespaceInitStatements(meta, metadata, loose),
             );
           }
 

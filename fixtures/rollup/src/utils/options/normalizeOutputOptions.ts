@@ -17,7 +17,7 @@ import { warnUnknownOptions } from './options';
 export function normalizeOutputOptions(
   config: GenericConfigObject,
   inputOptions: NormalizedInputOptions,
-  unsetInputOptions: Set<string>
+  unsetInputOptions: Set<string>,
 ): { options: NormalizedOutputOptions; unsetOptions: Set<string> } {
   // These are options that may trigger special warnings or behaviour later
   // if the user did not select an explicit value
@@ -29,7 +29,7 @@ export function normalizeOutputOptions(
   const preserveModules = getPreserveModules(
     config,
     inlineDynamicImports,
-    inputOptions
+    inputOptions,
   );
   const file = getFile(config, preserveModules, inputOptions);
 
@@ -65,7 +65,7 @@ export function normalizeOutputOptions(
       config,
       inlineDynamicImports,
       preserveModules,
-      inputOptions
+      inputOptions,
     ),
     minifyInternalExports: getMinifyInternalExports(config, format, compact),
     name: config.name as string | undefined,
@@ -94,7 +94,7 @@ export function normalizeOutputOptions(
     config,
     Object.keys(outputOptions),
     'output options',
-    inputOptions.onwarn
+    inputOptions.onwarn,
   );
   return { options: outputOptions, unsetOptions };
 }
@@ -102,7 +102,7 @@ export function normalizeOutputOptions(
 const getFile = (
   config: GenericConfigObject,
   preserveModules: boolean,
-  inputOptions: NormalizedInputOptions
+  inputOptions: NormalizedInputOptions,
 ): string | undefined => {
   const file = config.file as string | undefined;
   if (typeof file === 'string') {
@@ -153,7 +153,7 @@ const getFormat = (config: GenericConfigObject): InternalModuleFormat => {
 
 const getInlineDynamicImports = (
   config: GenericConfigObject,
-  inputOptions: NormalizedInputOptions
+  inputOptions: NormalizedInputOptions,
 ): boolean => {
   const inlineDynamicImports =
     ((config.inlineDynamicImports as boolean | undefined) ??
@@ -177,7 +177,7 @@ const getInlineDynamicImports = (
 const getPreserveModules = (
   config: GenericConfigObject,
   inlineDynamicImports: boolean,
-  inputOptions: NormalizedInputOptions
+  inputOptions: NormalizedInputOptions,
 ): boolean => {
   const preserveModules =
     ((config.preserveModules as boolean | undefined) ??
@@ -204,7 +204,7 @@ const getPreserveModules = (
 };
 
 const getAmd = (
-  config: GenericConfigObject
+  config: GenericConfigObject,
 ): {
   define: string;
   id?: string;
@@ -218,7 +218,7 @@ const getAmd = (
 
 const getAddon = (
   config: GenericConfigObject,
-  name: string
+  name: string,
 ): (() => string | Promise<string>) => {
   const configAddon = config[name] as string | (() => string | Promise<string>);
   if (typeof configAddon === 'function') {
@@ -230,7 +230,7 @@ const getAddon = (
 
 const getDir = (
   config: GenericConfigObject,
-  file: string | undefined
+  file: string | undefined,
 ): string | undefined => {
   const dir = config.dir as string | undefined;
   if (typeof dir === 'string' && typeof file === 'string') {
@@ -246,7 +246,7 @@ const getDir = (
 
 const getDynamicImportFunction = (
   config: GenericConfigObject,
-  inputOptions: NormalizedInputOptions
+  inputOptions: NormalizedInputOptions,
 ): string | undefined => {
   const configDynamicImportFunction = config.dynamicImportFunction as
     | string
@@ -255,7 +255,7 @@ const getDynamicImportFunction = (
     warnDeprecation(
       `The "output.dynamicImportFunction" option is deprecated. Use the "renderDynamicImport" plugin hook instead.`,
       false,
-      inputOptions
+      inputOptions,
     );
   }
 
@@ -264,7 +264,7 @@ const getDynamicImportFunction = (
 
 const getEntryFileNames = (
   config: GenericConfigObject,
-  unsetOptions: Set<string>
+  unsetOptions: Set<string>,
 ): string => {
   const configEntryFileNames = config.entryFileNames as
     | string
@@ -278,7 +278,7 @@ const getEntryFileNames = (
 };
 
 function getExports(
-  config: GenericConfigObject
+  config: GenericConfigObject,
 ): 'default' | 'named' | 'none' | 'auto' {
   const configExports = config.exports as string | undefined;
   if (
@@ -296,7 +296,7 @@ function getExports(
 
 const getIndent = (
   config: GenericConfigObject,
-  compact: boolean
+  compact: boolean,
 ): string | true => {
   if (compact) {
     return '';
@@ -310,7 +310,7 @@ const getManualChunks = (
   config: GenericConfigObject,
   inlineDynamicImports: boolean,
   preserveModules: boolean,
-  inputOptions: NormalizedInputOptions
+  inputOptions: NormalizedInputOptions,
 ): ManualChunksOption => {
   const configManualChunks =
     (config.manualChunks as ManualChunksOption | undefined) ||
@@ -339,7 +339,7 @@ const getManualChunks = (
 const getMinifyInternalExports = (
   config: GenericConfigObject,
   format: InternalModuleFormat,
-  compact: boolean
+  compact: boolean,
 ): boolean =>
   (config.minifyInternalExports as boolean | undefined) ??
   (compact || format === 'es' || format === 'system');

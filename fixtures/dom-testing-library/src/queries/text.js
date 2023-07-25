@@ -16,7 +16,7 @@ function queryAllByText(
     trim,
     ignore = 'script, style',
     normalizer,
-  } = {}
+  } = {},
 ) {
   const matcher = exact ? matches : fuzzyMatches;
   const matchNormalizer = makeNormalizer({
