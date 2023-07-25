@@ -16,7 +16,7 @@ basicWalker.FieldDefinition = function (node: any, st: any, c: any) {
 function handlePureAnnotationsOfNode(
   node: acorn.Node,
   state: { commentIndex: number; commentNodes: CommentDescription[] },
-  type: string = node.type
+  type: string = node.type,
 ) {
   let commentNode = state.commentNodes[state.commentIndex];
   while (commentNode && node.start >= commentNode.end) {
@@ -31,7 +31,7 @@ function handlePureAnnotationsOfNode(
 
 function markPureNode(
   node: acorn.Node & { annotations?: CommentDescription[] },
-  comment: CommentDescription
+  comment: CommentDescription,
 ) {
   if (node.annotations) {
     node.annotations.push(comment);
@@ -50,7 +50,7 @@ const isPureComment = (comment: CommentDescription) =>
 
 export function markPureCallExpressions(
   comments: CommentDescription[],
-  esTreeAst: acorn.Node
+  esTreeAst: acorn.Node,
 ) {
   handlePureAnnotationsOfNode(esTreeAst, {
     commentIndex: 0,

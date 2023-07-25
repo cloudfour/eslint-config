@@ -31,8 +31,8 @@ exports.transforms = {
       String(
         execSync(`"${process.execPath}" ${executable} ${flag}`, {
           cwd: path.join(__dirname, '..'),
-        })
-      ).trim()
+        }),
+      ).trim(),
     );
     return [header, output, footer].join('\n\n');
   },
@@ -102,7 +102,7 @@ exports.transforms = {
     output = output
       .replace(
         new RegExp(`require\\(['"]${relativeDir}(.*?)['"]\\)`, 'g'),
-        "require('mocha$1')"
+        "require('mocha$1')",
       )
       .trim();
 

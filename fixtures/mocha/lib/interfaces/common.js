@@ -148,7 +148,7 @@ module.exports = function (suites, context, mocha) {
             `Suite "${suite.fullTitle()}" was defined but no callback was supplied. ` +
               `Supply a callback or explicitly skip the suite.`,
             'callback',
-            'function'
+            'function',
           );
         } else if (!opts.fn && suite.pending) {
           suites.shift();

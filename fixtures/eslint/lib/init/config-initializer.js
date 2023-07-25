@@ -61,7 +61,7 @@ function writeFile(config, format) {
 
   if (installedESLint) {
     log.info(
-      'ESLint was installed locally. We recommend using this local copy instead of your globally-installed copy.'
+      'ESLint was installed locally. We recommend using this local copy instead of your globally-installed copy.',
     );
   }
 }
@@ -173,7 +173,7 @@ function configureRules(answers, config) {
     {
       width: 30,
       total: BAR_TOTAL,
-    }
+    },
   );
 
   bar.tick(0); // Shows the progress bar
@@ -187,7 +187,7 @@ function configureRules(answers, config) {
       { baseConfig: newConfig, useEslintrc: false },
       (total) => {
         bar.tick(BAR_SOURCE_CODE_TOTAL / total);
-      }
+      },
     );
   } catch (error) {
     log.info('\n');
@@ -199,7 +199,7 @@ function configureRules(answers, config) {
   if (fileQty === 0) {
     log.info('\n');
     throw new Error(
-      'Automatic Configuration failed.  No files were able to be parsed.'
+      'Automatic Configuration failed.  No files were able to be parsed.',
     );
   }
 
@@ -216,8 +216,8 @@ function configureRules(answers, config) {
   // Create a list of recommended rules, because we don't want to disable them
   const recRules = new Set(
     Object.keys(recConfig.rules).filter((ruleId) =>
-      ConfigOps.isErrorSeverity(recConfig.rules[ruleId])
-    )
+      ConfigOps.isErrorSeverity(recConfig.rules[ruleId]),
+    ),
   );
 
   // Find and disable rules which had no error-free configuration
@@ -267,7 +267,7 @@ function configureRules(answers, config) {
   const finalRuleIds = Object.keys(newConfig.rules);
   const totalRules = finalRuleIds.length;
   const enabledRules = finalRuleIds.filter(
-    (ruleId) => newConfig.rules[ruleId] !== 0
+    (ruleId) => newConfig.rules[ruleId] !== 0,
   ).length;
   const resultMessage = [
     `\nEnabled ${enabledRules} out of ${totalRules}`,
@@ -381,7 +381,7 @@ function getLocalESLintVersion() {
   try {
     const eslintPath = ModuleResolver.resolve(
       'eslint',
-      path.join(process.cwd(), '__placeholder__.js')
+      path.join(process.cwd(), '__placeholder__.js'),
     );
     const eslint = require(eslintPath);
 
@@ -467,7 +467,7 @@ function askInstallModules(modules, packageJsonExists) {
   }
 
   log.info(
-    "The config that you've selected requires the following dependencies:\n"
+    "The config that you've selected requires the following dependencies:\n",
   );
   log.info(modules.join(' '));
   return inquirer
@@ -615,7 +615,7 @@ function promptUser() {
         message(answers) {
           const verb = semver.ltr(
             answers.localESLintVersion,
-            answers.requiredESLintVersionRange
+            answers.requiredESLintVersionRange,
           )
             ? 'upgrade'
             : 'downgrade';
@@ -639,7 +639,7 @@ function promptUser() {
         const modules = getModulesList(config);
 
         return askInstallModules(modules, earlyAnswers.packageJsonExists).then(
-          () => writeFile(config, earlyAnswers.format)
+          () => writeFile(config, earlyAnswers.format),
         );
       }
 
@@ -647,7 +647,7 @@ function promptUser() {
       if (earlyAnswers.source === 'guide') {
         if (!earlyAnswers.packageJsonExists) {
           log.info(
-            'A package.json is necessary to install plugins such as style guides. Run `npm init` to create a package.json file and try again.'
+            'A package.json is necessary to install plugins such as style guides. Run `npm init` to create a package.json file and try again.',
           );
           return;
         }
@@ -656,11 +656,11 @@ function promptUser() {
           earlyAnswers.installESLint === false &&
           !semver.satisfies(
             earlyAnswers.localESLintVersion,
-            earlyAnswers.requiredESLintVersionRange
+            earlyAnswers.requiredESLintVersionRange,
           )
         ) {
           log.info(
-            `Note: it might not work since ESLint's version is mismatched with the ${earlyAnswers.styleguide} config.`
+            `Note: it might not work since ESLint's version is mismatched with the ${earlyAnswers.styleguide} config.`,
           );
         }
 
@@ -684,7 +684,7 @@ function promptUser() {
         const modules = getModulesList(config);
 
         return askInstallModules(modules, earlyAnswers.packageJsonExists).then(
-          () => writeFile(config, earlyAnswers.format)
+          () => writeFile(config, earlyAnswers.format),
         );
       }
 
@@ -694,7 +694,7 @@ function promptUser() {
         const modules = getModulesList(config);
 
         return askInstallModules(modules).then(() =>
-          writeFile(config, earlyAnswers.format)
+          writeFile(config, earlyAnswers.format),
         );
       }
 
@@ -745,7 +745,7 @@ function promptUser() {
           const modules = getModulesList(config);
 
           return askInstallModules(modules).then(() =>
-            writeFile(config, earlyAnswers.format)
+            writeFile(config, earlyAnswers.format),
           );
         });
     });

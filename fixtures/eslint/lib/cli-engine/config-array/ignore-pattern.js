@@ -152,10 +152,10 @@ class IgnorePattern {
     debug('Create with: %o', ignorePatterns);
 
     const basePath = getCommonAncestorPath(
-      ignorePatterns.map((p) => p.basePath)
+      ignorePatterns.map((p) => p.basePath),
     );
     const patterns = ignorePatterns.flatMap((p) =>
-      p.getPatternsRelativeTo(basePath)
+      p.getPatternsRelativeTo(basePath),
     );
     const ig = ignore().add([...DotPatterns, ...patterns]);
     const dotIg = ignore().add(patterns);
@@ -166,7 +166,7 @@ class IgnorePattern {
       (filePath, dot = false) => {
         assert(
           path.isAbsolute(filePath),
-          "'filePath' should be an absolute path."
+          "'filePath' should be an absolute path.",
         );
         const relPathRaw = relative(basePath, filePath);
         const relPath = relPathRaw && relPathRaw + dirSuffix(filePath);
@@ -176,7 +176,7 @@ class IgnorePattern {
         debug('Check', { filePath, dot, relativePath: relPath, result });
         return result;
       },
-      { basePath, patterns }
+      { basePath, patterns },
     );
   }
 
@@ -225,7 +225,7 @@ class IgnorePattern {
   getPatternsRelativeTo(newBasePath) {
     assert(
       path.isAbsolute(newBasePath),
-      "'newBasePath' should be an absolute path."
+      "'newBasePath' should be an absolute path.",
     );
     const { basePath, loose, patterns } = this;
 

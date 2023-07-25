@@ -75,7 +75,7 @@ export default declare((api, options) => {
                 imported => ${resolveId}(${result}),
                 ${rejectId}
               )
-            )`
+            )`,
         );
       },
 
@@ -85,7 +85,7 @@ export default declare((api, options) => {
             if (requireId) {
               injectWrapper(
                 path,
-                buildAnonymousWrapper({ REQUIRE: requireId })
+                buildAnonymousWrapper({ REQUIRE: requireId }),
               );
             }
 
@@ -110,7 +110,7 @@ export default declare((api, options) => {
               strictMode,
               allowTopLevelThis,
               noInterop,
-            }
+            },
           );
 
           if (hasExports(meta)) {
@@ -127,15 +127,15 @@ export default declare((api, options) => {
               const interop = wrapInterop(
                 path,
                 t.identifier(metadata.name),
-                metadata.interop
+                metadata.interop,
               );
               if (interop) {
                 const header = t.expressionStatement(
                   t.assignmentExpression(
                     '=',
                     t.identifier(metadata.name),
-                    interop
-                  )
+                    interop,
+                  ),
                 );
                 header.loc = metadata.loc;
                 headers.push(header);
@@ -143,7 +143,7 @@ export default declare((api, options) => {
             }
 
             headers.push(
-              ...buildNamespaceInitStatements(meta, metadata, loose)
+              ...buildNamespaceInitStatements(meta, metadata, loose),
             );
           }
 
@@ -157,7 +157,7 @@ export default declare((api, options) => {
 
               AMD_ARGUMENTS: t.arrayExpression(amdArgs),
               IMPORT_NAMES: importNames,
-            })
+            }),
           );
         },
       },

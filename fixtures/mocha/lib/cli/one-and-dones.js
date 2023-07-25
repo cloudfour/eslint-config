@@ -27,14 +27,15 @@ const showKeys = (obj) => {
   const maxKeyLength = keys.reduce((max, key) => Math.max(max, key.length), 0);
   for (const key of keys
     .filter(
-      (key) => /^[a-z]/.test(key) && !obj[key].browserOnly && !obj[key].abstract
+      (key) =>
+        /^[a-z]/.test(key) && !obj[key].browserOnly && !obj[key].abstract,
     )
     .sort()) {
     const description = obj[key].description;
     console.log(
       `    ${align.left(key, maxKeyLength + 1)}${
         description ? `- ${description}` : ''
-      }`
+      }`,
     );
   }
 

@@ -103,8 +103,8 @@ function createBaseConfigArray({
   baseConfigArray.unshift(
     configArrayFactory.create(
       { ignorePatterns: IgnorePattern.DefaultPatterns },
-      { name: 'DefaultIgnorePattern' }
-    )[0]
+      { name: 'DefaultIgnorePattern' },
+    )[0],
   );
 
   /*
@@ -123,7 +123,7 @@ function createBaseConfigArray({
             // eslint-disable-next-line @cloudfour/unicorn/prefer-object-from-entries
             rules: rulePaths.reduce(
               (map, rulesPath) => Object.assign(map, loadRules(rulesPath, cwd)),
-              {}
+              {},
             ),
           },
           filePath: '',
@@ -158,7 +158,7 @@ function createCLIConfigArray({
   cliConfigArray.unshift(
     ...(ignorePath
       ? configArrayFactory.loadESLintIgnore(ignorePath)
-      : configArrayFactory.loadDefaultESLintIgnore())
+      : configArrayFactory.loadDefaultESLintIgnore()),
   );
 
   if (specificConfigPath) {
@@ -166,7 +166,7 @@ function createCLIConfigArray({
       ...configArrayFactory.loadFile(specificConfigPath, {
         name: '--config',
         basePath: cwd,
-      })
+      }),
     );
   }
 
@@ -277,7 +277,7 @@ class CascadingConfigArrayFactory {
     return this._finalizeConfigArray(
       this._loadConfigInAncestors(directoryPath),
       directoryPath,
-      ignoreNotFoundError
+      ignoreNotFoundError,
     );
   }
 
@@ -367,7 +367,7 @@ class CascadingConfigArrayFactory {
       parentPath && parentPath !== directoryPath
         ? this._loadConfigInAncestors(
             parentPath,
-            configsExistInSubdirs || configArray.length > 0
+            configsExistInSubdirs || configArray.length > 0,
           )
         : baseConfigArray;
 
@@ -428,7 +428,7 @@ class CascadingConfigArrayFactory {
 
         const personalConfigArray = configArrayFactory.loadInDirectory(
           homePath,
-          { name: 'PersonalConfig' }
+          { name: 'PersonalConfig' },
         );
 
         if (
@@ -440,7 +440,7 @@ class CascadingConfigArrayFactory {
 
           emitDeprecationWarning(
             lastElement.filePath,
-            'ESLINT_PERSONAL_CONFIG_LOAD'
+            'ESLINT_PERSONAL_CONFIG_LOAD',
           );
         }
 
@@ -462,7 +462,7 @@ class CascadingConfigArrayFactory {
       debug(
         'Configuration was determined: %o on %s',
         finalConfigArray,
-        directoryPath
+        directoryPath,
       );
     }
 

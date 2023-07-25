@@ -26,7 +26,7 @@ function waitForDomChange({
   if (!hasWarned) {
     hasWarned = true;
     console.warn(
-      `\`waitForDomChange\` has been deprecated. Use \`waitFor\` instead: https://testing-library.com/docs/dom-testing-library/api-async#waitfor.`
+      `\`waitForDomChange\` has been deprecated. Use \`waitFor\` instead: https://testing-library.com/docs/dom-testing-library/api-async#waitfor.`,
     );
   }
 
@@ -35,7 +35,7 @@ function waitForDomChange({
     const { MutationObserver } = getWindowFromNode(container);
     const observer = new MutationObserver(onMutation);
     runWithRealTimers(() =>
-      observer.observe(container, mutationObserverOptions)
+      observer.observe(container, mutationObserverOptions),
     );
 
     function onDone(error, result) {

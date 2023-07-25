@@ -26,7 +26,7 @@ function queryAllByRole(
     trim,
     normalizer,
     queryFallbacks = false,
-  } = {}
+  } = {},
 ) {
   const matcher = exact ? matches : fuzzyMatches;
   const matchNormalizer = makeNormalizer({
@@ -70,7 +70,7 @@ function queryAllByRole(
       const implicitRoles = getImplicitAriaRoles(node);
 
       return implicitRoles.some((implicitRole) =>
-        matcher(implicitRole, node, role, matchNormalizer)
+        matcher(implicitRole, node, role, matchNormalizer),
       );
     })
     .filter((element) =>
@@ -78,7 +78,7 @@ function queryAllByRole(
         ? isInaccessible(element, {
             isSubtreeInaccessible: cachedIsSubtreeInaccessible,
           }) === false
-        : true
+        : true,
     )
     .filter((element) => {
       if (name === undefined) {
@@ -90,7 +90,7 @@ function queryAllByRole(
         computeAccessibleName(element),
         element,
         name,
-        (text) => text
+        (text) => text,
       );
     });
 }
@@ -101,7 +101,7 @@ const getMultipleError = (c, role) =>
 const getMissingError = (
   container,
   role,
-  { hidden = getConfig().defaultHidden, name } = {}
+  { hidden = getConfig().defaultHidden, name } = {},
 ) => {
   const roles = prettyRoles(container, {
     hidden,

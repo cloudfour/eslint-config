@@ -62,7 +62,7 @@ const {
 
 const eslintRecommendedPath = path.resolve(
   __dirname,
-  '../../conf/eslint-recommended.js'
+  '../../conf/eslint-recommended.js',
 );
 const eslintAllPath = path.resolve(__dirname, '../../conf/eslint-all.js');
 const configFilenames = [
@@ -240,7 +240,7 @@ function loadPackageJSONConfigFile(filePath) {
     if (!Object.hasOwnProperty.call(packageData, 'eslintConfig')) {
       throw Object.assign(
         new Error("package.json file doesn't have 'eslintConfig' field."),
-        { code: 'ESLINT_CONFIG_FIELD_NOT_FOUND' }
+        { code: 'ESLINT_CONFIG_FIELD_NOT_FOUND' },
       );
     }
 
@@ -287,7 +287,7 @@ function configMissingError(configName, importerName) {
     {
       messageTemplate: 'extend-config-missing',
       messageData: { configName, importerName },
-    }
+    },
   );
 }
 
@@ -341,7 +341,7 @@ function writeDebugLogForLoading(request, relativeTo, filePath) {
   try {
     const packageJsonPath = ModuleResolver.resolve(
       `${request}/package.json`,
-      relativeTo
+      relativeTo,
     );
     const { version = 'unknown' } = require(packageJsonPath);
 
@@ -370,7 +370,7 @@ function createContext(
   providedType,
   providedName,
   providedFilePath,
-  providedMatchBasePath
+  providedMatchBasePath,
 ) {
   const filePath = providedFilePath ? path.resolve(cwd, providedFilePath) : '';
   const matchBasePath =
@@ -479,7 +479,7 @@ class ConfigArrayFactory {
         'config',
         name,
         path.join(directoryPath, filename),
-        basePath
+        basePath,
       );
 
       if (fs.existsSync(ctx.filePath)) {
@@ -544,7 +544,7 @@ class ConfigArrayFactory {
     const ctx = createContext(cwd, 'ignore', undefined, absolutePath, cwd);
 
     return new ConfigArray(
-      ...this._normalizeESLintIgnoreData(ignorePatterns, ctx)
+      ...this._normalizeESLintIgnoreData(ignorePatterns, ctx),
     );
   }
 
@@ -568,7 +568,7 @@ class ConfigArrayFactory {
       if (Object.hasOwnProperty.call(data, 'eslintIgnore')) {
         if (!Array.isArray(data.eslintIgnore)) {
           throw new TypeError(
-            'Package.json eslintIgnore property requires an array of paths'
+            'Package.json eslintIgnore property requires an array of paths',
           );
         }
 
@@ -577,11 +577,11 @@ class ConfigArrayFactory {
           'ignore',
           'eslintIgnore in package.json',
           packageJsonPath,
-          cwd
+          cwd,
         );
 
         return new ConfigArray(
-          ...this._normalizeESLintIgnoreData(data.eslintIgnore, ctx)
+          ...this._normalizeESLintIgnoreData(data.eslintIgnore, ctx),
         );
       }
     }
@@ -647,7 +647,7 @@ class ConfigArrayFactory {
     const criteria = OverrideTester.create(
       files,
       excludedFiles,
-      ctx.matchBasePath
+      ctx.matchBasePath,
     );
     const elements = this._normalizeObjectConfigDataBody(configBody, ctx);
 
@@ -697,14 +697,14 @@ class ConfigArrayFactory {
       settings,
       overrides: overrideList = [],
     },
-    ctx
+    ctx,
   ) {
     const extendList = Array.isArray(extend) ? extend : [extend];
     const ignorePattern =
       ignorePatterns &&
       new IgnorePattern(
         Array.isArray(ignorePatterns) ? ignorePatterns : [ignorePatterns],
-        ctx.matchBasePath
+        ctx.matchBasePath,
       );
 
     // Flatten `extends`.
@@ -897,7 +897,7 @@ class ConfigArrayFactory {
 
         const plugin = this._loadPlugin(name, ctx);
         return [plugin.id, plugin];
-      })
+      }),
     );
   }
 
@@ -942,7 +942,7 @@ class ConfigArrayFactory {
       debug(
         "Failed to load parser '%s' declared in '%s'.",
         nameOrPath,
-        ctx.name
+        ctx.name,
       );
       error.message = `Failed to load parser '${nameOrPath}' declared in '${ctx.name}': ${error.message}`;
 
@@ -972,7 +972,7 @@ class ConfigArrayFactory {
     const id = naming.getShorthandName(request, 'eslint-plugin');
     const relativeTo = path.join(
       resolvePluginsRelativeTo,
-      '__placeholder__.js'
+      '__placeholder__.js',
     );
 
     if (/\s+/u.test(name)) {
@@ -981,7 +981,7 @@ class ConfigArrayFactory {
         {
           messageTemplate: 'whitespace-found',
           messageData: { pluginName: request },
-        }
+        },
       );
 
       return new ConfigDependency({
@@ -1085,7 +1085,7 @@ class ConfigArrayFactory {
               ...ctx,
               type: 'implicit-processor',
               name: `${ctx.name}#processors["${pluginId}/${processorId}"]`,
-            }
+            },
           );
         }
       }

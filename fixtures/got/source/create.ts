@@ -86,7 +86,7 @@ export const defaultHandler: HandlerFunction = (options, next) => next(options);
  */
 const callInitHooks = (
   hooks: InitHook[] | undefined,
-  options?: Options
+  options?: Options,
 ): void => {
   if (hooks) {
     for (const hook of hooks) {
@@ -118,7 +118,7 @@ const create = (defaults: InstanceDefaults): Got => {
       Object.setPrototypeOf(typedResult, Object.getPrototypeOf(root));
       Object.defineProperties(
         typedResult,
-        Object.getOwnPropertyDescriptors(root)
+        Object.getOwnPropertyDescriptors(root),
       );
 
       // These should point to the new promise
@@ -138,7 +138,7 @@ const create = (defaults: InstanceDefaults): Got => {
         newOptions,
         iteration === defaults.handlers.length
           ? getPromiseOrStream
-          : iterateHandlers
+          : iterateHandlers,
       );
 
     if (is.plainObject(url)) {
@@ -166,7 +166,7 @@ const create = (defaults: InstanceDefaults): Got => {
       const normalizedOptions = normalizeArguments(
         url,
         options,
-        defaults.options
+        defaults.options,
       );
       normalizedOptions[kIsNormalizedAlready] = true;
 
@@ -174,7 +174,7 @@ const create = (defaults: InstanceDefaults): Got => {
         throw new RequestError(
           initHookError.message,
           initHookError,
-          normalizedOptions
+          normalizedOptions,
         );
       }
 
@@ -186,7 +186,7 @@ const create = (defaults: InstanceDefaults): Got => {
         return createRejection(
           error,
           defaults.options.hooks.beforeError,
-          options?.hooks?.beforeError
+          options?.hooks?.beforeError,
         );
       }
     }
@@ -229,7 +229,7 @@ const create = (defaults: InstanceDefaults): Got => {
   // Pagination
   const paginateEach = async function* <T, R>(
     url: string | URL,
-    options?: OptionsWithPagination<T, R>
+    options?: OptionsWithPagination<T, R>,
   ) {
     let normalizedOptions = normalizeArguments(url, options, defaults.options);
     normalizedOptions.resolveBodyOnly = false;
@@ -289,7 +289,7 @@ const create = (defaults: InstanceDefaults): Got => {
         normalizedOptions = normalizeArguments(
           undefined,
           optionsToMerge,
-          normalizedOptions
+          normalizedOptions,
         );
       }
 
@@ -299,12 +299,12 @@ const create = (defaults: InstanceDefaults): Got => {
 
   got.paginate = (<T, R>(
     url: string | URL,
-    options?: OptionsWithPagination<T, R>
+    options?: OptionsWithPagination<T, R>,
   ) => paginateEach(url, options)) as GotPaginate;
 
   got.paginate.all = (async <T, R>(
     url: string | URL,
-    options?: OptionsWithPagination<T, R>
+    options?: OptionsWithPagination<T, R>,
   ) => {
     const results: T[] = [];
 

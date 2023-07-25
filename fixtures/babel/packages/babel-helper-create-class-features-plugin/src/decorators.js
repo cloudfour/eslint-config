@@ -20,7 +20,7 @@ function method(key, body) {
     'method',
     t.identifier(key),
     [],
-    t.blockStatement(body)
+    t.blockStatement(body),
   );
 }
 
@@ -28,7 +28,7 @@ function takeDecorators(node) {
   let result;
   if (node.decorators && node.decorators.length > 0) {
     result = t.arrayExpression(
-      node.decorators.map((decorator) => decorator.expression)
+      node.decorators.map((decorator) => decorator.expression),
     );
   }
 
@@ -58,7 +58,7 @@ function extractElementDescriptor(/* this: File, */ classRef, superRef, path) {
     throw path.buildCodeFrameError(
       `Private ${
         isMethod ? 'methods' : 'fields'
-      } in decorated classes are not supported yet.`
+      } in decorated classes are not supported yet.`,
     );
   }
 
@@ -72,7 +72,7 @@ function extractElementDescriptor(/* this: File, */ classRef, superRef, path) {
       scope,
       file: this,
     },
-    true
+    true,
   ).replace();
 
   const properties = [
@@ -88,7 +88,7 @@ function extractElementDescriptor(/* this: File, */ classRef, superRef, path) {
     properties.push(prop('value', nameFunction({ node, id, scope }) || node));
   } else if (node.value) {
     properties.push(
-      method('value', template.statements.ast`return ${node.value}`)
+      method('value', template.statements.ast`return ${node.value}`),
     );
   } else {
     properties.push(prop('value', scope.buildUndefinedNode()));
@@ -132,7 +132,7 @@ export function buildDecoratedClass(ref, path, elements, file) {
 
   const classDecorators = takeDecorators(node);
   const definitions = t.arrayExpression(
-    elements.map(extractElementDescriptor.bind(file, node.id, superId))
+    elements.map(extractElementDescriptor.bind(file, node.id, superId)),
   );
 
   let replacement = template.expression.ast`
@@ -149,7 +149,7 @@ export function buildDecoratedClass(ref, path, elements, file) {
 
   if (!isStrict) {
     replacement.arguments[1].body.directives.push(
-      t.directive(t.directiveLiteral('use strict'))
+      t.directive(t.directiveLiteral('use strict')),
     );
   }
 

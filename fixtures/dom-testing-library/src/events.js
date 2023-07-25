@@ -353,13 +353,13 @@ const eventAliasMap = {
 function fireEvent(element, event) {
   if (!event) {
     throw new Error(
-      `Unable to fire an event - please provide an event object.`
+      `Unable to fire an event - please provide an event object.`,
     );
   }
 
   if (!element) {
     throw new Error(
-      `Unable to fire a "${event.type}" event - please provide a DOM element.`
+      `Unable to fire a "${event.type}" event - please provide a DOM element.`,
     );
   }
 
@@ -375,7 +375,7 @@ for (const key of Object.keys(eventMap)) {
   createEvent[key] = (node, init) => {
     if (!node) {
       throw new Error(
-        `Unable to fire a "${key}" event - please provide a DOM element.`
+        `Unable to fire a "${key}" event - please provide a DOM element.`,
       );
     }
 

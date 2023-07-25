@@ -39,10 +39,10 @@ function templatizeSvgString(src) {
 
   // Create blocks for SVG content, before and after
   const prepend = ltx.parse(
-    '<root>{% block before %}{% endblock %}{% block content %}</root>'
+    '<root>{% block before %}{% endblock %}{% block content %}</root>',
   );
   const append = ltx.parse(
-    '<root>{% endblock %}{% block after %}{% endblock %}</root>'
+    '<root>{% endblock %}{% block after %}{% endblock %}</root>',
   );
   svg.children = [...prepend.children, ...svg.children, ...append.children];
 
@@ -101,7 +101,7 @@ function svgToTwig() {
           }
 
           cb(null, file);
-        })
+        }),
       )
       // Append `.twig` to filenames
       .pipe(rename({ extname: '.svg.twig' }))

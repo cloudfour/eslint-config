@@ -46,7 +46,7 @@ module.exports = (config) => {
               // Write bundle to directory for debugging
               fs.writeFileSync(
                 path.join(bundleDirpath, `mocha.${Date.now()}.js`),
-                content
+                content,
               );
             }
           });
@@ -168,7 +168,7 @@ module.exports = (config) => {
     },
     require.resolve('unexpected-sinon'),
     require.resolve('unexpected-eventemitter/dist/unexpected-eventemitter.js'),
-    require.resolve('./test/browser-specific/setup')
+    require.resolve('./test/browser-specific/setup'),
   );
 
   config.set(cfg);

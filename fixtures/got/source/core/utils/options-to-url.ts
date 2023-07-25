@@ -26,26 +26,26 @@ export default (origin: string, options: URLOptions): URL => {
   if (options.path) {
     if (options.pathname) {
       throw new TypeError(
-        'Parameters `path` and `pathname` are mutually exclusive.'
+        'Parameters `path` and `pathname` are mutually exclusive.',
       );
     }
 
     if (options.search) {
       throw new TypeError(
-        'Parameters `path` and `search` are mutually exclusive.'
+        'Parameters `path` and `search` are mutually exclusive.',
       );
     }
 
     if (options.searchParams) {
       throw new TypeError(
-        'Parameters `path` and `searchParams` are mutually exclusive.'
+        'Parameters `path` and `searchParams` are mutually exclusive.',
       );
     }
   }
 
   if (options.search && options.searchParams) {
     throw new TypeError(
-      'Parameters `search` and `searchParams` are mutually exclusive.'
+      'Parameters `search` and `searchParams` are mutually exclusive.',
     );
   }
 

@@ -96,7 +96,7 @@ function applyDirectives(options) {
   const unusedDisableDirectives = options.directives
     .filter(
       (directive) =>
-        directive.type === 'disable' && !usedDisableDirectives.has(directive)
+        directive.type === 'disable' && !usedDisableDirectives.has(directive),
     )
     .map((directive) => ({
       ruleId: null,
@@ -138,7 +138,8 @@ module.exports = ({
 }) => {
   const blockDirectives = directives
     .filter(
-      (directive) => directive.type === 'disable' || directive.type === 'enable'
+      (directive) =>
+        directive.type === 'disable' || directive.type === 'enable',
     )
     .map((directive) => ({ ...directive, unprocessedDirective: directive }))
     .sort(compareLocations);
@@ -192,7 +193,7 @@ module.exports = ({
 
         default: {
           throw new TypeError(
-            `Unrecognized directive type '${directive.type}'`
+            `Unrecognized directive type '${directive.type}'`,
           );
         }
       }

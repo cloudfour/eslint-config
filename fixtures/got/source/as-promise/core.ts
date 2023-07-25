@@ -21,7 +21,7 @@ export const parseBody = (
   response: Response,
   responseType: string | ResponseType,
   parseJson: ParseJsonFunction,
-  encoding?: BufferEncoding
+  encoding?: BufferEncoding,
 ): unknown => {
   const { rawBody } = response;
 
@@ -43,7 +43,7 @@ export const parseBody = (
         message: `Unknown body type '${responseType}'`,
         name: 'Error',
       },
-      response
+      response,
     );
   } catch (error) {
     throw new ParseError(error, response);
@@ -57,17 +57,17 @@ export default class PromisableRequest extends Request {
   static normalizeArguments(
     url?: string | URL,
     nonNormalizedOptions?: Options,
-    defaults?: Defaults
+    defaults?: Defaults,
   ): NormalizedOptions {
     const options = super.normalizeArguments(
       url,
       nonNormalizedOptions,
-      defaults
+      defaults,
     );
 
     if (is.null_(options.encoding)) {
       throw new TypeError(
-        'To get a Buffer, set `options.responseType` to `buffer` instead'
+        'To get a Buffer, set `options.responseType` to `buffer` instead',
       );
     }
 
@@ -104,7 +104,7 @@ export default class PromisableRequest extends Request {
 
       options.retry.methods = [
         ...new Set(
-          options.retry.methods.map((method) => method.toUpperCase() as Method)
+          options.retry.methods.map((method) => method.toUpperCase() as Method),
         ),
       ];
       options.retry.statusCodes = [...new Set(options.retry.statusCodes)];
@@ -116,7 +116,7 @@ export default class PromisableRequest extends Request {
     if (is.undefined(options.retry.maxRetryAfter)) {
       options.retry.maxRetryAfter = Math.min(
         // TypeScript is not smart enough to handle `.filter(x => is.number(x))`.
-        ...[options.timeout.request, options.timeout.connect].filter(is.number)
+        ...[options.timeout.request, options.timeout.connect].filter(is.number),
       );
     }
 
@@ -137,7 +137,7 @@ export default class PromisableRequest extends Request {
 
       if (!is.function_(pagination.shouldContinue)) {
         throw new Error(
-          '`options.pagination.shouldContinue` must be implemented'
+          '`options.pagination.shouldContinue` must be implemented',
         );
       }
 
@@ -168,7 +168,7 @@ export default class PromisableRequest extends Request {
       mergedOptions = PromisableRequest.normalizeArguments(
         undefined,
         source,
-        mergedOptions
+        mergedOptions,
       );
     }
 

@@ -100,7 +100,7 @@ function useEnhancedReducer(reducer, initialState, props) {
 
       return newState;
     },
-    [reducer]
+    [reducer],
   );
 
   const [state, dispatch] = useReducer(enhancedReducer, initialState);
@@ -211,7 +211,7 @@ function getHighlightedIndexOnOpen(props, state, offset, getItemNodeFromIndex) {
       items.indexOf(selectedItem),
       items.length,
       getItemNodeFromIndex,
-      false
+      false,
     );
   }
 

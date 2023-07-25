@@ -52,7 +52,7 @@ module.exports = {
         // Optimize and process SVGs as React elements for use in documentation
         test: /\.svg$/,
         use: '@svgr/webpack',
-      }
+      },
     );
 
     return config;

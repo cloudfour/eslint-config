@@ -106,7 +106,7 @@ module.exports = {
                   },
                   additionalProperties: false,
                 },
-              ])
+              ]),
             ),
             additionalProperties: false,
           },
@@ -457,7 +457,7 @@ module.exports = {
       }
 
       checkSpacingAround(
-        sourceCode.getTokenBefore(node.right, astUtils.isNotOpeningParenToken)
+        sourceCode.getTokenBefore(node.right, astUtils.isNotOpeningParenToken),
       );
     }
 
@@ -536,7 +536,7 @@ module.exports = {
 
         if (!token) {
           throw new Error(
-            'Failed to find token get, set, or async beside method name'
+            'Failed to find token get, set, or async beside method name',
           );
         }
 

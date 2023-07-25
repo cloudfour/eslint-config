@@ -17,7 +17,7 @@ const preferEarlyReturn = require('./rules/prefer-early-return');
  */
 const hoist = (prefix, rules) =>
   Object.fromEntries(
-    Object.entries(rules).map(([key, val]) => [`${prefix}/${key}`, val])
+    Object.entries(rules).map(([key, val]) => [`${prefix}/${key}`, val]),
   );
 
 const rules = {

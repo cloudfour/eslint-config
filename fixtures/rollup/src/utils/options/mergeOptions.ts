@@ -31,7 +31,7 @@ export const commandAliases: { [key: string]: string } = {
 export function mergeOptions(
   config: GenericConfigObject,
   rawCommandOptions: GenericConfigObject = {},
-  defaultOnWarnHandler: WarningHandler = defaultOnWarn
+  defaultOnWarnHandler: WarningHandler = defaultOnWarn,
 ): MergedRollupOptions {
   const command = getCommandOptions({
     external: [],
@@ -45,11 +45,11 @@ export function mergeOptions(
   }
 
   const outputOptionsArray = ensureArray(
-    config.output
+    config.output,
   ) as GenericConfigObject[];
   if (outputOptionsArray.length === 0) outputOptionsArray.push({});
   const outputOptions = outputOptionsArray.map((singleOutputOptions) =>
-    mergeOutputOptions(singleOutputOptions, command, warn)
+    mergeOutputOptions(singleOutputOptions, command, warn),
   );
 
   warnUnknownOptions(
@@ -57,7 +57,7 @@ export function mergeOptions(
     [
       ...Object.keys(inputOptions),
       ...Object.keys(outputOptions[0]).filter(
-        (option) => option !== 'sourcemapPathTransform'
+        (option) => option !== 'sourcemapPathTransform',
       ),
       ...Object.keys(commandAliases),
       'config',
@@ -69,14 +69,14 @@ export function mergeOptions(
     ],
     'CLI flags',
     warn,
-    /^_$|output$|config/
+    /^_$|output$|config/,
   );
   inputOptions.output = outputOptions;
   return inputOptions;
 }
 
 function getCommandOptions(
-  rawCommandOptions: GenericConfigObject
+  rawCommandOptions: GenericConfigObject,
 ): CommandConfigObject {
   const external =
     rawCommandOptions.external && typeof rawCommandOptions.external === 'string'
@@ -109,7 +109,7 @@ type CompleteInputOptions<U extends keyof InputOptions> = {
 function mergeInputOptions(
   config: GenericConfigObject,
   overrides: CommandConfigObject,
-  defaultOnWarnHandler: WarningHandler
+  defaultOnWarnHandler: WarningHandler,
 ): InputOptions {
   const getOption = (name: string): any => overrides[name] ?? config[name];
   const inputOptions: CompleteInputOptions<keyof InputOptions> = {
@@ -143,14 +143,14 @@ function mergeInputOptions(
     Object.keys(inputOptions),
     'input options',
     inputOptions.onwarn,
-    /^output$/
+    /^output$/,
   );
   return inputOptions;
 }
 
 const getExternal = (
   config: GenericConfigObject,
-  overrides: CommandConfigObject
+  overrides: CommandConfigObject,
 ): ExternalOption => {
   const configExternal = config.external as ExternalOption | undefined;
   return typeof configExternal === 'function'
@@ -162,7 +162,7 @@ const getExternal = (
 
 const getOnWarn = (
   config: GenericConfigObject,
-  defaultOnWarnHandler: WarningHandler
+  defaultOnWarnHandler: WarningHandler,
 ): WarningHandler =>
   config.onwarn
     ? (warning: any) => config.onwarn(warning, defaultOnWarnHandler)
@@ -171,7 +171,7 @@ const getOnWarn = (
 const getObjectOption = (
   config: GenericConfigObject,
   overrides: GenericConfigObject,
-  name: string
+  name: string,
 ) => {
   const commandOption = normalizeObjectOptionValue(overrides[name]);
   const configOption = normalizeObjectOptionValue(config[name]);
@@ -185,7 +185,7 @@ const getObjectOption = (
 const getWatch = (
   config: GenericConfigObject,
   overrides: GenericConfigObject,
-  name: string
+  name: string,
 ) => config.watch !== false && getObjectOption(config, overrides, name);
 
 export const normalizeObjectOptionValue = (optionValue: any) => {
@@ -196,7 +196,7 @@ export const normalizeObjectOptionValue = (optionValue: any) => {
   if (Array.isArray(optionValue)) {
     return optionValue.reduce(
       (result, value) => value && result && { ...result, ...value },
-      {}
+      {},
     );
   }
 
@@ -214,7 +214,7 @@ type CompleteOutputOptions<U extends keyof OutputOptions> = {
 function mergeOutputOptions(
   config: GenericConfigObject,
   overrides: GenericConfigObject,
-  warn: WarningHandler
+  warn: WarningHandler,
 ): OutputOptions {
   const getOption = (name: string): any => overrides[name] ?? config[name];
   const outputOptions: CompleteOutputOptions<keyof OutputOptions> = {
@@ -262,7 +262,7 @@ function mergeOutputOptions(
     config,
     Object.keys(outputOptions),
     'output options',
-    warn
+    warn,
   );
   return outputOptions;
 }

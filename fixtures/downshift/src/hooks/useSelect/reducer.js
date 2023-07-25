@@ -35,7 +35,7 @@ export default function downshiftSelectReducer(state, action) {
           state.selectedItem ? props.items.indexOf(state.selectedItem) : -1,
           props.items,
           props.itemToString,
-          action.getItemNodeFromIndex
+          action.getItemNodeFromIndex,
         );
 
         changes = {
@@ -54,7 +54,7 @@ export default function downshiftSelectReducer(state, action) {
           props,
           state,
           1,
-          action.getItemNodeFromIndex
+          action.getItemNodeFromIndex,
         ),
         isOpen: true,
       };
@@ -67,7 +67,7 @@ export default function downshiftSelectReducer(state, action) {
           props,
           state,
           -1,
-          action.getItemNodeFromIndex
+          action.getItemNodeFromIndex,
         ),
         isOpen: true,
       };
@@ -93,7 +93,7 @@ export default function downshiftSelectReducer(state, action) {
           0,
           props.items.length,
           action.getItemNodeFromIndex,
-          false
+          false,
         ),
       };
 
@@ -106,7 +106,7 @@ export default function downshiftSelectReducer(state, action) {
           props.items.length - 1,
           props.items.length,
           action.getItemNodeFromIndex,
-          false
+          false,
         ),
       };
 
@@ -137,7 +137,7 @@ export default function downshiftSelectReducer(state, action) {
           state.highlightedIndex,
           props.items,
           props.itemToString,
-          action.getItemNodeFromIndex
+          action.getItemNodeFromIndex,
         );
 
         changes = {
@@ -157,7 +157,7 @@ export default function downshiftSelectReducer(state, action) {
           state.highlightedIndex,
           props.items.length,
           action.getItemNodeFromIndex,
-          props.circularNavigation
+          props.circularNavigation,
         ),
       };
 
@@ -170,7 +170,7 @@ export default function downshiftSelectReducer(state, action) {
           state.highlightedIndex,
           props.items.length,
           action.getItemNodeFromIndex,
-          props.circularNavigation
+          props.circularNavigation,
         ),
       };
 

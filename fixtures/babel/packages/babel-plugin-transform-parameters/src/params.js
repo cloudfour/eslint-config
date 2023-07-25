@@ -122,7 +122,7 @@ export default function convertFunctionParams(path, loose) {
             ASSIGNMENT_IDENTIFIER: t.cloneNode(left.node),
             DEFAULT_VALUE: right.node,
             UNDEFINED: undefinedNode,
-          })
+          }),
         );
         param.replaceWith(left.node);
       } else if (left.isObjectPattern() || left.isArrayPattern()) {
@@ -133,7 +133,7 @@ export default function convertFunctionParams(path, loose) {
             DEFAULT_VALUE: right.node,
             PARAMETER_NAME: t.cloneNode(paramName),
             UNDEFINED: undefinedNode,
-          })
+          }),
         );
         param.replaceWith(paramName);
       }
@@ -203,6 +203,6 @@ function buildScopeIIFE(shadowedParams, body) {
   }
 
   return t.returnStatement(
-    t.callExpression(t.arrowFunctionExpression(params, body), params)
+    t.callExpression(t.arrowFunctionExpression(params, body), params),
   );
 }

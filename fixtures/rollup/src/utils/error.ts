@@ -18,7 +18,7 @@ export function augmentCodeLocation(
   props: RollupLogProps,
   pos: number | { column: number; line: number },
   source: string,
-  id: string
+  id: string,
 ): void {
   if (typeof pos === 'object') {
     const { line, column } = pos;
@@ -86,7 +86,7 @@ export function errChunkNotGeneratedForFileName(name: string) {
 }
 
 export function errAssetReferenceIdNotFoundForSetSource(
-  assetReferenceId: string
+  assetReferenceId: string,
 ) {
   return {
     code: Errors.ASSET_NOT_FOUND,
@@ -112,7 +112,7 @@ export function errBadLoader(id: string) {
   return {
     code: Errors.BAD_LOADER,
     message: `Error loading ${relativeId(
-      id
+      id,
     )}: plugin load hook should return a string, a { code, map } object, or nothing/null`,
   };
 }
@@ -127,7 +127,7 @@ export function errDeprecation(deprecation: string | RollupWarning) {
 }
 
 export function errFileReferenceIdNotFoundForFilename(
-  assetReferenceId: string
+  assetReferenceId: string,
 ) {
   return {
     code: Errors.FILE_NOT_FOUND,
@@ -144,7 +144,7 @@ export function errFileNameConflict(fileName: string) {
 
 export function errInputHookInOutputPlugin(
   pluginName: string,
-  hookName: string
+  hookName: string,
 ) {
   return {
     code: Errors.INPUT_HOOK_IN_OUTPUT_PLUGIN,
@@ -155,12 +155,12 @@ export function errInputHookInOutputPlugin(
 export function errCannotAssignModuleToChunk(
   moduleId: string,
   assignToAlias: string,
-  currentAlias: string
+  currentAlias: string,
 ) {
   return {
     code: Errors.INVALID_CHUNK,
     message: `Cannot assign ${relativeId(
-      moduleId
+      moduleId,
     )} to the "${assignToAlias}" chunk as it is already in the "${currentAlias}" chunk.`,
   };
 }
@@ -176,24 +176,24 @@ export function errInvalidExportOptionValue(optionValue: string) {
 export function errIncompatibleExportOptionValue(
   optionValue: string,
   keys: string[],
-  entryModule: string
+  entryModule: string,
 ) {
   return {
     code: 'INVALID_EXPORT_OPTION',
     message: `"${optionValue}" was specified for "output.exports", but entry module "${relativeId(
-      entryModule
+      entryModule,
     )}" has the following exports: ${keys.join(', ')}`,
   };
 }
 
 export function errInternalIdCannotBeExternal(
   source: string,
-  importer: string
+  importer: string,
 ) {
   return {
     code: Errors.INVALID_EXTERNAL_ID,
     message: `'${source}' is imported as an external by ${relativeId(
-      importer
+      importer,
     )}, but is already an existing non-external module id.`,
   };
 }
@@ -221,28 +221,28 @@ export function errInvalidRollupPhaseForChunkEmission() {
 
 export function errImplicitDependantCannotBeExternal(
   unresolvedId: string,
-  implicitlyLoadedBefore: string
+  implicitlyLoadedBefore: string,
 ) {
   return {
     code: Errors.MISSING_IMPLICIT_DEPENDANT,
     message: `Module "${relativeId(
-      unresolvedId
+      unresolvedId,
     )}" that should be implicitly loaded before "${relativeId(
-      implicitlyLoadedBefore
+      implicitlyLoadedBefore,
     )}" cannot be external.`,
   };
 }
 
 export function errUnresolvedImplicitDependant(
   unresolvedId: string,
-  implicitlyLoadedBefore: string
+  implicitlyLoadedBefore: string,
 ) {
   return {
     code: Errors.MISSING_IMPLICIT_DEPENDANT,
     message: `Module "${relativeId(
-      unresolvedId
+      unresolvedId,
     )}" that should be implicitly loaded before "${relativeId(
-      implicitlyLoadedBefore
+      implicitlyLoadedBefore,
     )}" could not be resolved.`,
   };
 }
@@ -254,7 +254,7 @@ export function errImplicitDependantIsNotIncluded(module: Module) {
   return {
     code: Errors.MISSING_IMPLICIT_DEPENDANT,
     message: `Module "${relativeId(
-      module.id
+      module.id,
     )}" that should be implicitly loaded before "${
       implicitDependencies.length === 1
         ? implicitDependencies[0]
@@ -270,7 +270,7 @@ export function errMixedExport(facadeModuleId: string, name?: string) {
     code: Errors.MIXED_EXPORTS,
     id: facadeModuleId,
     message: `Entry module "${relativeId(
-      facadeModuleId
+      facadeModuleId,
     )}" is using named and default exports together. Consumers of your bundle will have to use \`${
       name || 'chunk'
     }["default"]\` to access the default export, which may not be what you want. Use \`output.exports: "named"\` to disable this warning`,
@@ -281,16 +281,16 @@ export function errMixedExport(facadeModuleId: string, name?: string) {
 export function errNamespaceConflict(
   name: string,
   reexportingModule: Module,
-  additionalExportAllModule: Module
+  additionalExportAllModule: Module,
 ) {
   return {
     code: Errors.NAMESPACE_CONFLICT,
     message: `Conflicting namespaces: ${relativeId(
-      reexportingModule.id
+      reexportingModule.id,
     )} re-exports '${name}' from both ${relativeId(
-      reexportingModule.exportsAll[name]
+      reexportingModule.exportsAll[name],
     )} and ${relativeId(
-      additionalExportAllModule.exportsAll[name]
+      additionalExportAllModule.exportsAll[name],
     )} (will be ignored)`,
     name,
     reexporter: reexportingModule.id,
@@ -324,13 +324,13 @@ export function errUnresolvedImport(source: string, importer: string) {
 
 export function errUnresolvedImportTreatedAsExternal(
   source: string,
-  importer: string
+  importer: string,
 ) {
   return {
     code: Errors.UNRESOLVED_IMPORT,
     importer: relativeId(importer),
     message: `'${source}' is imported by ${relativeId(
-      importer
+      importer,
     )}, but could not be resolved – treating it as an external dependency`,
     source,
     url: 'https://rollupjs.org/guide/en/#warning-treating-module-as-external-dependency',
@@ -356,13 +356,13 @@ export function errFailedValidation(message: string) {
 export function warnDeprecation(
   deprecation: string | RollupWarning,
   activeDeprecation: boolean,
-  options: NormalizedInputOptions
+  options: NormalizedInputOptions,
 ): void {
   warnDeprecationWithOptions(
     deprecation,
     activeDeprecation,
     options.onwarn,
-    options.strictDeprecations
+    options.strictDeprecations,
   );
 }
 
@@ -370,7 +370,7 @@ export function warnDeprecationWithOptions(
   deprecation: string | RollupWarning,
   activeDeprecation: boolean,
   warn: WarningHandler,
-  strictDeprecations: boolean
+  strictDeprecations: boolean,
 ): void {
   if (!activeDeprecation && !strictDeprecations) return;
   const warning = errDeprecation(deprecation);

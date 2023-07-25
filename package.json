@@ -63,7 +63,7 @@
     "check-lint": "eslint --format=pretty --ext=.js,.mjs,.cjs . && prettier --check .",
     "load-fixture-repo": "node fixtures/load-repo",
     "lint": "eslint --format=pretty --ext=.js,.mjs,.cjs --fix . && prettier --write .",
-    "build": "node build.js",
+    "build": "node build.mjs",
     "changeset": "changeset",
     "version": "changeset version && prettier --write .",
     "release": "npm run build && changeset publish"

@@ -34,7 +34,10 @@ export type ErrorCode =
 export class TimeoutError extends Error {
   code: ErrorCode;
 
-  constructor(threshold: number, public event: string) {
+  constructor(
+    threshold: number,
+    public event: string,
+  ) {
     super(`Timeout awaiting '${event}' for ${threshold}ms`);
 
     this.name = 'TimeoutError';
@@ -45,7 +48,7 @@ export class TimeoutError extends Error {
 export default (
   request: ClientRequest,
   delays: Delays,
-  options: TimedOutOptions
+  options: TimedOutOptions,
 ): (() => void) => {
   if (reentry in request) {
     return noop;
@@ -58,13 +61,13 @@ export default (
   const addTimeout = (
     delay: number,
     callback: (delay: number, event: string) => void,
-    event: string
+    event: string,
   ): typeof noop => {
     const timeout = setTimeout(
       callback,
       delay,
       delay,
-      event
+      event,
     ) as unknown as NodeJS.Timeout;
 
     timeout.unref();
@@ -133,7 +136,7 @@ export default (
     /* istanbul ignore next: hard to test */
     if (socket.connecting) {
       const hasPath = Boolean(
-        socketPath ?? net.isIP(hostname ?? host ?? '') !== 0
+        socketPath ?? net.isIP(hostname ?? host ?? '') !== 0,
       );
 
       if (
@@ -144,7 +147,7 @@ export default (
         const cancelTimeout = addTimeout(
           delays.lookup,
           timeoutHandler,
-          'lookup'
+          'lookup',
         );
         once(socket, 'lookup', cancelTimeout);
       }
@@ -172,7 +175,7 @@ export default (
           const cancelTimeout = addTimeout(
             delays.secureConnect,
             timeoutHandler,
-            'secureConnect'
+            'secureConnect',
           );
           once(socket, 'secureConnect', cancelTimeout);
         });
@@ -198,7 +201,7 @@ export default (
       const cancelTimeout = addTimeout(
         delays.response,
         timeoutHandler,
-        'response'
+        'response',
       );
       once(request, 'response', cancelTimeout);
     });
