@@ -159,6 +159,11 @@ module.exports.configs = {
             alphabetize: { order: 'asc', caseInsensitive: true },
           },
         ],
+        // Avoid multiple import statements in the same file for the same module
+        // prefer-inline means it is preferred to use inline `type` imports combined with non-types
+        // instead of separate imports for types and non-types
+        // e.g. import { Foo, type Bar } from 'something' is preferred over having separate import statements
+        'import/no-duplicates': ['error', { 'prefer-inline': true }],
         // Used for sorting members within an import statement alphabetically
         'sort-imports': ['error', { ignoreDeclarationSort: true }],
 
@@ -282,6 +287,7 @@ module.exports.configs = {
           '@typescript-eslint/no-unused-vars': 'off', // TS checks this via noUnusedLocals / noUnusedParameters
           '@typescript-eslint/no-empty-function': 'off', // Non-TS version of rule is not used either
           '@typescript-eslint/unbound-method': 'off', // It is pretty common for this already being handled outside of what TS/ESLint can be aware of
+          '@typescript-eslint/no-import-type-side-effects': 'error',
           'no-unused-expressions': 'off',
           '@typescript-eslint/no-unused-expressions': ['error'], // This rule is like the built in ESLint rule but it supports optional chaining
           // Replacing the built-in rule with the version that works well with TS
