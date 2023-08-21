@@ -28,6 +28,8 @@ with `cloudfour/`, because the plugins are exposed through this "super-plugin".
 }
 ```
 
+In addition to the `recommended` configuration, `@cloudfour/eslint-plugin` also re-exports typescript-eslint's [`disable-type-checked` configuration](https://typescript-eslint.io/linting/configs/#disable-type-checked). This configuration disables any rules that depend on typescript-eslint's typescript integration.
+
 ## Installation
 
 ```sh
