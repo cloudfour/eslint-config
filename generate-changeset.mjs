@@ -73,28 +73,28 @@ const printRuleForCLI = (ruleName) => {
 const printRuleConfig = (rule) => JSON.stringify(rule, null, 2);
 
 const dir = join(process.cwd(), 'tmp-eslint-config');
-// if (await stat(dir)) {
-//   log('Updating second copy of repo to latest main');
-//   await runCommand('git', ['reset', '--hard', 'HEAD'], { cwd: dir });
-//   await runCommand('git', ['checkout', 'main'], { cwd: dir });
-//   await runCommand('git', ['fetch'], { cwd: dir });
-//   await runCommand('git', ['reset', '--hard', 'origin/main'], { cwd: dir });
-// } else {
-//   log('Cloning second copy of repo...');
-//   const url = 'https://github.com/cloudfour/eslint-config';
-//   await runCommand('git', ['clone', url, dir]);
-// }
-// log('Updating this branch to be up to date with main');
-// await runCommand('git', ['fetch']);
-// await runCommand('git', ['merge', 'origin/main']);
-// log('Installing/updating dependencies on main');
-// await runCommand('npm', ['install'], { cwd: dir });
-// log('Building on main');
-// await runCommand('npm', ['run', 'build'], { cwd: dir });
-// log('Installing/updating dependencies on this branch');
-// await runCommand('npm', ['install']);
-// log('Building on this branch');
-// await runCommand('npm', ['run', 'build']);
+if (await stat(dir)) {
+  log('Updating second copy of repo to latest main');
+  await runCommand('git', ['reset', '--hard', 'HEAD'], { cwd: dir });
+  await runCommand('git', ['checkout', 'main'], { cwd: dir });
+  await runCommand('git', ['fetch'], { cwd: dir });
+  await runCommand('git', ['reset', '--hard', 'origin/main'], { cwd: dir });
+} else {
+  log('Cloning second copy of repo...');
+  const url = 'https://github.com/cloudfour/eslint-config';
+  await runCommand('git', ['clone', url, dir]);
+}
+log('Updating this branch to be up to date with main');
+await runCommand('git', ['fetch']);
+await runCommand('git', ['merge', 'origin/main']);
+log('Installing/updating dependencies on main');
+await runCommand('npm', ['install'], { cwd: dir });
+log('Building on main');
+await runCommand('npm', ['run', 'build'], { cwd: dir });
+log('Installing/updating dependencies on this branch');
+await runCommand('npm', ['install']);
+log('Building on this branch');
+await runCommand('npm', ['run', 'build']);
 log('Parsing out differences');
 
 const mainConf = await loadConfig(dir);
@@ -151,10 +151,11 @@ const isEnabled = (rule) =>
     ? isEnabled(rule[0])
     : rule === 'error' || rule === 2 || rule === 'warn' || rule === 1);
 
-/** @type {{
+/**
+ * @type {{
  * name: string,
  * get: (config: import('eslint').ESLint.Plugin) => Partial<import('eslint').Linter.RulesRecord> | undefined}[]
- * } */
+  } */
 const scopes = [
   {
     name: '`recommended` Config',
