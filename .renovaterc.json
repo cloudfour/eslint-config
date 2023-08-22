@@ -3,6 +3,12 @@
   "reviewers": ["team:dev"],
   "dependencyDashboard": true,
   "stabilityDays": 4,
+  "packageRules": [
+    {
+      "matchDepTypes": ["dependencies"],
+      "rangeStrategy": "bump"
+    }
+  ],
   "force": {
     "constraints": {
       "node": "< 15.0.0"
