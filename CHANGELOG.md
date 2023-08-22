@@ -1,5 +1,32 @@
 # @cloudfour/eslint-plugin
 
+## 23.0.0
+
+### Major Changes
+
+- [#551](https://github.com/cloudfour/eslint-config/pull/551) [`f11e794`](https://github.com/cloudfour/eslint-config/commit/f11e79495c11887fd4b89b0eeda8b191f7db44a2) Thanks [@calebeby](https://github.com/calebeby)! - Improve linting of `type` modifiers on imports.
+
+  **Reconfigured Rules (`recommended` Config)**
+
+  - [`@cloudfour/import/no-duplicates`](https://github.com/import-js/eslint-plugin-import/blob/v2.28.0/docs/rules/no-duplicates.md)
+    ```diff
+    - "error"
+    + [
+    +   "error",
+    +   {
+    +     "prefer-inline": true
+    +   }
+    + ]
+    ```
+
+  **Newly Enabled Rules (`recommended` Config » TS Overrides)**
+
+  - [`@cloudfour/typescript-eslint/no-import-type-side-effects`](https://typescript-eslint.io/rules/no-import-type-side-effects)
+
+### Minor Changes
+
+- [#551](https://github.com/cloudfour/eslint-config/pull/551) [`f11e794`](https://github.com/cloudfour/eslint-config/commit/f11e79495c11887fd4b89b0eeda8b191f7db44a2) Thanks [@calebeby](https://github.com/calebeby)! - Re-export `disable-type-checked` config from `@typescript-eslint/eslint-plugin`
+
 ## 22.0.0
 
 ### Major Changes
