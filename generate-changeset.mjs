@@ -97,11 +97,11 @@ log('Building on this branch');
 await runCommand('npm', ['run', 'build']);
 log('Parsing out differences');
 
-const mainConf = await loadConfig(dir);
-const branchConf = await loadConfig(process.cwd());
+const mainConfig = await loadConfig(dir);
+const branchConfig = await loadConfig(process.cwd());
 
-const mainRules = mainConf.rules || {};
-const branchRules = mainConf.rules || {};
+const mainRules = mainConfig.rules || {};
+const branchRules = mainConfig.rules || {};
 
 /** @param {string} _ruleName */
 const printRuleLink = (_ruleName) => {
@@ -172,8 +172,8 @@ const scopes = [
 ];
 
 for (const scope of scopes) {
-  const branchScopeRules = scope.get(branchConf) || {};
-  const mainScopeRules = scope.get(mainConf) || {};
+  const branchScopeRules = scope.get(branchConfig) || {};
+  const mainScopeRules = scope.get(mainConfig) || {};
   const newlyEnabledRules = Object.entries(branchScopeRules)
     .filter(
       ([ruleName, value]) =>
