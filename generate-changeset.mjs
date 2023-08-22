@@ -18,6 +18,7 @@ const writeChangeset = _writeChangeset.default;
  * @param {string} command
  * @param {readonly string[]} args
  * @param {import("child_process").SpawnOptionsWithoutStdio} [opts]
+ * @returns {Promise<void>}
  */
 const runCommand = (command, args, opts) =>
   new Promise((resolve, reject) => {
@@ -32,20 +33,21 @@ const runCommand = (command, args, opts) =>
   });
 
 /** @param {string} path */
-const stat = (path) => fs.stat(path).catch(() => /** @type {null} */ (null));
+const stat = (path) => fs.stat(path).catch(() => null);
 
 /** @param {string} message */
 const log = (message) =>
   console.log(kleur.bold(kleur.green(`\n🌀 ${message}`)));
 
-/** @param {string} dir */
+/**
+ * @param {string} dir
+ * @returns {Promise<import('eslint').ESLint.Plugin>}
+ */
 const loadConfig = async (dir) => {
   const configModule = await import(join(dir, 'index.js')).then(
     (m) => m.default,
   );
-  const allRules = configModule.rules;
-  const config = configModule.configs.recommended.rules;
-  return [allRules, config];
+  return configModule;
 };
 
 /**
@@ -95,18 +97,21 @@ log('Building on this branch');
 await runCommand('npm', ['run', 'build']);
 log('Parsing out differences');
 
-const [mainRules, mainConfig] = await loadConfig(dir);
-const [branchRules, branchConfig] = await loadConfig(process.cwd());
+const mainConfig = await loadConfig(dir);
+const branchConfig = await loadConfig(process.cwd());
+
+const mainRules = mainConfig.rules || {};
+const branchRules = mainConfig.rules || {};
 
 /** @param {string} _ruleName */
 const printRuleLink = (_ruleName) => {
   const isBuiltIn = !_ruleName.includes('/');
   const ruleName = removePrefix(_ruleName);
   const fullName = isBuiltIn ? ruleName : prefix + ruleName;
-  const rule = branchRules[ruleName] || mainRules[ruleName];
+  const rule = branchRules?.[ruleName] || mainRules?.[ruleName];
   const url = isBuiltIn
     ? `https://eslint.org/docs/rules/${fullName}`
-    : rule?.meta?.docs?.url;
+    : typeof rule === 'object' && rule?.meta?.docs?.url;
   return url ? `[\`${fullName}\`](${url})` : `\`${fullName}\``;
 };
 
@@ -146,45 +151,73 @@ const isEnabled = (rule) =>
     ? isEnabled(rule[0])
     : rule === 'error' || rule === 2 || rule === 'warn' || rule === 1);
 
-const newlyEnabledRules = Object.entries(branchConfig)
-  .filter(
-    ([ruleName, value]) => isEnabled(value) && !isEnabled(mainConfig[ruleName]),
-  )
-  .map(([ruleName]) => ruleName);
-printRuleList(newlyEnabledRules, 'Newly Enabled Rules');
+/**
+ * @type {{
+ * name: string,
+ * get: (config: import('eslint').ESLint.Plugin) => Partial<import('eslint').Linter.RulesRecord> | undefined}[]
+  } */
+const scopes = [
+  {
+    name: '`recommended` Config',
+    get: (config) => config.configs?.recommended?.rules,
+  },
+  {
+    name: '`recommended` Config » TS Overrides',
+    get: (config) => config.configs?.recommended?.overrides?.[0].rules,
+  },
+  {
+    name: '`disable-type-checked` Config',
+    get: (config) => config.configs?.['disable-type-checked']?.rules,
+  },
+];
 
-const newlyDisabledRules = Object.entries(mainConfig)
-  .filter(
-    ([ruleName, value]) =>
-      isEnabled(value) && !isEnabled(branchConfig[ruleName]),
-  )
-  .map(([ruleName]) => ruleName);
-printRuleList(newlyDisabledRules, 'Newly Disabled Rules');
+for (const scope of scopes) {
+  const branchScopeRules = scope.get(branchConfig) || {};
+  const mainScopeRules = scope.get(mainConfig) || {};
+  const newlyEnabledRules = Object.entries(branchScopeRules)
+    .filter(
+      ([ruleName, value]) =>
+        isEnabled(value) && !isEnabled(mainScopeRules[ruleName]),
+    )
+    .map(([ruleName]) => ruleName);
+  printRuleList(newlyEnabledRules, `Newly Enabled Rules (${scope.name})`);
 
-let hasOutputReconfiguredRules = false;
-for (const ruleName of Object.keys(branchConfig)) {
-  const branchConfigPrinted = printRuleConfig(branchConfig[ruleName]);
-  const mainConfigPrinted = printRuleConfig(mainConfig[ruleName]);
-  if (
-    branchConfigPrinted !== mainConfigPrinted &&
-    // Make sure that the enabled status did not change
-    isEnabled(branchConfig[ruleName]) === isEnabled(mainConfig[ruleName])
-  ) {
-    if (!hasOutputReconfiguredRules) {
-      output += '\n**Reconfigured Rules**\n';
-      console.log(`${kleur.blue(kleur.bold('Reconfigured Rules'))}`);
-      hasOutputReconfiguredRules = true;
-    }
-    console.log(printRuleForCLI(ruleName));
-    console.log(kleur.red(indent(mainConfigPrinted, '- ')));
-    console.log(kleur.green(indent(branchConfigPrinted, '+ ')));
+  const newlyDisabledRules = Object.entries(mainScopeRules)
+    .filter(
+      ([ruleName, value]) =>
+        isEnabled(value) && !isEnabled(branchScopeRules[ruleName]),
+    )
+    .map(([ruleName]) => ruleName);
+  printRuleList(newlyDisabledRules, `Newly Disabled Rules (${scope.name})`);
 
-    output += `
+  let hasOutputReconfiguredRules = false;
+  for (const ruleName of Object.keys(branchScopeRules)) {
+    const branchConfigPrinted = printRuleConfig(branchScopeRules[ruleName]);
+    const mainConfigPrinted = printRuleConfig(mainScopeRules[ruleName]);
+    if (
+      branchConfigPrinted !== mainConfigPrinted &&
+      // Make sure that it is enabled on both branches
+      isEnabled(branchScopeRules[ruleName]) &&
+      isEnabled(mainScopeRules[ruleName])
+    ) {
+      if (!hasOutputReconfiguredRules) {
+        output += `\n**Reconfigured Rules (${scope.name})**\n`;
+        console.log(
+          `${kleur.blue(kleur.bold(`Reconfigured Rules (${scope.name})`))}`,
+        );
+        hasOutputReconfiguredRules = true;
+      }
+      console.log(printRuleForCLI(ruleName));
+      console.log(kleur.red(indent(mainConfigPrinted, '- ')));
+      console.log(kleur.green(indent(branchConfigPrinted, '+ ')));
+
+      output += `
 - ${printRuleLink(ruleName)}
   \`\`\`diff
 ${indent(mainConfigPrinted, '  - ')}
 ${indent(branchConfigPrinted, '  + ')}
   \`\`\``;
+    }
   }
 }
 
@@ -215,7 +248,7 @@ const { versionBump, summary } = await prompts(
 output = `${summary}\n${output}`;
 
 const changeset = {
-  summary: prettier.format(output, { parser: 'markdown' }),
+  summary: await prettier.format(output, { parser: 'markdown' }),
   releases: [{ name: pkgName, type: versionBump }],
 };
 
