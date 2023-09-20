@@ -12,10 +12,5 @@
       "matchPackagePatterns": ["eslint"],
       "automerge": false
     }
-  ],
-  "force": {
-    "constraints": {
-      "node": "< 15.0.0"
-    }
-  }
+  ]
 }
