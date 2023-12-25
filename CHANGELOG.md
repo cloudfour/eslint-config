@@ -1,5 +1,11 @@
 # @cloudfour/eslint-plugin
 
+## 24.0.0
+
+### Major Changes
+
+- [#572](https://github.com/cloudfour/eslint-config/pull/572) [`5733042`](https://github.com/cloudfour/eslint-config/commit/5733042da82d606225d1c465cfb3392aa06a2ba7) Thanks [@calebeby](https://github.com/calebeby)! - Drop support for node 16. Now only node 18+ is supported
+
 ## 23.0.0
 
 ### Major Changes
