@@ -37,7 +37,7 @@
     "eslint-plugin-jsdoc": "^46.8.2",
     "eslint-plugin-n": "^16.2.0",
     "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-unicorn": "^48.0.1"
+    "eslint-plugin-unicorn": "^50.0.1"
   },
   "peerDependencies": {
     "eslint": "^8.0.0"
