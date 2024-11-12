@@ -1,5 +1,5 @@
 {
-	"name": "@cloudfour/eslint-plugin",
+	"name": "@cloudfour/eslint-config",
 	"version": "2.0.0-alpha.0",
 	"description": "Cloud Four's shareable ESLint configuration",
 	"author": "Cloud Four <info@cloudfour.com> (http://cloudfour.com)",
