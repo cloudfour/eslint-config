@@ -21,10 +21,10 @@ with `cloudfour/`, because the plugins are exposed through this "super-plugin".
 
 ```json
 {
-  "extends": ["plugin:@cloudfour/recommended"],
-  "rules": {
-    "@cloudfour/promise/no-native": "off"
-  }
+	"extends": ["plugin:@cloudfour/recommended"],
+	"rules": {
+		"@cloudfour/promise/no-native": "off"
+	}
 }
 ```
 

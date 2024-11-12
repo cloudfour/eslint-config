@@ -1,16 +1,16 @@
 {
-  "extends": ["config:base", ":automergeMinor"],
-  "reviewers": ["team:dev"],
-  "dependencyDashboard": true,
-  "stabilityDays": 4,
-  "packageRules": [
-    {
-      "matchDepTypes": ["dependencies"],
-      "rangeStrategy": "bump"
-    },
-    {
-      "matchPackagePatterns": ["eslint"],
-      "automerge": false
-    }
-  ]
+	"extends": ["config:base", ":automergeMinor"],
+	"reviewers": ["team:dev"],
+	"dependencyDashboard": true,
+	"stabilityDays": 4,
+	"packageRules": [
+		{
+			"matchDepTypes": ["dependencies"],
+			"rangeStrategy": "bump"
+		},
+		{
+			"matchPackagePatterns": ["eslint"],
+			"automerge": false
+		}
+	]
 }

@@ -7,26 +7,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
+  validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js 18
-        uses: actions/setup-node@v3
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - name: Cache node modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
+          node-version: 'lts/*'
+          cache: 'npm'
       - name: Install Dependencies
-        run: npm ci && npm link && npm link @cloudfour/eslint-plugin
-      - name: Run Build
-        run: npm run build
+        run: npm ci && npm link && npm link @cloudfour/eslint-config
       - name: Run Lint
-        run: npm run check-lint
+        run: npm run lint:check
