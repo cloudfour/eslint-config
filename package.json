@@ -36,5 +36,8 @@
 	},
 	"prettier": {
 		"singleQuote": true
+	},
+	"dependencies": {
+		"globals": "15.12.0"
 	}
 }
