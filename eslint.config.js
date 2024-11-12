@@ -1,27 +1,23 @@
-import js from '@eslint/js';
 import globals from 'globals';
+import pluginNode from 'eslint-plugin-n';
 
 export default [
-	js.configs.recommended,
-
+	// Plugins' recommended configs
+	pluginNode.configs['flat/recommended'],
+	// "Standards"
+	// Overrides
 	{
 		languageOptions: {
-			ecmaVersion: 2022,
-			sourceType: 'module',
 			parserOptions: {
 				ecmaFeatures: { jsx: true },
 			},
 			globals: {
-				...globals.es2021,
 				...globals.node,
-				document: false,
-				navigator: false,
-				window: false,
+				document: 'readonly',
+				navigator: 'readonly',
+				window: 'readonly',
 			},
 		},
-		rules: {
-			'no-unused-vars': 'warn',
-			'no-undef': 'warn',
-		},
+		rules: {},
 	},
 ];

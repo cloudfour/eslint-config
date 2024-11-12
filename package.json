@@ -38,6 +38,7 @@
 		"singleQuote": true
 	},
 	"dependencies": {
+		"eslint-plugin-n": "17.13.1",
 		"globals": "15.12.0"
 	}
 }
