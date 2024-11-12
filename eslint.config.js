@@ -1,9 +1,17 @@
 import globals from 'globals';
-import pluginNode from 'eslint-plugin-n';
+import jsdoc from 'eslint-plugin-jsdoc';
+import nodePlugin from 'eslint-plugin-n';
+import unicorn from 'eslint-plugin-unicorn';
+import importPlugin from 'eslint-plugin-import';
+import pluginPromise from 'eslint-plugin-promise';
 
 export default [
 	// Plugins' recommended configs
-	pluginNode.configs['flat/recommended'],
+	nodePlugin.configs['flat/recommended'],
+	jsdoc.configs['flat/recommended-error'],
+	unicorn.configs['flat/recommended'],
+	importPlugin.flatConfigs.recommended,
+	pluginPromise.configs['flat/recommended'],
 	// "Standards"
 	// Overrides
 	{
@@ -14,7 +22,6 @@ export default [
 				ecmaFeatures: { jsx: true },
 			},
 			globals: {
-				// ...globals.es2021,
 				...globals.node,
 				document: 'readonly',
 				navigator: 'readonly',
@@ -22,5 +29,18 @@ export default [
 			},
 		},
 		rules: {},
+		settings: {
+			jsdoc: {
+				mode: 'typescript',
+				tagNamePreference: {
+					TODO: 'todo',
+				},
+				preferredTypes: {
+					'*': 'any',
+					Function: '() => void',
+					function: '() => void',
+				},
+			},
+		},
 	},
 ];

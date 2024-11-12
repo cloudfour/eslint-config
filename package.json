@@ -38,7 +38,11 @@
 		"singleQuote": true
 	},
 	"dependencies": {
+		"eslint-plugin-import": "2.31.0",
+		"eslint-plugin-jsdoc": "50.5.0",
 		"eslint-plugin-n": "17.13.1",
+		"eslint-plugin-promise": "7.1.0",
+		"eslint-plugin-unicorn": "56.0.0",
 		"globals": "15.12.0"
 	}
 }
