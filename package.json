@@ -13,7 +13,7 @@
 		"url": "git+https://github.com/cloudfour/eslint-config.git"
 	},
 	"engines": {
-		"node": ">=16.0.0"
+		"node": ">=18.0.0"
 	},
 	"keywords": [
 		"eslint",
