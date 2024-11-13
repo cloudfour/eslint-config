@@ -22,8 +22,6 @@ export default [
 	nodePlugin.configs['flat/recommended'],
 	jsdoc.configs['flat/recommended-error'],
 	unicorn.configs['flat/recommended'],
-	importPlugin.flatConfigs.recommended,
-	pluginPromise.configs['flat/recommended'],
 	// "Standards"
 	...xo,
 	standard,
@@ -43,7 +41,11 @@ export default [
 				window: 'readonly',
 			},
 		},
-		plugins: { '@cloudfour': preferEarlyReturnPlugin },
+		plugins: {
+			import: importPlugin,
+			promise: pluginPromise,
+			'@cloudfour': preferEarlyReturnPlugin,
+		},
 		settings: {
 			jsdoc: {
 				mode: 'typescript',
