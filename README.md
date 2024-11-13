@@ -8,7 +8,7 @@ The plugins that this config exposes are:
 
 - [`n`](https://github.com/weiran-zsd/eslint-plugin-node) (maintained fork of original [`eslint-plugin-node`](https://github.com/mysticatea/eslint-plugin-node))
 - [`import`](https://github.com/benmosher/eslint-plugin-import)
-- [`standard`](https://github.com/standard/eslint-plugin-standard)
+- [`standard`](https://github.com/standard/eslint-config-standard)
 - [`promise`](https://github.com/xjamundx/eslint-plugin-promise)
 - [`unicorn`](https://github.com/sindresorhus/eslint-plugin-unicorn)
 - [`jsdoc`](https://github.com/gajus/eslint-plugin-jsdoc)

@@ -4,6 +4,10 @@ import nodePlugin from 'eslint-plugin-n';
 import unicorn from 'eslint-plugin-unicorn';
 import importPlugin from 'eslint-plugin-import';
 import pluginPromise from 'eslint-plugin-promise';
+import xo from 'eslint-config-xo';
+import standard from './eslint-standard-config.js';
+import disableStylistic from './eslint-stylistic-config.js';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default [
 	// Plugins' recommended configs
@@ -13,6 +17,8 @@ export default [
 	importPlugin.flatConfigs.recommended,
 	pluginPromise.configs['flat/recommended'],
 	// "Standards"
+	...xo,
+	standard,
 	// Overrides
 	{
 		languageOptions: {
@@ -43,4 +49,7 @@ export default [
 			},
 		},
 	},
+	// Disable stylistic rules
+	disableStylistic,
+	eslintConfigPrettier,
 ];
