@@ -23,12 +23,13 @@ export default [
 	// Our settings
 	{
 		languageOptions: {
-			ecmaVersion: 'latest',
+			ecmaVersion: 2022,
 			sourceType: 'module',
 			parserOptions: {
 				ecmaFeatures: { jsx: true },
 			},
 			globals: {
+				...globals.es2022,
 				...globals.node,
 				document: 'readonly',
 				navigator: 'readonly',
