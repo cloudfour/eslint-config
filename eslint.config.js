@@ -6,6 +6,7 @@ import nodePlugin from 'eslint-plugin-n';
 import pluginPromise from 'eslint-plugin-promise';
 import unicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 import standard from './eslint-standard-config.js';
 import disableStylistic from './eslint-stylistic-config.js';
@@ -22,6 +23,7 @@ export default [
 	nodePlugin.configs['flat/recommended'],
 	jsdoc.configs['flat/recommended-error'],
 	unicorn.configs['flat/recommended'],
+	...tseslint.configs.recommendedTypeChecked,
 	// "Standards"
 	...xo,
 	standard,
@@ -59,7 +61,7 @@ export default [
 				},
 			},
 		},
-		// Override rules
+		// Override rules from recommended configs
 		rules: {
 			'@cloudfour/prefer-early-return': 'error',
 			'no-unused-expressions': [
@@ -187,6 +189,86 @@ export default [
 			'jsdoc/require-jsdoc': 'off',
 			'jsdoc/require-returns-check': 'off', // Does not handle @returns with void or undefined
 			'jsdoc/tag-lines': ['error', 'any', { startLines: 1 }],
+		},
+	},
+	// Disable type checking for JS files
+	{
+		files: ['**/*.{js,mjs,cjs}'],
+		...tseslint.configs.disableTypeChecked,
+	},
+	// Override rules for TS files
+	{
+		files: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'],
+		languageOptions: {
+			parserOptions: {
+				projectService: true,
+				tsconfigRootDir: import.meta.dirname,
+			},
+		},
+		rules: {
+			// TS handles checking these
+			'n/no-missing-import': 'off',
+			'n/no-missing-require': 'off',
+
+			'no-import-assign': 'off', // TS handles this
+
+			// With TS, the only reason to have a @param tag
+			// is if a particular parameter needs a description,
+			// which is not true for all parameters
+			'jsdoc/require-param': 'off',
+			'jsdoc/require-param-type': 'off', // Types should be in type annotations instead
+			'jsdoc/require-param-description': 'error', // The only reason to have an @param in TS is to add a description
+			'jsdoc/require-returns-type': 'off', // Return types should be in type annotations instead
+			'jsdoc/require-returns-description': 'error', // The only reason to have an @returns in TS is to add a description
+			// Auto-fixes type imports to use the `import type` syntax
+			// This syntax is preferred because it makes the TS -> JS transformation easier
+			// because it doesn't require checking which imports are only referenced as types
+			'@typescript-eslint/consistent-type-imports': [
+				'error',
+				// We have set it to allow import('...') for types because that is the only kind of import that is allowed in global type augmentations
+				{ disallowTypeAnnotations: false },
+			],
+			// Don't try to use the result of expression whose type is `void`
+			'@typescript-eslint/no-confusing-void-expression': [
+				'error',
+				{ ignoreArrowShorthand: true },
+			],
+			// Don't use the void operator an an expression whose type is already `void`
+			'@typescript-eslint/no-meaningless-void-operator': 'error',
+			'@typescript-eslint/no-unnecessary-type-constraint': 'error',
+			'@typescript-eslint/array-type': ['error', { default: 'array' }], // Require consistency: Use foo[] instead of Array<foo>
+			'@typescript-eslint/ban-ts-comment': 'error',
+			'@typescript-eslint/explicit-module-boundary-types': 'off', // Type inference is useful even for public functions
+			'@typescript-eslint/no-explicit-any': 'off', // Any is an escape hatch, it should be allowed
+			'@typescript-eslint/no-floating-promises': 'off', // Don't force every promise rejection to be caught. Humans can decide when it makes sense to handle errors and when it doesn't
+			'@typescript-eslint/no-non-null-assertion': 'error', // Default is warn
+			'@typescript-eslint/no-unsafe-assignment': 'off', // Any is an escape hatch, let it be an escape hatch
+			'@typescript-eslint/no-unsafe-call': 'off', // Any is an escape hatch, let it be an escape hatch
+			'@typescript-eslint/no-unsafe-member-access': 'off', // Any is an escape hatch, let it be an escape hatch
+			'@typescript-eslint/no-unsafe-return': 'off', // Any is an escape hatch, let it be an escape hatch
+			'@typescript-eslint/no-unsafe-argument': 'off', // Any is an escape hatch, let it be an escape hatch
+			'@typescript-eslint/restrict-template-expressions': 'off', // Allow using any-typed-values in template expressions
+			'@typescript-eslint/no-unnecessary-condition': 'error', // This catches a lot of dead code that TS itself doesn't flag
+			'@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
+			'@typescript-eslint/prefer-optional-chain': 'error', // More readable syntax
+			'no-unused-vars': 'off', // TS checks this via noUnusedLocals / noUnusedParameters
+			'@typescript-eslint/no-unused-vars': 'off', // TS checks this via noUnusedLocals / noUnusedParameters
+			'@typescript-eslint/no-empty-function': 'off', // Non-TS version of rule is not used either
+			'@typescript-eslint/unbound-method': 'off', // It is pretty common for this already being handled outside of what TS/ESLint can be aware of
+			'@typescript-eslint/no-import-type-side-effects': 'error',
+			'no-unused-expressions': 'off',
+			'@typescript-eslint/no-unused-expressions': ['error'], // This rule is like the built in ESLint rule but it supports optional chaining
+			// Replacing the built-in rule with the version that works well with TS
+			'no-use-before-define': 'off',
+			'@typescript-eslint/no-use-before-define': [
+				'error',
+				{
+					functions: false,
+					classes: false,
+					variables: false,
+					ignoreTypeReferences: true,
+				},
+			],
 		},
 	},
 	// Disable stylistic rules
