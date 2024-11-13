@@ -2,6 +2,7 @@
  * This is a local copy of the pending updates to eslint-config-prettier that
  * will disable all the rules from the stylistic plugin.
  * They can be removed once #272 is merged and released.
+ *
  * @see https://github.com/prettier/eslint-config-prettier/pull/272/
  */
 
