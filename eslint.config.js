@@ -9,6 +9,13 @@ import globals from 'globals';
 
 import standard from './eslint-standard-config.js';
 import disableStylistic from './eslint-stylistic-config.js';
+import preferEarlyReturn from './rules/prefer-early-return/index.js';
+
+const preferEarlyReturnPlugin = {
+	rules: {
+		'prefer-early-return': preferEarlyReturn,
+	},
+};
 
 export default [
 	// Plugins' recommended configs
@@ -36,6 +43,7 @@ export default [
 				window: 'readonly',
 			},
 		},
+		plugins: { '@cloudfour': preferEarlyReturnPlugin },
 		settings: {
 			jsdoc: {
 				mode: 'typescript',
@@ -51,6 +59,7 @@ export default [
 		},
 		// Override rules
 		rules: {
+			'@cloudfour/prefer-early-return': 'error',
 			'no-unused-expressions': [
 				'error',
 				{
@@ -59,7 +68,6 @@ export default [
 					allowTaggedTemplates: false,
 				},
 			],
-			// '@cloudfour/prefer-early-return': 'error',
 			'no-return-assign': ['error'],
 			'func-names': 'off',
 			'prefer-const': [

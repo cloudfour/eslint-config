@@ -20,7 +20,7 @@
 		"eslintconfig"
 	],
 	"peerDependencies": {
-		"eslint": "^9.0.0"
+		"eslint": ">= 9"
 	},
 	"devDependencies": {
 		"eslint": "9.14.0",
