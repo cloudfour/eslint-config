@@ -23,10 +23,11 @@ export default [
 	nodePlugin.configs['flat/recommended'],
 	jsdoc.configs['flat/recommended-error'],
 	unicorn.configs['flat/recommended'],
-	...tseslint.configs.recommendedTypeChecked,
+
 	// "Standards"
 	...xo,
 	standard,
+
 	// Our settings
 	{
 		languageOptions: {
@@ -191,14 +192,17 @@ export default [
 			'jsdoc/tag-lines': ['error', 'any', { startLines: 1 }],
 		},
 	},
-	// Disable type checking for JS files
+
+	// Load TypeScript ESLint recommended config for TS files only
+	// @see https://eslint.org/docs/latest/use/configure/combine-configs#apply-a-config-array-to-a-subset-of-files
+	...tseslint.configs.recommendedTypeChecked.map((config) => ({
+		...config,
+		files: ['**/*.{ts,tsx,mts,cts}'],
+	})),
+
+	// Override recommended rules for TS files only
 	{
-		files: ['**/*.{js,mjs,cjs}'],
-		...tseslint.configs.disableTypeChecked,
-	},
-	// Override rules for TS files
-	{
-		files: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'],
+		files: ['**/*.{ts,tsx,mts,cts}'],
 		languageOptions: {
 			parserOptions: {
 				projectService: true,
