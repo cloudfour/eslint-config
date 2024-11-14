@@ -16,7 +16,7 @@ This config extends the following plugins:
 
 It also adds the following custom rules:
 
-- [`prefer-early-return`](./rules/prefer-early-return/)
+- [`prefer-early-return`](./src/rules/prefer-early-return/)
 
 ## Usage
 
