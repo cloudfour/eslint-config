@@ -10,7 +10,7 @@ import pluginTypeScript from 'typescript-eslint';
 
 import configStandard from './eslint-standard-config.js';
 import configStylistic from './eslint-stylistic-config.js';
-import rulePreferEarlyReturn from './rules/prefer-early-return/index.js';
+import rulePreferEarlyReturn from './src/rules/prefer-early-return/index.js';
 
 // Create a plugin containing our custom rules
 const pluginCloudFour = {
