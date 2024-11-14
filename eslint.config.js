@@ -1,32 +1,33 @@
-import eslintConfigPrettier from 'eslint-config-prettier';
-import xo from 'eslint-config-xo';
-import importPlugin from 'eslint-plugin-import';
-import jsdoc from 'eslint-plugin-jsdoc';
-import nodePlugin from 'eslint-plugin-n';
+import configPrettier from 'eslint-config-prettier';
+import configXO from 'eslint-config-xo';
+import pluginImport from 'eslint-plugin-import';
+import pluginJSDoc from 'eslint-plugin-jsdoc';
+import pluginNode from 'eslint-plugin-n';
 import pluginPromise from 'eslint-plugin-promise';
-import unicorn from 'eslint-plugin-unicorn';
+import pluginUnicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
-import tseslint from 'typescript-eslint';
+import pluginTypeScript from 'typescript-eslint';
 
-import standard from './eslint-standard-config.js';
-import disableStylistic from './eslint-stylistic-config.js';
-import preferEarlyReturn from './rules/prefer-early-return/index.js';
+import configStandard from './eslint-standard-config.js';
+import configStylistic from './eslint-stylistic-config.js';
+import rulePreferEarlyReturn from './rules/prefer-early-return/index.js';
 
-const preferEarlyReturnPlugin = {
+// Create a plugin containing our custom rules
+const pluginCloudFour = {
 	rules: {
-		'prefer-early-return': preferEarlyReturn,
+		'prefer-early-return': rulePreferEarlyReturn,
 	},
 };
 
 export default [
 	// Plugins' recommended configs
-	nodePlugin.configs['flat/recommended'],
-	jsdoc.configs['flat/recommended-error'],
-	unicorn.configs['flat/recommended'],
+	pluginNode.configs['flat/recommended'],
+	pluginJSDoc.configs['flat/recommended-error'],
+	pluginUnicorn.configs['flat/recommended'],
 
 	// "Standards"
-	...xo,
-	standard,
+	...configXO,
+	configStandard,
 
 	// Our settings
 	{
@@ -45,9 +46,9 @@ export default [
 			},
 		},
 		plugins: {
-			import: importPlugin,
+			import: pluginImport,
 			promise: pluginPromise,
-			'@cloudfour': preferEarlyReturnPlugin,
+			'@cloudfour': pluginCloudFour,
 		},
 		settings: {
 			jsdoc: {
@@ -195,7 +196,7 @@ export default [
 
 	// Load TypeScript ESLint recommended config for TS files only
 	// @see https://eslint.org/docs/latest/use/configure/combine-configs#apply-a-config-array-to-a-subset-of-files
-	...tseslint.configs.recommendedTypeChecked.map((config) => ({
+	...pluginTypeScript.configs.recommendedTypeChecked.map((config) => ({
 		...config,
 		files: ['**/*.{ts,tsx,mts,cts}'],
 	})),
@@ -275,7 +276,8 @@ export default [
 			],
 		},
 	},
+
 	// Disable stylistic rules
-	disableStylistic,
-	eslintConfigPrettier,
+	configStylistic,
+	configPrettier,
 ];
