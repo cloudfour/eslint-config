@@ -10,11 +10,11 @@ The following patterns are considered warnings:
 
 ```js
 function foo() {
-  if (a) {
-    b();
-    c();
-    d();
-  }
+	if (a) {
+		b();
+		c();
+		d();
+	}
 }
 ```
 
@@ -22,30 +22,30 @@ The following patterns are not warnings:
 
 ```js
 function foo() {
-  if (!a) {
-    return;
-  }
+	if (!a) {
+		return;
+	}
 
-  b();
-  c();
+	b();
+	c();
 }
 
 function bar() {
-  if (a) {
-    b();
-    c();
-  }
+	if (a) {
+		b();
+		c();
+	}
 
-  d();
+	d();
 }
 
 function baz() {
-  if (a) {
-    b();
-    c();
-  } else {
-    d();
-  }
+	if (a) {
+		b();
+		c();
+	} else {
+		d();
+	}
 }
 ```
 
@@ -55,10 +55,10 @@ This plugin takes one option: an object with a integer `maximumStatements` prope
 
 ```js
 function foo() {
-  if (a) {
-    b();
-    c();
-  }
+	if (a) {
+		b();
+		c();
+	}
 }
 ```
 
@@ -66,11 +66,11 @@ Setting `maximumStatements` to `1` or `0` will cause the above to be a warning. 
 
 ```js
 function foo() {
-  if (a) {
-    b();
-    c();
-    d();
-  }
+	if (a) {
+		b();
+		c();
+		d();
+	}
 }
 ```
 

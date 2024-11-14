@@ -1,5 +1,12 @@
 # @cloudfour/eslint-plugin
 
+## Unreleased
+
+### Breaking Changes
+
+- Changed from a "super plugin" to a flat config file.
+- Changed package name from `@cloudfour/eslint-plugin` to `@cloudfour/eslint-config`.
+
 ## 23.0.0
 
 ### Major Changes
@@ -471,11 +478,11 @@
 
   ```js
   function a() {
-    if (_) {
-      a();
-      b();
-      c();
-    }
+  	if (_) {
+  		a();
+  		b();
+  		c();
+  	}
   }
   ```
 
@@ -483,10 +490,10 @@
 
   ```js
   function a() {
-    if (!_) return;
-    a();
-    b();
-    c();
+  	if (!_) return;
+  	a();
+  	b();
+  	c();
   }
   ```
 

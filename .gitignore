@@ -1,5 +1,2 @@
 node_modules
-/dist/*.js
-.vscode/
-/fixtures/repos
-/tmp-eslint-config
+.vscode

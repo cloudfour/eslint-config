@@ -1,75 +1,43 @@
-# @cloudfour/eslint-plugin
+# @cloudfour/eslint-config
 
-[![NPM version](https://img.shields.io/npm/v/@cloudfour/eslint-plugin.svg)](https://www.npmjs.com/package/@cloudfour/eslint-plugin) [![Build Status](https://github.com/cloudfour/eslint-config/workflows/CI/badge.svg)](https://github.com/cloudfour/eslint-config/actions?query=workflow%3ACI) [![Renovate](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com)
+[![NPM version](https://img.shields.io/npm/v/@cloudfour/eslint-config.svg)](https://www.npmjs.com/package/@cloudfour/eslint-config) [![Build Status](https://github.com/cloudfour/eslint-config/workflows/CI/badge.svg)](https://github.com/cloudfour/eslint-config/actions?query=workflow%3ACI) [![Renovate](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com)
 
-Cloud Four's ESLint configuration. This exports itself as a "super-plugin" because of a [limitation of ESLint](https://github.com/eslint/eslint/issues/3458).
+Cloud Four's ESLint configuration.
 
-The way this works is that it requires all of the plugin dependencies, and exports them from this plugin under a prefix.
-
-The plugins that this exposes are:
+This config extends the following plugins:
 
 - [`n`](https://github.com/weiran-zsd/eslint-plugin-node) (maintained fork of original [`eslint-plugin-node`](https://github.com/mysticatea/eslint-plugin-node))
 - [`import`](https://github.com/benmosher/eslint-plugin-import)
-- [`standard`](https://github.com/standard/eslint-plugin-standard)
 - [`promise`](https://github.com/xjamundx/eslint-plugin-promise)
-- [`unicorn`](https://github.com/sindresorhus/eslint-plugin-unicorn)
 - [`jsdoc`](https://github.com/gajus/eslint-plugin-jsdoc)
+- [`unicorn`](https://github.com/sindresorhus/eslint-plugin-unicorn)
+- [`standard`](https://github.com/standard/eslint-config-standard)
 - [`@typescript-eslint`](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin)
 
-To override settings for any of these plugins, you must prefix the configuration
-with `cloudfour/`, because the plugins are exposed through this "super-plugin".
+It also adds the following custom rules:
 
-```json
-{
-  "extends": ["plugin:@cloudfour/recommended"],
-  "rules": {
-    "@cloudfour/promise/no-native": "off"
-  }
-}
-```
-
-In addition to the `recommended` configuration, `@cloudfour/eslint-plugin` also re-exports typescript-eslint's [`disable-type-checked` configuration](https://typescript-eslint.io/linting/configs/#disable-type-checked). This configuration disables any rules that depend on typescript-eslint's typescript integration.
-
-## Installation
-
-```sh
-npm install --save-dev @cloudfour/eslint-plugin eslint prettier
-```
+- [`prefer-early-return`](./rules/prefer-early-return/)
 
 ## Usage
 
-Add this to your `package.json`:
+This package exports [a flat ESLint configuration](https://eslint.org/docs/latest/use/configure/configuration-files-new).
 
-```json
-  "scripts": {
-    "check-lint": "eslint . && prettier --check .",
-    "lint": "eslint --fix . && prettier --write ."
-  },
-  "eslintConfig": {
-    "extends": "plugin:@cloudfour/recommended"
-  },
-  "prettier": {
-    "singleQuote": true
-  }
+```bash
+npm install --save-dev eslint @cloudfour/eslint-config
 ```
 
-### Check for Lint Errors
+Example `eslint.config.js`:
 
-```sh
-npm run check-lint
+```js
+import cloudFourConfig from '@cloudfour/eslint-config';
+
+export default [
+	...cloudFourConfig,
+	{
+		rules: {
+			// your overrides here
+			...
+		}
+	},
+];
 ```
-
-### Fix Lint Errors
-
-This command will attempt to automatically fix lint errors. Note that not all lint errors can be fixed this way, so be prepeared to fix any remaining errors by hand.
-
-```sh
-npm run lint
-```
-
-### Troubleshooting Note
-
-This config relies on using a version of eslint installed locally to your project. If you also have eslint installed globally, it's possible to run into conflicts. To avoid any problems, either:
-
-- Just use the `npm run check-lint` and `npm run lint` scripts, which will run the local version of eslint.
-- Or, if you prefer to run eslint by hand, use [npx](https://www.npmjs.com/package/npx), which will run the local version of eslint. eg, `npx eslint '**/*.js'`
