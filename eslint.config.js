@@ -8,8 +8,8 @@ import pluginUnicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
 import pluginTypeScript from 'typescript-eslint';
 
-import configStandard from './eslint-standard-config.js';
-import configStylistic from './eslint-stylistic-config.js';
+import configStandard from './src/eslint-standard-config.js';
+import configStylistic from './src/eslint-stylistic-config.js';
 import rulePreferEarlyReturn from './src/rules/prefer-early-return/index.js';
 
 // Create a plugin containing our custom rules
