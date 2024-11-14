@@ -1,11 +1,19 @@
 # @cloudfour/eslint-plugin
 
-## Unreleased
+## 24.0.0
 
 ### Breaking Changes
 
-- Changed from a "super plugin" to a flat config file.
-- Changed package name from `@cloudfour/eslint-plugin` to `@cloudfour/eslint-config`.
+- Changed from a "super plugin" to a flat config file
+- Changed package name from `@cloudfour/eslint-plugin` to `@cloudfour/eslint-config`
+
+### Major Changes
+
+- Update `eslint-plugin-jsdoc` from `v46` to `v50`
+- Update `eslint-plugin-n` from `v16` to `v17`
+- Update `eslint-plugin-promise` from `v6` to `v7`
+- Update `eslint-plugin-unicorn` from `v48` to `v56`
+- Update `typescript-eslint` from `v6` to `v8`
 
 ## 23.0.0
 
