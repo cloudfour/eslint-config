@@ -1,7 +1,7 @@
 /**
  * This is a local copy of the flat-config version of eslint-standard-config,
- * which has not been released due to a governance issue.
- * These can be removed if/when eslint-standard-config is updated.
+ * which has not been released due to a governance issue. It can be removed in
+ * favor of the real package if/when eslint-standard-config is updated.
  *
  * @see https://github.com/standard/eslint-config-standard/blob/master/src/index.ts
  * @see https://github.com/standard/eslint-config-standard/issues/411
