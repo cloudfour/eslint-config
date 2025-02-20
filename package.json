@@ -46,6 +46,6 @@
 		"eslint-plugin-promise": "7.1.0",
 		"eslint-plugin-unicorn": "56.0.0",
 		"globals": "15.15.0",
-		"typescript-eslint": "8.24.0"
+		"typescript-eslint": "8.24.1"
 	}
 }
