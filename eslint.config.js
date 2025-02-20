@@ -163,10 +163,10 @@ export default [
 				{ checkInfinity: false },
 			],
 			// String#replaceAll doesn't quite have enough browser/node support to enable this rule by default.
-			// TODO [2025-01-01] Reconsider browser/node support for those two methods
+			// TODO [2025-06-01] Reconsider browser/node support for those two methods
 			'unicorn/prefer-string-replace-all': 'off',
 			// String#at and Array#at don't quite have enough browser/node support to enable this rule by default.
-			// TODO [2025-01-01] Reconsider browser/node support for those two methods
+			// TODO [2025-06-01] Reconsider browser/node support for those two methods
 			'unicorn/prefer-at': 'off',
 			// This rule suggests incorrect code with the destructured object is modified
 			// That is a fairly common case, and it is too annoying to always disable the rule on each line
