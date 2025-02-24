@@ -1,13 +1,7 @@
 {
-	"extends": ["config:recommended", ":automergeMinor"],
-	"reviewers": ["team:dev"],
-	"dependencyDashboard": true,
-	"minimumReleaseAge": "4 days",
+  "extends": ["config:recommended", ":automergeMinor", ":pinVersions"],
+  "minimumReleaseAge": "3 days",
 	"packageRules": [
-		{
-			"matchDepTypes": ["dependencies"],
-			"rangeStrategy": "bump"
-		},
 		{
 			"automerge": false,
 			"matchPackageNames": ["/eslint/"]
