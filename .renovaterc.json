@@ -3,12 +3,8 @@
 	"minimumReleaseAge": "3 days",
 	"packageRules": [
 		{
-			"packageNames": ["node"],
-			"enabled": false
-		},
-		{
-			"matchDepTypes": ["peerDependencies"],
-			"enabled": false
+			"matchDepTypes": ["peerDependencies", "engines"],
+			"rangeStrategy": "replace"
 		},
 		{
 			"automerge": false,
