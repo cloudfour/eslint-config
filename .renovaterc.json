@@ -1,7 +1,11 @@
 {
-  "extends": ["config:recommended", ":automergeMinor", ":pinVersions"],
-  "minimumReleaseAge": "3 days",
+	"extends": ["config:recommended", ":automergeMinor", ":pinVersions"],
+	"minimumReleaseAge": "3 days",
 	"packageRules": [
+		{
+			"matchDepTypes": ["engines"],
+			"rangeStrategy": "replace"
+		},
 		{
 			"automerge": false,
 			"matchPackageNames": ["/eslint/"]
