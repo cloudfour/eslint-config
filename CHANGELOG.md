@@ -22,7 +22,6 @@
 - [#551](https://github.com/cloudfour/eslint-config/pull/551) [`f11e794`](https://github.com/cloudfour/eslint-config/commit/f11e79495c11887fd4b89b0eeda8b191f7db44a2) Thanks [@calebeby](https://github.com/calebeby)! - Improve linting of `type` modifiers on imports.
 
   **Reconfigured Rules (`recommended` Config)**
-
   - [`@cloudfour/import/no-duplicates`](https://github.com/import-js/eslint-plugin-import/blob/v2.28.0/docs/rules/no-duplicates.md)
     ```diff
     - "error"
@@ -35,7 +34,6 @@
     ```
 
   **Newly Enabled Rules (`recommended` Config » TS Overrides)**
-
   - [`@cloudfour/typescript-eslint/no-import-type-side-effects`](https://typescript-eslint.io/rules/no-import-type-side-effects)
 
 ### Minor Changes
@@ -49,7 +47,6 @@
 - [#487](https://github.com/cloudfour/eslint-config/pull/487) [`88ffd72`](https://github.com/cloudfour/eslint-config/commit/88ffd72315f6be0469d440015f45231510586fe8) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-unicorn` from `v43` to `v47`
 
   **New Rules**
-
   - [`@cloudfour/unicorn/no-negated-condition`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/no-negated-condition.md)
   - [`@cloudfour/unicorn/no-typeof-undefined`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/no-typeof-undefined.md)
   - [`@cloudfour/unicorn/no-unnecessary-await`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/no-unnecessary-await.md)
@@ -58,7 +55,6 @@
   - [`@cloudfour/unicorn/prefer-blob-reading-methods`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v47.0.0/docs/rules/prefer-blob-reading-methods.md)
 
   **Newly Enabled Rules**
-
   - [`@cloudfour/unicorn/no-negated-condition`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/no-negated-condition.md)
   - [`@cloudfour/unicorn/no-typeof-undefined`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/no-typeof-undefined.md)
   - [`@cloudfour/unicorn/no-unnecessary-await`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/no-unnecessary-await.md)
@@ -68,7 +64,6 @@
   - [`@cloudfour/unicorn/prefer-event-target`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v47.0.0/docs/rules/prefer-event-target.md)
 
   **Newly Disabled Rules**
-
   - [`@cloudfour/unicorn/prefer-event-target`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v45.0.0/docs/rules/prefer-event-target.md)
 
 - [#497](https://github.com/cloudfour/eslint-config/pull/497) [`2b0364a`](https://github.com/cloudfour/eslint-config/commit/2b0364ac87a657946afeb0e32989b3d1dcfdd178) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-jsdoc` from `v39` to `v46`
@@ -89,17 +84,14 @@
   ```
 
   **New Rules**
-
   - [`@cloudfour/jsdoc/informative-docs`](https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/informative-docs.md#repos-sticky-header)
   - [`@cloudfour/jsdoc/no-blank-block-descriptions`](https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-blank-block-descriptions.md#repos-sticky-header)
   - [`@cloudfour/jsdoc/no-blank-blocks`](https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-blank-blocks.md#repos-sticky-header)
 
   **Deleted Rules**
-
   - [`@cloudfour/jsdoc/newline-after-description`](https://github.com/gajus/eslint-plugin-jsdoc#eslint-plugin-jsdoc-rules-newline-after-description)
 
   **Newly Enabled Rules**
-
   - [`@cloudfour/jsdoc/no-defaults`](https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-defaults.md#repos-sticky-header)
 
 - [#498](https://github.com/cloudfour/eslint-config/pull/498) [`ee07640`](https://github.com/cloudfour/eslint-config/commit/ee07640d95f9038d807299e067b321392c058b79) Thanks [@calebeby](https://github.com/calebeby)! - Drop support for Node 14 (now only node 16+ is supported)
@@ -119,12 +111,10 @@
 * [#395](https://github.com/cloudfour/eslint-config/pull/395) [`ec2c2f3`](https://github.com/cloudfour/eslint-config/commit/ec2c2f382a4d447b5f5a4b5931459c3eda227858) Thanks [@renovate](https://github.com/apps/renovate)! - Update eslint-plugin-unicorn to v43
 
   **New Rules**
-
   - [`@cloudfour/unicorn/prefer-event-target`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v43.0.0/docs/rules/prefer-event-target.md)
   - [`@cloudfour/unicorn/prefer-logical-operator-over-ternary`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v43.0.0/docs/rules/prefer-logical-operator-over-ternary.md)
 
   **Newly Enabled Rules**
-
   - [`@cloudfour/unicorn/prefer-event-target`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v43.0.0/docs/rules/prefer-event-target.md)
   - [`@cloudfour/unicorn/prefer-logical-operator-over-ternary`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v43.0.0/docs/rules/prefer-logical-operator-over-ternary.md)
   - [`@cloudfour/unicorn/prefer-top-level-await`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v43.0.0/docs/rules/prefer-top-level-await.md)
@@ -173,7 +163,6 @@
 - [#381](https://github.com/cloudfour/eslint-config/pull/381) [`bee6a36`](https://github.com/cloudfour/eslint-config/commit/bee6a3641b55d1a78e90208c5b6c7201f46fa92f) Thanks [@calebeby](https://github.com/calebeby)! - Sort imports
 
   **Newly Enabled Rules**
-
   - [`@cloudfour/import/order`](https://github.com/import-js/eslint-plugin-import/blob/v2.25.4/docs/rules/order.md)
   - [`sort-imports`](https://eslint.org/docs/rules/sort-imports)
 
@@ -188,21 +177,18 @@
 - [#364](https://github.com/cloudfour/eslint-config/pull/364) [`20c9859`](https://github.com/cloudfour/eslint-config/commit/20c9859149cc21fc0b67f68376925ac284685026) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency `eslint-plugin-unicorn` to `v42`
 
   **New Rules**
-
   - [`@cloudfour/unicorn/no-unreadable-iife`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/no-unreadable-iife.md)
   - [`@cloudfour/unicorn/no-useless-switch-case`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/no-useless-switch-case.md)
   - [`@cloudfour/unicorn/prefer-modern-math-apis`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/prefer-modern-math-apis.md)
   - [`@cloudfour/unicorn/prefer-native-coercion-functions`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/prefer-native-coercion-functions.md)
 
   **Newly Enabled Rules**
-
   - [`@cloudfour/unicorn/no-unreadable-iife`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/no-unreadable-iife.md)
   - [`@cloudfour/unicorn/no-useless-switch-case`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/no-useless-switch-case.md)
   - [`@cloudfour/unicorn/prefer-modern-math-apis`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/prefer-modern-math-apis.md)
   - [`@cloudfour/unicorn/prefer-native-coercion-functions`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/prefer-native-coercion-functions.md)
 
   **Reconfigured Rules**
-
   - [`@cloudfour/unicorn/template-indent`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v42.0.0/docs/rules/template-indent.md)
     ```diff
     - "warn"
@@ -230,13 +216,11 @@
 - [#293](https://github.com/cloudfour/eslint-config/pull/293) [`c24a70e`](https://github.com/cloudfour/eslint-config/commit/c24a70e182b6b58a2bc00b86b1086d9cabc74c4f) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-unicorn` to `v35`
 
   **New Rules**
-
   - [`@cloudfour/unicorn/no-useless-length-check`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v35.0.0/docs/rules/no-useless-length-check.md)
   - [`@cloudfour/unicorn/no-useless-spread`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v35.0.0/docs/rules/no-useless-spread.md)
   - [`@cloudfour/unicorn/prefer-object-from-entries`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v35.0.0/docs/rules/prefer-object-from-entries.md)
 
   **Newly Enabled Rules**
-
   - [`@cloudfour/unicorn/no-useless-length-check`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v35.0.0/docs/rules/no-useless-length-check.md)
   - [`@cloudfour/unicorn/no-useless-spread`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v35.0.0/docs/rules/no-useless-spread.md)
   - [`@cloudfour/unicorn/prefer-object-from-entries`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v35.0.0/docs/rules/prefer-object-from-entries.md)
@@ -244,7 +228,6 @@
 * [#306](https://github.com/cloudfour/eslint-config/pull/306) [`62e271d`](https://github.com/cloudfour/eslint-config/commit/62e271deea1b985501dd23c9a849ffd0e3ad951f) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-unicorn` to v37
 
   **New Rules (all are enabled by default)**
-
   - [`@cloudfour/unicorn/no-invalid-remove-event-listener`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v37.0.1/docs/rules/no-invalid-remove-event-listener.md)
   - [`@cloudfour/unicorn/no-useless-fallback-in-spread`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v37.0.1/docs/rules/no-useless-fallback-in-spread.md)
   - [`@cloudfour/unicorn/template-indent`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v37.0.1/docs/rules/template-indent.md)
@@ -252,7 +235,6 @@
 - [#339](https://github.com/cloudfour/eslint-config/pull/339) [`ce3d6ab`](https://github.com/cloudfour/eslint-config/commit/ce3d6abf1775e2cd32badbbe4f236cfceff7669c) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-unicorn` to `v41`
 
   **New Rules**
-
   - [`@cloudfour/unicorn/no-await-expression-member`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v41.0.1/docs/rules/no-await-expression-member.md)
   - [`@cloudfour/unicorn/no-empty-file`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v41.0.1/docs/rules/no-empty-file.md)
   - [`@cloudfour/unicorn/no-thenable`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v41.0.1/docs/rules/no-thenable.md)
@@ -264,7 +246,6 @@
   - [`@cloudfour/unicorn/text-encoding-identifier-case`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v41.0.1/docs/rules/text-encoding-identifier-case.md)
 
   **Newly Enabled Rules**
-
   - [`@cloudfour/unicorn/no-await-expression-member`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v41.0.1/docs/rules/no-await-expression-member.md)
   - [`@cloudfour/unicorn/no-empty-file`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v41.0.1/docs/rules/no-empty-file.md)
   - [`@cloudfour/unicorn/no-thenable`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v41.0.1/docs/rules/no-thenable.md)
@@ -275,7 +256,6 @@
   - [`@cloudfour/unicorn/text-encoding-identifier-case`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v41.0.1/docs/rules/text-encoding-identifier-case.md)
 
   **Newly Disabled Rules**
-
   - [`@cloudfour/unicorn/require-post-message-target-origin`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v41.0.1/docs/rules/require-post-message-target-origin.md)
 
 * [#344](https://github.com/cloudfour/eslint-config/pull/344) [`db15314`](https://github.com/cloudfour/eslint-config/commit/db15314132da74a1fc6b558afcdbddcc5c87e576) Thanks [@calebeby](https://github.com/calebeby)! - Require eslint `^8.0.0`. [Migration guide for eslint v8](https://eslint.org/docs/8.0.0/user-guide/migrating-to-8.0.0).
@@ -285,13 +265,11 @@
 * [#307](https://github.com/cloudfour/eslint-config/pull/307) [`739814c`](https://github.com/cloudfour/eslint-config/commit/739814cae2076f9f4fe24dcc7b5f263287eb3d40) Thanks [@renovate](https://github.com/apps/renovate)! - Updates the `typescript-eslint` packages to 5.0.0.
 
   **Newly Enabled Rules**
-
   - [`@cloudfour/typescript-eslint/no-confusing-void-expression`](https://github.com/typescript-eslint/typescript-eslint/blob/v5.0.0/packages/eslint-plugin/docs/rules/no-confusing-void-expression.md)
   - [`@cloudfour/typescript-eslint/no-meaningless-void-operator`](https://github.com/typescript-eslint/typescript-eslint/blob/v5.0.0/packages/eslint-plugin/docs/rules/no-meaningless-void-operator.md)
   - [`@cloudfour/typescript-eslint/no-unnecessary-type-constraint`](https://github.com/typescript-eslint/typescript-eslint/blob/v5.0.0/packages/eslint-plugin/docs/rules/no-unnecessary-type-constraint.md)
 
   **New Rules (not enabled by default)**
-
   - [`@cloudfour/typescript-eslint/comma-dangle`](https://github.com/typescript-eslint/typescript-eslint/blob/v5.0.0/packages/eslint-plugin/docs/rules/comma-dangle.md)
   - [`@cloudfour/typescript-eslint/consistent-indexed-object-style`](https://github.com/typescript-eslint/typescript-eslint/blob/v5.0.0/packages/eslint-plugin/docs/rules/consistent-indexed-object-style.md)
   - [`@cloudfour/typescript-eslint/no-confusing-void-expression`](https://github.com/typescript-eslint/typescript-eslint/blob/v5.0.0/packages/eslint-plugin/docs/rules/no-confusing-void-expression.md)
@@ -310,7 +288,6 @@
   - [`@cloudfour/typescript-eslint/space-infix-ops`](https://github.com/typescript-eslint/typescript-eslint/blob/v5.0.0/packages/eslint-plugin/docs/rules/space-infix-ops.md)
 
   **Deleted Rules**
-
   - [`@cloudfour/typescript-eslint/no-unused-vars-experimental`](https://github.com/typescript-eslint/typescript-eslint/blob/v4.0.0/packages/eslint-plugin/docs/rules/no-unused-vars-experimental.md)
 
 ### Minor Changes
@@ -318,7 +295,6 @@
 - [#290](https://github.com/cloudfour/eslint-config/pull/290) [`eb96b8c`](https://github.com/cloudfour/eslint-config/commit/eb96b8ceb64b91bc3f41a303bac217325bac03e5) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-jsdoc` to `v36`
 
   **New Rules**
-
   - [`@cloudfour/jsdoc/match-name`](https://github.com/gajus/eslint-plugin-jsdoc#eslint-plugin-jsdoc-rules-match-name) (not enabled by default)
 
 ## 17.1.0
@@ -340,13 +316,11 @@
 - [`bbde55f`](https://github.com/cloudfour/eslint-config/commit/bbde55f53b18e7a9a29f4d9873d7f2954cdf8c2e) Thanks [@calebeby](https://github.com/calebeby)! - Update eslint-plugin-jsdoc to v35
 
   New rules, enabled by default:
-
   - [`@cloudfour/jsdoc/multiline-blocks`](https://github.com/gajus/eslint-plugin-jsdoc#eslint-plugin-jsdoc-rules-multiline-blocks)
   - [`@cloudfour/jsdoc/no-multi-asterisks`](https://github.com/gajus/eslint-plugin-jsdoc#eslint-plugin-jsdoc-rules-no-multi-asterisks)
   - [`@cloudfour/jsdoc/tag-lines`](https://github.com/gajus/eslint-plugin-jsdoc#eslint-plugin-jsdoc-rules-tag-lines)
 
 * [#252](https://github.com/cloudfour/eslint-config/pull/252) [`f88d3f6`](https://github.com/cloudfour/eslint-config/commit/f88d3f657797347db7b9701472480d571f9d0a34) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-config-xo` to `v0.36.0`
-
   - Add more deprecated Node.js modules to [`no-restricted-imports`](https://eslint.org/docs/rules/no-restricted-imports)
   - Remove unnecessary [`no-restricted-syntax`](https://eslint.org/docs/rules/no-restricted-syntax) rule
   - Enable [`prefer-arrow-callback`](https://eslint.org/docs/rules/prefer-arrow-callback)
@@ -355,7 +329,6 @@
 - [#279](https://github.com/cloudfour/eslint-config/pull/279) [`4728476`](https://github.com/cloudfour/eslint-config/commit/4728476a98b99ed4a5041538e18132e5b2ef6175) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-unicorn` to `v34`
 
   **New Rules**
-
   - [`@cloudfour/unicorn/no-array-method-this-argument`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/no-array-method-this-argument.md)
   - [`@cloudfour/unicorn/prefer-at`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/prefer-at.md)
   - [`@cloudfour/unicorn/prefer-object-has-own`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/prefer-object-has-own.md)
@@ -366,7 +339,6 @@
   - [`@cloudfour/unicorn/require-post-message-target-origin`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/require-post-message-target-origin.md)
 
   **Newly Enabled Rules**
-
   - [`@cloudfour/unicorn/no-array-method-this-argument`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/no-array-method-this-argument.md)
   - [`@cloudfour/unicorn/prefer-prototype-methods`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/prefer-prototype-methods.md)
   - [`@cloudfour/unicorn/require-array-join-separator`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v34.0.0/docs/rules/require-array-join-separator.md)
@@ -376,18 +348,15 @@
 * [#274](https://github.com/cloudfour/eslint-config/pull/274) [`186580d`](https://github.com/cloudfour/eslint-config/commit/186580d0c0b95a9857cee43ca32e923cf5c627b4) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-config-xo` to `v0.37.0`
 
   **Newly Enabled Rules**
-
   - [`arrow-body-style`](https://eslint.org/docs/rules/arrow-body-style)
 
 - [#262](https://github.com/cloudfour/eslint-config/pull/262) [`cd2038f`](https://github.com/cloudfour/eslint-config/commit/cd2038f56bbf502a5b6601f6faf96cd34a64f7eb) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-unicorn` to v32
-
   - New rule: [`@cloudfour/unicorn/no-document-cookie`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-document-cookie.md) (enabled by default)
   - Enable rule: [`@cloudfour/unicorn/numeric-separators-style`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/numeric-separators-style.md)
   - Enable rule: [`@cloudfour/unicorn/prefer-array-flat`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-flat.md)
   - Enable rule: [`@cloudfour/unicorn/prefer-array-flat-map`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-flat-map.md)
 
 * [#256](https://github.com/cloudfour/eslint-config/pull/256) [`ad9f8bd`](https://github.com/cloudfour/eslint-config/commit/ad9f8bddc186082dea179cf7859538a1f77fb273) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-unicorn` to v31
-
   - Enabled new rule [`@cloudfour/unicorn/prefer-node-protocol`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-node-protocol.md)
 
 ### Minor Changes
@@ -403,17 +372,14 @@
 ### Major Changes
 
 - [#206](https://github.com/cloudfour/eslint-config/pull/206) [`4e2b9fb`](https://github.com/cloudfour/eslint-config/commit/4e2b9fb0454cf6d0165d9557232caf1db5f42392) Thanks [@spaceninja](https://github.com/spaceninja)! - Update dependency `eslint-config-prettier` to [v7](https://togithub.com/prettier/eslint-config-prettier/blob/master/CHANGELOG.md#Version-700-2020-12-05)
-
   - Changed: At least ESLint 7.0.0 is now required.
 
 * [#176](https://github.com/cloudfour/eslint-config/pull/176) [`404c42d`](https://github.com/cloudfour/eslint-config/commit/404c42d6f55fb30e11de6949530fd23cc0bef81a) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-unicorn` to [`23.0.0`](https://github.com/sindresorhus/eslint-plugin-unicorn/releases/tag/v23.0.0)
-
   - New rule: [`unicorn/prefer-math-trunc`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v23.0.0/docs/rules/prefer-math-trunc.md) (enabled by default)
   - New rule: [`unicorn/prefer-ternary`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v23.0.0/docs/rules/prefer-ternary.md) (enabled by default)
   - New rule: [`numeric-separators-style`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v23.0.0/docs/rules/numeric-separators-style.md) (not enabled by default yet)
 
 - [#187](https://github.com/cloudfour/eslint-config/pull/187) [`a1f68c2`](https://github.com/cloudfour/eslint-config/commit/a1f68c2d3754b6ecb72e28914b40224602b50650) Thanks [@spaceninja](https://github.com/spaceninja)! - Upgraded to v15 of eslint-config-standard, which adds several rules:
-
   - Require indentation for values of ternary expressions (indent)
   - Enforce newlines between operands of ternary expressions if the expression spans multiple lines (multiline-ternary)
   - Disallow loops with a body that allows only one iteration (no-unreachable-loop)
@@ -424,7 +390,6 @@
 * [#242](https://github.com/cloudfour/eslint-config/pull/242) [`58c7204`](https://github.com/cloudfour/eslint-config/commit/58c7204c38092f137dba8a6c94425c0b7d06ceb2) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-plugin-unicorn` to `v29`
 
   New rules:
-
   - [`@cloudfour/unicorn/no-array-for-each`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-for-each.md)
   - [`@cloudfour/unicorn/no-array-push-push`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-push-push.md)
   - [`@cloudfour/unicorn/no-this-assignment`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-this-assignment.md)
@@ -441,11 +406,9 @@
   - [`@cloudfour/unicorn/prefer-array-flat`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-flat.md) (not enabled by default)
 
   Disabled rules:
-
   - [`@cloudfour/unicorn/import-index`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/import-index.md) (due to Node ESM resolution implementation)
 
   Rename rules:
-
   - `@cloudfour/unicorn/no-fn-reference-in-iterator` → `@cloudfour/unicorn/no-array-callback-reference`
   - `@cloudfour/unicorn/no-array-instanceof` → `@cloudfour/unicorn/no-instanceof-array`
   - `@cloudfour/unicorn/no-reduce` → `@cloudfour/unicorn/no-array-reduce`
@@ -462,7 +425,6 @@
   There were many improvements/changes to individual rules, listed [here](https://github.com/cloudfour/eslint-config/pull/242)
 
 - [#191](https://github.com/cloudfour/eslint-config/pull/191) [`7f732b6`](https://github.com/cloudfour/eslint-config/commit/7f732b63a2a3fa2ec3cea53bf4592afb896e2840) Thanks [@renovate](https://github.com/apps/renovate)! - Update `eslint-config-standard` to `16.0.1`
-
   - Remove `eslint-plugin-standard` since all of the rules from it now live in other plugins
   - `camelcase` rule now allows variables starting with `UNSAFE_` (from react) and known globals
   - `no-unused-vars` now ignores unused caught errors (`unicorn/prefer-optional-catch-binding` handles this use case)
@@ -516,7 +478,6 @@
 ### Major Changes
 
 - [`43b7918`](https://github.com/cloudfour/eslint-config/commit/43b7918e529bca4ecfecdc1c252430685518f3b1) [#155](https://github.com/cloudfour/eslint-config/pull/155) Thanks [@renovate](https://github.com/apps/renovate)! - Update typescript-eslint to v4
-
   - [Require `@ts-expect-error` comments to have a description explaining why](https://github.com/typescript-eslint/typescript-eslint/pull/2351)
   - [New scope analyzer](https://github.com/typescript-eslint/typescript-eslint/pull/2039). This is mostly bugfixes, but it is possible that it could cause rules to (correctly) trigger on code that they didn't before.
   - Enabled the new [`@typescript-eslint/consistent-type-imports`](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-imports.md) rule, which will auto-fix type imports to use the new [`import type` syntax](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#type-only-imports-and-export)
