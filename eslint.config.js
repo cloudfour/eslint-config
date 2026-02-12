@@ -93,7 +93,6 @@ export default [
 
 			'n/no-unsupported-features/es-syntax': 'off', // Does not account for transpilation
 			'n/no-unpublished-require': 'off', // Does not account for "build" scripts
-			'n/shebang': 'off', // Tons of false positives
 			'n/file-extension-in-import': ['error', 'always'], // Don't allow extension-less relative imports (e.g. use ./foo.js instead of ./foo)
 
 			// Used for sorting/grouping import statements
