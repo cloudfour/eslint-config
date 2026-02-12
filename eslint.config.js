@@ -161,9 +161,6 @@ export default [
 				// There isn't a good reason to force use of Number.POSITIVE_INFINITY instead of Infinity
 				{ checkInfinity: false },
 			],
-			// String#replaceAll doesn't quite have enough browser/node support to enable this rule by default.
-			// TODO Reconsider browser/node support for those two methods
-			'unicorn/prefer-string-replace-all': 'off',
 			// This rule suggests incorrect code with the destructured object is modified
 			// That is a fairly common case, and it is too annoying to always disable the rule on each line
 			'unicorn/consistent-destructuring': 'off',
