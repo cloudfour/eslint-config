@@ -9,7 +9,6 @@ import globals from 'globals';
 import pluginTypeScript from 'typescript-eslint';
 
 import configStandard from './src/eslint-standard-config.js';
-import configStylistic from './src/eslint-stylistic-config.js';
 import rulePreferEarlyReturn from './src/rules/prefer-early-return/index.js';
 
 // Create a plugin containing our custom rules
@@ -278,6 +277,5 @@ export default [
 	},
 
 	// Disable stylistic rules
-	configStylistic,
 	configPrettier,
 ];
