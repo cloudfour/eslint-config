@@ -162,21 +162,18 @@ export default [
 				{ checkInfinity: false },
 			],
 			// String#replaceAll doesn't quite have enough browser/node support to enable this rule by default.
-			// TODO [2026-06-01] Reconsider browser/node support for those two methods
+			// TODO Reconsider browser/node support for those two methods
 			'unicorn/prefer-string-replace-all': 'off',
 			// String#at and Array#at don't quite have enough browser/node support to enable this rule by default.
-			// TODO [2026-06-01] Reconsider browser/node support for those two methods
+			// TODO Reconsider browser/node support for those two methods
 			'unicorn/prefer-at': 'off',
 			// This rule suggests incorrect code with the destructured object is modified
 			// That is a fairly common case, and it is too annoying to always disable the rule on each line
 			'unicorn/consistent-destructuring': 'off',
 
-			// Allow _only_ TODO comments with expirations/conditions
+			// Disabling rules about TODO comments. In practice, these were usually disabled.
 			'no-warning-comments': 'off',
-			'unicorn/expiring-todo-comments': [
-				'error',
-				{ allowWarningComments: false },
-			],
+			'unicorn/expiring-todo-comments': 'off',
 
 			// Disabling jsdoc rules that check the types themselves
 			// If you want to have type checking on a project, use typescript instead
