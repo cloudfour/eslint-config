@@ -78,7 +78,6 @@ export default [
 			'no-var': 'error',
 			'object-shorthand': 'error',
 			'prefer-destructuring': ['error', { array: false }],
-			'prefer-rest-params': 'error',
 			// We decided that since devs can use blank lines to create logical groupings in code,
 			// it is best not to have ESLint enforce adding newlines
 			'padding-line-between-statements': 'off',
