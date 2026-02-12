@@ -151,7 +151,6 @@ export default [
 
 			// Disabling jsdoc rules that check the types themselves
 			// If you want to have type checking on a project, use typescript instead
-			'jsdoc/newline-after-description': 'off',
 			'jsdoc/no-undefined-types': 'off',
 			'jsdoc/valid-types': 'off',
 			'jsdoc/require-returns': 'off',
