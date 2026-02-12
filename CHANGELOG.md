@@ -1,6 +1,18 @@
 # @cloudfour/eslint-plugin
 
-## 24.0.0
+## 25.0.0 - 2026-02-12
+
+### Breaking Changes
+
+- Update minimum Node version to `v22`
+
+### Major Changes
+
+- Update `eslint-config-prettier` to `v10`
+- Update `eslint-plugin-jsdoc` to `v62`
+- Update `eslint-plugin-unicorn` to `v63`
+
+## 24.0.0 - 2024-11-14
 
 ### Breaking Changes
 
@@ -15,7 +27,7 @@
 - Update `eslint-plugin-unicorn` from `v48` to `v56`
 - Update `typescript-eslint` from `v6` to `v8`
 
-## 23.0.0
+## 23.0.0 - 2023-08-22
 
 ### Major Changes
 
@@ -40,7 +52,7 @@
 
 - [#551](https://github.com/cloudfour/eslint-config/pull/551) [`f11e794`](https://github.com/cloudfour/eslint-config/commit/f11e79495c11887fd4b89b0eeda8b191f7db44a2) Thanks [@calebeby](https://github.com/calebeby)! - Re-export `disable-type-checked` config from `@typescript-eslint/eslint-plugin`
 
-## 22.0.0
+## 22.0.0 - 2023-05-30
 
 ### Major Changes
 
@@ -96,13 +108,13 @@
 
 - [#498](https://github.com/cloudfour/eslint-config/pull/498) [`ee07640`](https://github.com/cloudfour/eslint-config/commit/ee07640d95f9038d807299e067b321392c058b79) Thanks [@calebeby](https://github.com/calebeby)! - Drop support for Node 14 (now only node 16+ is supported)
 
-## 21.1.0
+## 21.1.0 - 2022-07-05
 
 ### Minor Changes
 
 - [#396](https://github.com/cloudfour/eslint-config/pull/396) [`eaa4ea8`](https://github.com/cloudfour/eslint-config/commit/eaa4ea82c1b73a8c5168fae205da6a53b91c9b67) Thanks [@Paul-Hebert](https://github.com/Paul-Hebert)! - Revert changes to `no-use-before-define` rule since it was more heavy-handed than expected.
 
-## 21.0.0
+## 21.0.0 - 2022-06-30
 
 ### Major Changes
 
@@ -123,13 +135,13 @@
 
 - [#395](https://github.com/cloudfour/eslint-config/pull/395) [`ec2c2f3`](https://github.com/cloudfour/eslint-config/commit/ec2c2f382a4d447b5f5a4b5931459c3eda227858) Thanks [@renovate](https://github.com/apps/renovate)! - Update `ecmaVersion` to 2022 for ESLint parser
 
-## 20.0.2
+## 20.0.2 - 2022-06-16
 
 ### Patch Changes
 
 - [`7e35702`](https://github.com/cloudfour/eslint-config/commit/7e35702a0c22311026acde5664a9971bfffe7100) Thanks [@calebeby](https://github.com/calebeby)! - Unpin eslint-plugin-n (includes bugfix)
 
-## 20.0.1
+## 20.0.1 - 2022-06-14
 
 ### Patch Changes
 
@@ -137,7 +149,7 @@
 
   15.2.2 has a regression and inserts the wrong file extensions.
 
-## 20.0.0
+## 20.0.0 - 2022-06-14
 
 ### Major Changes
 
@@ -170,7 +182,7 @@
 
   These rules are auto-fixable, however in some cases manual sorting may be needed. Occasionally, the auto-fix will detach comments from the import statements they refer to.
 
-## 19.0.0
+## 19.0.0 - 2022-05-24
 
 ### Major Changes
 
@@ -203,13 +215,13 @@
 
   Node 18 is supported
 
-## 18.0.1
+## 18.0.1 - 2022-03-31
 
 ### Patch Changes
 
 - [#362](https://github.com/cloudfour/eslint-config/pull/362) [`0625daf`](https://github.com/cloudfour/eslint-config/commit/0625dafc4233fc34a9f24024962538778b6ecf62) Thanks [@calebeby](https://github.com/calebeby)! - Fix dependency version for eslint-plugin-import
 
-## 18.0.0
+## 18.0.0 - 2022-03-28
 
 ### Major Changes
 
@@ -297,19 +309,19 @@
   **New Rules**
   - [`@cloudfour/jsdoc/match-name`](https://github.com/gajus/eslint-plugin-jsdoc#eslint-plugin-jsdoc-rules-match-name) (not enabled by default)
 
-## 17.1.0
+## 17.1.0 - 2021-07-22
 
 ### Minor Changes
 
 - [#287](https://github.com/cloudfour/eslint-config/pull/287) [`3cb6588`](https://github.com/cloudfour/eslint-config/commit/3cb65887f785e9b944efc4dba3b5b600100d94c6) Thanks [@calebeby](https://github.com/calebeby)! - Disable unicorn/prefer-node-protocol
 
-## 17.0.1
+## 17.0.1 - 2021-07-21
 
 ### Patch Changes
 
 - [`ec422d2`](https://github.com/cloudfour/eslint-config/commit/ec422d214d53c4d721ac0c5ab7196d6b08a188e6) Thanks [@calebeby](https://github.com/calebeby)! - Fix main field
 
-## 17.0.0
+## 17.0.0 - 2021-07-21
 
 ### Major Changes
 
@@ -367,7 +379,7 @@
 
 * [#285](https://github.com/cloudfour/eslint-config/pull/285) [`243954a`](https://github.com/cloudfour/eslint-config/commit/243954acc0a31f5099c4e686a011872e26912cd9) Thanks [@calebeby](https://github.com/calebeby)! - Make capitalized-comments ignore most commented code
 
-## 16.0.0
+## 16.0.0 - 2021-03-23
 
 ### Major Changes
 
@@ -432,13 +444,13 @@
   - `array-callback-return`: Change [`allowImplicit`](https://eslint.org/docs/rules/array-callback-return#allowimplicit) to `false`.
   - `use-isnan`: Change [`enforceForIndexOf`](https://eslint.org/docs/rules/use-isnan#enforceforindexof) to `true`.
 
-## 15.0.1
+## 15.0.1 - 2020-11-03
 
 ### Patch Changes
 
 - [`e14e2ba`](https://github.com/cloudfour/eslint-config/commit/e14e2baf3215a07007ff710bd7a414edb4def692) [#193](https://github.com/cloudfour/eslint-config/pull/193) Thanks [@calebeby](https://github.com/calebeby)! - Fix published files so `@cloudfour/prefer-early-return` is included
 
-## 15.0.0
+## 15.0.0 - 2020-10-21
 
 ### Major Changes
 
@@ -473,7 +485,7 @@
 
   The new [`unicorn/import-style`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v22.0.0/docs/rules/import-style.md) rule is disabled by default, so this is not a breaking change.
 
-## 14.0.0
+## 14.0.0 - 2020-09-15
 
 ### Major Changes
 
@@ -487,7 +499,7 @@
 
 - [`1c5f202`](https://github.com/cloudfour/eslint-config/commit/1c5f202bcfc476ac9ca2e10b75f15e14ab0f7d0e) [#160](https://github.com/cloudfour/eslint-config/pull/160) Thanks [@calebeby](https://github.com/calebeby)! - Disable `node/no-missing-*` rules for TS, so that it doesn't error for importing `*.ts` files
 
-## 13.0.0
+## 13.0.0 - 2020-08-14
 
 ### Major Changes
 
