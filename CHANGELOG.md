@@ -1,5 +1,11 @@
 # @cloudfour/eslint-plugin
 
+## 25.0.1 - 2026-02-12
+
+### Minor Changes
+
+- Disable a few stylistic rules that aren't currently covered by `eslint-cofig-prettier`.
+
 ## 25.0.0 - 2026-02-12
 
 ### Breaking Changes

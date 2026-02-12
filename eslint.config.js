@@ -160,6 +160,13 @@ export default [
 			'jsdoc/require-jsdoc': 'off',
 			'jsdoc/require-returns-check': 'off', // Does not handle @returns with void or undefined
 			'jsdoc/tag-lines': ['error', 'any', { startLines: 1 }],
+
+			// A few stylistic rules that aren't currently disabled by eslint-config-prettier
+			'@stylistic/jsx-curly-brace-presence': 'off',
+			'@stylistic/jsx-pascal-case': 'off',
+			'@stylistic/lines-between-class-members': 'off',
+			'@stylistic/padding-line-between-statements': 'off',
+			'@stylistic/spaced-comment': 'off',
 		},
 	},
 
