@@ -77,7 +77,6 @@ export default [
 			'func-names': 'off',
 			'no-var': 'error',
 			'object-shorthand': 'error',
-			'prefer-object-spread': 'error',
 			'prefer-spread': 'error',
 			'prefer-destructuring': ['error', { array: false }],
 			'prefer-rest-params': 'error',
