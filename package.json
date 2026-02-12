@@ -44,7 +44,7 @@
 		"eslint-plugin-jsdoc": "62.5.4",
 		"eslint-plugin-n": "17.15.1",
 		"eslint-plugin-promise": "7.2.1",
-		"eslint-plugin-unicorn": "56.0.1",
+		"eslint-plugin-unicorn": "63.0.0",
 		"globals": "17.3.0",
 		"typescript-eslint": "8.55.0"
 	}

@@ -22,7 +22,7 @@ export default [
 	// Plugins' recommended configs
 	pluginNode.configs['flat/recommended'],
 	pluginJSDoc.configs['flat/recommended-error'],
-	pluginUnicorn.configs['flat/recommended'],
+	pluginUnicorn.configs.recommended,
 
 	// "Standards"
 	...configXO,
