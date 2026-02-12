@@ -78,9 +78,6 @@ export default [
 			'no-var': 'error',
 			'object-shorthand': 'error',
 			'prefer-destructuring': ['error', { array: false }],
-			// We decided that since devs can use blank lines to create logical groupings in code,
-			// it is best not to have ESLint enforce adding newlines
-			'padding-line-between-statements': 'off',
 			'prefer-template': 'error',
 			'no-param-reassign': 'off', // We don't use `arguments`, and assigning to parameters can be useful
 			'no-promise-executor-return': 'off', // Allow implicit return in promise executor
