@@ -131,9 +131,6 @@ export default [
 			// But this is an edge case that can be avoided through careful manual review
 			// and sometimes through TS
 			'unicorn/no-array-callback-reference': 'off',
-			// https://github.com/sindresorhus/eslint-plugin-unicorn/pull/1750
-			// This rule got removed from the recommended preset, but that hasn't been published yet.
-			'unicorn/prefer-json-parse-buffer': 'off',
 			// This rule changes arrays to sets if you call .includes on it
 			// Converting from array to set has a cost itself, just like .includes has a cost
 			// We decided to leave the decision of using arrays vs sets to human reviewers
@@ -147,9 +144,6 @@ export default [
 				// There isn't a good reason to force use of Number.POSITIVE_INFINITY instead of Infinity
 				{ checkInfinity: false },
 			],
-			// This rule suggests incorrect code with the destructured object is modified
-			// That is a fairly common case, and it is too annoying to always disable the rule on each line
-			'unicorn/consistent-destructuring': 'off',
 
 			// Disabling rules about TODO comments. In practice, these were usually disabled.
 			'no-warning-comments': 'off',
