@@ -6,9 +6,9 @@ import pluginNode from 'eslint-plugin-n';
 import pluginPromise from 'eslint-plugin-promise';
 import pluginUnicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
+import neostandard from 'neostandard';
 import pluginTypeScript from 'typescript-eslint';
 
-import configStandard from './src/eslint-standard-config.js';
 import rulePreferEarlyReturn from './src/rules/prefer-early-return/index.js';
 
 // Create a plugin containing our custom rules
@@ -26,7 +26,7 @@ export default [
 
 	// "Standards"
 	...configXO,
-	configStandard,
+	...neostandard(),
 
 	// Our settings
 	{
