@@ -23,7 +23,7 @@
 		"eslint": ">= 9"
 	},
 	"devDependencies": {
-		"eslint": "9.39.2",
+		"eslint": "10.0.0",
 		"prettier": "3.8.1"
 	},
 	"scripts": {
