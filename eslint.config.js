@@ -77,7 +77,6 @@ export default [
 			'func-names': 'off',
 			'no-var': 'error',
 			'object-shorthand': 'error',
-			'prefer-spread': 'error',
 			'prefer-destructuring': ['error', { array: false }],
 			'prefer-rest-params': 'error',
 			// We decided that since devs can use blank lines to create logical groupings in code,
