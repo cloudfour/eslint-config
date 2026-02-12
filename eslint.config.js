@@ -75,13 +75,6 @@ export default [
 			],
 			'no-return-assign': ['error'],
 			'func-names': 'off',
-			'prefer-const': [
-				'error',
-				// If there is a destructuring assignment
-				// and some of the properties should be const
-				// but others shouldn't be, let it use let
-				{ destructuring: 'all' },
-			],
 			'no-var': 'error',
 			'object-shorthand': 'error',
 			'prefer-object-spread': 'error',
