@@ -24,7 +24,7 @@
 	},
 	"devDependencies": {
 		"eslint": "9.39.2",
-		"prettier": "3.8.1"
+		"prettier": "3.8.2"
 	},
 	"scripts": {
 		"lint": "npm run lint:js && npm run lint:prettier",
