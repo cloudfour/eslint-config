@@ -15,9 +15,10 @@ test framework to install. It covers four things:
   that fire. The `valid` fixtures are the interesting half: everything in them is
   something we deliberately allow, so they fail if a dependency re-enables a rule
   we turned off.
-- **Node support** (`__tests__/engines.test.js`) asserts that every Node version
-  we advertise in `engines.node` is one that each installed dependency also
-  supports.
+- **Declared support ranges** (`__tests__/engines.test.js`,
+  `__tests__/peer-dependencies.test.js`) assert that every Node version we
+  advertise in `engines.node`, and every ESLint version we accept in
+  `peerDependencies`, is one that each installed dependency also supports.
 - **Prettier conflicts** (`__tests__/prettier-conflicts.test.js`) runs the
   `eslint-config-prettier` CLI, which reports any enabled rule that fights
   Prettier.

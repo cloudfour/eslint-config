@@ -4,7 +4,15 @@
 
 ### Breaking Changes
 
-- Narrow the supported Node versions from `>=22.16.0` to `^22.16.0 || >=24`. Node `23.x` was never really supported: `eslint-plugin-jsdoc` already excluded it, and `import.meta.dirname` was never backported to that line.
+- Narrow the supported Node versions from `>=22.16.0` to `^22.22.2 || >=24.15.0`, matching what our dependencies actually support. Node `23.x` was never really supported: `eslint-plugin-jsdoc` already excluded it, and `import.meta.dirname` was never backported to that line.
+- Narrow the `eslint` peer range from `>= 9` to `^9.38.0 || ^10.0.0`. The old range was never accurate — `eslint-plugin-unicorn` has required `>=9.38.0` since v63.
+- Replace `eslint-plugin-import` with [`eslint-plugin-import-x`](https://github.com/un-ts/eslint-plugin-import-x). `eslint-plugin-import` has not released since June 2025 and does not support ESLint 10, which blocked this whole upgrade. Rules are still registered under the `import` namespace, so `import/*` rule names and any `eslint-disable` comments referring to them are unchanged.
+
+### Major Changes
+
+- Support ESLint `v10`. ESLint `v9` is still supported.
+- Update `eslint-plugin-jsdoc` to `v64`
+- Update `eslint-plugin-n` to `v18`
 
 ### Minor Changes
 
