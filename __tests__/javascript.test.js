@@ -29,6 +29,22 @@ describe('JavaScript config', () => {
 		]);
 	});
 
+	it('groups imports by builtin, external and relative', async () => {
+		const messages = await lintFixture('__tests__/fixtures/import-order.js');
+
+		// Ordering is the only rule we configure that depends on the plugin's
+		// module resolver working, so assert on the message rather than just the
+		// rule id: a broken resolver would still report, only about blank lines.
+		assert.ok(
+			messages.some(
+				(message) =>
+					message.ruleId === 'import/order' &&
+					message.message.includes('should occur after import of'),
+			),
+			`Imports were not reordered by group:\n${format(messages)}`,
+		);
+	});
+
 	it('reports at error severity rather than warning', async () => {
 		const messages = await lintFixture('__tests__/fixtures/invalid.js');
 		const severities = [

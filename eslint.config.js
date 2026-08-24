@@ -1,6 +1,6 @@
 import configPrettier from 'eslint-config-prettier';
 import configXO from 'eslint-config-xo';
-import pluginImport from 'eslint-plugin-import';
+import pluginImport from 'eslint-plugin-import-x';
 import pluginJSDoc from 'eslint-plugin-jsdoc';
 import pluginNode from 'eslint-plugin-n';
 import pluginPromise from 'eslint-plugin-promise';
