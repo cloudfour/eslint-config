@@ -8,12 +8,16 @@
 	"license": "MIT",
 	"main": "./eslint.config.js",
 	"type": "module",
+	"files": [
+		"eslint.config.js",
+		"src"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/cloudfour/eslint-config.git"
 	},
 	"engines": {
-		"node": ">=22.16.0"
+		"node": "^22.16.0 || >=24"
 	},
 	"keywords": [
 		"eslint",
@@ -24,15 +28,19 @@
 	},
 	"devDependencies": {
 		"eslint": "9.39.5",
-		"prettier": "3.9.6"
+		"prettier": "3.9.6",
+		"semver": "7.7.4",
+		"typescript": "5.6.3"
 	},
 	"scripts": {
 		"lint": "npm run lint:js && npm run lint:prettier",
 		"lint:check": "npm run lint:js:check && npm run lint:prettier:check",
-		"lint:js": "eslint --fix .",
-		"lint:js:check": "eslint .",
+		"lint:js": "eslint --fix . --ignore-pattern \"__tests__/fixtures/**\"",
+		"lint:js:check": "eslint . --ignore-pattern \"__tests__/fixtures/**\"",
 		"lint:prettier": "prettier --write .",
-		"lint:prettier:check": "prettier --check ."
+		"lint:prettier:check": "prettier --check .",
+		"test": "node --test",
+		"test:watch": "node --test --watch"
 	},
 	"prettier": {
 		"singleQuote": true

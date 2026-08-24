@@ -1,0 +1,11 @@
+{
+	"//": "Exists so typescript-eslint's `projectService` can type-check the test fixtures. Nothing is compiled from it.",
+	"compilerOptions": {
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
+		"target": "esnext",
+		"strict": true,
+		"noEmit": true
+	},
+	"include": ["__tests__/fixtures/**/*.ts"]
+}
