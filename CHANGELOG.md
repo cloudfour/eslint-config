@@ -1,5 +1,15 @@
 # @cloudfour/eslint-plugin
 
+## Unreleased
+
+### Breaking Changes
+
+- Narrow the supported Node versions from `>=22.16.0` to `^22.16.0 || >=24`. Node `23.x` was never really supported: `eslint-plugin-jsdoc` already excluded it, and `import.meta.dirname` was never backported to that line.
+
+### Minor Changes
+
+- Only publish `eslint.config.js` and `src/` to npm. The package previously also shipped repository files such as `.editorconfig`, `.nvmrc`, `.renovaterc.json` and the CI workflow.
+
 ## 25.0.1 - 2026-02-12
 
 ### Minor Changes
