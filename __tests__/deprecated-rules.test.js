@@ -25,8 +25,10 @@ const ruleMeta = new Map(
 	[...builtinRules].map(([name, rule]) => [name, rule.meta]),
 );
 for (const entry of config) {
-	for (const [prefix, plugin] of Object.entries(entry.plugins ?? {})) {
-		for (const [name, rule] of Object.entries(plugin.rules ?? {})) {
+	const plugins = Object.entries(entry.plugins ?? {});
+	for (const [prefix, plugin] of plugins) {
+		const rules = Object.entries(plugin.rules ?? {});
+		for (const [name, rule] of rules) {
 			ruleMeta.set(`${prefix}/${name}`, rule.meta);
 		}
 	}

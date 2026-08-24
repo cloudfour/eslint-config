@@ -120,7 +120,7 @@ export default [
 			'sort-imports': ['error', { ignoreDeclarationSort: true }],
 
 			'unicorn/import-style': 'off', // It doesn't seem useful to force people to use named, default, or namespace imports
-			'unicorn/prevent-abbreviations': 'off', // Causes more issues than it's worth
+			'unicorn/name-replacements': 'off', // Causes more issues than it's worth
 			// Null is ok, even though Sindre Sorhus doesn't like it
 			// It is ok to avoid using null and use undefined instead
 			// but enforcing it in all code via a lint rule is too annoying
@@ -144,6 +144,26 @@ export default [
 				// There isn't a good reason to force use of Number.POSITIVE_INFINITY instead of Infinity
 				{ checkInfinity: false },
 			],
+			// As of v73 this rule checks directory names too, and `__tests__`,
+			// `__mocks__` and `__snapshots__` are established conventions that
+			// aren't going to be renamed to satisfy a case rule
+			'unicorn/filename-case': ['error', { ignore: [/^__\w+__$/u] }],
+			// Requires booleans to be named `isFoo`, `hasFoo`, `shouldFoo` and so on.
+			// Like `name-replacements`, this is a naming opinion that causes more
+			// churn than it prevents bugs. Left to human reviewers.
+			'unicorn/consistent-boolean-name': 'off',
+			// Wants single-line `/** @type {…} */` JSDoc expanded to multiple lines.
+			// That is a standard, Prettier-stable way to write a one-line annotation.
+			'unicorn/single-line-block-comment-style': 'off',
+			// Without type information this rule can't tell a string array (where the
+			// default sort is correct) from a number array (where it isn't), so it
+			// mostly reports false positives. The type-aware typescript-eslint
+			// version is enabled for TS files below, where it can tell the difference.
+			'unicorn/require-array-sort-compare': 'off',
+			// Duplicates our own `@cloudfour/prefer-early-return`, which predates it
+			// and is what existing eslint-disable comments refer to. Keeping both on
+			// reports the same problem twice.
+			'unicorn/prefer-early-return': 'off',
 
 			// Disabling rules about TODO comments. In practice, these were usually disabled.
 			'no-warning-comments': 'off',
@@ -230,7 +250,13 @@ export default [
 			'@typescript-eslint/no-unsafe-argument': 'off', // Any is an escape hatch, let it be an escape hatch
 			'@typescript-eslint/restrict-template-expressions': 'off', // Allow using any-typed-values in template expressions
 			'@typescript-eslint/no-unnecessary-condition': 'error', // This catches a lot of dead code that TS itself doesn't flag
-			'@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
+			// Superseded by `unicorn/no-unnecessary-boolean-comparison`, which catches
+			// the same cases without needing `strictNullChecks` and also covers JS.
+			// Leaving both on reports the same problem twice.
+			'@typescript-eslint/no-unnecessary-boolean-literal-compare': 'off',
+			// The unicorn version is disabled above because it can't see types. This
+			// one can, so it only reports arrays where the default sort is actually wrong.
+			'@typescript-eslint/require-array-sort-compare': 'error',
 			'@typescript-eslint/prefer-optional-chain': 'error', // More readable syntax
 			'no-unused-vars': 'off', // TS checks this via noUnusedLocals / noUnusedParameters
 			'@typescript-eslint/no-unused-vars': 'off', // TS checks this via noUnusedLocals / noUnusedParameters
