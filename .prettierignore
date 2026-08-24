@@ -1,0 +1,3 @@
+# Fixtures must stay byte-stable: reformatting them would silently change which
+# rules fire, and the invalid fixtures are deliberately badly formatted.
+__tests__/fixtures/
