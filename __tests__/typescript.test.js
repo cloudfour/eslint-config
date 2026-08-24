@@ -24,10 +24,12 @@ describe('TypeScript config', () => {
 			'@typescript-eslint/array-type',
 			'@typescript-eslint/consistent-type-imports',
 			'@typescript-eslint/no-non-null-assertion',
-			'@typescript-eslint/no-unnecessary-boolean-literal-compare',
 			'@typescript-eslint/no-unnecessary-condition',
 			'@typescript-eslint/prefer-optional-chain',
 			'import/no-duplicates',
+			// Replaces `@typescript-eslint/no-unnecessary-boolean-literal-compare`,
+			// which we turn off in favour of this one
+			'unicorn/no-unnecessary-boolean-comparison',
 		]);
 	});
 

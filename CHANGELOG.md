@@ -5,14 +5,39 @@
 ### Breaking Changes
 
 - Narrow the supported Node versions from `>=22.16.0` to `^22.22.2 || >=24.15.0`, matching what our dependencies actually support. Node `23.x` was never really supported: `eslint-plugin-jsdoc` already excluded it, and `import.meta.dirname` was never backported to that line.
-- Narrow the `eslint` peer range from `>= 9` to `^9.38.0 || ^10.0.0`. The old range was never accurate — `eslint-plugin-unicorn` has required `>=9.38.0` since v63.
+- **Drop ESLint 9 support.** The `eslint` peer range is now `^10.4.0`. `eslint-plugin-unicorn` v73 requires `>=10.4`, so taking it means consumers must be on ESLint 10.4 or newer. (The previous `>= 9` range was never accurate either — unicorn has required `>=9.38.0` since v63.)
 - Replace `eslint-plugin-import` with [`eslint-plugin-import-x`](https://github.com/un-ts/eslint-plugin-import-x). `eslint-plugin-import` has not released since June 2025 and does not support ESLint 10, which blocked this whole upgrade. Rules are still registered under the `import` namespace, so `import/*` rule names and any `eslint-disable` comments referring to them are unchanged.
+- **Remove the custom `@cloudfour/prefer-early-return` rule**, along with the `@cloudfour` plugin namespace. `eslint-plugin-unicorn` v73 ships an equivalent [`unicorn/prefer-early-return`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-early-return.md), which we now use with `maximumStatements: 2` so it reports exactly the same cases the old rule did.
+
+  Any `eslint-disable` comments naming the old rule will now fail with "Definition for rule '@cloudfour/prefer-early-return' was not found". Replace them:
+
+  ```diff
+  - // eslint-disable-next-line @cloudfour/prefer-early-return
+  + // eslint-disable-next-line unicorn/prefer-early-return
+  ```
 
 ### Major Changes
 
-- Support ESLint `v10`. ESLint `v9` is still supported.
+- Require ESLint `v10.4` or newer.
 - Update `eslint-plugin-jsdoc` to `v64`
 - Update `eslint-plugin-n` to `v18`
+- Update `eslint-plugin-unicorn` to `v73`, which enables around 178 additional rules. Expect some new errors; in testing against a real project it was roughly 18 new reports across 64 TypeScript files. Some existing `eslint-disable` comments for unicorn rules may become stale and need removing.
+
+  Renamed upstream, so any `eslint-disable` comments using the old names need updating:
+  - `unicorn/prevent-abbreviations` → `unicorn/name-replacements` (still off)
+  - `unicorn/no-array-for-each` → `unicorn/no-for-each`
+  - `unicorn/prefer-dom-node-dataset` → `unicorn/dom-node-dataset`
+  - `unicorn/no-hex-escape` was removed, replaced by `unicorn/prefer-unicode-code-point-escapes`
+
+  Newly disabled, because they conflict with conventions or duplicate a rule we already run:
+  - `unicorn/consistent-boolean-name` — requires booleans to be named `isFoo`/`hasFoo`/etc. A naming opinion, left to reviewers, consistent with our stance on `unicorn/name-replacements`.
+  - `unicorn/single-line-block-comment-style` — would expand single-line `/** @type {…} */` JSDoc across multiple lines.
+  - `unicorn/require-array-sort-compare` — can't distinguish string arrays from number arrays without type information. Replaced with the type-aware `@typescript-eslint/require-array-sort-compare` for TypeScript files.
+
+  Reconfigured:
+  - `unicorn/prefer-early-return` replaces our removed custom rule, set to `maximumStatements: 2` to match it. See the breaking change above.
+  - `unicorn/filename-case` now checks directory names as well as filenames. We ignore `__tests__`-style directories so conventional names like `__tests__`, `__mocks__` and `__snapshots__` don't have to be renamed.
+  - `@typescript-eslint/no-unnecessary-boolean-literal-compare` is now off in favour of `unicorn/no-unnecessary-boolean-comparison`, which covers the same cases without requiring `strictNullChecks` and also applies to JavaScript.
 
 ### Minor Changes
 

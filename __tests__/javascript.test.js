@@ -18,7 +18,6 @@ describe('JavaScript config', () => {
 		const messages = await lintFixture('__tests__/fixtures/invalid.js');
 
 		assert.deepEqual(rulesFired(messages), [
-			'@cloudfour/prefer-early-return',
 			'capitalized-comments',
 			'n/file-extension-in-import',
 			'no-return-assign',
@@ -26,6 +25,9 @@ describe('JavaScript config', () => {
 			'no-var',
 			'object-shorthand',
 			'prefer-template',
+			// Replaces the custom `@cloudfour/prefer-early-return` rule we removed,
+			// configured with the same `maximumStatements: 2` threshold
+			'unicorn/prefer-early-return',
 		]);
 	});
 
