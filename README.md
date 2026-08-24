@@ -7,16 +7,12 @@ Cloud Four's ESLint configuration.
 This config extends the following plugins:
 
 - [`n`](https://github.com/weiran-zsd/eslint-plugin-node) (maintained fork of original [`eslint-plugin-node`](https://github.com/mysticatea/eslint-plugin-node))
-- [`import`](https://github.com/benmosher/eslint-plugin-import)
+- [`import`](https://github.com/un-ts/eslint-plugin-import-x) (maintained fork of original [`eslint-plugin-import`](https://github.com/import-js/eslint-plugin-import), registered under the `import` namespace)
 - [`promise`](https://github.com/xjamundx/eslint-plugin-promise)
 - [`jsdoc`](https://github.com/gajus/eslint-plugin-jsdoc)
 - [`unicorn`](https://github.com/sindresorhus/eslint-plugin-unicorn)
 - [`standard`](https://github.com/standard/eslint-config-standard)
 - [`@typescript-eslint`](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin)
-
-It also adds the following custom rules:
-
-- [`prefer-early-return`](./src/rules/prefer-early-return/)
 
 ## Usage
 

@@ -25,7 +25,7 @@ export function assign(target) {
 // lowercase sentence comments trip `capitalized-comments`
 export const flagged = sibling.length;
 
-// `@cloudfour/prefer-early-return` — more than two statements under a lone `if`.
+// `unicorn/prefer-early-return` — more than two statements under a lone `if`.
 export function guard(value) {
 	if (value) {
 		console.log(value);

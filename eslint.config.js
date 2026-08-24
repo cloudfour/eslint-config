@@ -9,14 +9,6 @@ import globals from 'globals';
 import pluginTypeScript from 'typescript-eslint';
 
 import configStandard from './src/eslint-standard-config.js';
-import rulePreferEarlyReturn from './src/rules/prefer-early-return/index.js';
-
-// Create a plugin containing our custom rules
-const pluginCloudFour = {
-	rules: {
-		'prefer-early-return': rulePreferEarlyReturn,
-	},
-};
 
 export default [
 	// Plugins' recommended configs
@@ -47,7 +39,6 @@ export default [
 		plugins: {
 			import: pluginImport,
 			promise: pluginPromise,
-			'@cloudfour': pluginCloudFour,
 		},
 		settings: {
 			jsdoc: {
@@ -64,7 +55,6 @@ export default [
 		},
 		// Override rules from recommended configs
 		rules: {
-			'@cloudfour/prefer-early-return': 'error',
 			'no-unused-expressions': [
 				'error',
 				{
@@ -160,10 +150,10 @@ export default [
 			// mostly reports false positives. The type-aware typescript-eslint
 			// version is enabled for TS files below, where it can tell the difference.
 			'unicorn/require-array-sort-compare': 'off',
-			// Duplicates our own `@cloudfour/prefer-early-return`, which predates it
-			// and is what existing eslint-disable comments refer to. Keeping both on
-			// reports the same problem twice.
-			'unicorn/prefer-early-return': 'off',
+			// Replaces the custom `@cloudfour/prefer-early-return` rule we used to
+			// ship. `maximumStatements` is set to 2 to match what that rule enforced;
+			// the upstream default of 1 would report more cases than it used to.
+			'unicorn/prefer-early-return': ['error', { maximumStatements: 2 }],
 
 			// Disabling rules about TODO comments. In practice, these were usually disabled.
 			'no-warning-comments': 'off',
