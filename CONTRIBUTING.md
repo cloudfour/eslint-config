@@ -28,6 +28,17 @@ test framework to install. It covers four things:
 When a dependency bump changes which rules fire, that is a real behaviour change
 for consumers: update the fixtures and record it in `CHANGELOG.md`.
 
+Locally the suite only ever runs against the ESLint version in the lockfile. CI
+also runs it against the oldest ESLint our `peerDependencies` range allows,
+which is where a bump that quietly raises our real floor shows up. To reproduce
+that run:
+
+```sh
+npm install --no-save eslint@$(node --print "require('semver').minVersion(require('./package.json').peerDependencies.eslint).version")
+npm test
+npm ci   # restore the lockfile version
+```
+
 Fixtures are excluded from ESLint and Prettier so that autofixing can never
 silently change what they test.
 

@@ -23,3 +23,29 @@ jobs:
         run: npm run lint:check
       - name: Run Tests
         run: npm test
+
+  # `validate` only ever sees the ESLint version in the lockfile, so on its own
+  # it cannot tell us whether the range we advertise in `peerDependencies` is
+  # honest. This runs the same checks against the oldest ESLint we claim to
+  # support, resolved from that range so it follows whatever we declare.
+  validate-oldest-eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v7.0.1
+      - name: Setup Node
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+      - name: Install Dependencies
+        run: npm ci
+      - name: Downgrade to the oldest supported ESLint
+        run: |
+          version="$(node --print "require('semver').minVersion(require('./package.json').peerDependencies.eslint).version")"
+          echo "Testing against eslint@$version"
+          npm install --no-save "eslint@$version"
+      - name: Run Lint
+        run: npm run lint:check
+      - name: Run Tests
+        run: npm test
