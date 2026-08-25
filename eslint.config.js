@@ -1,35 +1,41 @@
-import configPrettier from 'eslint-config-prettier';
-import configXO from 'eslint-config-xo';
+import configXO, {
+	frameworkExtensions,
+	jsExtensions,
+	tsExtensions,
+	tsFilesGlob,
+} from 'eslint-config-xo';
 import pluginImport from 'eslint-plugin-import-x';
-import pluginJSDoc from 'eslint-plugin-jsdoc';
-import pluginNode from 'eslint-plugin-n';
 import pluginPromise from 'eslint-plugin-promise';
-import pluginUnicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
-import pluginTypeScript from 'typescript-eslint';
 
-import configStandard from './src/eslint-standard-config.js';
+// XO scopes its layers to the file types it lints, and registers plugins on
+// those layers. Our overrides have to be scoped the same way, otherwise they
+// apply to files (`.json`, `.md`, `.css`) where those plugins were never
+// registered and ESLint fails with "could not find plugin". Derived from xo's
+// own exports so the two stay in step.
+const codeFilesGlob = `**/*.{${[...jsExtensions, ...frameworkExtensions, ...tsExtensions].join(',')}}`;
 
-export default [
-	// Plugins' recommended configs
-	pluginNode.configs['flat/recommended'],
-	pluginJSDoc.configs['flat/recommended-error'],
-	pluginUnicorn.configs.recommended,
-
-	// "Standards"
-	...configXO,
-	configStandard,
+const config = [
+	// eslint-config-xo bundles and configures eslint-plugin-unicorn,
+	// eslint-plugin-jsdoc, eslint-plugin-n, typescript-eslint, eslint-plugin-regexp
+	// and eslint-plugin-import-x, so we no longer depend on those directly.
+	// `prettier: 'compat'` disables the stylistic rules that would fight Prettier,
+	// which is what we previously used eslint-config-prettier for.
+	...configXO({ prettier: 'compat' }),
 
 	// Our settings
 	{
+		files: [codeFilesGlob],
 		languageOptions: {
-			ecmaVersion: 2022,
+			// `ecmaVersion` is deliberately not set: xo already uses `latest`, and
+			// pinning it lower here made `require-unicode-regexp` unsatisfiable,
+			// because the `v` flag it asks for is newer than the syntax we allowed.
 			sourceType: 'module',
 			parserOptions: {
 				ecmaFeatures: { jsx: true },
 			},
 			globals: {
-				...globals.es2022,
+				...globals.es2026,
 				...globals.node,
 				document: 'readonly',
 				navigator: 'readonly',
@@ -109,12 +115,46 @@ export default [
 			// Used for sorting members within an import statement alphabetically
 			'sort-imports': ['error', { ignoreDeclarationSort: true }],
 
+			// XO registers eslint-plugin-import-x under the `import-x` namespace. We
+			// register the same plugin as `import` so existing `eslint-disable
+			// import/…` comments keep working, which means any rule we configure
+			// ourselves is live under both names. For `order` that isn't just
+			// duplicate reporting — xo wants no blank lines between import groups
+			// where we want them, so the two versions contradict each other.
+			// xo's remaining import-x rules stay on and are additive.
+			'import-x/order': 'off',
+			'import-x/no-duplicates': 'off',
+
 			'unicorn/import-style': 'off', // It doesn't seem useful to force people to use named, default, or namespace imports
 			'unicorn/name-replacements': 'off', // Causes more issues than it's worth
 			// Null is ok, even though Sindre Sorhus doesn't like it
 			// It is ok to avoid using null and use undefined instead
 			// but enforcing it in all code via a lint rule is too annoying
 			'unicorn/no-null': 'off',
+			// XO bans `null` as a *type* as well, via a different rule. That is the
+			// same opinion as `unicorn/no-null` above, so it gets the same answer:
+			// we keep xo's other restrictions and drop the one on null.
+			'@typescript-eslint/no-restricted-types': [
+				'error',
+				{
+					types: {
+						object: {
+							message:
+								'The `object` type is hard to use. Use `Record<string, unknown>` instead.',
+							fixWith: 'Record<string, unknown>',
+						},
+						Buffer: {
+							message: 'Use Uint8Array instead.',
+							fixWith: 'Uint8Array',
+						},
+					},
+				},
+			],
+			// Enforces naming styles on types, properties and variables. It has no
+			// way to know which names are ours and which come from someone else's
+			// contract, so it flags things like `Authorization` headers, `utm_source`
+			// query parameters and generated GraphQL types.
+			'@typescript-eslint/naming-convention': 'off',
 			// This rule is meant to avoid the edge case of breaking changes occuring
 			// due to the `index` parameter being passed unexpectedly into the callback function,
 			// causing unexpected behavior if the callback expects something that is not the index
@@ -137,7 +177,7 @@ export default [
 			// As of v73 this rule checks directory names too, and `__tests__`,
 			// `__mocks__` and `__snapshots__` are established conventions that
 			// aren't going to be renamed to satisfy a case rule
-			'unicorn/filename-case': ['error', { ignore: [/^__\w+__$/u] }],
+			'unicorn/filename-case': ['error', { ignore: [/^__\w+__$/v] }],
 			// Requires booleans to be named `isFoo`, `hasFoo`, `shouldFoo` and so on.
 			// Like `name-replacements`, this is a naming opinion that causes more
 			// churn than it prevents bugs. Left to human reviewers.
@@ -154,6 +194,23 @@ export default [
 			// ship. `maximumStatements` is set to 2 to match what that rule enforced;
 			// the upstream default of 1 would report more cases than it used to.
 			'unicorn/prefer-early-return': ['error', { maximumStatements: 2 }],
+
+			// Xo sets this to 'never', which wants JSDoc written without the leading
+			// asterisk on continuation lines. That is not how JSDoc is conventionally
+			// written and not what most editors and formatters produce.
+			'jsdoc/require-asterisk-prefix': ['error', 'always'],
+
+			// What is left of eslint-config-standard. We used to vendor a copy of it,
+			// but xo already enables 95 of the 106 rules that copy contributed, and
+			// most of the rest were formatting rules Prettier turns back off. These
+			// are the ones nothing else covers.
+			'no-empty-character-class': 'error',
+			'no-invalid-regexp': 'error',
+			'no-useless-backreference': 'error',
+			'n/handle-callback-err': ['error', '^(err|error)$'],
+			'n/no-callback-literal': 'error',
+			'n/no-exports-assign': 'error',
+			'promise/param-names': 'error',
 
 			// Disabling rules about TODO comments. In practice, these were usually disabled.
 			'no-warning-comments': 'off',
@@ -180,22 +237,11 @@ export default [
 		},
 	},
 
-	// Load TypeScript ESLint recommended config for TS files only
-	// @see https://eslint.org/docs/latest/use/configure/combine-configs#apply-a-config-array-to-a-subset-of-files
-	...pluginTypeScript.configs.recommendedTypeChecked.map((config) => ({
-		...config,
-		files: ['**/*.{ts,tsx,mts,cts}'],
-	})),
-
-	// Override recommended rules for TS files only
+	// Override rules for TS files only. xo's `xo/typescript` layer already scopes
+	// typescript-eslint to these files and turns on `projectService`, so we only
+	// need our own adjustments here.
 	{
-		files: ['**/*.{ts,tsx,mts,cts}'],
-		languageOptions: {
-			parserOptions: {
-				projectService: true,
-				tsconfigRootDir: import.meta.dirname,
-			},
-		},
+		files: [tsFilesGlob],
 		rules: {
 			// TS handles checking these
 			'n/no-missing-import': 'off',
@@ -269,6 +315,26 @@ export default [
 		},
 	},
 
-	// Disable stylistic rules
-	configPrettier,
+	// Xo lints package.json, which is useful, but two of its rules encode
+	// packaging decisions that are not ours to make for consumers.
+	{
+		files: ['**/package.json'],
+		rules: {
+			// We pin exact versions here and Renovate is configured to keep doing so.
+			// Whether to pin or use ranges is a project decision, not a lint error.
+			'package-json/dependency-version-range': 'off',
+			// Moving from `main` to `exports` changes a package's public interface.
+			// Worth doing deliberately, not because a linter asked.
+			'package-json/prefer-exports': 'off',
+		},
+	},
+
+	// Lockfiles are generated. npm uses an empty string as the key for the root
+	// package, so every package-lock.json trips `json/no-empty-keys`.
+	{
+		files: ['**/package-lock.json'],
+		rules: { 'json/no-empty-keys': 'off' },
+	},
 ];
+
+export default config;

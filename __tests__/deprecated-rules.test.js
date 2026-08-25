@@ -6,18 +6,17 @@ import { builtinRules } from 'eslint/use-at-your-own-risk';
 
 import config from '../eslint.config.js';
 
-// Rules we knowingly still enable despite upstream deprecating them. Most come
-// from the vendored copy of eslint-config-standard in src/, which predates the
-// deprecations. This list is a canary, not a target: it should only ever shrink.
-// When a dependency bump deprecates something new, this test fails and tells us
-// to decide about it deliberately rather than finding out from a consumer.
+// Rules we knowingly still enable despite upstream deprecating them. These now
+// all arrive via eslint-config-xo rather than anything we set ourselves — the
+// six that used to be here came from the vendored copy of eslint-config-standard
+// and went away with it. This list is a canary, not a target: it should only
+// ever shrink. When a dependency bump deprecates something new, this test fails
+// and tells us to decide about it deliberately rather than hearing it from a
+// consumer.
 const KNOWN_DEPRECATED = [
-	'lines-between-class-members',
-	'no-buffer-constructor',
-	'no-new-object',
-	'no-new-symbol',
-	'no-return-await',
-	'spaced-comment',
+	'@eslint-community/eslint-comments/no-unused-disable',
+	'@typescript-eslint/no-loop-func',
+	'@typescript-eslint/no-restricted-imports',
 ];
 
 /** Maps every rule available to our config to its metadata. */

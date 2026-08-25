@@ -6,13 +6,25 @@ Cloud Four's ESLint configuration.
 
 This config extends the following plugins:
 
-- [`n`](https://github.com/weiran-zsd/eslint-plugin-node) (maintained fork of original [`eslint-plugin-node`](https://github.com/mysticatea/eslint-plugin-node))
-- [`import`](https://github.com/un-ts/eslint-plugin-import-x) (maintained fork of original [`eslint-plugin-import`](https://github.com/import-js/eslint-plugin-import), registered under the `import` namespace)
-- [`promise`](https://github.com/xjamundx/eslint-plugin-promise)
-- [`jsdoc`](https://github.com/gajus/eslint-plugin-jsdoc)
-- [`unicorn`](https://github.com/sindresorhus/eslint-plugin-unicorn)
-- [`standard`](https://github.com/standard/eslint-config-standard)
-- [`@typescript-eslint`](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin)
+It is built on [`eslint-config-xo`](https://github.com/xojs/eslint-config-xo), which
+bundles and configures most of the plugins we rely on — including
+[`unicorn`](https://github.com/sindresorhus/eslint-plugin-unicorn),
+[`jsdoc`](https://github.com/gajus/eslint-plugin-jsdoc),
+[`n`](https://github.com/eslint-community/eslint-plugin-n),
+[`@typescript-eslint`](https://github.com/typescript-eslint/typescript-eslint),
+[`regexp`](https://github.com/ota-meshi/eslint-plugin-regexp) and
+[`import-x`](https://github.com/un-ts/eslint-plugin-import-x) — plus rules for
+`package.json`, JSON, Markdown, CSS and HTML. On top of that we add our own
+overrides, which is where our house style actually lives.
+
+Two plugins are ours directly rather than xo's:
+
+- [`import-x`](https://github.com/un-ts/eslint-plugin-import-x), registered under the
+  `import` namespace so that `import/*` rule names stay stable for consumers. xo's
+  own copy is registered as `import-x`, and both namespaces are active.
+- [`promise`](https://github.com/xjamundx/eslint-plugin-promise). We are considering
+  dropping this: `promise/param-names` is the only rule we take from it, and a whole
+  dependency for one rule is hard to justify. If we drop it, that rule goes with it.
 
 ## Usage
 
