@@ -1,6 +1,6 @@
 {
 	"name": "@cloudfour/eslint-config",
-	"version": "25.0.1",
+	"version": "26.0.0",
 	"description": "Cloud Four's shareable ESLint configuration",
 	"license": "MIT",
 	"repository": "github:cloudfour/eslint-config",
