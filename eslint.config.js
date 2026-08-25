@@ -304,17 +304,15 @@ const config = [
 		},
 	},
 
-	// Xo lints package.json, which is useful, but two of its rules encode
-	// packaging decisions that are not ours to make for consumers.
+	// Xo lints package.json, which is useful.
 	{
 		files: ['**/package.json'],
 		rules: {
 			// We pin exact versions here and Renovate is configured to keep doing so.
 			// Whether to pin or use ranges is a project decision, not a lint error.
+			// Unlike most package.json rules this one fires on every project, including
+			// applications that never publish anything.
 			'package-json/dependency-version-range': 'off',
-			// Moving from `main` to `exports` changes a package's public interface.
-			// Worth doing deliberately, not because a linter asked.
-			'package-json/prefer-exports': 'off',
 		},
 	},
 

@@ -8,7 +8,8 @@
 	"bugs": "https://github.com/cloudfour/eslint-config/issues",
 	"author": "Cloud Four <info@cloudfour.com> (http://cloudfour.com)",
 	"type": "module",
-	"main": "./eslint.config.js",
+	"exports": "./eslint.config.js",
+	"sideEffects": false,
 	"engines": {
 		"node": "^22.13.0 || >=24"
 	},

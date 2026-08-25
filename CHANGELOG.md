@@ -10,7 +10,7 @@
 
   This turns on a meaningful number of new rules. Measured against a real project, roughly 250 new reports across 64 TypeScript files, mostly from `require-unicode-regexp` (the `v` flag), `@typescript-eslint/strict-boolean-expressions`, `curly` and `n/prefer-global/process`.
 
-  xo also lints `package.json`, JSON, Markdown and CSS, which it did not before. Two of its `package.json` rules are off: `dependency-version-range` (we pin exact versions deliberately) and `prefer-exports` (a packaging decision, not a lint error).
+  xo also lints `package.json`, JSON, Markdown and CSS, which it did not before. One of its `package.json` rules is off: `dependency-version-range`, because we pin exact versions deliberately and it fires on every project, including applications that never publish anything. The rest apply, including `sort-properties`, which reorders top-level fields to npm's canonical sequence the first time it runs.
 
   Three of xo's opinions are turned back off because they contradict decisions we had already made:
   - `@typescript-eslint/no-restricted-types` no longer bans `null` as a type. That is the same opinion as `unicorn/no-null`, which we have always disabled. xo's other restrictions are kept.
@@ -23,6 +23,8 @@
   - // eslint-disable-next-line import/order
   + // eslint-disable-next-line import-x/order
   ```
+
+- **Replace `main` with `exports`.** The package now declares `"exports": "./eslint.config.js"` instead of `"main"`, and adds `"sideEffects": false`. `import cloudFourConfig from '@cloudfour/eslint-config'` is unaffected. What changes is that deep imports are now blocked: `import '@cloudfour/eslint-config/eslint.config.js'` throws `ERR_PACKAGE_PATH_NOT_EXPORTED`. That path resolved to the same module as the package root, so it was an unusual thing to write, but anything doing it needs to import the package root instead.
 
 - **Drop ESLint 9 support.** The `eslint` peer range is now `^10.6.0`. The previous `>= 9` range was never accurate either — `eslint-plugin-unicorn` has required `>=9.38.0` since v63.
 
