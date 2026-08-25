@@ -4,10 +4,31 @@
 
 ### Breaking Changes
 
-- Narrow the supported Node versions from `>=22.16.0` to `^22.22.2 || >=24.15.0`, matching what our dependencies actually support. Node `23.x` was never really supported: `eslint-plugin-jsdoc` already excluded it, and `import.meta.dirname` was never backported to that line.
-- **Drop ESLint 9 support.** The `eslint` peer range is now `^10.4.0`. `eslint-plugin-unicorn` v73 requires `>=10.4`, so taking it means consumers must be on ESLint 10.4 or newer. (The previous `>= 9` range was never accurate either — unicorn has required `>=9.38.0` since v63.)
-- Replace `eslint-plugin-import` with [`eslint-plugin-import-x`](https://github.com/un-ts/eslint-plugin-import-x). `eslint-plugin-import` has not released since June 2025 and does not support ESLint 10, which blocked this whole upgrade. Rules are still registered under the `import` namespace, so `import/*` rule names and any `eslint-disable` comments referring to them are unchanged.
-- **Remove the custom `@cloudfour/prefer-early-return` rule**, along with the `@cloudfour` plugin namespace. `eslint-plugin-unicorn` v73 ships an equivalent [`unicorn/prefer-early-return`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-early-return.md), which we now use with `maximumStatements: 2` so it reports exactly the same cases the old rule did.
+- **Rebuild on [`eslint-config-xo`](https://github.com/xojs/eslint-config-xo) v1 and remove the vendored copy of `eslint-config-standard`.** xo now bundles most of what we assembled by hand, so `eslint-config-prettier`, `eslint-plugin-import-x`, `eslint-plugin-jsdoc`, `eslint-plugin-n`, `eslint-plugin-unicorn` and `typescript-eslint` are no longer direct dependencies — they arrive through xo, and xo decides their versions. Three direct dependencies remain: `eslint-config-xo`, `eslint-plugin-promise` and `globals`. Our own overrides are unchanged.
+
+  Of the 106 rules the vendored standard config still contributed, xo already enabled 95. The seven that survive (`no-empty-character-class`, `no-invalid-regexp`, `no-useless-backreference`, `n/handle-callback-err`, `n/no-callback-literal`, `n/no-exports-assign`, `promise/param-names`) are now set explicitly. `standard`'s remaining value was formatting, which Prettier already handles for us.
+
+  This turns on a meaningful number of new rules. Measured against a real project, roughly 250 new reports across 64 TypeScript files, mostly from `require-unicode-regexp` (the `v` flag), `@typescript-eslint/strict-boolean-expressions`, `curly` and `n/prefer-global/process`.
+
+  xo also lints `package.json`, JSON, Markdown and CSS, which it did not before. One of its `package.json` rules is off: `dependency-version-range`, because we pin exact versions deliberately and it fires on every project, including applications that never publish anything. The rest apply, including `sort-properties`, which reorders top-level fields to npm's canonical sequence the first time it runs.
+
+  Three of xo's opinions are turned back off because they contradict decisions we had already made:
+  - `@typescript-eslint/no-restricted-types` no longer bans `null` as a type. That is the same opinion as `unicorn/no-null`, which we have always disabled. xo's other restrictions are kept.
+  - `@typescript-eslint/naming-convention` is off. It cannot distinguish our names from names that come from someone else's contract, so it flags things like `Authorization` headers and generated GraphQL types.
+  - `jsdoc/require-asterisk-prefix` is back to `always`. xo sets it to `never`, which wants JSDoc written without the leading asterisk on continuation lines.
+
+- **Import rules move from the `import/*` namespace to `import-x/*`.** We used to depend on `eslint-plugin-import` and later replaced it with [`eslint-plugin-import-x`](https://github.com/un-ts/eslint-plugin-import-x), registered under the name `import` to keep rule names stable. `eslint-plugin-import` has not released since June 2025 and does not support ESLint 10, which is what forced the swap. Now that xo bundles import-x under its own `import-x` namespace, we use that directly. Any `eslint-disable` comment naming an import rule needs updating:
+
+  ```diff
+  - // eslint-disable-next-line import/order
+  + // eslint-disable-next-line import-x/order
+  ```
+
+- **Replace `main` with `exports`.** The package now declares `"exports": "./eslint.config.js"` instead of `"main"`, and adds `"sideEffects": false`. `import cloudFourConfig from '@cloudfour/eslint-config'` is unaffected. What changes is that deep imports are now blocked: `import '@cloudfour/eslint-config/eslint.config.js'` throws `ERR_PACKAGE_PATH_NOT_EXPORTED`. That path resolved to the same module as the package root, so it was an unusual thing to write, but anything doing it needs to import the package root instead.
+
+- **Drop ESLint 9 support.** The `eslint` peer range is now `^10.6.0`. The previous `>= 9` range was never accurate either — `eslint-plugin-unicorn` has required `>=9.38.0` since v63.
+
+- **Remove the custom `@cloudfour/prefer-early-return` rule**, along with the `@cloudfour` plugin namespace. `eslint-plugin-unicorn` ships an equivalent [`unicorn/prefer-early-return`](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-early-return.md), which we now use with `maximumStatements: 2` so it reports exactly the same cases the old rule did. We would rather not maintain a lint rule that exists upstream.
 
   Any `eslint-disable` comments naming the old rule will now fail with "Definition for rule '@cloudfour/prefer-early-return' was not found". Replace them:
 
@@ -16,12 +37,13 @@
   + // eslint-disable-next-line unicorn/prefer-early-return
   ```
 
+- Change the supported Node versions from `>=22.16.0` to `^22.13.0 || >=24`, matching what ESLint and our other dependencies actually support. This drops Node `23.x`, which was never really supported.
+
 ### Major Changes
 
-- Require ESLint `v10.4` or newer.
-- Update `eslint-plugin-jsdoc` to `v64`
-- Update `eslint-plugin-n` to `v18`
-- Update `eslint-plugin-unicorn` to `v73`, which enables around 178 additional rules. Expect some new errors; in testing against a real project it was roughly 18 new reports across 64 TypeScript files. Some existing `eslint-disable` comments for unicorn rules may become stale and need removing.
+- Require ESLint `v10.6` or newer. `eslint-config-xo` declares `>=10.4`, but it configures `no-constant-binary-expression` with an option ESLint did not support until `v10.6`, so its own range is optimistic. Our CI job that runs the suite against the oldest ESLint we advertise is what caught this.
+- `ecmaVersion` is no longer pinned to `2022`; xo's `latest` applies. Pinning it lower made `require-unicode-regexp` unsatisfiable, since the `v` flag it requires is newer than the syntax we allowed.
+- `eslint-plugin-unicorn` moves from `v63` to `v73` (via xo), which enables around 178 additional rules. Some existing `eslint-disable` comments for unicorn rules may become stale and need removing.
 
   Renamed upstream, so any `eslint-disable` comments using the old names need updating:
   - `unicorn/prevent-abbreviations` → `unicorn/name-replacements` (still off)
@@ -39,9 +61,12 @@
   - `unicorn/filename-case` now checks directory names as well as filenames. We ignore `__tests__`-style directories so conventional names like `__tests__`, `__mocks__` and `__snapshots__` don't have to be renamed.
   - `@typescript-eslint/no-unnecessary-boolean-literal-compare` is now off in favour of `unicorn/no-unnecessary-boolean-comparison`, which covers the same cases without requiring `strictNullChecks` and also applies to JavaScript.
 
+- `eslint-plugin-n` moves from `v17` to `v18` (via xo).
+- `eslint-plugin-jsdoc` moves from `v62` to `v63` (via xo). An earlier commit in this release took it to `v64` directly; xo pins `^63.3.3`, so `v63` is what ships.
+
 ### Minor Changes
 
-- Only publish `eslint.config.js` and `src/` to npm. The package previously also shipped repository files such as `.editorconfig`, `.nvmrc`, `.renovaterc.json` and the CI workflow.
+- Only publish `eslint.config.js` to npm. The package previously also shipped repository files such as `.editorconfig`, `.nvmrc`, `.renovaterc.json` and the CI workflow.
 
 ## 25.0.1 - 2026-02-12
 

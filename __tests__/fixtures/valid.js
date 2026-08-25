@@ -11,9 +11,12 @@ export const nothing = null;
 // `unicorn/prevent-abbreviations` is off.
 export const props = { i: 0, prev: nothing };
 
-// `no-param-reassign` is off.
+// `no-param-reassign` is off. (Braces are required by xo's `curly`.)
 export const clamp = (value) => {
-	if (value < 0) value = 0;
+	if (value < 0) {
+		value = 0;
+	}
+
 	return value;
 };
 

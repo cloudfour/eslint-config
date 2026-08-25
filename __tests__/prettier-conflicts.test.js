@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
+import process from 'node:process';
 import { describe, it } from 'node:test';
 
 // eslint-config-prettier ships a CLI that resolves our config for a file and
