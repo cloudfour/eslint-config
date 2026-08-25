@@ -10,7 +10,7 @@
 	"type": "module",
 	"main": "./eslint.config.js",
 	"engines": {
-		"node": "^22.22.2 || >=24.15.0"
+		"node": "^22.13.0 || >=24"
 	},
 	"scripts": {
 		"lint": "npm run lint:js && npm run lint:prettier",
