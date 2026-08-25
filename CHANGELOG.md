@@ -1,6 +1,6 @@
 # @cloudfour/eslint-plugin
 
-## Unreleased
+## 26.0.0 - 2026-08-25
 
 ### Breaking Changes
 
