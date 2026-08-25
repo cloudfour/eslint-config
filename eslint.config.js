@@ -4,7 +4,6 @@ import configXO, {
 	tsExtensions,
 	tsFilesGlob,
 } from 'eslint-config-xo';
-import pluginImport from 'eslint-plugin-import-x';
 import pluginPromise from 'eslint-plugin-promise';
 import globals from 'globals';
 
@@ -18,7 +17,8 @@ const codeFilesGlob = `**/*.{${[...jsExtensions, ...frameworkExtensions, ...tsEx
 const config = [
 	// eslint-config-xo bundles and configures eslint-plugin-unicorn,
 	// eslint-plugin-jsdoc, eslint-plugin-n, typescript-eslint, eslint-plugin-regexp
-	// and eslint-plugin-import-x, so we no longer depend on those directly.
+	// and eslint-plugin-import-x, so we no longer depend on those directly. Its rule
+	// namespaces are used as-is, including `import-x` rather than `import`.
 	// `prettier: 'compat'` disables the stylistic rules that would fight Prettier,
 	// which is what we previously used eslint-config-prettier for.
 	...configXO({ prettier: 'compat' }),
@@ -43,7 +43,6 @@ const config = [
 			},
 		},
 		plugins: {
-			import: pluginImport,
 			promise: pluginPromise,
 		},
 		settings: {
@@ -92,7 +91,7 @@ const config = [
 			'n/file-extension-in-import': ['error', 'always'], // Don't allow extension-less relative imports (e.g. use ./foo.js instead of ./foo)
 
 			// Used for sorting/grouping import statements
-			'import/order': [
+			'import-x/order': [
 				'error',
 				{
 					groups: [
@@ -111,19 +110,9 @@ const config = [
 			// prefer-inline means it is preferred to use inline `type` imports combined with non-types
 			// instead of separate imports for types and non-types
 			// e.g. import { Foo, type Bar } from 'something' is preferred over having separate import statements
-			'import/no-duplicates': ['error', { 'prefer-inline': true }],
+			'import-x/no-duplicates': ['error', { 'prefer-inline': true }],
 			// Used for sorting members within an import statement alphabetically
 			'sort-imports': ['error', { ignoreDeclarationSort: true }],
-
-			// XO registers eslint-plugin-import-x under the `import-x` namespace. We
-			// register the same plugin as `import` so existing `eslint-disable
-			// import/…` comments keep working, which means any rule we configure
-			// ourselves is live under both names. For `order` that isn't just
-			// duplicate reporting — xo wants no blank lines between import groups
-			// where we want them, so the two versions contradict each other.
-			// xo's remaining import-x rules stay on and are additive.
-			'import-x/order': 'off',
-			'import-x/no-duplicates': 'off',
 
 			'unicorn/import-style': 'off', // It doesn't seem useful to force people to use named, default, or namespace imports
 			'unicorn/name-replacements': 'off', // Causes more issues than it's worth

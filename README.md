@@ -17,11 +17,11 @@ bundles and configures most of the plugins we rely on — including
 `package.json`, JSON, Markdown, CSS and HTML. On top of that we add our own
 overrides, which is where our house style actually lives.
 
-Two plugins are ours directly rather than xo's:
+Rule names use xo's namespaces as-is. Note that import rules are `import-x/*`, not
+`import/*`.
 
-- [`import-x`](https://github.com/un-ts/eslint-plugin-import-x), registered under the
-  `import` namespace so that `import/*` rule names stay stable for consumers. xo's
-  own copy is registered as `import-x`, and both namespaces are active.
+One plugin is ours directly rather than xo's:
+
 - [`promise`](https://github.com/xjamundx/eslint-plugin-promise). We are considering
   dropping this: `promise/param-names` is the only rule we take from it, and a whole
   dependency for one rule is hard to justify. If we drop it, that rule goes with it.

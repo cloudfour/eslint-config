@@ -6,7 +6,7 @@
 // change which rules fire.
 
 // `@typescript-eslint/consistent-type-imports` — Config is only used as a type.
-// `import/no-duplicates` with `prefer-inline` — these should be one statement.
+// `import-x/no-duplicates` with `prefer-inline` — these should be one statement.
 import { Config } from './types.js';
 import { VERSION } from './types.js';
 

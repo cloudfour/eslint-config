@@ -16,7 +16,7 @@
   + // eslint-disable-next-line unicorn/prefer-early-return
   ```
 
-- **Rebuild on `eslint-config-xo` v1 and remove the vendored copy of `eslint-config-standard`.** xo now bundles most of what we assembled by hand, so `eslint-config-prettier`, `eslint-plugin-jsdoc`, `eslint-plugin-n`, `eslint-plugin-unicorn` and `typescript-eslint` are no longer direct dependencies — they come from xo. Our own overrides are unchanged.
+- **Rebuild on `eslint-config-xo` v1 and remove the vendored copy of `eslint-config-standard`.** xo now bundles most of what we assembled by hand, so `eslint-config-prettier`, `eslint-plugin-import-x`, `eslint-plugin-jsdoc`, `eslint-plugin-n`, `eslint-plugin-unicorn` and `typescript-eslint` are no longer direct dependencies — they come from xo. Our own overrides are unchanged.
 
   Of the 106 rules the vendored standard config still contributed, xo already enabled 95. The seven that survive (`no-empty-character-class`, `no-invalid-regexp`, `no-useless-backreference`, `n/handle-callback-err`, `n/no-callback-literal`, `n/no-exports-assign`, `promise/param-names`) are now set explicitly. `standard`'s remaining value was formatting, which Prettier already handles for us.
 
@@ -28,7 +28,12 @@
   - `@typescript-eslint/no-restricted-types` no longer bans `null` as a type. That is the same opinion as `unicorn/no-null`, which we have always disabled. xo's other restrictions are kept.
   - `@typescript-eslint/naming-convention` is off. It cannot distinguish our names from names that come from someone else's contract, so it flags things like `Authorization` headers and generated GraphQL types.
 
-  `eslint-plugin-import-x` is still registered under the `import` namespace so `import/*` rule names and disable comments keep working. xo registers the same plugin as `import-x`, and both namespaces are live; where we configure a rule ourselves, xo's copy is turned off to avoid contradictory reports.
+  **Import rules move from the `import/*` namespace to `import-x/*`.** We previously registered `eslint-plugin-import-x` ourselves under the name `import` to keep older rule names working. Now that xo bundles the same plugin as `import-x`, we use its namespace directly and drop the extra dependency. Any `eslint-disable` comment naming an import rule needs updating:
+
+  ```diff
+  - // eslint-disable-next-line import/order
+  + // eslint-disable-next-line import-x/order
+  ```
 
 ### Major Changes
 

@@ -40,7 +40,7 @@ describe('JavaScript config', () => {
 		assert.ok(
 			messages.some(
 				(message) =>
-					message.ruleId === 'import/order' &&
+					message.ruleId === 'import-x/order' &&
 					message.message.includes('should occur after import of'),
 			),
 			`Imports were not reordered by group:\n${format(messages)}`,

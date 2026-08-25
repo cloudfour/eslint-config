@@ -1,4 +1,4 @@
-// `import/order` is the one rule we configure that needs real module
+// `import-x/order` is the one rule we configure that needs real module
 // resolution: it has to know that `node:fs/promises` is a builtin, `semver` is
 // external, and `./sibling.js` is a sibling in order to group them. The plugin
 // resolves that with a native binary, so if the resolver ever stops working
