@@ -1,14 +1,11 @@
 {
-	"extends": ["config:recommended", ":automergeMinor", ":pinVersions"],
-	"minimumReleaseAge": "3 days",
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["local>cloudfour/renovate-config:library"],
 	"packageRules": [
 		{
-			"matchDepTypes": ["peerDependencies", "engines"],
-			"rangeStrategy": "replace"
-		},
-		{
-			"automerge": false,
-			"matchPackageNames": ["/eslint/"]
+			"description": "This repo IS the shared ESLint config, so an eslint bump here changes what every consuming repo lints against. Never auto-merge it. The shared preset groups eslint updates and auto-merges minor ones; this rule deliberately overrides that, for this repo only.",
+			"matchPackageNames": ["/eslint/"],
+			"automerge": false
 		}
 	]
 }
