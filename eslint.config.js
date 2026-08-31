@@ -1,5 +1,6 @@
 import configXO, {
 	frameworkExtensions,
+	htmlExtensions,
 	jsExtensions,
 	tsExtensions,
 	tsFilesGlob,
@@ -13,6 +14,24 @@ import globals from 'globals';
 // registered and ESLint fails with "could not find plugin". Derived from xo's
 // own exports so the two stay in step.
 const codeFilesGlob = `**/*.{${[...jsExtensions, ...frameworkExtensions, ...tsExtensions].join(',')}}`;
+// One glob per extension rather than a `{…}` group: xo currently lists a single
+// HTML extension, and a brace group with one option is not expanded by the glob
+// matcher, so `**/*.{html}` would match nothing.
+const htmlFilesGlobs = htmlExtensions.map((extension) => `**/*.${extension}`);
+
+// Xo applies its `package-json` rules to every `**/package.json`, but the rules
+// describe a root manifest. Packages that ship a dual CommonJS/ESM build also
+// ship marker files whose entire content is `{"type": "commonjs"}` or
+// `{"type": "module"}`, and those collect demands for `name`, `version`,
+// `license`, `keywords` and an entry point that they will never have. Worse,
+// `prefer-type-module` tells a `{"type": "commonjs"}` marker to become
+// `"module"`, and following that breaks the CommonJS half of the package.
+// Scoping the layer to the root manifest matches what the rules are about.
+const xoLayers = configXO({ prettier: 'compat' }).map((layer) =>
+	layer.name === 'xo/package-json'
+		? { ...layer, files: ['package.json'] }
+		: layer,
+);
 
 const config = [
 	// eslint-config-xo bundles and configures eslint-plugin-unicorn,
@@ -21,7 +40,7 @@ const config = [
 	// namespaces are used as-is, including `import-x` rather than `import`.
 	// `prettier: 'compat'` disables the stylistic rules that would fight Prettier,
 	// which is what we previously used eslint-config-prettier for.
-	...configXO({ prettier: 'compat' }),
+	...xoLayers,
 
 	// Our settings
 	{
@@ -171,6 +190,11 @@ const config = [
 			// Like `name-replacements`, this is a naming opinion that causes more
 			// churn than it prevents bugs. Left to human reviewers.
 			'unicorn/consistent-boolean-name': 'off',
+			// Requires anything named with a verb prefix (`setFoo`, `getFoo`) to be a
+			// function, so a variable holding a callback gets reported. Same family of
+			// naming opinion as `consistent-boolean-name` and `name-replacements`
+			// above, and it gets the same answer.
+			'unicorn/no-non-function-verb-prefix': 'off',
 			// Wants single-line `/** @type {…} */` JSDoc expanded to multiple lines.
 			// That is a standard, Prettier-stable way to write a one-line annotation.
 			'unicorn/single-line-block-comment-style': 'off',
@@ -188,6 +212,21 @@ const config = [
 			// asterisk on continuation lines. That is not how JSDoc is conventionally
 			// written and not what most editors and formatters produce.
 			'jsdoc/require-asterisk-prefix': ['error', 'always'],
+
+			// A tag's description runs until the next tag, and leading whitespace on
+			// its continuation lines is stripped before the block is parsed, so
+			// indenting them changes nothing about the parsed output. It only makes it
+			// easier to see where one `@param` ends and the next begins. Between them
+			// these two rules forbade that indentation and `--fix` silently flattened
+			// it, so allow it instead. `allowIndentedSections` still reports the cases
+			// that signal a real mistake, such as an indented tag line, and
+			// `disableWrapIndent` permits either style rather than mandating one.
+			'jsdoc/check-indentation': ['error', { allowIndentedSections: true }],
+			'jsdoc/check-line-alignment': [
+				'error',
+				'never',
+				{ disableWrapIndent: true },
+			],
 
 			// What is left of eslint-config-standard. We used to vendor a copy of it,
 			// but xo already enables 95 of the 106 rules that copy contributed, and
@@ -304,15 +343,48 @@ const config = [
 		},
 	},
 
-	// Xo lints package.json, which is useful.
+	// Xo lints HTML, which it did not before v26.
 	{
-		files: ['**/package.json'],
+		files: htmlFilesGlobs,
+		rules: {
+			// Requires og:title, og:type, og:url and og:image on every HTML file in the
+			// project. Demo pages, test fixtures, component examples and email
+			// templates all match, and none of them are ever shared as a link. Which
+			// pages get Open Graph tags, and what those tags say, is a per-page content
+			// decision rather than something a linter can check. Not part of
+			// html-eslint's own recommended set either; xo adds it.
+			'@html-eslint/require-open-graph-protocol': 'off',
+			// Same reasoning, less strongly. A meta description is worth writing for a
+			// page with an audience, but it is content rather than correctness, and
+			// requiring one on every HTML file in the repo is not the way to get it.
+			'@html-eslint/require-meta-description': 'off',
+		},
+	},
+
+	// Xo lints package.json, which is useful. Note that its layer is scoped to the
+	// root manifest above, so these apply there too.
+	{
+		files: ['package.json'],
 		rules: {
 			// We pin exact versions here and Renovate is configured to keep doing so.
 			// Whether to pin or use ranges is a project decision, not a lint error.
 			// Unlike most package.json rules this one fires on every project, including
 			// applications that never publish anything.
 			'package-json/dependency-version-range': 'off',
+			// Adding `exports` changes what a published package lets consumers reach:
+			// deep imports that used to resolve start throwing
+			// `ERR_PACKAGE_PATH_NOT_EXPORTED`. It is worth doing, but it belongs in a
+			// deliberate major release rather than arriving as a lint error, and it is
+			// meaningless for the applications that never publish at all.
+			'package-json/prefer-exports': 'off',
+			// `"type": "module"` breaks every consumer using `require()`. Same
+			// reasoning as `prefer-exports`: a real decision about the package's
+			// interface, not lint cleanup.
+			'package-json/prefer-type-module': 'off',
+			// Fair for packages that run in Node, but we publish browser libraries that
+			// have no Node runtime to describe, and inventing a range to satisfy the
+			// rule makes `engines` less trustworthy where it does matter.
+			'package-json/require-engines': 'off',
 		},
 	},
 

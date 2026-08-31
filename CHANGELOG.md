@@ -1,5 +1,113 @@
 # @cloudfour/eslint-plugin
 
+## 26.1.0 - 2026-08-31
+
+Follow-up to v26, from rolling it out across our repos. Everything here either
+turns a rule off or widens what one accepts, so no project should gain new
+errors from upgrading.
+
+### Minor Changes
+
+- **Scope xo's `package.json` rules to the root manifest.** They were applied to
+  every `**/package.json`, but they describe a package's manifest. Packages that
+  ship a dual CommonJS/ESM build also ship marker files whose entire content is
+  `{"type": "commonjs"}` or `{"type": "module"}`, and those collected demands for
+  `name`, `version`, `license`, `keywords` and an entry point they will never
+  have — 13 reports across two two-line files in one of our packages. Worse,
+  `prefer-type-module` told a `{"type": "commonjs"}` marker to become
+  `"module"`, and following that breaks the CommonJS half of the package.
+
+  If you keep real manifests outside the repository root, such as npm
+  workspaces, widen the scope in your own config. See the README.
+
+- **Turn off `package-json/prefer-exports`, `package-json/prefer-type-module`
+  and `package-json/require-engines`.** Adding `exports` or `"type": "module"`
+  changes what a published package exposes to people already consuming it: deep
+  imports start throwing `ERR_PACKAGE_PATH_NOT_EXPORTED`, and `require()` stops
+  working. Both are worth doing, but as deliberate major releases rather than as
+  lint errors, and both are meaningless for applications that never publish.
+  `engines.node` is fair for packages that run in Node, but we publish browser
+  libraries with no Node runtime to describe, and inventing a range to satisfy
+  the rule makes the field less trustworthy where it matters.
+
+  `package-json/prefer-files-field` stays on. It skips private packages already,
+  so it only speaks up for genuinely publishable ones — and it caught a real bug
+  for us, where a published tarball contained the entire repository.
+
+  The README now lists these three as recommended settings to adopt in packages
+  where they apply.
+
+- **Turn off `@html-eslint/require-open-graph-protocol` and
+  `@html-eslint/require-meta-description`.** OGP requires `og:title`, `og:type`,
+  `og:url` and `og:image` on every HTML file in a project. Demo pages, test
+  fixtures, component examples and email templates all match, and none of them
+  are ever shared as a link. Which pages get Open Graph tags, and what those tags
+  say, is a per-page content decision. Neither rule is in html-eslint's own
+  recommended set; xo adds them. The rest of xo's HTML rules are kept, including
+  `require-lang`, `require-meta-charset` and `require-meta-viewport`.
+
+- **Turn off `unicorn/no-non-function-verb-prefix`.** It requires anything named
+  with a verb prefix to be a function, so a variable holding a callback gets
+  reported as `` `setFocus` starts with `set`, so it should be a function ``.
+  Same family of naming opinion as `unicorn/consistent-boolean-name` and
+  `unicorn/name-replacements`, which we already disable for the same reason.
+
+- **Allow indented continuation lines in JSDoc blocks.** `jsdoc/check-indentation`
+  and `jsdoc/check-line-alignment` between them forbade indenting the wrapped
+  lines of a `@param` description, and `--fix` silently flattened existing
+  indentation:
+
+  ```diff
+    * @param {string} opts.waitMode - Determine how the library should check that
+  - *   hiding transitions are complete. The options are `'transitionEnd'`,
+  + * hiding transitions are complete. The options are `'transitionEnd'`,
+  ```
+
+  A tag's description runs until the next tag and leading whitespace is stripped
+  before parsing, so the indentation is purely cosmetic — it just makes it easier
+  to see where one `@param` ends and the next begins. Both styles are now
+  accepted. An indented _tag_ line is still reported, since that is a real
+  mistake.
+
+### Notes for anyone upgrading from v25
+
+These describe v26 behaviour rather than anything new in this release, but they
+are the two things that caught us out, so they are worth writing down.
+
+- **`@html-eslint/require-button-type` autofixes to `type="submit"`.** The rule
+  is a good one and stays on, but its fixer inserts `submit` unconditionally,
+  with no regard for whether the button is in a form. `submit` is the HTML
+  default, so nothing changes behaviourally and nothing looks wrong in review —
+  but for a JavaScript-driven button the markup then says the opposite of what
+  is true. Check the result on any page with buttons:
+
+  ```diff
+  - <button class="js-toggle">Show</button>
+  + <button type="button" class="js-toggle">Show</button>
+  ```
+
+- **Rule overrides need a `files` glob.** xo scopes its layers to the file types
+  they lint and registers plugins on those layers, so a `rules` block with no
+  `files` now also applies to JSON, Markdown, CSS and HTML, where those plugins
+  were never registered. ESLint then refuses to load the config at all:
+
+  ```text
+  A configuration object specifies rule "jsdoc/check-indentation",
+  but could not find plugin "jsdoc".
+  ```
+
+  ```diff
+    {
+  +   files: ['**/*.{js,cjs,mjs,ts}'],
+      rules: {
+        'jsdoc/check-indentation': 'off',
+      },
+    }
+  ```
+
+  This is easy to misread as a dependency problem, because it passes when you
+  lint a single file and only fails on `eslint .`.
+
 ## 26.0.0 - 2026-08-25
 
 ### Breaking Changes
