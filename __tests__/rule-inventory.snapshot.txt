@@ -1,4 +1,4 @@
-# probe.js — 715 rules
+# probe.js — 716 rules
 @eslint-community/eslint-comments/disable-enable-pair [{"allowWholeFile":true}]
 @eslint-community/eslint-comments/no-aggregating-enable
 @eslint-community/eslint-comments/no-duplicate-disable
@@ -138,6 +138,7 @@ n/prefer-global/text-decoder ["always"]
 n/prefer-global/text-encoder ["always"]
 n/prefer-global/url ["always"]
 n/prefer-global/url-search-params ["always"]
+n/prefer-process-get-builtin-module
 n/prefer-promises/dns
 n/prefer-promises/fs
 n/process-exit-as-throw
@@ -715,7 +716,7 @@ valid-typeof [{"requireStringLiterals":false}]
 xo/import-specifier-newline
 yoda ["never",{"exceptRange":false,"onlyEquality":false}]
 
-# probe.ts — 763 rules
+# probe.ts — 764 rules
 @eslint-community/eslint-comments/disable-enable-pair [{"allowWholeFile":true}]
 @eslint-community/eslint-comments/no-aggregating-enable
 @eslint-community/eslint-comments/no-duplicate-disable
@@ -930,6 +931,7 @@ n/prefer-global/text-decoder ["always"]
 n/prefer-global/text-encoder ["always"]
 n/prefer-global/url ["always"]
 n/prefer-global/url-search-params ["always"]
+n/prefer-process-get-builtin-module
 n/prefer-promises/dns
 n/prefer-promises/fs
 n/process-exit-as-throw
