@@ -17,9 +17,15 @@
   so whatever it catches has to be edited by hand. This is the only rule the
   upgrade turns on, and the only source of new errors in it.
 
-  The rule pays off in ES modules, where it removes the need for
-  `createRequire`. It fires in CommonJS too, where `require` is the native idiom
-  and the rewrite buys nothing, so build scripts and `.cjs` config files are the
+  Most projects will never see it. The rule switches itself off unless the
+  nearest `package.json` declares an `engines.node` falling entirely within
+  `^20.16.0 || >=22.3.0` — the versions where `process.getBuiltinModule` is
+  guaranteed to exist. A package with no `engines.node` at all, or one as loose
+  as `>=20`, is left alone.
+
+  Where it does apply, the payoff is in ES modules, where it removes the need
+  for `createRequire`. It fires in CommonJS too, where `require` is the native
+  idiom and the rewrite buys nothing, so build scripts and `.cjs` files are the
   likeliest place to meet it. Turn it off for those paths in your own config if
   it is noisy:
 
