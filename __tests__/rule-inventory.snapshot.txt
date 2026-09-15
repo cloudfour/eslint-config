@@ -1,0 +1,1638 @@
+# probe.js — 715 rules
+@eslint-community/eslint-comments/disable-enable-pair [{"allowWholeFile":true}]
+@eslint-community/eslint-comments/no-aggregating-enable
+@eslint-community/eslint-comments/no-duplicate-disable
+@eslint-community/eslint-comments/no-unused-disable
+@eslint-community/eslint-comments/no-unused-enable
+@eslint-community/eslint-comments/require-description [{"ignore":["eslint-enable","eslint-disable-next-line","eslint-disable-line","eslint-env","exported","global","globals"]}]
+@stylistic/curly-newline [{"consistent":true}]
+@stylistic/no-mixed-operators [{"groups":[["+","-","*","/","%","**","??"],["&","|","^","~","<<",">>",">>>","??"],["==","!=","===","!==",">",">=","<","<=","??"],["&&","||","??"],["in","instanceof","??"]],"allowSamePrecedence":true}]
+@typescript-eslint/no-restricted-types [{"types":{"object":{"message":"The `object` type is hard to use. Use `Record<string, unknown>` instead.","fixWith":"Record<string, unknown>"},"Buffer":{"message":"Use Uint8Array instead.","fixWith":"Uint8Array"}}}]
+accessor-pairs [{"enforceForTSTypes":false,"enforceForClassMembers":true,"getWithoutSet":false,"setWithoutGet":true}]
+array-callback-return [{"allowImplicit":true,"checkForEach":false,"allowVoid":false}]
+arrow-body-style ["as-needed"]
+ava/assertion-arguments [{}]
+ava/hooks-order
+ava/no-async-fn-without-await
+ava/no-commented-tests
+ava/no-conditional-assertion
+ava/no-duplicate-hooks
+ava/no-identical-title
+ava/no-ignored-test-files [{}]
+ava/no-import-test-files [{}]
+ava/no-incorrect-deep-equal
+ava/no-inline-assertions
+ava/no-invalid-modifier-chain
+ava/no-negated-assertion
+ava/no-nested-assertions
+ava/no-nested-tests
+ava/no-only-test
+ava/no-skip-assert
+ava/no-skip-test
+ava/no-todo-implementation
+ava/no-todo-test
+ava/no-useless-t-pass
+ava/prefer-async-await
+ava/prefer-t-regex
+ava/prefer-t-throws
+ava/require-assertion
+ava/test-title
+ava/use-t
+ava/use-t-throws-async-well
+ava/use-t-well
+ava/use-test
+ava/use-true-false
+block-scoped-var
+camelcase [{"allow":[],"ignoreDestructuring":false,"ignoreGlobals":false,"ignoreImports":false,"properties":"always"}]
+capitalized-comments ["always",{"ignorePattern":"pragma|ignore|prettier-ignore|webpack\\w+:|c8|return|const|let|var|await|function|console","ignoreInlineComments":true,"ignoreConsecutiveComments":true}]
+complexity [20]
+constructor-super
+curly ["all"]
+default-case [{}]
+default-case-last
+dot-notation [{"allowKeywords":true,"allowPattern":""}]
+eqeqeq ["always"]
+for-direction
+func-name-matching [{"considerPropertyDescriptor":true}]
+getter-return [{"allowImplicit":false}]
+grouped-accessor-pairs ["getBeforeSet",{"enforceForTSTypes":false}]
+guard-for-in
+import-x/default
+import-x/export
+import-x/first
+import-x/named
+import-x/namespace [{"allowComputed":true}]
+import-x/newline-after-import [{}]
+import-x/no-absolute-path
+import-x/no-amd
+import-x/no-anonymous-default-export
+import-x/no-cycle [{"ignoreExternal":true,"allowUnsafeDynamicCyclicDependency":false}]
+import-x/no-duplicates [{"prefer-inline":true}]
+import-x/no-empty-named-blocks
+import-x/no-extraneous-dependencies [{"includeTypes":true}]
+import-x/no-mutable-exports
+import-x/no-named-as-default
+import-x/no-named-as-default-member
+import-x/no-named-default
+import-x/no-self-import
+import-x/no-unassigned-import [{"allow":["@babel/polyfill","**/register","**/register.*","**/register/**","**/register/**.*","**/*.css","**/*.scss","**/*.sass","**/*.less"]}]
+import-x/no-useless-path-segments
+import-x/no-webpack-loader-syntax
+import-x/order [{"groups":["builtin","external","internal","parent","sibling","index"],"newlines-between":"always","alphabetize":{"order":"asc","caseInsensitive":true,"orderImportKind":"ignore"},"distinctGroup":true,"sortTypesGroup":false,"named":false,"warnOnUnassignedImports":false}]
+jsdoc/check-access
+jsdoc/check-indentation [{"allowIndentedSections":true}]
+jsdoc/check-line-alignment ["never",{"disableWrapIndent":true,"preserveMainDescriptionPostDelimiter":false}]
+jsdoc/check-param-names
+jsdoc/check-property-names
+jsdoc/check-syntax
+jsdoc/check-tag-names [{"definedTags":["jest-environment","ts-check","ts-expect-error","ts-expect-no-error","ts-ignore","ts-nocheck","vitest-environment","defaultValue","isolated"],"jsxTags":true}]
+jsdoc/check-template-names
+jsdoc/check-types
+jsdoc/check-values
+jsdoc/empty-tags
+jsdoc/escape-inline-tags
+jsdoc/implements-on-classes
+jsdoc/imports-as-dependencies
+jsdoc/informative-docs [{"excludedTags":["default"]}]
+jsdoc/multiline-blocks
+jsdoc/no-bad-blocks
+jsdoc/no-blank-block-descriptions
+jsdoc/no-blank-blocks
+jsdoc/no-multi-asterisks [{"preventAtMiddleLines":false}]
+jsdoc/reject-any-type
+jsdoc/reject-function-type
+jsdoc/require-asterisk-prefix ["always"]
+jsdoc/require-description [{"exemptedBy":["inheritdoc","isolated"],"checkConstructors":true,"checkGetters":true,"checkSetters":true}]
+jsdoc/require-next-type
+jsdoc/require-param
+jsdoc/require-param-name
+jsdoc/require-param-type
+jsdoc/require-property
+jsdoc/require-property-name
+jsdoc/require-property-type
+jsdoc/require-returns-type
+jsdoc/require-throws-type
+jsdoc/require-yields
+jsdoc/require-yields-check
+jsdoc/require-yields-type
+jsdoc/tag-lines ["any",{"startLines":1}]
+jsdoc/ts-no-empty-object-type
+max-depth [4]
+max-lines [{"max":1500,"skipComments":true}]
+max-nested-callbacks [4]
+max-params [{"max":4}]
+n/file-extension-in-import ["always"]
+n/handle-callback-err ["^(err|error)$"]
+n/no-callback-literal
+n/no-deprecated-api
+n/no-exports-assign
+n/no-extraneous-import
+n/no-mixed-requires [{"grouping":true,"allowCall":true}]
+n/no-new-require
+n/no-path-concat
+n/no-unpublished-bin
+n/prefer-global/buffer ["never"]
+n/prefer-global/console ["always"]
+n/prefer-global/process ["never"]
+n/prefer-global/text-decoder ["always"]
+n/prefer-global/text-encoder ["always"]
+n/prefer-global/url ["always"]
+n/prefer-global/url-search-params ["always"]
+n/prefer-promises/dns
+n/prefer-promises/fs
+n/process-exit-as-throw
+new-cap [{"capIsNew":true,"capIsNewExceptions":["Array","Boolean","Date","Error","Function","Number","Object","RegExp","String","Symbol","BigInt"],"newIsCap":true,"newIsCapExceptions":[],"properties":true}]
+no-alert
+no-array-constructor
+no-async-promise-executor
+no-await-in-loop
+no-bitwise [{"allow":[],"int32Hint":false}]
+no-caller
+no-case-declarations
+no-class-assign
+no-compare-neg-zero
+no-cond-assign ["except-parens"]
+no-const-assign
+no-constant-binary-expression [{"checkRelationalComparisons":true}]
+no-constant-condition [{"checkLoops":"allExceptWhileTrue"}]
+no-constructor-return
+no-control-regex
+no-debugger
+no-delete-var
+no-dupe-args
+no-dupe-class-members
+no-dupe-else-if
+no-dupe-keys
+no-duplicate-case
+no-else-return [{"allowElseIf":false}]
+no-empty [{"allowEmptyCatch":true}]
+no-empty-character-class
+no-empty-pattern [{"allowObjectPatternsAsParameters":false}]
+no-empty-static-block
+no-eq-null
+no-eval [{"allowIndirect":false}]
+no-ex-assign
+no-extend-native [{"exceptions":[]}]
+no-extra-bind
+no-extra-boolean-cast [{}]
+no-extra-label
+no-fallthrough [{"allowEmptyCase":false,"reportUnusedFallthroughComment":false}]
+no-func-assign
+no-global-assign [{"exceptions":[]}]
+no-implicit-coercion [{"allow":[],"boolean":true,"disallowTemplateShorthand":false,"number":true,"string":true}]
+no-implicit-globals [{"lexicalBindings":false}]
+no-implied-eval
+no-import-assign
+no-inner-declarations ["functions",{"blockScopedFunctions":"allow"}]
+no-invalid-regexp [{}]
+no-irregular-whitespace [{"skipComments":false,"skipJSXText":false,"skipRegExps":false,"skipStrings":true,"skipTemplates":false}]
+no-iterator
+no-label-var
+no-labels [{"allowLoop":false,"allowSwitch":false}]
+no-lone-blocks
+no-lonely-if
+no-loss-of-precision
+no-misleading-character-class [{"allowEscape":false}]
+no-multi-assign [{"ignoreNonDeclaration":false}]
+no-multi-str
+no-new
+no-new-func
+no-new-native-nonconstructor
+no-new-wrappers
+no-nonoctal-decimal-escape
+no-obj-calls
+no-object-constructor
+no-octal
+no-octal-escape
+no-proto
+no-prototype-builtins
+no-redeclare [{"builtinGlobals":true}]
+no-regex-spaces
+no-restricted-globals [{"globals":["event",{"name":"atob","message":"This API is deprecated. Use https://github.com/sindresorhus/uint8array-extras instead."},{"name":"btoa","message":"This API is deprecated. Use https://github.com/sindresorhus/uint8array-extras instead."}],"checkGlobalObject":true}]
+no-restricted-imports ["domain","freelist","smalloc","punycode","sys","querystring","colors",{"name":"mkdirp","message":"Use `fs.mkdir` with `{recursive: true}` instead."},{"name":"rimraf","message":"Use `fs.rm` with `{recursive: true}` instead."},{"name":"object-assign","message":"Use `Object.assign()` or object spread instead."},{"name":"xtend","message":"Use `Object.assign()` or object spread instead."},{"name":"extend-shallow","message":"Use `Object.assign()` or object spread instead."},{"name":"left-pad","message":"Use `String.prototype.padStart()` instead."},{"name":"pad-left","message":"Use `String.prototype.padStart()` instead."},{"name":"right-pad","message":"Use `String.prototype.padEnd()` instead."},{"name":"pad-right","message":"Use `String.prototype.padEnd()` instead."},{"name":"safe-buffer","message":"Use `Buffer.alloc()` or `Buffer.from()` instead."},{"name":"safer-buffer","message":"Use `Buffer.alloc()` or `Buffer.from()` instead."},{"name":"buffer-alloc","message":"Use `Buffer.alloc()` instead."},{"name":"array-flatten","message":"Use `Array.prototype.flat()` instead."},{"name":"concat-map","message":"Use `Array.prototype.flatMap()` instead."},{"name":"pad","message":"Use `String.prototype.padStart()` / `String.prototype.padEnd()` instead."},{"name":"co","message":"Use async/await instead."},{"name":"inherits","message":"Use `class extends` instead."},{"name":"windows-1252","message":"Use `TextDecoder` instead."},{"name":"string_decoder","message":"Use `TextDecoder` instead."},{"name":"isarray","message":"Use `Array.isArray()` instead."},{"name":"object-keys","message":"Use `Object.keys()` instead."},{"name":"object.assign","message":"Use `Object.assign()` or object spread instead."},{"name":"globalthis","message":"Use the `globalThis` global instead."},{"name":"es6-promise","message":"Use `Promise` instead."},{"name":"abort-controller","message":"Use the native `AbortController` instead."},{"name":"queue-microtask","message":"Use `queueMicrotask()` instead."},{"name":"buffer-from","message":"Use `Buffer.from()` instead."},{"name":"has","message":"Use `Object.hasOwn()` instead."},{"name":"hasown","message":"Use `Object.hasOwn()` instead."},{"name":"repeat-string","message":"Use `String.prototype.repeat()` instead."},{"name":"path-parse","message":"Use `path.parse()` instead."},{"name":"node.extend","message":"Use `Object.assign()` or object spread instead."},{"name":"aggregate-error","message":"Use the native `AggregateError` instead."},{"name":"is-nan","message":"Use `Number.isNaN()` instead."},{"name":"is-finite","message":"Use `Number.isFinite()` instead."},{"name":"object-is","message":"Use `Object.is()` instead."},{"name":"defaults","message":"Use `Object.assign()` instead."},{"name":"whatwg-url","message":"Use the native `URL` API instead."}]
+no-return-assign ["always"]
+no-script-url
+no-self-assign [{"props":true}]
+no-self-compare
+no-sequences [{"allowInParentheses":false}]
+no-setter-return
+no-shadow [{"allow":[],"builtinGlobals":false,"hoist":"functions","ignoreOnInitialization":true,"ignoreTypeValueShadow":true,"ignoreFunctionTypeParameterNameValueShadow":true}]
+no-shadow-restricted-names [{"reportGlobalThis":true}]
+no-sparse-arrays
+no-template-curly-in-string
+no-this-before-super
+no-throw-literal
+no-unassigned-vars
+no-undef [{"typeof":true}]
+no-undef-init
+no-unexpected-multiline
+no-unmodified-loop-condition [{"checkConditionalExpressions":false}]
+no-unneeded-ternary [{"defaultAssignment":true}]
+no-unreachable
+no-unreachable-loop [{"ignore":[]}]
+no-unsafe-finally
+no-unsafe-negation [{"enforceForOrderingRelations":true}]
+no-unsafe-optional-chaining [{"disallowArithmeticOperators":true}]
+no-unused-expressions [{"allowShortCircuit":false,"allowTernary":false,"allowTaggedTemplates":false,"enforceForJSX":false,"ignoreDirectives":false}]
+no-unused-labels
+no-unused-private-class-members
+no-unused-vars [{"vars":"all","args":"after-used","ignoreRestSiblings":true,"caughtErrors":"all","ignoreClassWithStaticInitBlock":false,"ignoreUsingDeclarations":false,"reportUsedIgnorePattern":false,"varsIgnorePattern":"^_","argsIgnorePattern":"^_","caughtErrorsIgnorePattern":"^_$"}]
+no-use-extend-native/no-use-extend-native
+no-useless-backreference
+no-useless-call
+no-useless-catch
+no-useless-computed-key [{"enforceForClassMembers":true}]
+no-useless-concat
+no-useless-constructor
+no-useless-escape [{"allowRegexCharacters":[]}]
+no-useless-rename [{"ignoreDestructuring":false,"ignoreImport":false,"ignoreExport":false}]
+no-useless-return
+no-var
+no-void [{"allowAsStatement":false}]
+no-with
+node-test/assertion-arguments
+node-test/consistent-assert-style [{"style":"assert-ok"}]
+node-test/consistent-test-context-name [{"name":"t"}]
+node-test/hooks-order
+node-test/max-nested-describe [{"max":5}]
+node-test/no-assert-in-describe
+node-test/no-assert-match-string
+node-test/no-assert-throws-async
+node-test/no-assert-throws-call
+node-test/no-assert-throws-multiple-statements
+node-test/no-assert-throws-string
+node-test/no-async-describe
+node-test/no-async-fn-without-await
+node-test/no-callback-and-promise
+node-test/no-compound-assertion
+node-test/no-conditional-assertion
+node-test/no-conditional-tests
+node-test/no-conflicting-modifiers
+node-test/no-constant-assertion
+node-test/no-duplicate-assertions
+node-test/no-duplicate-hooks
+node-test/no-duplicate-mock-timers-enable
+node-test/no-duplicate-plan
+node-test/no-expect-failure-without-reason
+node-test/no-export
+node-test/no-identical-assertion-arguments
+node-test/no-identical-title
+node-test/no-import-test-files
+node-test/no-incorrect-deep-equal
+node-test/no-incorrect-strict-equal
+node-test/no-late-test-activity
+node-test/no-loop-static-title
+node-test/no-misused-concurrency
+node-test/no-misused-context-hook
+node-test/no-mock-module-after-import
+node-test/no-mock-timers-destructured-import
+node-test/no-nested-tests
+node-test/no-only-test
+node-test/no-parent-test-context
+node-test/no-process-chdir-in-test
+node-test/no-process-env-mutation
+node-test/no-process-exit-in-test
+node-test/no-skip-test
+node-test/no-skip-without-return
+node-test/no-standalone-assert
+node-test/no-test-global-configuration
+node-test/no-test-inside-hook
+node-test/no-test-return-statement
+node-test/no-unawaited-promise-assertion
+node-test/no-unawaited-rejects
+node-test/no-unawaited-subtest
+node-test/no-unknown-test-options
+node-test/no-useless-assertion
+node-test/prefer-assert-match
+node-test/prefer-assert-throws
+node-test/prefer-async-await
+node-test/prefer-context-mock
+node-test/prefer-equality-assertion
+node-test/prefer-hooks-on-top
+node-test/prefer-mock-accessor
+node-test/prefer-mock-call-count
+node-test/prefer-mock-method
+node-test/prefer-strict-assert
+node-test/prefer-test-context-assert
+node-test/prefer-todo
+node-test/require-assertion
+node-test/require-await-concurrent-subtests
+node-test/require-context-assert-with-plan
+node-test/require-mock-timers-advance
+node-test/require-mock-timers-apis
+node-test/require-throws-expectation
+node-test/require-throws-validator-return-true
+node-test/test-title
+node-test/valid-describe-callback
+node-test/valid-test-tags
+object-shorthand ["always",{"avoidExplicitReturnArrows":true}]
+one-var ["never"]
+operator-assignment ["always"]
+prefer-arrow-callback [{"allowNamedFunctions":true,"allowUnboundThis":true}]
+prefer-const [{"destructuring":"all","ignoreReadBeforeAssign":false}]
+prefer-destructuring [{"array":false}]
+prefer-exponentiation-operator
+prefer-numeric-literals
+prefer-object-has-own
+prefer-object-spread
+prefer-promise-reject-errors [{"allowEmptyReject":true}]
+prefer-regex-literals [{"disallowRedundantWrapping":true}]
+prefer-rest-params
+prefer-spread
+prefer-template
+preserve-caught-error [{"requireCatchParameter":false,"errorClassNames":[]}]
+promise/param-names
+radix
+regexp/confusing-quantifier
+regexp/control-character-escape
+regexp/grapheme-string-literal
+regexp/hexadecimal-escape ["never"]
+regexp/letter-case [{"caseInsensitive":"lowercase","unicodeEscape":"ignore","hexadecimalEscape":"uppercase","controlEscape":"uppercase"}]
+regexp/match-any
+regexp/negation
+regexp/no-contradiction-with-assertion
+regexp/no-control-character
+regexp/no-dupe-characters-character-class
+regexp/no-dupe-disjunctions
+regexp/no-empty-alternative
+regexp/no-empty-capturing-group
+regexp/no-empty-character-class
+regexp/no-empty-group
+regexp/no-empty-lookarounds-assertion
+regexp/no-empty-string-literal
+regexp/no-escape-backspace
+regexp/no-extra-lookaround-assertions
+regexp/no-invalid-regexp
+regexp/no-invisible-character
+regexp/no-lazy-ends
+regexp/no-legacy-features
+regexp/no-misleading-capturing-group
+regexp/no-misleading-unicode-character
+regexp/no-missing-g-flag
+regexp/no-non-standard-flag
+regexp/no-obscure-range
+regexp/no-octal
+regexp/no-optional-assertion
+regexp/no-potentially-useless-backreference
+regexp/no-standalone-backslash
+regexp/no-super-linear-backtracking
+regexp/no-super-linear-move
+regexp/no-trivially-nested-assertion
+regexp/no-trivially-nested-quantifier
+regexp/no-unused-capturing-group
+regexp/no-useless-assertions
+regexp/no-useless-backreference
+regexp/no-useless-character-class
+regexp/no-useless-dollar-replacements
+regexp/no-useless-escape
+regexp/no-useless-flag
+regexp/no-useless-lazy
+regexp/no-useless-non-capturing-group
+regexp/no-useless-quantifier
+regexp/no-useless-range
+regexp/no-useless-set-operand
+regexp/no-useless-string-literal
+regexp/no-useless-two-nums-quantifier
+regexp/no-zero-quantifier
+regexp/optimal-lookaround-quantifier
+regexp/optimal-quantifier-concatenation
+regexp/prefer-character-class
+regexp/prefer-d
+regexp/prefer-escape-replacement-dollar-char
+regexp/prefer-lookaround [{"lookbehind":true,"strictTypes":true}]
+regexp/prefer-named-backreference
+regexp/prefer-named-capture-group
+regexp/prefer-named-replacement
+regexp/prefer-plus-quantifier
+regexp/prefer-predefined-assertion
+regexp/prefer-question-quantifier
+regexp/prefer-range
+regexp/prefer-regexp-exec
+regexp/prefer-regexp-test
+regexp/prefer-result-array-groups
+regexp/prefer-set-operation
+regexp/prefer-star-quantifier
+regexp/prefer-unicode-codepoint-escapes
+regexp/prefer-w
+regexp/simplify-set-operations
+regexp/sort-character-class-elements
+regexp/sort-flags
+regexp/strict
+regexp/unicode-escape
+regexp/unicode-property [{"generalCategory":"never","key":"ignore","property":{"binary":"long","generalCategory":"long","script":"long"}}]
+regexp/use-ignore-case
+require-unicode-regexp [{"requireFlag":"v"}]
+require-yield
+sort-imports [{"allowSeparatedGroups":false,"ignoreCase":false,"ignoreDeclarationSort":true,"ignoreMemberSort":false,"memberSyntaxSortOrder":["none","all","multiple","single"]}]
+symbol-description
+unicode-bom ["never"]
+unicorn/better-dom-traversing
+unicorn/catch-error-name [{"name":"error","ignore":[]}]
+unicorn/class-reference-in-static-methods [{"preferThis":true,"preferSuper":true}]
+unicorn/consistent-assert
+unicorn/consistent-class-member-order [{"order":["static-field","static-block","static-method","private-field","public-field","constructor","private-method","public-method"]}]
+unicorn/consistent-compound-words [{}]
+unicorn/consistent-conditional-object-spread ["logical"]
+unicorn/consistent-date-clone
+unicorn/consistent-empty-array-spread
+unicorn/consistent-existence-index-check
+unicorn/consistent-export-decorator-position ["above"]
+unicorn/consistent-json-file-read ["string"]
+unicorn/consistent-optional-chaining
+unicorn/consistent-template-literal-escape
+unicorn/consistent-tuple-labels
+unicorn/default-export-style [{"functions":"inline","classes":"inline"}]
+unicorn/dom-node-dataset [{"preferAttributes":false}]
+unicorn/error-message
+unicorn/escape-case ["uppercase"]
+unicorn/explicit-length-check [{"non-zero":"greater-than"}]
+unicorn/explicit-timer-delay ["always"]
+unicorn/filename-case [{"ignore":[{}]}]
+unicorn/isolated-functions [{"functions":["makeSynchronous","workerize"],"selectors":[],"comments":["@isolated"],"overrideGlobals":{}}]
+unicorn/logical-assignment-operators ["always",{"enforceForIfStatements":true}]
+unicorn/max-nested-calls [{"max":3}]
+unicorn/new-for-builtins
+unicorn/no-abusive-eslint-disable
+unicorn/no-accessor-recursion
+unicorn/no-accidental-bitwise-operator
+unicorn/no-anonymous-default-export
+unicorn/no-array-concat-in-loop
+unicorn/no-array-fill-with-reference-type
+unicorn/no-array-from-fill
+unicorn/no-array-method-this-argument
+unicorn/no-array-reverse [{"allowExpressionStatement":true}]
+unicorn/no-array-sort [{"allowExpressionStatement":true}]
+unicorn/no-array-sort-for-min-max
+unicorn/no-array-splice
+unicorn/no-async-promise-finally
+unicorn/no-await-expression-member
+unicorn/no-await-in-promise-methods
+unicorn/no-blob-to-file
+unicorn/no-boolean-sort-comparator
+unicorn/no-break-in-nested-loop
+unicorn/no-canvas-to-image
+unicorn/no-chained-comparison
+unicorn/no-collection-bracket-access
+unicorn/no-computed-property-existence-check
+unicorn/no-confusing-array-splice
+unicorn/no-confusing-array-with
+unicorn/no-console-spaces
+unicorn/no-constant-zero-expression
+unicorn/no-declarations-before-early-exit
+unicorn/no-document-cookie
+unicorn/no-double-comparison
+unicorn/no-duplicate-if-branches
+unicorn/no-duplicate-logical-operands
+unicorn/no-duplicate-loops
+unicorn/no-duplicate-set-values
+unicorn/no-empty-file [{"allowComments":false}]
+unicorn/no-error-property-assignment
+unicorn/no-exports-in-scripts
+unicorn/no-for-each
+unicorn/no-for-loop
+unicorn/no-global-object-property-assignment
+unicorn/no-immediate-mutation
+unicorn/no-impossible-length-comparison
+unicorn/no-incorrect-query-selector
+unicorn/no-incorrect-template-string-interpolation
+unicorn/no-instanceof-builtins [{"useErrorIsError":false,"strategy":"loose","include":[],"exclude":[]}]
+unicorn/no-invalid-character-comparison
+unicorn/no-invalid-fetch-options
+unicorn/no-invalid-remove-event-listener
+unicorn/no-invalid-well-known-symbol-methods
+unicorn/no-late-current-target-access
+unicorn/no-late-event-control
+unicorn/no-lonely-if
+unicorn/no-loop-iterable-mutation
+unicorn/no-magic-array-flat-depth
+unicorn/no-mismatched-map-key
+unicorn/no-misrefactored-assignment
+unicorn/no-multiple-promise-resolver-calls
+unicorn/no-named-default
+unicorn/no-negated-array-predicate
+unicorn/no-negated-comparison [{"checkLogicalExpressions":false}]
+unicorn/no-negated-condition
+unicorn/no-negation-in-equality-check
+unicorn/no-new-array
+unicorn/no-new-buffer
+unicorn/no-nonstandard-builtin-properties
+unicorn/no-object-as-default-parameter
+unicorn/no-object-methods-with-collections
+unicorn/no-optional-chaining-on-undeclared-variable
+unicorn/no-process-exit
+unicorn/no-redundant-comparison
+unicorn/no-return-array-push
+unicorn/no-selector-as-dom-name
+unicorn/no-shorthand-property-overrides
+unicorn/no-single-promise-in-promise-methods
+unicorn/no-static-only-class
+unicorn/no-subtraction-comparison
+unicorn/no-thenable
+unicorn/no-this-assignment
+unicorn/no-top-level-side-effects
+unicorn/no-transition-all
+unicorn/no-typeof-undefined [{"checkGlobalVariables":false}]
+unicorn/no-uncalled-method
+unicorn/no-undeclared-class-members
+unicorn/no-unnecessary-array-flat-depth
+unicorn/no-unnecessary-array-flat-map
+unicorn/no-unnecessary-array-splice-count
+unicorn/no-unnecessary-await
+unicorn/no-unnecessary-boolean-comparison
+unicorn/no-unnecessary-fetch-options
+unicorn/no-unnecessary-global-this
+unicorn/no-unnecessary-nested-ternary
+unicorn/no-unnecessary-polyfills [{}]
+unicorn/no-unnecessary-slice-end
+unicorn/no-unnecessary-splice
+unicorn/no-unnecessary-string-trim
+unicorn/no-unreadable-array-destructuring [{"maximumIgnoredElements":1}]
+unicorn/no-unreadable-iife
+unicorn/no-unreadable-object-destructuring
+unicorn/no-unsafe-buffer-conversion
+unicorn/no-unsafe-promise-all-settled-values
+unicorn/no-unsafe-property-key
+unicorn/no-unsafe-sqlite-interpolation
+unicorn/no-unsafe-string-replacement
+unicorn/no-unused-array-method-return
+unicorn/no-useless-boolean-cast
+unicorn/no-useless-coercion
+unicorn/no-useless-collection-argument
+unicorn/no-useless-compound-assignment
+unicorn/no-useless-concat
+unicorn/no-useless-continue
+unicorn/no-useless-delete-check
+unicorn/no-useless-else
+unicorn/no-useless-error-capture-stack-trace
+unicorn/no-useless-fallback-in-spread
+unicorn/no-useless-iterator-to-array
+unicorn/no-useless-length-check
+unicorn/no-useless-logical-operand
+unicorn/no-useless-override
+unicorn/no-useless-promise-resolve-reject
+unicorn/no-useless-re-export
+unicorn/no-useless-recursion
+unicorn/no-useless-spread
+unicorn/no-useless-switch-case
+unicorn/no-useless-template-literals
+unicorn/no-xor-as-exponentiation
+unicorn/no-zero-fractions
+unicorn/numeric-separators-style [{"onlyIfContainsSeparator":false,"binary":{"minimumDigits":0,"groupLength":4},"octal":{"minimumDigits":0,"groupLength":4},"hexadecimal":{"minimumDigits":0,"groupLength":2},"number":{"minimumDigits":5,"groupLength":3,"fractionGroupLength":null}}]
+unicorn/operator-assignment ["always"]
+unicorn/prefer-abort-signal-any
+unicorn/prefer-abort-signal-timeout
+unicorn/prefer-add-event-listener [{"excludedPackages":["koa","sax"]}]
+unicorn/prefer-add-event-listener-options
+unicorn/prefer-aggregate-error
+unicorn/prefer-array-find [{"checkFromLast":true}]
+unicorn/prefer-array-flat [{"functions":[]}]
+unicorn/prefer-array-flat-map
+unicorn/prefer-array-from-async
+unicorn/prefer-array-from-map
+unicorn/prefer-array-from-range
+unicorn/prefer-array-index-of
+unicorn/prefer-array-iterable-methods
+unicorn/prefer-array-last-methods
+unicorn/prefer-array-slice
+unicorn/prefer-array-some
+unicorn/prefer-at [{"getLastElementFunctions":[],"checkAllIndexAccess":false}]
+unicorn/prefer-bigint-literals
+unicorn/prefer-blob-reading-methods
+unicorn/prefer-block-statement-over-iife
+unicorn/prefer-boolean-return
+unicorn/prefer-class-fields
+unicorn/prefer-classlist-toggle
+unicorn/prefer-code-point
+unicorn/prefer-continue [{"maximumStatements":1}]
+unicorn/prefer-date-now
+unicorn/prefer-default-parameters
+unicorn/prefer-direct-iteration
+unicorn/prefer-dom-node-append
+unicorn/prefer-dom-node-html-methods [{"checkGetHTML":true,"checkSetHTML":false}]
+unicorn/prefer-dom-node-remove
+unicorn/prefer-dom-node-replace-children
+unicorn/prefer-dom-node-text-content
+unicorn/prefer-early-return [{"maximumStatements":2}]
+unicorn/prefer-else-if
+unicorn/prefer-event-target
+unicorn/prefer-export-from [{"checkUsedVariables":true}]
+unicorn/prefer-flat-math-min-max
+unicorn/prefer-get-or-insert-computed
+unicorn/prefer-global-number-constants
+unicorn/prefer-global-this
+unicorn/prefer-group-by
+unicorn/prefer-has-check
+unicorn/prefer-hoisting-branch-code
+unicorn/prefer-https [{"ignore":[]}]
+unicorn/prefer-identifier-import-export-specifiers
+unicorn/prefer-includes
+unicorn/prefer-includes-over-repeated-comparisons [{"minimumComparisons":3}]
+unicorn/prefer-iterable-in-constructor
+unicorn/prefer-iterator-helpers
+unicorn/prefer-iterator-to-array
+unicorn/prefer-iterator-to-array-at-end
+unicorn/prefer-keyboard-event-key
+unicorn/prefer-location-assign
+unicorn/prefer-logical-operator-over-ternary
+unicorn/prefer-map-from-entries
+unicorn/prefer-math-abs
+unicorn/prefer-math-constants
+unicorn/prefer-math-min-max
+unicorn/prefer-math-trunc
+unicorn/prefer-minimal-ternary [{"checkVaryingBase":false,"checkComputedMemberAccess":false}]
+unicorn/prefer-modern-dom-apis
+unicorn/prefer-modern-math-apis
+unicorn/prefer-native-coercion-functions
+unicorn/prefer-negative-index
+unicorn/prefer-node-protocol
+unicorn/prefer-number-coercion
+unicorn/prefer-number-is-safe-integer
+unicorn/prefer-number-properties [{"checkInfinity":false,"checkNaN":false}]
+unicorn/prefer-object-define-properties
+unicorn/prefer-object-destructuring-defaults
+unicorn/prefer-object-from-entries [{"functions":[]}]
+unicorn/prefer-object-iterable-methods
+unicorn/prefer-observer-apis
+unicorn/prefer-optional-catch-binding
+unicorn/prefer-path2d
+unicorn/prefer-private-class-fields
+unicorn/prefer-promise-try
+unicorn/prefer-promise-with-resolvers
+unicorn/prefer-prototype-methods
+unicorn/prefer-query-selector [{"allowWithVariables":false}]
+unicorn/prefer-queue-microtask [{"checkSetImmediate":false,"checkSetTimeout":false}]
+unicorn/prefer-reflect-apply
+unicorn/prefer-regexp-test
+unicorn/prefer-response-static-json
+unicorn/prefer-scoped-selector
+unicorn/prefer-set-methods
+unicorn/prefer-set-size
+unicorn/prefer-simple-condition-first
+unicorn/prefer-simple-sort-comparator
+unicorn/prefer-simplified-conditions
+unicorn/prefer-single-array-predicate
+unicorn/prefer-single-call [{"ignore":[]}]
+unicorn/prefer-single-object-destructuring
+unicorn/prefer-single-replace
+unicorn/prefer-smaller-scope
+unicorn/prefer-split-limit
+unicorn/prefer-spread
+unicorn/prefer-string-match-all
+unicorn/prefer-string-pad-start-end
+unicorn/prefer-string-raw
+unicorn/prefer-string-repeat [{"minimumRepetitions":3}]
+unicorn/prefer-string-replace-all
+unicorn/prefer-string-slice
+unicorn/prefer-string-starts-ends-with
+unicorn/prefer-string-trim-start-end
+unicorn/prefer-structured-clone [{"functions":[]}]
+unicorn/prefer-ternary ["only-single-line"]
+unicorn/prefer-then-catch
+unicorn/prefer-toggle-attribute
+unicorn/prefer-top-level-await
+unicorn/prefer-type-error
+unicorn/prefer-type-literal-last
+unicorn/prefer-unary-minus
+unicorn/prefer-unicode-code-point-escapes
+unicorn/prefer-url-can-parse
+unicorn/prefer-url-href
+unicorn/prefer-url-search-parameters
+unicorn/prefer-while-loop-condition
+unicorn/relative-url-style ["never"]
+unicorn/require-array-join-separator
+unicorn/require-css-escape [{"checkAllSelectors":false}]
+unicorn/require-module-attributes
+unicorn/require-module-specifiers
+unicorn/require-number-to-fixed-digits-argument
+unicorn/require-passive-events
+unicorn/require-proxy-trap-boolean-return
+unicorn/switch-case-braces ["always"]
+unicorn/switch-case-break-position
+unicorn/text-encoding-identifier-case [{"withDash":false}]
+unicorn/throw-new-error
+use-isnan [{"enforceForIndexOf":false,"enforceForSwitchCase":true}]
+valid-typeof [{"requireStringLiterals":false}]
+xo/import-specifier-newline
+yoda ["never",{"exceptRange":false,"onlyEquality":false}]
+
+# probe.ts — 763 rules
+@eslint-community/eslint-comments/disable-enable-pair [{"allowWholeFile":true}]
+@eslint-community/eslint-comments/no-aggregating-enable
+@eslint-community/eslint-comments/no-duplicate-disable
+@eslint-community/eslint-comments/no-unused-disable
+@eslint-community/eslint-comments/no-unused-enable
+@eslint-community/eslint-comments/require-description [{"ignore":["eslint-enable","eslint-disable-next-line","eslint-disable-line","eslint-env","exported","global","globals"]}]
+@stylistic/curly-newline [{"consistent":true}]
+@stylistic/no-mixed-operators [{"groups":[["+","-","*","/","%","**","??"],["&","|","^","~","<<",">>",">>>","??"],["==","!=","===","!==",">",">=","<","<=","??"],["&&","||","??"],["in","instanceof","??"]],"allowSamePrecedence":true}]
+@typescript-eslint/adjacent-overload-signatures
+@typescript-eslint/array-type [{"default":"array"}]
+@typescript-eslint/await-thenable
+@typescript-eslint/ban-ts-comment [{"ts-expect-error":"allow-with-description","minimumDescriptionLength":4}]
+@typescript-eslint/ban-tslint-comment
+@typescript-eslint/class-literal-property-style ["getters"]
+@typescript-eslint/consistent-generic-constructors ["constructor"]
+@typescript-eslint/consistent-indexed-object-style
+@typescript-eslint/consistent-type-assertions [{"assertionStyle":"as","objectLiteralTypeAssertions":"allow-as-parameter"}]
+@typescript-eslint/consistent-type-definitions ["type"]
+@typescript-eslint/consistent-type-exports [{"fixMixedExportsWithInlineTypeSpecifier":true}]
+@typescript-eslint/consistent-type-imports [{"disallowTypeAnnotations":false}]
+@typescript-eslint/default-param-last
+@typescript-eslint/dot-notation [{"allowIndexSignaturePropertyAccess":false,"allowKeywords":true,"allowPattern":"","allowPrivateClassPropertyAccess":false,"allowProtectedClassPropertyAccess":false}]
+@typescript-eslint/no-array-constructor
+@typescript-eslint/no-array-delete
+@typescript-eslint/no-base-to-string
+@typescript-eslint/no-confusing-void-expression [{"ignoreArrowShorthand":true}]
+@typescript-eslint/no-deprecated
+@typescript-eslint/no-dupe-class-members
+@typescript-eslint/no-duplicate-enum-values
+@typescript-eslint/no-duplicate-type-constituents
+@typescript-eslint/no-dynamic-delete
+@typescript-eslint/no-empty-object-type
+@typescript-eslint/no-extra-non-null-assertion
+@typescript-eslint/no-extraneous-class [{"allowConstructorOnly":false,"allowEmpty":false,"allowStaticOnly":false,"allowWithDecorator":true}]
+@typescript-eslint/no-for-in-array
+@typescript-eslint/no-import-type-side-effects
+@typescript-eslint/no-inferrable-types
+@typescript-eslint/no-loop-func
+@typescript-eslint/no-meaningless-void-operator
+@typescript-eslint/no-misused-new
+@typescript-eslint/no-misused-promises [{"checksConditionals":true,"checksVoidReturn":false}]
+@typescript-eslint/no-namespace
+@typescript-eslint/no-non-null-asserted-nullish-coalescing
+@typescript-eslint/no-non-null-asserted-optional-chain
+@typescript-eslint/no-non-null-assertion
+@typescript-eslint/no-redeclare
+@typescript-eslint/no-require-imports
+@typescript-eslint/no-restricted-imports [{"paths":["domain","freelist","smalloc","punycode","sys","querystring","colors",{"name":"mkdirp","message":"Use `fs.mkdir` with `{recursive: true}` instead."},{"name":"rimraf","message":"Use `fs.rm` with `{recursive: true}` instead."},{"name":"object-assign","message":"Use `Object.assign()` or object spread instead."},{"name":"xtend","message":"Use `Object.assign()` or object spread instead."},{"name":"extend-shallow","message":"Use `Object.assign()` or object spread instead."},{"name":"left-pad","message":"Use `String.prototype.padStart()` instead."},{"name":"pad-left","message":"Use `String.prototype.padStart()` instead."},{"name":"right-pad","message":"Use `String.prototype.padEnd()` instead."},{"name":"pad-right","message":"Use `String.prototype.padEnd()` instead."},{"name":"safe-buffer","message":"Use `Buffer.alloc()` or `Buffer.from()` instead."},{"name":"safer-buffer","message":"Use `Buffer.alloc()` or `Buffer.from()` instead."},{"name":"buffer-alloc","message":"Use `Buffer.alloc()` instead."},{"name":"array-flatten","message":"Use `Array.prototype.flat()` instead."},{"name":"concat-map","message":"Use `Array.prototype.flatMap()` instead."},{"name":"pad","message":"Use `String.prototype.padStart()` / `String.prototype.padEnd()` instead."},{"name":"co","message":"Use async/await instead."},{"name":"inherits","message":"Use `class extends` instead."},{"name":"windows-1252","message":"Use `TextDecoder` instead."},{"name":"string_decoder","message":"Use `TextDecoder` instead."},{"name":"isarray","message":"Use `Array.isArray()` instead."},{"name":"object-keys","message":"Use `Object.keys()` instead."},{"name":"object.assign","message":"Use `Object.assign()` or object spread instead."},{"name":"globalthis","message":"Use the `globalThis` global instead."},{"name":"es6-promise","message":"Use `Promise` instead."},{"name":"abort-controller","message":"Use the native `AbortController` instead."},{"name":"queue-microtask","message":"Use `queueMicrotask()` instead."},{"name":"buffer-from","message":"Use `Buffer.from()` instead."},{"name":"has","message":"Use `Object.hasOwn()` instead."},{"name":"hasown","message":"Use `Object.hasOwn()` instead."},{"name":"repeat-string","message":"Use `String.prototype.repeat()` instead."},{"name":"path-parse","message":"Use `path.parse()` instead."},{"name":"node.extend","message":"Use `Object.assign()` or object spread instead."},{"name":"aggregate-error","message":"Use the native `AggregateError` instead."},{"name":"is-nan","message":"Use `Number.isNaN()` instead."},{"name":"is-finite","message":"Use `Number.isFinite()` instead."},{"name":"object-is","message":"Use `Object.is()` instead."},{"name":"defaults","message":"Use `Object.assign()` instead."},{"name":"whatwg-url","message":"Use the native `URL` API instead."}]}]
+@typescript-eslint/no-restricted-types [{"types":{"object":{"message":"The `object` type is hard to use. Use `Record<string, unknown>` instead.","fixWith":"Record<string, unknown>"},"Buffer":{"message":"Use Uint8Array instead.","fixWith":"Uint8Array"}}}]
+@typescript-eslint/no-shadow [{"ignoreOnInitialization":true}]
+@typescript-eslint/no-this-alias [{"allowDestructuring":true}]
+@typescript-eslint/no-unnecessary-condition
+@typescript-eslint/no-unnecessary-qualifier
+@typescript-eslint/no-unnecessary-template-expression
+@typescript-eslint/no-unnecessary-type-arguments
+@typescript-eslint/no-unnecessary-type-assertion
+@typescript-eslint/no-unnecessary-type-constraint
+@typescript-eslint/no-unnecessary-type-conversion
+@typescript-eslint/no-unsafe-declaration-merging
+@typescript-eslint/no-unsafe-enum-comparison
+@typescript-eslint/no-unsafe-function-type
+@typescript-eslint/no-unused-expressions [{"allowShortCircuit":false,"allowTaggedTemplates":false,"allowTernary":false}]
+@typescript-eslint/no-unused-private-class-members
+@typescript-eslint/no-use-before-define [{"functions":false,"classes":false,"variables":false,"ignoreTypeReferences":true}]
+@typescript-eslint/no-useless-constructor
+@typescript-eslint/no-useless-default-assignment
+@typescript-eslint/no-useless-empty-export
+@typescript-eslint/no-wrapper-object-types
+@typescript-eslint/non-nullable-type-assertion-style
+@typescript-eslint/only-throw-error [{"allowThrowingUnknown":true,"allowThrowingAny":false}]
+@typescript-eslint/prefer-as-const
+@typescript-eslint/prefer-find
+@typescript-eslint/prefer-for-of
+@typescript-eslint/prefer-function-type
+@typescript-eslint/prefer-includes
+@typescript-eslint/prefer-literal-enum-member
+@typescript-eslint/prefer-namespace-keyword
+@typescript-eslint/prefer-nullish-coalescing [{"ignoreTernaryTests":false,"ignoreConditionalTests":false,"ignoreMixedLogicalExpressions":false}]
+@typescript-eslint/prefer-optional-chain
+@typescript-eslint/prefer-promise-reject-errors
+@typescript-eslint/prefer-readonly
+@typescript-eslint/prefer-reduce-type-parameter
+@typescript-eslint/prefer-regexp-exec
+@typescript-eslint/prefer-return-this-type
+@typescript-eslint/prefer-string-starts-ends-with
+@typescript-eslint/promise-function-async
+@typescript-eslint/related-getter-setter-pairs
+@typescript-eslint/require-array-sort-compare [{"ignoreStringArrays":true}]
+@typescript-eslint/restrict-plus-operands [{"allowAny":false}]
+@typescript-eslint/return-await
+@typescript-eslint/strict-boolean-expressions [{"allowNullableBoolean":true,"allowNullableObject":true,"allowNumber":false,"allowString":false}]
+@typescript-eslint/strict-void-return
+@typescript-eslint/switch-exhaustiveness-check [{"allowDefaultCaseForExhaustiveSwitch":false,"requireDefaultForNonUnion":true}]
+@typescript-eslint/triple-slash-reference [{"path":"never","types":"never","lib":"never"}]
+@typescript-eslint/unified-signatures [{"ignoreDifferentlyNamedParameters":true}]
+@typescript-eslint/use-unknown-in-catch-callback-variable
+accessor-pairs [{"enforceForTSTypes":false,"enforceForClassMembers":true,"getWithoutSet":false,"setWithoutGet":true}]
+array-callback-return [{"allowImplicit":true,"checkForEach":false,"allowVoid":false}]
+arrow-body-style ["as-needed"]
+ava/assertion-arguments [{}]
+ava/hooks-order
+ava/no-async-fn-without-await
+ava/no-commented-tests
+ava/no-conditional-assertion
+ava/no-duplicate-hooks
+ava/no-identical-title
+ava/no-ignored-test-files [{}]
+ava/no-import-test-files [{}]
+ava/no-incorrect-deep-equal
+ava/no-inline-assertions
+ava/no-invalid-modifier-chain
+ava/no-negated-assertion
+ava/no-nested-assertions
+ava/no-nested-tests
+ava/no-only-test
+ava/no-skip-assert
+ava/no-skip-test
+ava/no-todo-implementation
+ava/no-todo-test
+ava/no-useless-t-pass
+ava/prefer-async-await
+ava/prefer-t-regex
+ava/prefer-t-throws
+ava/require-assertion
+ava/test-title
+ava/use-t
+ava/use-t-throws-async-well
+ava/use-t-well
+ava/use-test
+ava/use-true-false
+block-scoped-var
+capitalized-comments ["always",{"ignorePattern":"pragma|ignore|prettier-ignore|webpack\\w+:|c8|return|const|let|var|await|function|console","ignoreInlineComments":true,"ignoreConsecutiveComments":true}]
+complexity [20]
+curly ["all"]
+default-case-last
+eqeqeq ["always"]
+for-direction
+func-name-matching [{"considerPropertyDescriptor":true}]
+grouped-accessor-pairs ["getBeforeSet",{"enforceForTSTypes":false}]
+guard-for-in
+import-x/first
+import-x/newline-after-import [{}]
+import-x/no-absolute-path
+import-x/no-amd
+import-x/no-anonymous-default-export
+import-x/no-cycle [{"ignoreExternal":true,"allowUnsafeDynamicCyclicDependency":false}]
+import-x/no-duplicates [{"prefer-inline":true}]
+import-x/no-empty-named-blocks
+import-x/no-extraneous-dependencies [{"includeTypes":true}]
+import-x/no-mutable-exports
+import-x/no-named-as-default
+import-x/no-named-as-default-member
+import-x/no-named-default
+import-x/no-self-import
+import-x/no-unassigned-import [{"allow":["@babel/polyfill","**/register","**/register.*","**/register/**","**/register/**.*","**/*.css","**/*.scss","**/*.sass","**/*.less"]}]
+import-x/no-useless-path-segments
+import-x/no-webpack-loader-syntax
+import-x/order [{"groups":["builtin","external","internal","parent","sibling","index"],"newlines-between":"always","alphabetize":{"order":"asc","caseInsensitive":true,"orderImportKind":"ignore"},"distinctGroup":true,"sortTypesGroup":false,"named":false,"warnOnUnassignedImports":false}]
+jsdoc/check-access
+jsdoc/check-indentation [{"allowIndentedSections":true}]
+jsdoc/check-line-alignment ["never",{"disableWrapIndent":true,"preserveMainDescriptionPostDelimiter":false}]
+jsdoc/check-param-names
+jsdoc/check-property-names
+jsdoc/check-syntax
+jsdoc/check-tag-names [{"definedTags":["jest-environment","ts-check","ts-expect-error","ts-expect-no-error","ts-ignore","ts-nocheck","vitest-environment","defaultValue","isolated"],"jsxTags":true,"typed":true}]
+jsdoc/check-template-names
+jsdoc/check-types
+jsdoc/check-values
+jsdoc/empty-tags
+jsdoc/escape-inline-tags
+jsdoc/implements-on-classes
+jsdoc/imports-as-dependencies
+jsdoc/informative-docs [{"excludedTags":["default"]}]
+jsdoc/multiline-blocks
+jsdoc/no-bad-blocks
+jsdoc/no-blank-block-descriptions
+jsdoc/no-blank-blocks
+jsdoc/no-multi-asterisks [{"preventAtMiddleLines":false}]
+jsdoc/no-types
+jsdoc/reject-any-type
+jsdoc/reject-function-type
+jsdoc/require-asterisk-prefix ["always"]
+jsdoc/require-description [{"exemptedBy":["inheritdoc","isolated"],"checkConstructors":true,"checkGetters":true,"checkSetters":true}]
+jsdoc/require-next-type
+jsdoc/require-param-description
+jsdoc/require-param-name
+jsdoc/require-property
+jsdoc/require-property-name
+jsdoc/require-returns-description
+jsdoc/require-yields
+jsdoc/require-yields-check
+jsdoc/tag-lines ["any",{"startLines":1}]
+jsdoc/ts-no-empty-object-type
+max-depth [4]
+max-lines [{"max":1500,"skipComments":true}]
+max-nested-callbacks [4]
+max-params [{"max":4}]
+n/file-extension-in-import ["always"]
+n/handle-callback-err ["^(err|error)$"]
+n/no-callback-literal
+n/no-deprecated-api
+n/no-exports-assign
+n/no-extraneous-import
+n/no-mixed-requires [{"grouping":true,"allowCall":true}]
+n/no-new-require
+n/no-path-concat
+n/no-unpublished-bin
+n/prefer-global/buffer ["never"]
+n/prefer-global/console ["always"]
+n/prefer-global/process ["never"]
+n/prefer-global/text-decoder ["always"]
+n/prefer-global/text-encoder ["always"]
+n/prefer-global/url ["always"]
+n/prefer-global/url-search-params ["always"]
+n/prefer-promises/dns
+n/prefer-promises/fs
+n/process-exit-as-throw
+new-cap [{"capIsNew":true,"capIsNewExceptions":["Array","Boolean","Date","Error","Function","Number","Object","RegExp","String","Symbol","BigInt"],"newIsCap":true,"newIsCapExceptions":[],"properties":true}]
+no-alert
+no-async-promise-executor
+no-await-in-loop
+no-bitwise [{"allow":[],"int32Hint":false}]
+no-caller
+no-case-declarations
+no-compare-neg-zero
+no-cond-assign ["except-parens"]
+no-constant-binary-expression [{"checkRelationalComparisons":true}]
+no-constant-condition [{"checkLoops":"allExceptWhileTrue"}]
+no-constructor-return
+no-control-regex
+no-debugger
+no-delete-var
+no-dupe-else-if
+no-duplicate-case
+no-else-return [{"allowElseIf":false}]
+no-empty [{"allowEmptyCatch":true}]
+no-empty-character-class
+no-empty-pattern [{"allowObjectPatternsAsParameters":false}]
+no-empty-static-block
+no-eq-null
+no-eval [{"allowIndirect":false}]
+no-ex-assign
+no-extend-native [{"exceptions":[]}]
+no-extra-bind
+no-extra-boolean-cast [{}]
+no-extra-label
+no-fallthrough [{"allowEmptyCase":false,"reportUnusedFallthroughComment":false}]
+no-global-assign [{"exceptions":[]}]
+no-implicit-coercion [{"allow":[],"boolean":true,"disallowTemplateShorthand":false,"number":true,"string":true}]
+no-implicit-globals [{"lexicalBindings":false}]
+no-implied-eval
+no-inner-declarations ["functions",{"blockScopedFunctions":"allow"}]
+no-invalid-regexp [{}]
+no-irregular-whitespace [{"skipComments":false,"skipJSXText":false,"skipRegExps":false,"skipStrings":true,"skipTemplates":false}]
+no-iterator
+no-label-var
+no-labels [{"allowLoop":false,"allowSwitch":false}]
+no-lone-blocks
+no-lonely-if
+no-loss-of-precision
+no-misleading-character-class [{"allowEscape":false}]
+no-multi-assign [{"ignoreNonDeclaration":false}]
+no-multi-str
+no-new
+no-new-func
+no-new-wrappers
+no-nonoctal-decimal-escape
+no-object-constructor
+no-octal
+no-octal-escape
+no-proto
+no-prototype-builtins
+no-regex-spaces
+no-restricted-globals [{"globals":["event",{"name":"atob","message":"This API is deprecated. Use https://github.com/sindresorhus/uint8array-extras instead."},{"name":"btoa","message":"This API is deprecated. Use https://github.com/sindresorhus/uint8array-extras instead."}],"checkGlobalObject":true}]
+no-return-assign ["always"]
+no-script-url
+no-self-assign [{"props":true}]
+no-self-compare
+no-sequences [{"allowInParentheses":false}]
+no-shadow-restricted-names [{"reportGlobalThis":true}]
+no-sparse-arrays
+no-template-curly-in-string
+no-unassigned-vars
+no-undef-init
+no-unexpected-multiline
+no-unmodified-loop-condition [{"checkConditionalExpressions":false}]
+no-unneeded-ternary [{"defaultAssignment":true}]
+no-unreachable-loop [{"ignore":[]}]
+no-unsafe-finally
+no-unsafe-optional-chaining [{"disallowArithmeticOperators":true}]
+no-unused-labels
+no-use-extend-native/no-use-extend-native
+no-useless-backreference
+no-useless-call
+no-useless-catch
+no-useless-computed-key [{"enforceForClassMembers":true}]
+no-useless-concat
+no-useless-escape [{"allowRegexCharacters":[]}]
+no-useless-rename [{"ignoreDestructuring":false,"ignoreImport":false,"ignoreExport":false}]
+no-useless-return
+no-var
+no-void [{"allowAsStatement":true}]
+node-test/assertion-arguments
+node-test/consistent-assert-style [{"style":"assert-ok"}]
+node-test/consistent-test-context-name [{"name":"t"}]
+node-test/hooks-order
+node-test/max-nested-describe [{"max":5}]
+node-test/no-assert-in-describe
+node-test/no-assert-match-string
+node-test/no-assert-throws-async
+node-test/no-assert-throws-call
+node-test/no-assert-throws-multiple-statements
+node-test/no-assert-throws-string
+node-test/no-async-describe
+node-test/no-async-fn-without-await
+node-test/no-callback-and-promise
+node-test/no-compound-assertion
+node-test/no-conditional-assertion
+node-test/no-conditional-tests
+node-test/no-conflicting-modifiers
+node-test/no-constant-assertion
+node-test/no-duplicate-assertions
+node-test/no-duplicate-hooks
+node-test/no-duplicate-mock-timers-enable
+node-test/no-duplicate-plan
+node-test/no-expect-failure-without-reason
+node-test/no-export
+node-test/no-identical-assertion-arguments
+node-test/no-identical-title
+node-test/no-import-test-files
+node-test/no-incorrect-deep-equal
+node-test/no-incorrect-strict-equal
+node-test/no-late-test-activity
+node-test/no-loop-static-title
+node-test/no-misused-concurrency
+node-test/no-misused-context-hook
+node-test/no-mock-module-after-import
+node-test/no-mock-timers-destructured-import
+node-test/no-nested-tests
+node-test/no-only-test
+node-test/no-parent-test-context
+node-test/no-process-chdir-in-test
+node-test/no-process-env-mutation
+node-test/no-process-exit-in-test
+node-test/no-skip-test
+node-test/no-skip-without-return
+node-test/no-standalone-assert
+node-test/no-test-global-configuration
+node-test/no-test-inside-hook
+node-test/no-test-return-statement
+node-test/no-unawaited-promise-assertion
+node-test/no-unawaited-rejects
+node-test/no-unawaited-subtest
+node-test/no-unknown-test-options
+node-test/no-useless-assertion
+node-test/prefer-assert-match
+node-test/prefer-assert-throws
+node-test/prefer-async-await
+node-test/prefer-context-mock
+node-test/prefer-equality-assertion
+node-test/prefer-hooks-on-top
+node-test/prefer-mock-accessor
+node-test/prefer-mock-call-count
+node-test/prefer-mock-method
+node-test/prefer-strict-assert
+node-test/prefer-test-context-assert
+node-test/prefer-todo
+node-test/require-assertion
+node-test/require-await-concurrent-subtests
+node-test/require-context-assert-with-plan
+node-test/require-mock-timers-advance
+node-test/require-mock-timers-apis
+node-test/require-throws-expectation
+node-test/require-throws-validator-return-true
+node-test/test-title
+node-test/valid-describe-callback
+node-test/valid-test-tags
+object-shorthand ["always",{"avoidExplicitReturnArrows":true}]
+one-var ["never"]
+operator-assignment ["always"]
+prefer-arrow-callback [{"allowNamedFunctions":true,"allowUnboundThis":true}]
+prefer-const [{"destructuring":"all","ignoreReadBeforeAssign":false}]
+prefer-destructuring [{"array":false}]
+prefer-exponentiation-operator
+prefer-numeric-literals
+prefer-object-has-own
+prefer-object-spread
+prefer-regex-literals [{"disallowRedundantWrapping":true}]
+prefer-rest-params
+prefer-spread
+prefer-template
+preserve-caught-error [{"requireCatchParameter":false,"errorClassNames":[]}]
+promise/param-names
+radix
+regexp/confusing-quantifier
+regexp/control-character-escape
+regexp/grapheme-string-literal
+regexp/hexadecimal-escape ["never"]
+regexp/letter-case [{"caseInsensitive":"lowercase","unicodeEscape":"ignore","hexadecimalEscape":"uppercase","controlEscape":"uppercase"}]
+regexp/match-any
+regexp/negation
+regexp/no-contradiction-with-assertion
+regexp/no-control-character
+regexp/no-dupe-characters-character-class
+regexp/no-dupe-disjunctions
+regexp/no-empty-alternative
+regexp/no-empty-capturing-group
+regexp/no-empty-character-class
+regexp/no-empty-group
+regexp/no-empty-lookarounds-assertion
+regexp/no-empty-string-literal
+regexp/no-escape-backspace
+regexp/no-extra-lookaround-assertions
+regexp/no-invalid-regexp
+regexp/no-invisible-character
+regexp/no-lazy-ends
+regexp/no-legacy-features
+regexp/no-misleading-capturing-group
+regexp/no-misleading-unicode-character
+regexp/no-missing-g-flag
+regexp/no-non-standard-flag
+regexp/no-obscure-range
+regexp/no-octal
+regexp/no-optional-assertion
+regexp/no-potentially-useless-backreference
+regexp/no-standalone-backslash
+regexp/no-super-linear-backtracking
+regexp/no-super-linear-move
+regexp/no-trivially-nested-assertion
+regexp/no-trivially-nested-quantifier
+regexp/no-unused-capturing-group
+regexp/no-useless-assertions
+regexp/no-useless-backreference
+regexp/no-useless-character-class
+regexp/no-useless-dollar-replacements
+regexp/no-useless-escape
+regexp/no-useless-flag
+regexp/no-useless-lazy
+regexp/no-useless-non-capturing-group
+regexp/no-useless-quantifier
+regexp/no-useless-range
+regexp/no-useless-set-operand
+regexp/no-useless-string-literal
+regexp/no-useless-two-nums-quantifier
+regexp/no-zero-quantifier
+regexp/optimal-lookaround-quantifier
+regexp/optimal-quantifier-concatenation
+regexp/prefer-character-class
+regexp/prefer-d
+regexp/prefer-escape-replacement-dollar-char
+regexp/prefer-lookaround [{"lookbehind":true,"strictTypes":true}]
+regexp/prefer-named-backreference
+regexp/prefer-named-capture-group
+regexp/prefer-named-replacement
+regexp/prefer-plus-quantifier
+regexp/prefer-predefined-assertion
+regexp/prefer-question-quantifier
+regexp/prefer-range
+regexp/prefer-regexp-test
+regexp/prefer-result-array-groups
+regexp/prefer-set-operation
+regexp/prefer-star-quantifier
+regexp/prefer-unicode-codepoint-escapes
+regexp/prefer-w
+regexp/simplify-set-operations
+regexp/sort-character-class-elements
+regexp/sort-flags
+regexp/strict
+regexp/unicode-escape
+regexp/unicode-property [{"generalCategory":"never","key":"ignore","property":{"binary":"long","generalCategory":"long","script":"long"}}]
+regexp/use-ignore-case
+require-unicode-regexp [{"requireFlag":"v"}]
+require-yield
+sort-imports [{"allowSeparatedGroups":false,"ignoreCase":false,"ignoreDeclarationSort":true,"ignoreMemberSort":false,"memberSyntaxSortOrder":["none","all","multiple","single"]}]
+symbol-description
+unicode-bom ["never"]
+unicorn/better-dom-traversing
+unicorn/catch-error-name [{"name":"error","ignore":[]}]
+unicorn/class-reference-in-static-methods [{"preferThis":true,"preferSuper":true}]
+unicorn/consistent-assert
+unicorn/consistent-class-member-order [{"order":["static-field","static-block","static-method","private-field","public-field","constructor","private-method","public-method"]}]
+unicorn/consistent-compound-words [{}]
+unicorn/consistent-conditional-object-spread ["logical"]
+unicorn/consistent-date-clone
+unicorn/consistent-empty-array-spread
+unicorn/consistent-existence-index-check
+unicorn/consistent-export-decorator-position ["above"]
+unicorn/consistent-json-file-read ["string"]
+unicorn/consistent-optional-chaining
+unicorn/consistent-template-literal-escape
+unicorn/consistent-tuple-labels
+unicorn/default-export-style [{"functions":"inline","classes":"inline"}]
+unicorn/dom-node-dataset [{"preferAttributes":false}]
+unicorn/error-message
+unicorn/escape-case ["uppercase"]
+unicorn/explicit-length-check [{"non-zero":"greater-than"}]
+unicorn/explicit-timer-delay ["always"]
+unicorn/filename-case [{"ignore":[{}]}]
+unicorn/isolated-functions [{"functions":["makeSynchronous","workerize"],"selectors":[],"comments":["@isolated"],"overrideGlobals":{}}]
+unicorn/logical-assignment-operators ["always",{"enforceForIfStatements":true}]
+unicorn/max-nested-calls [{"max":3}]
+unicorn/new-for-builtins
+unicorn/no-abusive-eslint-disable
+unicorn/no-accessor-recursion
+unicorn/no-accidental-bitwise-operator
+unicorn/no-anonymous-default-export
+unicorn/no-array-concat-in-loop
+unicorn/no-array-fill-with-reference-type
+unicorn/no-array-from-fill
+unicorn/no-array-method-this-argument
+unicorn/no-array-reverse [{"allowExpressionStatement":true}]
+unicorn/no-array-sort [{"allowExpressionStatement":true}]
+unicorn/no-array-sort-for-min-max
+unicorn/no-array-splice
+unicorn/no-async-promise-finally
+unicorn/no-await-expression-member
+unicorn/no-await-in-promise-methods
+unicorn/no-blob-to-file
+unicorn/no-boolean-sort-comparator
+unicorn/no-break-in-nested-loop
+unicorn/no-canvas-to-image
+unicorn/no-chained-comparison
+unicorn/no-collection-bracket-access
+unicorn/no-computed-property-existence-check
+unicorn/no-confusing-array-splice
+unicorn/no-confusing-array-with
+unicorn/no-console-spaces
+unicorn/no-constant-zero-expression
+unicorn/no-declarations-before-early-exit
+unicorn/no-document-cookie
+unicorn/no-double-comparison
+unicorn/no-duplicate-if-branches
+unicorn/no-duplicate-logical-operands
+unicorn/no-duplicate-loops
+unicorn/no-duplicate-set-values
+unicorn/no-empty-file [{"allowComments":false}]
+unicorn/no-error-property-assignment
+unicorn/no-exports-in-scripts
+unicorn/no-for-each
+unicorn/no-for-loop
+unicorn/no-global-object-property-assignment
+unicorn/no-immediate-mutation
+unicorn/no-impossible-length-comparison
+unicorn/no-incorrect-query-selector
+unicorn/no-incorrect-template-string-interpolation
+unicorn/no-instanceof-builtins [{"useErrorIsError":false,"strategy":"loose","include":[],"exclude":[]}]
+unicorn/no-invalid-character-comparison
+unicorn/no-invalid-fetch-options
+unicorn/no-invalid-remove-event-listener
+unicorn/no-invalid-well-known-symbol-methods
+unicorn/no-late-current-target-access
+unicorn/no-late-event-control
+unicorn/no-lonely-if
+unicorn/no-loop-iterable-mutation
+unicorn/no-magic-array-flat-depth
+unicorn/no-mismatched-map-key
+unicorn/no-misrefactored-assignment
+unicorn/no-multiple-promise-resolver-calls
+unicorn/no-named-default
+unicorn/no-negated-array-predicate
+unicorn/no-negated-comparison [{"checkLogicalExpressions":false}]
+unicorn/no-negated-condition
+unicorn/no-negation-in-equality-check
+unicorn/no-new-array
+unicorn/no-new-buffer
+unicorn/no-nonstandard-builtin-properties
+unicorn/no-object-as-default-parameter
+unicorn/no-object-methods-with-collections
+unicorn/no-optional-chaining-on-undeclared-variable
+unicorn/no-process-exit
+unicorn/no-redundant-comparison
+unicorn/no-return-array-push
+unicorn/no-selector-as-dom-name
+unicorn/no-shorthand-property-overrides
+unicorn/no-single-promise-in-promise-methods
+unicorn/no-static-only-class
+unicorn/no-subtraction-comparison
+unicorn/no-thenable
+unicorn/no-this-assignment
+unicorn/no-top-level-side-effects
+unicorn/no-transition-all
+unicorn/no-typeof-undefined [{"checkGlobalVariables":false}]
+unicorn/no-uncalled-method
+unicorn/no-undeclared-class-members
+unicorn/no-unnecessary-array-flat-depth
+unicorn/no-unnecessary-array-flat-map
+unicorn/no-unnecessary-array-splice-count
+unicorn/no-unnecessary-await
+unicorn/no-unnecessary-boolean-comparison
+unicorn/no-unnecessary-fetch-options
+unicorn/no-unnecessary-global-this
+unicorn/no-unnecessary-nested-ternary
+unicorn/no-unnecessary-polyfills [{}]
+unicorn/no-unnecessary-slice-end
+unicorn/no-unnecessary-splice
+unicorn/no-unnecessary-string-trim
+unicorn/no-unreadable-array-destructuring [{"maximumIgnoredElements":1}]
+unicorn/no-unreadable-iife
+unicorn/no-unreadable-object-destructuring
+unicorn/no-unsafe-buffer-conversion
+unicorn/no-unsafe-promise-all-settled-values
+unicorn/no-unsafe-property-key
+unicorn/no-unsafe-sqlite-interpolation
+unicorn/no-unsafe-string-replacement
+unicorn/no-unused-array-method-return
+unicorn/no-useless-boolean-cast
+unicorn/no-useless-coercion
+unicorn/no-useless-collection-argument
+unicorn/no-useless-compound-assignment
+unicorn/no-useless-concat
+unicorn/no-useless-continue
+unicorn/no-useless-delete-check
+unicorn/no-useless-else
+unicorn/no-useless-error-capture-stack-trace
+unicorn/no-useless-fallback-in-spread
+unicorn/no-useless-iterator-to-array
+unicorn/no-useless-length-check
+unicorn/no-useless-logical-operand
+unicorn/no-useless-override
+unicorn/no-useless-promise-resolve-reject
+unicorn/no-useless-re-export
+unicorn/no-useless-recursion
+unicorn/no-useless-spread
+unicorn/no-useless-switch-case
+unicorn/no-xor-as-exponentiation
+unicorn/no-zero-fractions
+unicorn/numeric-separators-style [{"onlyIfContainsSeparator":false,"binary":{"minimumDigits":0,"groupLength":4},"octal":{"minimumDigits":0,"groupLength":4},"hexadecimal":{"minimumDigits":0,"groupLength":2},"number":{"minimumDigits":5,"groupLength":3,"fractionGroupLength":null}}]
+unicorn/operator-assignment ["always"]
+unicorn/prefer-abort-signal-any
+unicorn/prefer-abort-signal-timeout
+unicorn/prefer-add-event-listener [{"excludedPackages":["koa","sax"]}]
+unicorn/prefer-add-event-listener-options
+unicorn/prefer-aggregate-error
+unicorn/prefer-array-find [{"checkFromLast":true}]
+unicorn/prefer-array-flat [{"functions":[]}]
+unicorn/prefer-array-flat-map
+unicorn/prefer-array-from-async
+unicorn/prefer-array-from-map
+unicorn/prefer-array-from-range
+unicorn/prefer-array-index-of
+unicorn/prefer-array-iterable-methods
+unicorn/prefer-array-last-methods
+unicorn/prefer-array-slice
+unicorn/prefer-array-some
+unicorn/prefer-at [{"getLastElementFunctions":[],"checkAllIndexAccess":false}]
+unicorn/prefer-bigint-literals
+unicorn/prefer-blob-reading-methods
+unicorn/prefer-block-statement-over-iife
+unicorn/prefer-boolean-return
+unicorn/prefer-class-fields
+unicorn/prefer-classlist-toggle
+unicorn/prefer-code-point
+unicorn/prefer-continue [{"maximumStatements":1}]
+unicorn/prefer-date-now
+unicorn/prefer-default-parameters
+unicorn/prefer-direct-iteration
+unicorn/prefer-dom-node-append
+unicorn/prefer-dom-node-html-methods [{"checkGetHTML":true,"checkSetHTML":false}]
+unicorn/prefer-dom-node-remove
+unicorn/prefer-dom-node-replace-children
+unicorn/prefer-dom-node-text-content
+unicorn/prefer-early-return [{"maximumStatements":2}]
+unicorn/prefer-else-if
+unicorn/prefer-event-target
+unicorn/prefer-export-from [{"checkUsedVariables":true}]
+unicorn/prefer-flat-math-min-max
+unicorn/prefer-get-or-insert-computed
+unicorn/prefer-global-number-constants
+unicorn/prefer-global-this
+unicorn/prefer-group-by
+unicorn/prefer-has-check
+unicorn/prefer-hoisting-branch-code
+unicorn/prefer-https [{"ignore":[]}]
+unicorn/prefer-identifier-import-export-specifiers
+unicorn/prefer-includes
+unicorn/prefer-includes-over-repeated-comparisons [{"minimumComparisons":3}]
+unicorn/prefer-iterable-in-constructor
+unicorn/prefer-iterator-helpers
+unicorn/prefer-iterator-to-array
+unicorn/prefer-iterator-to-array-at-end
+unicorn/prefer-keyboard-event-key
+unicorn/prefer-location-assign
+unicorn/prefer-logical-operator-over-ternary
+unicorn/prefer-map-from-entries
+unicorn/prefer-math-abs
+unicorn/prefer-math-constants
+unicorn/prefer-math-min-max
+unicorn/prefer-math-trunc
+unicorn/prefer-minimal-ternary [{"checkVaryingBase":false,"checkComputedMemberAccess":false}]
+unicorn/prefer-modern-dom-apis
+unicorn/prefer-modern-math-apis
+unicorn/prefer-native-coercion-functions
+unicorn/prefer-negative-index
+unicorn/prefer-node-protocol
+unicorn/prefer-number-coercion
+unicorn/prefer-number-is-safe-integer
+unicorn/prefer-number-properties [{"checkInfinity":false,"checkNaN":false}]
+unicorn/prefer-object-define-properties
+unicorn/prefer-object-destructuring-defaults
+unicorn/prefer-object-from-entries [{"functions":[]}]
+unicorn/prefer-object-iterable-methods
+unicorn/prefer-observer-apis
+unicorn/prefer-optional-catch-binding
+unicorn/prefer-path2d
+unicorn/prefer-private-class-fields
+unicorn/prefer-promise-try
+unicorn/prefer-promise-with-resolvers
+unicorn/prefer-prototype-methods
+unicorn/prefer-query-selector [{"allowWithVariables":false}]
+unicorn/prefer-queue-microtask [{"checkSetImmediate":false,"checkSetTimeout":false}]
+unicorn/prefer-reflect-apply
+unicorn/prefer-regexp-test
+unicorn/prefer-response-static-json
+unicorn/prefer-scoped-selector
+unicorn/prefer-set-methods
+unicorn/prefer-set-size
+unicorn/prefer-simple-condition-first
+unicorn/prefer-simple-sort-comparator
+unicorn/prefer-simplified-conditions
+unicorn/prefer-single-array-predicate
+unicorn/prefer-single-call [{"ignore":[]}]
+unicorn/prefer-single-object-destructuring
+unicorn/prefer-single-replace
+unicorn/prefer-smaller-scope
+unicorn/prefer-split-limit
+unicorn/prefer-spread
+unicorn/prefer-string-match-all
+unicorn/prefer-string-pad-start-end
+unicorn/prefer-string-raw
+unicorn/prefer-string-repeat [{"minimumRepetitions":3}]
+unicorn/prefer-string-replace-all
+unicorn/prefer-string-slice
+unicorn/prefer-string-starts-ends-with
+unicorn/prefer-string-trim-start-end
+unicorn/prefer-structured-clone [{"functions":[]}]
+unicorn/prefer-ternary ["only-single-line"]
+unicorn/prefer-then-catch
+unicorn/prefer-toggle-attribute
+unicorn/prefer-top-level-await
+unicorn/prefer-type-error
+unicorn/prefer-type-literal-last
+unicorn/prefer-unary-minus
+unicorn/prefer-unicode-code-point-escapes
+unicorn/prefer-url-can-parse
+unicorn/prefer-url-href
+unicorn/prefer-url-search-parameters
+unicorn/prefer-while-loop-condition
+unicorn/relative-url-style ["never"]
+unicorn/require-array-join-separator
+unicorn/require-css-escape [{"checkAllSelectors":false}]
+unicorn/require-module-attributes
+unicorn/require-module-specifiers
+unicorn/require-number-to-fixed-digits-argument
+unicorn/require-passive-events
+unicorn/require-proxy-trap-boolean-return
+unicorn/switch-case-braces ["always"]
+unicorn/switch-case-break-position
+unicorn/text-encoding-identifier-case [{"withDash":false}]
+unicorn/throw-new-error
+use-isnan [{"enforceForIndexOf":false,"enforceForSwitchCase":true}]
+valid-typeof [{"requireStringLiterals":false}]
+xo/import-specifier-newline
+yoda ["never",{"exceptRange":false,"onlyEquality":false}]
+
+# probe.html — 77 rules
+@html-eslint/css-no-empty-blocks
+@html-eslint/head-order
+@html-eslint/no-abstract-roles
+@html-eslint/no-accesskey-attrs
+@html-eslint/no-aria-hidden-body
+@html-eslint/no-aria-hidden-on-focusable
+@html-eslint/no-duplicate-attrs
+@html-eslint/no-duplicate-class
+@html-eslint/no-duplicate-id
+@html-eslint/no-duplicate-in-head
+@html-eslint/no-empty-headings
+@html-eslint/no-heading-inside-button
+@html-eslint/no-ineffective-attrs
+@html-eslint/no-inline-styles
+@html-eslint/no-invalid-attr-value
+@html-eslint/no-invalid-entity
+@html-eslint/no-invalid-role
+@html-eslint/no-multiple-h1
+@html-eslint/no-nested-interactive
+@html-eslint/no-non-scalable-viewport
+@html-eslint/no-obsolete-attrs
+@html-eslint/no-obsolete-tags
+@html-eslint/no-positive-tabindex
+@html-eslint/no-redundant-role
+@html-eslint/no-script-style-type
+@html-eslint/no-skip-heading-levels
+@html-eslint/no-target-blank
+@html-eslint/no-whitespace-only-children
+@html-eslint/prefer-https
+@html-eslint/require-button-type
+@html-eslint/require-content
+@html-eslint/require-details-summary
+@html-eslint/require-doctype
+@html-eslint/require-explicit-size
+@html-eslint/require-form-method
+@html-eslint/require-frame-title
+@html-eslint/require-img-alt
+@html-eslint/require-input-label
+@html-eslint/require-lang
+@html-eslint/require-li-container
+@html-eslint/require-meta-charset
+@html-eslint/require-meta-viewport
+@html-eslint/require-title
+@html-eslint/sort-attrs
+@html-eslint/svg-require-viewbox
+@html-eslint/use-baseline
+ava/assertion-arguments [{}]
+ava/hooks-order
+ava/no-async-fn-without-await
+ava/no-commented-tests
+ava/no-conditional-assertion
+ava/no-duplicate-hooks
+ava/no-identical-title
+ava/no-ignored-test-files [{}]
+ava/no-import-test-files [{}]
+ava/no-incorrect-deep-equal
+ava/no-inline-assertions
+ava/no-invalid-modifier-chain
+ava/no-negated-assertion
+ava/no-nested-assertions
+ava/no-nested-tests
+ava/no-only-test
+ava/no-skip-assert
+ava/no-skip-test
+ava/no-todo-implementation
+ava/no-todo-test
+ava/no-useless-t-pass
+ava/prefer-async-await
+ava/prefer-t-regex
+ava/prefer-t-throws
+ava/require-assertion
+ava/test-title
+ava/use-t
+ava/use-t-throws-async-well
+ava/use-t-well
+ava/use-test
+ava/use-true-false
+
+# package.json — 76 rules
+ava/assertion-arguments [{}]
+ava/hooks-order
+ava/no-async-fn-without-await
+ava/no-ava-in-dependencies
+ava/no-commented-tests
+ava/no-conditional-assertion
+ava/no-duplicate-hooks
+ava/no-identical-title
+ava/no-ignored-test-files [{}]
+ava/no-import-test-files [{}]
+ava/no-incorrect-deep-equal
+ava/no-inline-assertions
+ava/no-invalid-modifier-chain
+ava/no-negated-assertion
+ava/no-nested-assertions
+ava/no-nested-tests
+ava/no-only-test
+ava/no-skip-assert
+ava/no-skip-test
+ava/no-todo-implementation
+ava/no-todo-test
+ava/no-useless-t-pass
+ava/prefer-async-await
+ava/prefer-t-regex
+ava/prefer-t-throws
+ava/require-assertion
+ava/test-title
+ava/use-t
+ava/use-t-throws-async-well
+ava/use-t-well
+ava/use-test
+ava/use-true-false
+json/no-duplicate-keys
+json/no-empty-keys
+json/no-unnormalized-keys [{"form":"NFC"}]
+json/no-unsafe-values
+package-json/consistent-path-prefix
+package-json/no-absolute-paths
+package-json/no-backslash-paths
+package-json/no-core-module-dependencies
+package-json/no-deprecated-fields
+package-json/no-dist-tag-dependencies
+package-json/no-duplicate-dependencies
+package-json/no-empty-fields
+package-json/no-exports-trailing-slash
+package-json/no-fallback-export-arrays
+package-json/no-http-dependencies
+package-json/no-install-scripts
+package-json/no-invalid-direct-overrides
+package-json/no-manual-maintainers
+package-json/no-nested-exports
+package-json/no-orphan-script-hooks
+package-json/no-orphan-types
+package-json/no-overrides-in-published-package
+package-json/no-package-manager-engines
+package-json/no-redundant-files
+package-json/no-self-dependency
+package-json/no-typo-fields
+package-json/no-wildcard-dependencies
+package-json/no-workspace-protocol-in-published-package
+package-json/peer-dependencies-as-dev-dependencies
+package-json/prefer-engines-range
+package-json/prefer-files-field
+package-json/prefer-https-urls
+package-json/prefer-shorthand
+package-json/prefer-side-effects-field
+package-json/require-bin-shebang
+package-json/require-default-condition
+package-json/require-entry-point
+package-json/require-fields
+package-json/require-private-when-workspaces
+package-json/require-types-in-exports
+package-json/sort-dependencies
+package-json/sort-files
+package-json/sort-properties
+package-json/valid-fields
