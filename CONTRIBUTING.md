@@ -79,6 +79,12 @@ discovered downstream. The snapshot deliberately records options as well as rule
 names, because a bump that retunes an existing rule breaks consumers just as
 happily as one that adds a rule.
 
+Resolved options include the defaults ESLint injects from each core rule's
+`meta.defaultOptions`, and those change between ESLint releases. So under
+`validate-oldest-eslint`, which swaps ESLint out deliberately, the test compares
+only which rules are enabled and leaves their options alone — otherwise it would
+report ESLint's own churn as if it were ours.
+
 ### 2. What does it do to real code?
 
 The inventory cannot see a rule that kept its configuration but changed what it

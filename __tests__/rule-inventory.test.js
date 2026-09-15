@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
 import process from 'node:process';
 import { describe, it } from 'node:test';
@@ -6,6 +7,19 @@ import { describe, it } from 'node:test';
 import { ESLint } from 'eslint';
 
 import config from '../eslint.config.js';
+
+const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
+
+// Resolved options include the defaults ESLint injects from each core rule's
+// `meta.defaultOptions`, and those change between ESLint releases — 10.10 added
+// `checkConditionalExpressions` to `no-unmodified-loop-condition` and
+// `errorClassNames` to `preserve-caught-error`, neither of which we or xo set.
+// The `validate-oldest-eslint` CI job swaps ESLint out deliberately, so
+// comparing options there reports ESLint's own churn as if it were ours.
+//
+// Which rules are enabled is stable across the ESLint range we support, so that
+// half of the comparison runs everywhere and only the options half is gated.
+const PINNED_ESLINT = ESLint.version === pkg.devDependencies.eslint;
 
 // One probe per layer of the config that has its own `files` pattern, so the
 // inventory covers everything a consumer can be linting. These paths are never
@@ -104,9 +118,10 @@ const parse = (text) => {
  *
  * @param {Map<string, Map<string, string>>} expected Committed inventory.
  * @param {Map<string, Map<string, string>>} actual Inventory as resolved now.
+ * @param {boolean} compareOptions Whether to report retuned rules too.
  * @returns {string[]} One line per rule that was added, removed or retuned.
  */
-const diff = (expected, actual) => {
+const diff = (expected, actual, compareOptions) => {
 	const lines = [];
 
 	for (const [probe, after] of actual) {
@@ -124,6 +139,10 @@ const diff = (expected, actual) => {
 			}
 		}
 
+		if (!compareOptions) {
+			continue;
+		}
+
 		for (const [name, options] of after) {
 			if (before.has(name) && before.get(name) !== options) {
 				lines.push(`${probe}: ~ ${name} (options changed)`);
@@ -135,7 +154,11 @@ const diff = (expected, actual) => {
 };
 
 describe('rule inventory', () => {
-	it('matches the committed snapshot', async () => {
+	const scope = PINNED_ESLINT
+		? 'which rules it enables, and how they are configured'
+		: 'which rules it enables';
+
+	it(`matches the committed snapshot: ${scope}`, async () => {
 		const resolved = await Promise.all(PROBES.map(activeRules));
 		const inventory = new Map();
 		for (const [index, probe] of PROBES.entries()) {
@@ -150,7 +173,7 @@ describe('rule inventory', () => {
 		const expected = parse(await readFile(SNAPSHOT, 'utf8'));
 
 		assert.deepEqual(
-			diff(expected, inventory),
+			diff(expected, inventory, PINNED_ESLINT),
 			[],
 			'The set of rules this config enables has changed. If that was the ' +
 				'point of your change, regenerate with `UPDATE_RULE_INVENTORY=1 ' +
