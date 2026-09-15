@@ -1,5 +1,35 @@
 # @cloudfour/eslint-plugin
 
+## 27.0.0 - 2026-09-15
+
+### Major Changes
+
+- **Update `eslint-config-xo` to v2**, which moves `eslint-plugin-unicorn` from
+  v73 to v74. The bump adds, removes and reconfigures no unicorn rule — v74's
+  changes are fixes to rules we already run. Measured against a real consumer
+  project, it produced three _fewer_ reports across 64 TypeScript files, where
+  `unicorn/prefer-number-coercion` and `unicorn/prefer-string-replace-all` had
+  been flagging cases they misread.
+
+- **`n/prefer-process-get-builtin-module` is now on**, added by xo v2. It reports
+  `require('node:fs')` and `await import('node:fs')` for built-in modules and
+  wants `process.getBuiltinModule('node:fs')` instead. It is not auto-fixable,
+  so whatever it catches has to be edited by hand. This is the only rule the
+  upgrade turns on, and the only source of new errors in it.
+
+  The rule pays off in ES modules, where it removes the need for
+  `createRequire`. It fires in CommonJS too, where `require` is the native idiom
+  and the rewrite buys nothing, so build scripts and `.cjs` config files are the
+  likeliest place to meet it. Turn it off for those paths in your own config if
+  it is noisy:
+
+  ```js
+  {
+  	files: ['**/*.cjs'],
+  	rules: { 'n/prefer-process-get-builtin-module': 'off' },
+  }
+  ```
+
 ## 26.1.0 - 2026-08-31
 
 Follow-up to v26, from rolling it out across our repos. Everything here either
