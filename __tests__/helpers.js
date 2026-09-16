@@ -25,6 +25,32 @@ export const lintFixture = async (filePath) => {
 };
 
 /**
+ * Every rule our config leaves on for a path.
+ *
+ * `calculateConfigForFile` only matches the path against `files` globs and never
+ * reads it, so this can probe file types we keep no fixture for.
+ *
+ * @param {string} filePath Path to resolve the config for.
+ * @returns {Promise<string[]>} Enabled rule names, sorted.
+ */
+export const enabledRules = async (filePath) => {
+	const eslint = new ESLint({
+		overrideConfigFile: true,
+		overrideConfig: config,
+	});
+
+	const { rules = {} } = await eslint.calculateConfigForFile(filePath);
+
+	return Object.entries(rules)
+		.filter(([, entry]) => {
+			const severity = Array.isArray(entry) ? entry[0] : entry;
+			return severity !== 'off' && severity !== 0;
+		})
+		.map(([name]) => name)
+		.toSorted();
+};
+
+/**
  * The set of rules a fixture tripped, sorted and de-duplicated.
  *
  * We assert on the set rather than on every individual message because what we

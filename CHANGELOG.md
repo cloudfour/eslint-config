@@ -1,5 +1,32 @@
 # @cloudfour/eslint-plugin
 
+## 27.1.0 - 2026-09-16
+
+### Minor Changes
+
+- **`@typescript-eslint/no-restricted-types` is now scoped to TypeScript files.**
+  We had it configured in the layer that covers every code file, which quietly
+  made the `@typescript-eslint` plugin mandatory for linting anything at all. A
+  project with no TypeScript installed did not skip the rule, it failed outright:
+
+  ```text
+  A configuration object specifies rule "@typescript-eslint/no-restricted-types",
+  but could not find plugin "@typescript-eslint".
+  ```
+
+  No project gains or loses a report. The rule only ever matches type
+  annotations, so it could not fire on JavaScript in the first place — measured
+  against a real consumer project it changed nothing across 66 TypeScript files
+  and 120 single-file components, and the rule inventory records exactly one
+  difference, on the JavaScript probe. What changes is that a JavaScript-only
+  project can now lint with `typescript` absent from `node_modules`.
+
+  Note that npm may install TypeScript anyway. `eslint-config-xo` depends on
+  `typescript-eslint`, which declares a **required** `typescript` peer, so a
+  project with no TypeScript still gets roughly 31 MB of it. Nothing in this
+  config can prevent that; it needs a fix upstream, which we have reported as
+  [xojs/eslint-config-xo#126](https://github.com/xojs/eslint-config-xo/issues/126).
+
 ## 27.0.0 - 2026-09-15
 
 ### Major Changes

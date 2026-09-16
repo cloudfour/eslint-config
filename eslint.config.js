@@ -135,29 +135,12 @@ const config = [
 
 			'unicorn/import-style': 'off', // It doesn't seem useful to force people to use named, default, or namespace imports
 			'unicorn/name-replacements': 'off', // Causes more issues than it's worth
-			// Null is ok, even though Sindre Sorhus doesn't like it
+			// Null is ok, even though some style guides disallow it
 			// It is ok to avoid using null and use undefined instead
 			// but enforcing it in all code via a lint rule is too annoying
+			// Xo bans `null` in type positions too; that is handled alongside the
+			// other TypeScript rules below.
 			'unicorn/no-null': 'off',
-			// XO bans `null` as a *type* as well, via a different rule. That is the
-			// same opinion as `unicorn/no-null` above, so it gets the same answer:
-			// we keep xo's other restrictions and drop the one on null.
-			'@typescript-eslint/no-restricted-types': [
-				'error',
-				{
-					types: {
-						object: {
-							message:
-								'The `object` type is hard to use. Use `Record<string, unknown>` instead.',
-							fixWith: 'Record<string, unknown>',
-						},
-						Buffer: {
-							message: 'Use Uint8Array instead.',
-							fixWith: 'Uint8Array',
-						},
-					},
-				},
-			],
 			// Enforces naming styles on types, properties and variables. It has no
 			// way to know which names are ours and which come from someone else's
 			// contract, so it flags things like `Authorization` headers, `utm_source`
@@ -271,6 +254,32 @@ const config = [
 	{
 		files: [tsFilesGlob],
 		rules: {
+			// Xo bans `null` as a *type* as well as a value. The value ban is
+			// `unicorn/no-null`, which we turn off above; this is the same opinion
+			// applied to type positions, so it gets the same answer — we keep xo's
+			// other restrictions and drop the one on null.
+			//
+			// This has to stay scoped to TypeScript. The rule only ever matches type
+			// annotations, so on JavaScript it cannot fire — but naming it in a layer
+			// that covers `.js` makes the `@typescript-eslint` plugin mandatory, and a
+			// project with no TypeScript installed then fails to lint at all. See #707.
+			'@typescript-eslint/no-restricted-types': [
+				'error',
+				{
+					types: {
+						object: {
+							message:
+								'The `object` type is hard to use. Use `Record<string, unknown>` instead.',
+							fixWith: 'Record<string, unknown>',
+						},
+						Buffer: {
+							message: 'Use Uint8Array instead.',
+							fixWith: 'Uint8Array',
+						},
+					},
+				},
+			],
+
 			// TS handles checking these
 			'n/no-missing-import': 'off',
 			'n/no-missing-require': 'off',
