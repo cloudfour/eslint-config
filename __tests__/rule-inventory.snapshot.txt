@@ -1,4 +1,4 @@
-# probe.js — 716 rules
+# probe.js — 715 rules
 @eslint-community/eslint-comments/disable-enable-pair [{"allowWholeFile":true}]
 @eslint-community/eslint-comments/no-aggregating-enable
 @eslint-community/eslint-comments/no-duplicate-disable
@@ -7,7 +7,6 @@
 @eslint-community/eslint-comments/require-description [{"ignore":["eslint-enable","eslint-disable-next-line","eslint-disable-line","eslint-env","exported","global","globals"]}]
 @stylistic/curly-newline [{"consistent":true}]
 @stylistic/no-mixed-operators [{"groups":[["+","-","*","/","%","**","??"],["&","|","^","~","<<",">>",">>>","??"],["==","!=","===","!==",">",">=","<","<=","??"],["&&","||","??"],["in","instanceof","??"]],"allowSamePrecedence":true}]
-@typescript-eslint/no-restricted-types [{"types":{"object":{"message":"The `object` type is hard to use. Use `Record<string, unknown>` instead.","fixWith":"Record<string, unknown>"},"Buffer":{"message":"Use Uint8Array instead.","fixWith":"Uint8Array"}}}]
 accessor-pairs [{"enforceForTSTypes":false,"enforceForClassMembers":true,"getWithoutSet":false,"setWithoutGet":true}]
 array-callback-return [{"allowImplicit":true,"checkForEach":false,"allowVoid":false}]
 arrow-body-style ["as-needed"]
