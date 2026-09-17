@@ -1,5 +1,43 @@
 # @cloudfour/eslint-plugin
 
+## 28.0.0 - 2026-09-17
+
+### Major Changes
+
+- **`@typescript-eslint/no-floating-promises` and
+  `@typescript-eslint/restrict-template-expressions` are now on.** Both had been
+  off since 2020, when our TypeScript rules were first added. `eslint-config-xo`
+  enables both, so this change deletes our two overrides rather than configuring
+  anything: the rules arrive with xo's options, not the plugin defaults.
+
+  Measured across 296 TypeScript files in three consumers — `c4-sw-ac-patterns`
+  (221), `linkedin-talent-connect` (66) and `lighthouse-parade` (9) — this is
+  **nine `no-floating-promises` reports and two
+  `restrict-template-expressions`**. Neither rule is auto-fixable, though
+  `no-floating-promises` offers editor suggestions, so anything either one
+  catches has to be edited by hand. That is what makes this a major release.
+
+  `no-floating-promises` reports a promise that is started and then abandoned —
+  no `await`, no `.catch()`, no `void`. It runs with xo's `ignoreVoid`, so
+  `void doThing()` marks one as deliberately unawaited, and xo relaxes `no-void`
+  to permit that form. The old reasoning for turning it off — that humans should
+  decide when to handle a rejection — is what `void` expresses; the difference is
+  that the decision is now visible at the call site instead of indistinguishable
+  from an oversight. Six of the nine reports in the sample were un-awaited
+  `waitFor()` calls in test files, where the assertion inside could not fail the
+  test.
+
+  `restrict-template-expressions` runs with xo's `allowNumber: true` and leaves
+  `allowAny` at its default, so interpolating an `any` into a template literal is
+  still allowed — the specific allowance our override was written for survives
+  the rule being on. What it reports is values with no useful string form. Both
+  reports in the sample were `never`, from setters whose type guard narrows the
+  guard's own failure branch.
+
+  The `@typescript-eslint/no-unsafe-*` family stays off, and so does
+  `no-unsafe-type-assertion`, which is a much larger migration (377 reports in
+  the same sample) and a separate question.
+
 ## 27.1.0 - 2026-09-16
 
 ### Minor Changes

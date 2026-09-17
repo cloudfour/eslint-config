@@ -23,9 +23,13 @@ describe('TypeScript config', () => {
 		assert.deepEqual(rulesFired(messages), [
 			'@typescript-eslint/array-type',
 			'@typescript-eslint/consistent-type-imports',
+			// Both of these come from xo. We used to turn them off and no longer do,
+			// so they are asserted here to keep that deliberate — see #718.
+			'@typescript-eslint/no-floating-promises',
 			'@typescript-eslint/no-non-null-assertion',
 			'@typescript-eslint/no-unnecessary-condition',
 			'@typescript-eslint/prefer-optional-chain',
+			'@typescript-eslint/restrict-template-expressions',
 			'import-x/no-duplicates',
 			// Replaces `@typescript-eslint/no-unnecessary-boolean-literal-compare`,
 			// which we turn off in favour of this one

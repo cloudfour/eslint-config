@@ -715,7 +715,7 @@ valid-typeof [{"requireStringLiterals":false}]
 xo/import-specifier-newline
 yoda ["never",{"exceptRange":false,"onlyEquality":false}]
 
-# probe.ts — 764 rules
+# probe.ts — 766 rules
 @eslint-community/eslint-comments/disable-enable-pair [{"allowWholeFile":true}]
 @eslint-community/eslint-comments/no-aggregating-enable
 @eslint-community/eslint-comments/no-duplicate-disable
@@ -750,6 +750,7 @@ yoda ["never",{"exceptRange":false,"onlyEquality":false}]
 @typescript-eslint/no-empty-object-type
 @typescript-eslint/no-extra-non-null-assertion
 @typescript-eslint/no-extraneous-class [{"allowConstructorOnly":false,"allowEmpty":false,"allowStaticOnly":false,"allowWithDecorator":true}]
+@typescript-eslint/no-floating-promises [{"checkThenables":true,"ignoreVoid":true,"ignoreIIFE":true}]
 @typescript-eslint/no-for-in-array
 @typescript-eslint/no-import-type-side-effects
 @typescript-eslint/no-inferrable-types
@@ -805,6 +806,7 @@ yoda ["never",{"exceptRange":false,"onlyEquality":false}]
 @typescript-eslint/related-getter-setter-pairs
 @typescript-eslint/require-array-sort-compare [{"ignoreStringArrays":true}]
 @typescript-eslint/restrict-plus-operands [{"allowAny":false}]
+@typescript-eslint/restrict-template-expressions [{"allowNumber":true}]
 @typescript-eslint/return-await
 @typescript-eslint/strict-boolean-expressions [{"allowNullableBoolean":true,"allowNullableObject":true,"allowNumber":false,"allowString":false}]
 @typescript-eslint/strict-void-return
