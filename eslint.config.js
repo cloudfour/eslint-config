@@ -77,8 +77,13 @@ const config = [
 				},
 			},
 		},
-		// Override rules from recommended configs
+		// Our deviations from xo. Each entry should say what it is relative to xo
+		// — overriding a rule xo enables, retuning its options, or adding a rule xo
+		// does not have — and why. See #720.
 		rules: {
+			// Same as xo except that xo also sets `enforceForJSX: true`, which this
+			// re-specification drops. That looks accidental rather than chosen; see
+			// #723 before assuming it is deliberate.
 			'no-unused-expressions': [
 				'error',
 				{
@@ -87,14 +92,23 @@ const config = [
 					allowTaggedTemplates: false,
 				},
 			],
-			'no-return-assign': ['error'],
+			// Xo: error with `never`, which bans naming a function expression. Off
+			// here since the original 2018 config, with no reason recorded anywhere.
+			// Left alone rather than quietly adopted; see #723.
 			'func-names': 'off',
-			'no-var': 'error',
-			'object-shorthand': 'error',
+			// Xo enforces object destructuring for plain declarations only. This also
+			// enforces it for assignments to an existing variable, and exempts arrays
+			// in both. From Cloud Four's JavaScript guide, via c344235 (2018).
 			'prefer-destructuring': ['error', { array: false }],
-			'prefer-template': 'error',
+			'prefer-template': 'error', // Not in xo. Added in 90cb908 (2018); no reason recorded
 			'no-param-reassign': 'off', // We don't use `arguments`, and assigning to parameters can be useful
 			'no-promise-executor-return': 'off', // Allow implicit return in promise executor
+			// Xo sets this too; we replace its `ignorePattern` with our own. The
+			// pattern exists so autofix does not capitalise commented-out code, which
+			// then has to be un-capitalised when you uncomment it (#285). xo's pattern
+			// has the same purpose and covers cases ours misses (`if (`, `for (`,
+			// `class `), while ours covers `return`, `await` and `console` that xo's
+			// does not — so neither is a superset. See #723.
 			'capitalized-comments': [
 				'error',
 				'always',

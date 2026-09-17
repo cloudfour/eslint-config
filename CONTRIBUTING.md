@@ -129,6 +129,75 @@ accepts, is a minor. Record the reasoning in `CHANGELOG.md`, including the
 measured effect on a real project — "roughly 250 new reports across 64
 TypeScript files" tells a reader far more than the number of rules involved.
 
+## Writing a rule entry
+
+Almost everything we publish is xo's. `eslint.config.js` is a list of deviations
+from it, which makes the reason for each deviation the most valuable thing in the
+file — and the easiest to lose. Reconstructing why two rules were turned off in
+2020 (#718) took four commits, a closed issue whose body was a bare URL, and a
+review thread where nobody felt able to evaluate the rules.
+
+An entry should answer three things.
+
+**What is it, relative to xo?** Overriding a rule xo enables, retuning xo's
+options, adding a rule xo does not have, or restating a value xo already sets.
+This is the one that is never recorded and matters most, because it is what tells
+a reviewer whether they are looking at a decision or a leftover.
+
+**Why?** Not what the rule does — its own docs cover that. Why _we_ disagree with
+the upstream default. Where the decision was measured, cite the number and the
+project, the way changelog entries are already expected to.
+
+**What would change our mind?** Where a decision rests on something that can
+shift — a rule being buggy, a Prettier conflict, a pattern in our code — say so,
+so a later reader knows to re-test it rather than treating it as permanent.
+
+```js
+// xo: error with `never`, which bans naming a function expression. Off here
+// since the original 2018 config, with no reason recorded anywhere.
+'func-names': 'off',
+
+// Not in xo. Added in 90cb908 (2018); no reason recorded
+'prefer-template': 'error',
+```
+
+"No reason recorded" is a useful comment. It tells the next reader not to assume
+there is hidden wisdom behind the line.
+
+Cite issues and commits rather than people. The number stays accurate and keeps
+pointing at the reasoning; a name rots faster and reads as blame.
+
+### Checking whether an entry still does anything
+
+An entry that resolves to exactly xo's value changes nothing about what we
+publish. To find those, diff the resolved config against xo's:
+
+```sh
+# ours
+npx eslint --print-config probe.ts > ours.json
+
+# xo's, from a temporary config file in the repo root containing:
+#   import configXO from 'eslint-config-xo';
+#   export default configXO({ prettier: 'compat' });
+npx eslint --no-config-lookup -c xo-only.config.js --print-config probe.ts > xo.json
+```
+
+Compare per rule, and do it for a `.js`, `.ts`, `.html`, `package.json` and
+`package-lock.json` path separately — a rule set in one layer and re-set in a
+narrower one is misattributed otherwise.
+
+Do this rather than writing "same as xo" in a comment. Such a marker is a claim
+about a moving target: the moment xo changes, it is wrong and nothing checks it.
+The diff above stays correct as both sides move, and the rule inventory already
+does the pinning job for every rule rather than only the ones someone thought to
+restate.
+
+Deleting an entry proven inert is safe by definition, and the inventory snapshot
+is the proof — it must come back unchanged. What it does change is the future: a
+rule we no longer name is one we would inherit if xo's position on it moved. Keep
+the entry when the comment records a position we would re-assert in that case,
+and drop it when we are only agreeing with xo out loud.
+
 ## Release Process
 
 [How to publish an updated version](https://cloudfour.com/thinks/how-to-publish-an-updated-version-of-an-npm-package/)
