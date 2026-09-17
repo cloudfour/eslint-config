@@ -43,7 +43,7 @@ ava/use-test
 ava/use-true-false
 block-scoped-var
 camelcase [{"allow":[],"ignoreDestructuring":false,"ignoreGlobals":false,"ignoreImports":false,"properties":"always"}]
-capitalized-comments ["always",{"ignorePattern":"pragma|ignore|prettier-ignore|webpack\\w+:|c8|return|const|let|var|await|function|console","ignoreInlineComments":true,"ignoreConsecutiveComments":true}]
+capitalized-comments ["always",{"ignorePattern":"pragma|\\w{1,40}[\\-:]ignore|ignore|webpack\\w+:|c8|v8|type-coverage:|const |let |var |import |export |function |class |if \\(|for \\(|while \\(|switch \\(|return|await|console","ignoreInlineComments":true,"ignoreConsecutiveComments":true}]
 complexity [20]
 constructor-super
 curly ["all"]
@@ -848,7 +848,7 @@ ava/use-t-well
 ava/use-test
 ava/use-true-false
 block-scoped-var
-capitalized-comments ["always",{"ignorePattern":"pragma|ignore|prettier-ignore|webpack\\w+:|c8|return|const|let|var|await|function|console","ignoreInlineComments":true,"ignoreConsecutiveComments":true}]
+capitalized-comments ["always",{"ignorePattern":"pragma|\\w{1,40}[\\-:]ignore|ignore|webpack\\w+:|c8|v8|type-coverage:|const |let |var |import |export |function |class |if \\(|for \\(|while \\(|switch \\(|return|await|console","ignoreInlineComments":true,"ignoreConsecutiveComments":true}]
 complexity [20]
 curly ["all"]
 default-case-last
