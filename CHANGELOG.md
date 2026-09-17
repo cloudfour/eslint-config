@@ -38,6 +38,33 @@
   `no-unsafe-type-assertion`, which is a much larger migration (377 reports in
   the same sample) and a separate question.
 
+### Minor Changes
+
+- **`@typescript-eslint/strict-boolean-expressions` is now off.** It arrived in
+  v26.0.0 with the move to `eslint-config-xo`, which enables it with
+  `allowString` and `allowNumber` tightened to `false`. It was the single largest
+  source of TypeScript-only reports in the config, and measurement did not
+  justify the cost: **165 reports across 294 TypeScript files** in three
+  consumers, with no genuine defect in a 34-report sample spanning every
+  category the rule distinguishes. What it flagged was optional string
+  attributes, `|| ''` defaults and guard clauses — cases where `''`, `0` and
+  absent legitimately mean the same thing.
+
+  Loosening it rather than removing it does not work, which is worth recording
+  because it is the obvious first idea. Setting `allowString`/`allowNumber` back
+  to the plugin defaults clears only 21% of the reports, because three quarters
+  of the remainder is `string | undefined` in a condition — rejected by xo and by
+  the rule's own defaults alike. Allowing enough to clear that leaves eight
+  reports, and none of those is a defect either.
+
+  Upstream has declined to loosen the rule
+  ([xojs/eslint-config-xo#108](https://github.com/xojs/eslint-config-xo/issues/108)),
+  so this is ours to set rather than something to wait on. Projects that want it
+  can turn it back on in their own config.
+
+  No project gains a report. Anyone who has already rewritten conditions to
+  satisfy it keeps working code; the rule simply stops asking.
+
 ## 27.1.0 - 2026-09-16
 
 ### Minor Changes

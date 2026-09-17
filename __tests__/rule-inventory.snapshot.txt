@@ -715,7 +715,7 @@ valid-typeof [{"requireStringLiterals":false}]
 xo/import-specifier-newline
 yoda ["never",{"exceptRange":false,"onlyEquality":false}]
 
-# probe.ts — 766 rules
+# probe.ts — 765 rules
 @eslint-community/eslint-comments/disable-enable-pair [{"allowWholeFile":true}]
 @eslint-community/eslint-comments/no-aggregating-enable
 @eslint-community/eslint-comments/no-duplicate-disable
@@ -808,7 +808,6 @@ yoda ["never",{"exceptRange":false,"onlyEquality":false}]
 @typescript-eslint/restrict-plus-operands [{"allowAny":false}]
 @typescript-eslint/restrict-template-expressions [{"allowNumber":true}]
 @typescript-eslint/return-await
-@typescript-eslint/strict-boolean-expressions [{"allowNullableBoolean":true,"allowNullableObject":true,"allowNumber":false,"allowString":false}]
 @typescript-eslint/strict-void-return
 @typescript-eslint/switch-exhaustiveness-check [{"allowDefaultCaseForExhaustiveSwitch":false,"requireDefaultForNonUnion":true}]
 @typescript-eslint/triple-slash-reference [{"path":"never","types":"never","lib":"never"}]
