@@ -24,3 +24,16 @@ export const nameOf = (config: Config | undefined) => config && config.name;
 
 // `@typescript-eslint/no-unnecessary-condition` — VERSION is never undefined.
 export const hasVersion = VERSION !== undefined;
+
+// `@typescript-eslint/no-floating-promises` — started and abandoned, with no
+// `await`, `.catch()` or `void`. valid.ts has the `void` form that passes.
+export const fireAndForget = (run: () => Promise<void>) => {
+	run();
+};
+
+// `@typescript-eslint/restrict-template-expressions` — a `never` cannot be
+// stringified, which is what this reports on real code: a type guard narrows
+// its own failure branch to `never`, so the error message built from it is
+// unreachable per the types. `any`, numbers and nullish stay allowed under xo's
+// options; valid.ts covers that.
+export const describeImpossible = (value: never) => `value: ${value}`;

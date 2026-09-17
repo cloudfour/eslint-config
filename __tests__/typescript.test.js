@@ -20,12 +20,21 @@ describe('TypeScript config', () => {
 	it('flags exactly the rules we turn on or reconfigure', async () => {
 		const messages = await lintFixture('__tests__/fixtures/invalid.ts');
 
+		// `@typescript-eslint/no-floating-promises` and
+		// `@typescript-eslint/restrict-template-expressions` arrive from xo
+		// untouched, which normally means the inventory snapshot covers them and
+		// they do not belong here. They are the exception because valid.ts asserts
+		// that `void run()` and an `any` interpolation report nothing — and both
+		// would pass just as happily if the rules were off. These two entries are
+		// what makes those cases mean something. See #718.
 		assert.deepEqual(rulesFired(messages), [
 			'@typescript-eslint/array-type',
 			'@typescript-eslint/consistent-type-imports',
+			'@typescript-eslint/no-floating-promises',
 			'@typescript-eslint/no-non-null-assertion',
 			'@typescript-eslint/no-unnecessary-condition',
 			'@typescript-eslint/prefer-optional-chain',
+			'@typescript-eslint/restrict-template-expressions',
 			'import-x/no-duplicates',
 			// Replaces `@typescript-eslint/no-unnecessary-boolean-literal-compare`,
 			// which we turn off in favour of this one

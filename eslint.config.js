@@ -314,14 +314,12 @@ const config = [
 			'@typescript-eslint/ban-ts-comment': 'error',
 			'@typescript-eslint/explicit-module-boundary-types': 'off', // Type inference is useful even for public functions
 			'@typescript-eslint/no-explicit-any': 'off', // Any is an escape hatch, it should be allowed
-			'@typescript-eslint/no-floating-promises': 'off', // Don't force every promise rejection to be caught. Humans can decide when it makes sense to handle errors and when it doesn't
 			'@typescript-eslint/no-non-null-assertion': 'error', // Default is warn
 			'@typescript-eslint/no-unsafe-assignment': 'off', // Any is an escape hatch, let it be an escape hatch
 			'@typescript-eslint/no-unsafe-call': 'off', // Any is an escape hatch, let it be an escape hatch
 			'@typescript-eslint/no-unsafe-member-access': 'off', // Any is an escape hatch, let it be an escape hatch
 			'@typescript-eslint/no-unsafe-return': 'off', // Any is an escape hatch, let it be an escape hatch
 			'@typescript-eslint/no-unsafe-argument': 'off', // Any is an escape hatch, let it be an escape hatch
-			'@typescript-eslint/restrict-template-expressions': 'off', // Allow using any-typed-values in template expressions
 			'@typescript-eslint/no-unnecessary-condition': 'error', // This catches a lot of dead code that TS itself doesn't flag
 			// Superseded by `unicorn/no-unnecessary-boolean-comparison`, which catches
 			// the same cases without needing `strictNullChecks` and also covers JS.

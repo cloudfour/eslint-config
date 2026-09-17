@@ -11,12 +11,17 @@ export const parse = (input: any): any => input;
 // The `@typescript-eslint/no-unsafe-*` family is off, so `any` stays usable.
 export const callAnything = (value: any) => value.whatever();
 
-// `@typescript-eslint/restrict-template-expressions` is off.
+// `@typescript-eslint/restrict-template-expressions` runs with xo's options,
+// which leave `allowAny` at its default. Interpolating an `any` stays allowed,
+// so the escape hatch survives the rule being on. See invalid.ts for what it
+// does report.
 export const label = (value: any) => `value: ${value}`;
 
-// `@typescript-eslint/no-floating-promises` is off — humans decide when to catch.
-export const fireAndForget = (run: () => Promise<void>) => {
-	run();
+// `@typescript-eslint/no-floating-promises` runs with xo's `ignoreVoid`, so
+// `void` marks a promise as deliberately unawaited. Without it this reports;
+// see invalid.ts.
+export const deliberatelyUnawaited = (run: () => Promise<void>) => {
+	void run();
 };
 
 // `no-unused-vars` and `@typescript-eslint/no-unused-vars` are both off,
