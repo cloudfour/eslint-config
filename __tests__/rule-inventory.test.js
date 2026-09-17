@@ -24,7 +24,17 @@ const PINNED_ESLINT = ESLint.version === pkg.devDependencies.eslint;
 // One probe per layer of the config that has its own `files` pattern, so the
 // inventory covers everything a consumer can be linting. These paths are never
 // read from disk — `calculateConfigForFile` only matches them against globs.
-const PROBES = ['probe.js', 'probe.ts', 'probe.html', 'package.json'];
+//
+// `package-lock.json` has to be listed separately from `package.json`: the
+// lockfile layer is the narrower match, so a rule we change only there is
+// invisible on every other probe. It was, until #720.
+const PROBES = [
+	'probe.js',
+	'probe.ts',
+	'probe.html',
+	'package.json',
+	'package-lock.json',
+];
 
 const SNAPSHOT = new URL('rule-inventory.snapshot.txt', import.meta.url);
 

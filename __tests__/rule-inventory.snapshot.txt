@@ -1,4 +1,4 @@
-# probe.js — 715 rules
+# probe.js — 716 rules
 @eslint-community/eslint-comments/disable-enable-pair [{"allowWholeFile":true}]
 @eslint-community/eslint-comments/no-aggregating-enable
 @eslint-community/eslint-comments/no-duplicate-disable
@@ -43,7 +43,7 @@ ava/use-test
 ava/use-true-false
 block-scoped-var
 camelcase [{"allow":[],"ignoreDestructuring":false,"ignoreGlobals":false,"ignoreImports":false,"properties":"always"}]
-capitalized-comments ["always",{"ignorePattern":"pragma|ignore|prettier-ignore|webpack\\w+:|c8|return|const|let|var|await|function|console","ignoreInlineComments":true,"ignoreConsecutiveComments":true}]
+capitalized-comments ["always",{"ignorePattern":"pragma|\\w{1,40}[\\-:]ignore|ignore|webpack\\w+:|c8|v8|type-coverage:|const |let |var |import |export |function |class |if \\(|for \\(|while \\(|switch \\(|return|await|console","ignoreInlineComments":true,"ignoreConsecutiveComments":true}]
 complexity [20]
 constructor-super
 curly ["all"]
@@ -53,6 +53,7 @@ dot-notation [{"allowKeywords":true,"allowPattern":""}]
 eqeqeq ["always"]
 for-direction
 func-name-matching [{"considerPropertyDescriptor":true}]
+func-names ["never",{}]
 getter-return [{"allowImplicit":false}]
 grouped-accessor-pairs ["getBeforeSet",{"enforceForTSTypes":false}]
 guard-for-in
@@ -715,7 +716,7 @@ valid-typeof [{"requireStringLiterals":false}]
 xo/import-specifier-newline
 yoda ["never",{"exceptRange":false,"onlyEquality":false}]
 
-# probe.ts — 765 rules
+# probe.ts — 766 rules
 @eslint-community/eslint-comments/disable-enable-pair [{"allowWholeFile":true}]
 @eslint-community/eslint-comments/no-aggregating-enable
 @eslint-community/eslint-comments/no-duplicate-disable
@@ -848,13 +849,14 @@ ava/use-t-well
 ava/use-test
 ava/use-true-false
 block-scoped-var
-capitalized-comments ["always",{"ignorePattern":"pragma|ignore|prettier-ignore|webpack\\w+:|c8|return|const|let|var|await|function|console","ignoreInlineComments":true,"ignoreConsecutiveComments":true}]
+capitalized-comments ["always",{"ignorePattern":"pragma|\\w{1,40}[\\-:]ignore|ignore|webpack\\w+:|c8|v8|type-coverage:|const |let |var |import |export |function |class |if \\(|for \\(|while \\(|switch \\(|return|await|console","ignoreInlineComments":true,"ignoreConsecutiveComments":true}]
 complexity [20]
 curly ["all"]
 default-case-last
 eqeqeq ["always"]
 for-direction
 func-name-matching [{"considerPropertyDescriptor":true}]
+func-names ["never",{}]
 grouped-accessor-pairs ["getBeforeSet",{"enforceForTSTypes":false}]
 guard-for-in
 import-x/first
@@ -1638,3 +1640,39 @@ package-json/sort-dependencies
 package-json/sort-files
 package-json/sort-properties
 package-json/valid-fields
+
+# package-lock.json — 34 rules
+ava/assertion-arguments [{}]
+ava/hooks-order
+ava/no-async-fn-without-await
+ava/no-commented-tests
+ava/no-conditional-assertion
+ava/no-duplicate-hooks
+ava/no-identical-title
+ava/no-ignored-test-files [{}]
+ava/no-import-test-files [{}]
+ava/no-incorrect-deep-equal
+ava/no-inline-assertions
+ava/no-invalid-modifier-chain
+ava/no-negated-assertion
+ava/no-nested-assertions
+ava/no-nested-tests
+ava/no-only-test
+ava/no-skip-assert
+ava/no-skip-test
+ava/no-todo-implementation
+ava/no-todo-test
+ava/no-useless-t-pass
+ava/prefer-async-await
+ava/prefer-t-regex
+ava/prefer-t-throws
+ava/require-assertion
+ava/test-title
+ava/use-t
+ava/use-t-throws-async-well
+ava/use-t-well
+ava/use-test
+ava/use-true-false
+json/no-duplicate-keys
+json/no-unnormalized-keys [{"form":"NFC"}]
+json/no-unsafe-values

@@ -38,6 +38,35 @@
   `no-unsafe-type-assertion`, which is a much larger migration (377 reports in
   the same sample) and a separate question.
 
+- **`func-names` is now on**, at xo's setting of `never`. It reports a named
+  function _expression_ — `const handler = function onClick() {}` — and wants
+  the name dropped, because since ES6 the variable name is inferred anyway. It
+  has nothing to say about function declarations.
+
+  We had turned it off in the original 2018 config with no reason recorded
+  anywhere, so this adopts xo's position rather than reversing a decision of
+  ours. Zero reports across 434 files in three consumers — modern code reaches
+  for arrow functions, which the rule does not touch.
+
+  The case it does cost you is naming a callback purely for debugging, such as
+  `setTimeout(function tick() {}, 100)`. Inference does not apply to a function
+  passed straight as an argument, so that name is the only thing that shows up
+  in a stack trace or profiler. If you want it, `// eslint-disable-next-line
+func-names` on that call is the escape hatch.
+
+- **`capitalized-comments` now extends xo's ignore pattern instead of replacing
+  it.** The pattern exists so autofix does not capitalise commented-out code,
+  which then has to be un-capitalised when you uncomment it. Ours was forked
+  from xo's years ago and had drifted: we were missing the starts xo added since
+  (`if (`, `for (`, `while (`, `switch (`, `class `, `import `, `export `,
+  `type-coverage:`), and xo was missing three of ours (`return`, `await`,
+  `console`). Both sets now apply, and anything xo adds later arrives on its own.
+
+  Almost entirely a widening, but not purely: xo matches `const ` with a
+  trailing space where our old pattern matched a bare `const`, so a prose comment
+  that merely starts with those letters — `// constant` — is now reported where
+  it was not. One such report across 434 files.
+
 ### Minor Changes
 
 - **`@typescript-eslint/strict-boolean-expressions` is now off.** It arrived in
@@ -64,6 +93,17 @@
 
   No project gains a report. Anyone who has already rewritten conditions to
   satisfy it keeps working code; the rule simply stops asking.
+
+- **Twenty entries that restated a value `eslint-config-xo` already sets have
+  been removed.** No rule changes severity or options as a result — every one was
+  verified to resolve identically with and without our line, and the rule
+  inventory is unchanged across the removal.
+
+  What it changes is the future. A rule we no longer name is one we would follow
+  xo on if it changed its position, rather than silently pinning the old value.
+  That is deliberate: restating a value is a standing commitment to track every
+  option that rule later grows, and two of our entries had already drifted out of
+  step that way without anyone noticing.
 
 ## 27.1.0 - 2026-09-16
 

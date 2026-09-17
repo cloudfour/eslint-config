@@ -33,6 +33,34 @@ const xoLayers = configXO({ prettier: 'compat' }).map((layer) =>
 		: layer,
 );
 
+/**
+ * Reads a rule's options out of xo so we can extend them instead of replacing
+ * them.
+ *
+ * Restating a rule's options freezes a snapshot of them: we keep the values xo
+ * had on the day it was written and silently miss anything added upstream
+ * afterwards. Deriving them means an option xo adds later arrives on its own.
+ *
+ * Throws rather than falling back, because a silent fallback would quietly drop
+ * whatever we were extending. CI runs on every dependency bump, so a change in
+ * xo's shape surfaces there rather than at a consumer.
+ *
+ * @param {string} name Rule name, as xo writes it.
+ * @returns {Record<string, unknown>} The rule's options object.
+ */
+const xoRuleOptions = (name) => {
+	const entry = xoLayers.find((layer) => layer.rules?.[name])?.rules[name];
+	const options = Array.isArray(entry) ? entry.at(-1) : undefined;
+
+	if (typeof options !== 'object') {
+		throw new TypeError(
+			`@cloudfour/eslint-config expected to read options for \`${name}\` from eslint-config-xo, but its shape has changed. Update the override that extends it.`,
+		);
+	}
+
+	return options;
+};
+
 const config = [
 	// eslint-config-xo bundles and configures eslint-plugin-unicorn,
 	// eslint-plugin-jsdoc, eslint-plugin-n, typescript-eslint, eslint-plugin-regexp
@@ -77,37 +105,43 @@ const config = [
 				},
 			},
 		},
-		// Override rules from recommended configs
+		// Our deviations from xo. Each entry should say what it is relative to xo
+		// — overriding a rule xo enables, retuning its options, or adding a rule xo
+		// does not have — and why. See #720.
 		rules: {
+			// Xo's options, with JSX enforcement turned back off. `enforceForJSX`
+			// treats the `<template>` block of a Vue single-file component as an
+			// unused expression and reports every one of them — 120 files in one
+			// consumer. Everything else is inherited, so options xo adds later arrive
+			// on their own. Turned off again in the TypeScript layer below, matching
+			// xo, which defers to `@typescript-eslint/no-unused-expressions` there.
 			'no-unused-expressions': [
 				'error',
-				{
-					allowShortCircuit: false,
-					allowTernary: false,
-					allowTaggedTemplates: false,
-				},
+				{ ...xoRuleOptions('no-unused-expressions'), enforceForJSX: false },
 			],
-			'no-return-assign': ['error'],
-			'func-names': 'off',
-			'no-var': 'error',
-			'object-shorthand': 'error',
+			// Xo enforces object destructuring for plain declarations only. This also
+			// enforces it for assignments to an existing variable, and exempts arrays
+			// in both. From Cloud Four's JavaScript guide, via c344235 (2018).
 			'prefer-destructuring': ['error', { array: false }],
-			'prefer-template': 'error',
+			'prefer-template': 'error', // Not in xo. Added in 90cb908 (2018); no reason recorded
 			'no-param-reassign': 'off', // We don't use `arguments`, and assigning to parameters can be useful
 			'no-promise-executor-return': 'off', // Allow implicit return in promise executor
+			// Xo sets this, for the same reason we do: the ignore pattern stops
+			// autofix capitalising commented-out code, which then has to be
+			// un-capitalised when you uncomment it (#285). We extend xo's pattern
+			// rather than replacing it, so keywords it adds later arrive on their
+			// own. Ours adds three starts that xo's list does not cover.
 			'capitalized-comments': [
 				'error',
 				'always',
 				{
-					ignorePattern: String.raw`pragma|ignore|prettier-ignore|webpack\w+:|c8|return|const|let|var|await|function|console`,
-					ignoreInlineComments: true,
-					ignoreConsecutiveComments: true,
+					...xoRuleOptions('capitalized-comments'),
+					ignorePattern: `${xoRuleOptions('capitalized-comments').ignorePattern}|return|await|console`,
 				},
 			],
 
 			'n/no-unsupported-features/es-syntax': 'off', // Does not account for transpilation
 			'n/no-unpublished-require': 'off', // Does not account for "build" scripts
-			'n/file-extension-in-import': ['error', 'always'], // Don't allow extension-less relative imports (e.g. use ./foo.js instead of ./foo)
 
 			// Used for sorting/grouping import statements
 			'import-x/order': [
@@ -125,22 +159,11 @@ const config = [
 					alphabetize: { order: 'asc', caseInsensitive: true },
 				},
 			],
-			// Avoid multiple import statements in the same file for the same module
-			// prefer-inline means it is preferred to use inline `type` imports combined with non-types
-			// instead of separate imports for types and non-types
-			// e.g. import { Foo, type Bar } from 'something' is preferred over having separate import statements
-			'import-x/no-duplicates': ['error', { 'prefer-inline': true }],
 			// Used for sorting members within an import statement alphabetically
 			'sort-imports': ['error', { ignoreDeclarationSort: true }],
 
 			'unicorn/import-style': 'off', // It doesn't seem useful to force people to use named, default, or namespace imports
 			'unicorn/name-replacements': 'off', // Causes more issues than it's worth
-			// Null is ok, even though some style guides disallow it
-			// It is ok to avoid using null and use undefined instead
-			// but enforcing it in all code via a lint rule is too annoying
-			// Xo bans `null` in type positions too; that is handled alongside the
-			// other TypeScript rules below.
-			'unicorn/no-null': 'off',
 			// Enforces naming styles on types, properties and variables. It has no
 			// way to know which names are ours and which come from someone else's
 			// contract, so it flags things like `Authorization` headers, `utm_source`
@@ -160,11 +183,6 @@ const config = [
 			'unicorn/no-array-reduce': 'off',
 			'unicorn/prefer-module': 'off', // A lot of projects still use commonjs by default for non-browser code. We can revisit this rule once commonjs is basically never used.
 			'unicorn/prefer-switch': 'off', // Switch statements are often longer than if/else chains, and they are still read aloud as "if ... is ... then"
-			'unicorn/prefer-number-properties': [
-				'error',
-				// There isn't a good reason to force use of Number.POSITIVE_INFINITY instead of Infinity
-				{ checkInfinity: false },
-			],
 			// As of v73 this rule checks directory names too, and `__tests__`,
 			// `__mocks__` and `__snapshots__` are established conventions that
 			// aren't going to be renamed to satisfy a case rule
@@ -229,13 +247,11 @@ const config = [
 
 			// Disabling jsdoc rules that check the types themselves
 			// If you want to have type checking on a project, use typescript instead
-			'jsdoc/no-undefined-types': 'off',
 			'jsdoc/valid-types': 'off',
 			'jsdoc/require-returns': 'off',
 			'jsdoc/require-param-description': 'off',
 			'jsdoc/require-property-description': 'off',
 			'jsdoc/require-returns-description': 'off',
-			'jsdoc/require-jsdoc': 'off',
 			'jsdoc/require-returns-check': 'off', // Does not handle @returns with void or undefined
 			'jsdoc/tag-lines': ['error', 'any', { startLines: 1 }],
 
@@ -254,10 +270,12 @@ const config = [
 	{
 		files: [tsFilesGlob],
 		rules: {
-			// Xo bans `null` as a *type* as well as a value. The value ban is
-			// `unicorn/no-null`, which we turn off above; this is the same opinion
-			// applied to type positions, so it gets the same answer — we keep xo's
-			// other restrictions and drop the one on null.
+			// Xo bans `null` as a *type*, through this rule. It does not ban it as a
+			// value — `unicorn/no-null` is already off in xo, so there is nothing to
+			// override there. Null is fine: avoiding it in favour of `undefined` is a
+			// reasonable habit, but not one worth a lint rule, and the same answer
+			// applies in type positions. We keep xo's other restrictions here and
+			// drop only the one on null.
 			//
 			// This has to stay scoped to TypeScript. The rule only ever matches type
 			// annotations, so on JavaScript it cannot fire — but naming it in a layer
@@ -284,15 +302,11 @@ const config = [
 			'n/no-missing-import': 'off',
 			'n/no-missing-require': 'off',
 
-			'no-import-assign': 'off', // TS handles this
-
 			// With TS, the only reason to have a @param tag
 			// is if a particular parameter needs a description,
 			// which is not true for all parameters
 			'jsdoc/require-param': 'off',
-			'jsdoc/require-param-type': 'off', // Types should be in type annotations instead
 			'jsdoc/require-param-description': 'error', // The only reason to have an @param in TS is to add a description
-			'jsdoc/require-returns-type': 'off', // Return types should be in type annotations instead
 			'jsdoc/require-returns-description': 'error', // The only reason to have an @returns in TS is to add a description
 			// Auto-fixes type imports to use the `import type` syntax
 			// This syntax is preferred because it makes the TS -> JS transformation easier
@@ -308,10 +322,7 @@ const config = [
 				{ ignoreArrowShorthand: true },
 			],
 			// Don't use the void operator an an expression whose type is already `void`
-			'@typescript-eslint/no-meaningless-void-operator': 'error',
-			'@typescript-eslint/no-unnecessary-type-constraint': 'error',
 			'@typescript-eslint/array-type': ['error', { default: 'array' }], // Require consistency: Use foo[] instead of Array<foo>
-			'@typescript-eslint/ban-ts-comment': 'error',
 			'@typescript-eslint/explicit-module-boundary-types': 'off', // Type inference is useful even for public functions
 			'@typescript-eslint/no-explicit-any': 'off', // Any is an escape hatch, it should be allowed
 			'@typescript-eslint/no-non-null-assertion': 'error', // Default is warn
@@ -345,15 +356,14 @@ const config = [
 			'@typescript-eslint/no-unnecessary-boolean-literal-compare': 'off',
 			// The unicorn version is disabled above because it can't see types. This
 			// one can, so it only reports arrays where the default sort is actually wrong.
-			'@typescript-eslint/require-array-sort-compare': 'error',
-			'@typescript-eslint/prefer-optional-chain': 'error', // More readable syntax
-			'no-unused-vars': 'off', // TS checks this via noUnusedLocals / noUnusedParameters
 			'@typescript-eslint/no-unused-vars': 'off', // TS checks this via noUnusedLocals / noUnusedParameters
 			'@typescript-eslint/no-empty-function': 'off', // Non-TS version of rule is not used either
 			'@typescript-eslint/unbound-method': 'off', // It is pretty common for this already being handled outside of what TS/ESLint can be aware of
 			'@typescript-eslint/no-import-type-side-effects': 'error',
+			// Undoes our own override above, which covers `.ts` as well as `.js`. Xo
+			// turns the base rule off for TypeScript in favour of
+			// `@typescript-eslint/no-unused-expressions`, and we want that too.
 			'no-unused-expressions': 'off',
-			'@typescript-eslint/no-unused-expressions': ['error'], // This rule is like the built in ESLint rule but it supports optional chaining
 			// Replacing the built-in rule with the version that works well with TS
 			'no-use-before-define': 'off',
 			'@typescript-eslint/no-use-before-define': [
