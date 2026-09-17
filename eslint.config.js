@@ -119,10 +119,6 @@ const config = [
 				'error',
 				{ ...xoRuleOptions('no-unused-expressions'), enforceForJSX: false },
 			],
-			// Xo: error with `never`, which bans naming a function expression. Off
-			// here since the original 2018 config, with no reason recorded anywhere.
-			// Left alone rather than quietly adopted; see #723.
-			'func-names': 'off',
 			// Xo enforces object destructuring for plain declarations only. This also
 			// enforces it for assignments to an existing variable, and exempts arrays
 			// in both. From Cloud Four's JavaScript guide, via c344235 (2018).

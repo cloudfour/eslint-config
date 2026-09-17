@@ -1,4 +1,4 @@
-# probe.js — 715 rules
+# probe.js — 716 rules
 @eslint-community/eslint-comments/disable-enable-pair [{"allowWholeFile":true}]
 @eslint-community/eslint-comments/no-aggregating-enable
 @eslint-community/eslint-comments/no-duplicate-disable
@@ -53,6 +53,7 @@ dot-notation [{"allowKeywords":true,"allowPattern":""}]
 eqeqeq ["always"]
 for-direction
 func-name-matching [{"considerPropertyDescriptor":true}]
+func-names ["never",{}]
 getter-return [{"allowImplicit":false}]
 grouped-accessor-pairs ["getBeforeSet",{"enforceForTSTypes":false}]
 guard-for-in
@@ -715,7 +716,7 @@ valid-typeof [{"requireStringLiterals":false}]
 xo/import-specifier-newline
 yoda ["never",{"exceptRange":false,"onlyEquality":false}]
 
-# probe.ts — 765 rules
+# probe.ts — 766 rules
 @eslint-community/eslint-comments/disable-enable-pair [{"allowWholeFile":true}]
 @eslint-community/eslint-comments/no-aggregating-enable
 @eslint-community/eslint-comments/no-duplicate-disable
@@ -855,6 +856,7 @@ default-case-last
 eqeqeq ["always"]
 for-direction
 func-name-matching [{"considerPropertyDescriptor":true}]
+func-names ["never",{}]
 grouped-accessor-pairs ["getBeforeSet",{"enforceForTSTypes":false}]
 guard-for-in
 import-x/first
