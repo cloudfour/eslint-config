@@ -24,6 +24,22 @@ export const deliberatelyUnawaited = (run: () => Promise<void>) => {
 	void run();
 };
 
+// `@typescript-eslint/strict-boolean-expressions` is off, so a string, an
+// optional string and a number can all be tested directly. xo enables it; these
+// are the three shapes that made up almost all of its reports on real code, and
+// in each one `''`, `0` and absent legitimately mean the same thing. See #719.
+export const firstNonEmpty = (text: string, fallback?: string, index = 0) => {
+	if (text) {
+		return text;
+	}
+
+	if (fallback) {
+		return fallback;
+	}
+
+	return index % 2 ? 'odd' : 'even';
+};
+
 // `no-unused-vars` and `@typescript-eslint/no-unused-vars` are both off,
 // because TypeScript reports these itself.
 export const withUnused = (used: string) => {

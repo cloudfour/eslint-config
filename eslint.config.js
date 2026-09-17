@@ -321,6 +321,24 @@ const config = [
 			'@typescript-eslint/no-unsafe-return': 'off', // Any is an escape hatch, let it be an escape hatch
 			'@typescript-eslint/no-unsafe-argument': 'off', // Any is an escape hatch, let it be an escape hatch
 			'@typescript-eslint/no-unnecessary-condition': 'error', // This catches a lot of dead code that TS itself doesn't flag
+			// xo enables this with `allowString` and `allowNumber` tightened to
+			// `false`. Off because it did not find anything: 165 reports across 294
+			// TypeScript files in three consumers, and a 34-report sample spanning
+			// every category held no genuine defect. They were optional string
+			// attributes, `|| ''` defaults and guard clauses, where `''` and absent
+			// legitimately mean the same thing.
+			//
+			// Loosening instead of removing does not work. `allowString`/`allowNumber`
+			// clears only 21%, because three quarters of the remainder is
+			// `string | undefined`, which the rule also rejects by default. Allowing
+			// enough to clear that leaves 8 reports, none of them a defect either.
+			//
+			// What it guards against is visible at runtime, so tests and review
+			// already catch it — unlike `no-floating-promises`, which we keep because
+			// its failure mode is a test that passes while asserting nothing.
+			// Upstream declined to loosen it (xojs/eslint-config-xo#108), so this is
+			// ours to set. See #719.
+			'@typescript-eslint/strict-boolean-expressions': 'off',
 			// Superseded by `unicorn/no-unnecessary-boolean-comparison`, which catches
 			// the same cases without needing `strictNullChecks` and also covers JS.
 			// Leaving both on reports the same problem twice.
