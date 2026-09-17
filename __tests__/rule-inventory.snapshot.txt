@@ -1638,3 +1638,39 @@ package-json/sort-dependencies
 package-json/sort-files
 package-json/sort-properties
 package-json/valid-fields
+
+# package-lock.json — 34 rules
+ava/assertion-arguments [{}]
+ava/hooks-order
+ava/no-async-fn-without-await
+ava/no-commented-tests
+ava/no-conditional-assertion
+ava/no-duplicate-hooks
+ava/no-identical-title
+ava/no-ignored-test-files [{}]
+ava/no-import-test-files [{}]
+ava/no-incorrect-deep-equal
+ava/no-inline-assertions
+ava/no-invalid-modifier-chain
+ava/no-negated-assertion
+ava/no-nested-assertions
+ava/no-nested-tests
+ava/no-only-test
+ava/no-skip-assert
+ava/no-skip-test
+ava/no-todo-implementation
+ava/no-todo-test
+ava/no-useless-t-pass
+ava/prefer-async-await
+ava/prefer-t-regex
+ava/prefer-t-throws
+ava/require-assertion
+ava/test-title
+ava/use-t
+ava/use-t-throws-async-well
+ava/use-t-well
+ava/use-test
+ava/use-true-false
+json/no-duplicate-keys
+json/no-unnormalized-keys [{"form":"NFC"}]
+json/no-unsafe-values
