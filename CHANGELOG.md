@@ -35,6 +35,25 @@
   reported anything, apart from one `require-bin-executable` report that came
   only from a `bin` pointing into an unbuilt `dist/`.
 
+- **The supported TypeScript range is now declared: `>=6.0.0 <6.1.0`.** It is an
+  optional peer dependency, so JavaScript-only projects are unaffected. The
+  range was always there, set by what `typescript-eslint` and `eslint-config-xo`
+  support, but nothing said so, and projects on other versions found out the
+  hard way. On TypeScript 5.x, npm quietly installed a second, unused
+  `typescript@7` inside this package. On TypeScript 7, install printed a stream of
+  peer warnings, and linting failed later.
+
+  Now, installing or upgrading this package in a project whose TypeScript is
+  outside the range fails immediately with an `ERESOLVE` error that names
+  `@cloudfour/eslint-config` and the range it accepts. To upgrade, move the
+  project to TypeScript 6.0 first. We will widen the range in the same release
+  that `typescript-eslint` supports a newer TypeScript.
+
+  This does not stop a project already on this version from bumping TypeScript
+  itself. npm treats a change to the project's own `typescript` as deliberate
+  and only warns, so a Renovate PR offering TypeScript 7 still opens and fails at
+  lint or build, as it does today.
+
 ### Minor Changes
 
 - **Lockfiles are no longer linted.** xo now ignores `**/package-lock.json` and

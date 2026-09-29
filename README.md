@@ -34,6 +34,11 @@ This package exports [a flat ESLint configuration](https://eslint.org/docs/lates
 npm install --save-dev eslint @cloudfour/eslint-config
 ```
 
+If your project uses TypeScript, its version has to be within the `typescript`
+range in this package's `peerDependencies`, which follows what `typescript-eslint`
+supports. Outside that range, npm stops with a peer-dependency conflict that
+names `@cloudfour/eslint-config`.
+
 Example `eslint.config.js`:
 
 ```js
