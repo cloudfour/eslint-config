@@ -1657,3 +1657,144 @@ package-json/sort-dependencies
 package-json/sort-files
 package-json/sort-properties
 package-json/valid-fields
+
+# probe.css — 39 rules
+ava/assertion-arguments [{}]
+ava/hooks-order
+ava/no-async-fn-without-await
+ava/no-commented-tests
+ava/no-conditional-assertion
+ava/no-duplicate-hooks
+ava/no-identical-title
+ava/no-ignored-test-files [{}]
+ava/no-import-test-files [{}]
+ava/no-incorrect-deep-equal
+ava/no-inline-assertions
+ava/no-invalid-modifier-chain
+ava/no-negated-assertion
+ava/no-nested-assertions
+ava/no-nested-tests
+ava/no-only-test
+ava/no-skip-assert
+ava/no-skip-test
+ava/no-todo-implementation
+ava/no-todo-test
+ava/no-useless-t-pass
+ava/prefer-async-await
+ava/prefer-t-regex
+ava/prefer-t-throws
+ava/require-assertion
+ava/test-title
+ava/use-t
+ava/use-t-throws-async-well
+ava/use-t-well
+ava/use-test
+ava/use-true-false
+css/font-family-fallbacks
+css/no-duplicate-imports
+css/no-duplicate-keyframe-selectors
+css/no-empty-blocks
+css/no-invalid-at-rule-placement
+css/no-invalid-at-rules
+css/no-invalid-named-grid-areas
+css/no-unmatchable-selectors
+
+# probe.md — 47 rules
+ava/assertion-arguments [{}]
+ava/hooks-order
+ava/no-async-fn-without-await
+ava/no-commented-tests
+ava/no-conditional-assertion
+ava/no-duplicate-hooks
+ava/no-identical-title
+ava/no-ignored-test-files [{}]
+ava/no-import-test-files [{}]
+ava/no-incorrect-deep-equal
+ava/no-inline-assertions
+ava/no-invalid-modifier-chain
+ava/no-negated-assertion
+ava/no-nested-assertions
+ava/no-nested-tests
+ava/no-only-test
+ava/no-skip-assert
+ava/no-skip-test
+ava/no-todo-implementation
+ava/no-todo-test
+ava/no-useless-t-pass
+ava/prefer-async-await
+ava/prefer-t-regex
+ava/prefer-t-throws
+ava/require-assertion
+ava/test-title
+ava/use-t
+ava/use-t-throws-async-well
+ava/use-t-well
+ava/use-test
+ava/use-true-false
+markdown/fenced-code-language [{"required":[]}]
+markdown/no-duplicate-definitions [{"allowDefinitions":["//"],"allowFootnoteDefinitions":[],"checkFootnoteDefinitions":true}]
+markdown/no-duplicate-headings [{"checkSiblingsOnly":true}]
+markdown/no-empty-definitions [{"allowDefinitions":["//"],"allowFootnoteDefinitions":[],"checkFootnoteDefinitions":true}]
+markdown/no-empty-images
+markdown/no-empty-links
+markdown/no-invalid-label-refs
+markdown/no-missing-atx-heading-space [{"checkClosedHeadings":false}]
+markdown/no-missing-label-refs [{"allowLabels":["!NOTE","!TIP","!IMPORTANT","!WARNING","!CAUTION"]}]
+markdown/no-missing-link-fragments [{"ignoreCase":true,"allowPattern":""}]
+markdown/no-multiple-h1 [{"frontmatterTitle":"^(?!\\s*['\"]title[:=]['\"])\\s*\\{?\\s*['\"]?title['\"]?\\s*[:=]"}]
+markdown/no-reference-like-urls
+markdown/no-reversed-media-syntax
+markdown/no-space-in-emphasis [{"checkStrikethrough":false}]
+markdown/no-unused-definitions [{"allowDefinitions":["//"],"allowFootnoteDefinitions":[],"checkFootnoteDefinitions":true}]
+markdown/table-column-count [{"checkMissingCells":false}]
+
+# probe.json — 35 rules
+ava/assertion-arguments [{}]
+ava/hooks-order
+ava/no-async-fn-without-await
+ava/no-commented-tests
+ava/no-conditional-assertion
+ava/no-duplicate-hooks
+ava/no-identical-title
+ava/no-ignored-test-files [{}]
+ava/no-import-test-files [{}]
+ava/no-incorrect-deep-equal
+ava/no-inline-assertions
+ava/no-invalid-modifier-chain
+ava/no-negated-assertion
+ava/no-nested-assertions
+ava/no-nested-tests
+ava/no-only-test
+ava/no-skip-assert
+ava/no-skip-test
+ava/no-todo-implementation
+ava/no-todo-test
+ava/no-useless-t-pass
+ava/prefer-async-await
+ava/prefer-t-regex
+ava/prefer-t-throws
+ava/require-assertion
+ava/test-title
+ava/use-t
+ava/use-t-throws-async-well
+ava/use-t-well
+ava/use-test
+ava/use-true-false
+json/no-duplicate-keys
+json/no-empty-keys
+json/no-unnormalized-keys [{"form":"NFC"}]
+json/no-unsafe-values
+
+# probe.json5 — relative to probe.json
+
+# probe.jsonc — relative to probe.json
+
+# probe.d.ts — relative to probe.ts
+
+# probe.test-d.ts — relative to probe.ts
+- @typescript-eslint/no-unnecessary-type-arguments
+
+# probe.tsx — relative to probe.ts
+
+# xo.config.js — relative to probe.js
+- import-x/no-anonymous-default-export
