@@ -1,4 +1,4 @@
-# probe.js — 716 rules
+# probe.js — 723 rules
 @eslint-community/eslint-comments/disable-enable-pair [{"allowWholeFile":true}]
 @eslint-community/eslint-comments/no-aggregating-enable
 @eslint-community/eslint-comments/no-duplicate-disable
@@ -465,12 +465,13 @@ unicorn/no-array-reverse [{"allowExpressionStatement":true}]
 unicorn/no-array-sort [{"allowExpressionStatement":true}]
 unicorn/no-array-sort-for-min-max
 unicorn/no-array-splice
+unicorn/no-async-iterator-callback
 unicorn/no-async-promise-finally
 unicorn/no-await-expression-member
 unicorn/no-await-in-promise-methods
 unicorn/no-blob-to-file
 unicorn/no-boolean-sort-comparator
-unicorn/no-break-in-nested-loop
+unicorn/no-break-in-nested-loop [{"checkContinue":false}]
 unicorn/no-canvas-to-image
 unicorn/no-chained-comparison
 unicorn/no-collection-bracket-access
@@ -492,7 +493,7 @@ unicorn/no-exports-in-scripts
 unicorn/no-for-each
 unicorn/no-for-loop
 unicorn/no-global-object-property-assignment
-unicorn/no-immediate-mutation
+unicorn/no-immediate-mutation [{"checkConditionals":false}]
 unicorn/no-impossible-length-comparison
 unicorn/no-incorrect-query-selector
 unicorn/no-incorrect-template-string-interpolation
@@ -555,7 +556,8 @@ unicorn/no-unsafe-promise-all-settled-values
 unicorn/no-unsafe-property-key
 unicorn/no-unsafe-sqlite-interpolation
 unicorn/no-unsafe-string-replacement
-unicorn/no-unused-array-method-return
+unicorn/no-unused-builtin-method-return
+unicorn/no-unused-iterator-helper
 unicorn/no-useless-boolean-cast
 unicorn/no-useless-coercion
 unicorn/no-useless-collection-argument
@@ -573,9 +575,11 @@ unicorn/no-useless-override
 unicorn/no-useless-promise-resolve-reject
 unicorn/no-useless-re-export
 unicorn/no-useless-recursion
+unicorn/no-useless-set-construction
 unicorn/no-useless-spread
 unicorn/no-useless-switch-case
 unicorn/no-useless-template-literals
+unicorn/no-using-resource-escape
 unicorn/no-xor-as-exponentiation
 unicorn/no-zero-fractions
 unicorn/numeric-separators-style [{"onlyIfContainsSeparator":false,"binary":{"minimumDigits":0,"groupLength":4},"octal":{"minimumDigits":0,"groupLength":4},"hexadecimal":{"minimumDigits":0,"groupLength":2},"number":{"minimumDigits":5,"groupLength":3,"fractionGroupLength":null}}]
@@ -604,7 +608,8 @@ unicorn/prefer-boolean-return
 unicorn/prefer-class-fields
 unicorn/prefer-classlist-toggle
 unicorn/prefer-code-point
-unicorn/prefer-continue [{"maximumStatements":1}]
+unicorn/prefer-combined-guards [{"checkCompoundConditions":false}]
+unicorn/prefer-continue [{"maximumStatements":1,"checkShortBodies":false}]
 unicorn/prefer-date-now
 unicorn/prefer-default-parameters
 unicorn/prefer-direct-iteration
@@ -613,7 +618,7 @@ unicorn/prefer-dom-node-html-methods [{"checkGetHTML":true,"checkSetHTML":false}
 unicorn/prefer-dom-node-remove
 unicorn/prefer-dom-node-replace-children
 unicorn/prefer-dom-node-text-content
-unicorn/prefer-early-return [{"maximumStatements":2}]
+unicorn/prefer-early-return [{"maximumStatements":2,"checkShortBodies":false}]
 unicorn/prefer-else-if
 unicorn/prefer-event-target
 unicorn/prefer-export-from [{"checkUsedVariables":true}]
@@ -632,6 +637,7 @@ unicorn/prefer-iterable-in-constructor
 unicorn/prefer-iterator-helpers
 unicorn/prefer-iterator-to-array
 unicorn/prefer-iterator-to-array-at-end
+unicorn/prefer-iterator-zip
 unicorn/prefer-keyboard-event-key
 unicorn/prefer-location-assign
 unicorn/prefer-logical-operator-over-ternary
@@ -687,6 +693,7 @@ unicorn/prefer-string-slice
 unicorn/prefer-string-starts-ends-with
 unicorn/prefer-string-trim-start-end
 unicorn/prefer-structured-clone [{"functions":[]}]
+unicorn/prefer-temporal-conversion
 unicorn/prefer-ternary ["only-single-line"]
 unicorn/prefer-then-catch
 unicorn/prefer-toggle-attribute
@@ -716,7 +723,7 @@ valid-typeof [{"requireStringLiterals":false}]
 xo/import-specifier-newline
 yoda ["never",{"exceptRange":false,"onlyEquality":false}]
 
-# probe.ts — 766 rules
+# probe.ts — 773 rules
 @eslint-community/eslint-comments/disable-enable-pair [{"allowWholeFile":true}]
 @eslint-community/eslint-comments/no-aggregating-enable
 @eslint-community/eslint-comments/no-duplicate-disable
@@ -751,7 +758,7 @@ yoda ["never",{"exceptRange":false,"onlyEquality":false}]
 @typescript-eslint/no-empty-object-type
 @typescript-eslint/no-extra-non-null-assertion
 @typescript-eslint/no-extraneous-class [{"allowConstructorOnly":false,"allowEmpty":false,"allowStaticOnly":false,"allowWithDecorator":true}]
-@typescript-eslint/no-floating-promises [{"checkThenables":true,"ignoreVoid":true,"ignoreIIFE":true}]
+@typescript-eslint/no-floating-promises [{"checkThenables":true,"ignoreVoid":true,"ignoreIIFE":true,"allowForKnownSafeCalls":[{"from":"package","package":"node:test","name":["test","it","describe","suite","skip","todo","only"]}]}]
 @typescript-eslint/no-for-in-array
 @typescript-eslint/no-import-type-side-effects
 @typescript-eslint/no-inferrable-types
@@ -1234,12 +1241,13 @@ unicorn/no-array-reverse [{"allowExpressionStatement":true}]
 unicorn/no-array-sort [{"allowExpressionStatement":true}]
 unicorn/no-array-sort-for-min-max
 unicorn/no-array-splice
+unicorn/no-async-iterator-callback
 unicorn/no-async-promise-finally
 unicorn/no-await-expression-member
 unicorn/no-await-in-promise-methods
 unicorn/no-blob-to-file
 unicorn/no-boolean-sort-comparator
-unicorn/no-break-in-nested-loop
+unicorn/no-break-in-nested-loop [{"checkContinue":false}]
 unicorn/no-canvas-to-image
 unicorn/no-chained-comparison
 unicorn/no-collection-bracket-access
@@ -1261,7 +1269,7 @@ unicorn/no-exports-in-scripts
 unicorn/no-for-each
 unicorn/no-for-loop
 unicorn/no-global-object-property-assignment
-unicorn/no-immediate-mutation
+unicorn/no-immediate-mutation [{"checkConditionals":false}]
 unicorn/no-impossible-length-comparison
 unicorn/no-incorrect-query-selector
 unicorn/no-incorrect-template-string-interpolation
@@ -1324,7 +1332,8 @@ unicorn/no-unsafe-promise-all-settled-values
 unicorn/no-unsafe-property-key
 unicorn/no-unsafe-sqlite-interpolation
 unicorn/no-unsafe-string-replacement
-unicorn/no-unused-array-method-return
+unicorn/no-unused-builtin-method-return
+unicorn/no-unused-iterator-helper
 unicorn/no-useless-boolean-cast
 unicorn/no-useless-coercion
 unicorn/no-useless-collection-argument
@@ -1342,8 +1351,10 @@ unicorn/no-useless-override
 unicorn/no-useless-promise-resolve-reject
 unicorn/no-useless-re-export
 unicorn/no-useless-recursion
+unicorn/no-useless-set-construction
 unicorn/no-useless-spread
 unicorn/no-useless-switch-case
+unicorn/no-using-resource-escape
 unicorn/no-xor-as-exponentiation
 unicorn/no-zero-fractions
 unicorn/numeric-separators-style [{"onlyIfContainsSeparator":false,"binary":{"minimumDigits":0,"groupLength":4},"octal":{"minimumDigits":0,"groupLength":4},"hexadecimal":{"minimumDigits":0,"groupLength":2},"number":{"minimumDigits":5,"groupLength":3,"fractionGroupLength":null}}]
@@ -1372,7 +1383,8 @@ unicorn/prefer-boolean-return
 unicorn/prefer-class-fields
 unicorn/prefer-classlist-toggle
 unicorn/prefer-code-point
-unicorn/prefer-continue [{"maximumStatements":1}]
+unicorn/prefer-combined-guards [{"checkCompoundConditions":false}]
+unicorn/prefer-continue [{"maximumStatements":1,"checkShortBodies":false}]
 unicorn/prefer-date-now
 unicorn/prefer-default-parameters
 unicorn/prefer-direct-iteration
@@ -1381,7 +1393,7 @@ unicorn/prefer-dom-node-html-methods [{"checkGetHTML":true,"checkSetHTML":false}
 unicorn/prefer-dom-node-remove
 unicorn/prefer-dom-node-replace-children
 unicorn/prefer-dom-node-text-content
-unicorn/prefer-early-return [{"maximumStatements":2}]
+unicorn/prefer-early-return [{"maximumStatements":2,"checkShortBodies":false}]
 unicorn/prefer-else-if
 unicorn/prefer-event-target
 unicorn/prefer-export-from [{"checkUsedVariables":true}]
@@ -1400,6 +1412,7 @@ unicorn/prefer-iterable-in-constructor
 unicorn/prefer-iterator-helpers
 unicorn/prefer-iterator-to-array
 unicorn/prefer-iterator-to-array-at-end
+unicorn/prefer-iterator-zip
 unicorn/prefer-keyboard-event-key
 unicorn/prefer-location-assign
 unicorn/prefer-logical-operator-over-ternary
@@ -1455,6 +1468,7 @@ unicorn/prefer-string-slice
 unicorn/prefer-string-starts-ends-with
 unicorn/prefer-string-trim-start-end
 unicorn/prefer-structured-clone [{"functions":[]}]
+unicorn/prefer-temporal-conversion
 unicorn/prefer-ternary ["only-single-line"]
 unicorn/prefer-then-catch
 unicorn/prefer-toggle-attribute
@@ -1563,7 +1577,7 @@ ava/use-t-well
 ava/use-test
 ava/use-true-false
 
-# package.json — 76 rules
+# package.json — 79 rules
 ava/assertion-arguments [{}]
 ava/hooks-order
 ava/no-async-fn-without-await
@@ -1602,6 +1616,7 @@ json/no-unnormalized-keys [{"form":"NFC"}]
 json/no-unsafe-values
 package-json/consistent-path-prefix
 package-json/no-absolute-paths
+package-json/no-absolute-paths-in-scripts
 package-json/no-backslash-paths
 package-json/no-core-module-dependencies
 package-json/no-deprecated-fields
@@ -1611,6 +1626,7 @@ package-json/no-empty-fields
 package-json/no-exports-trailing-slash
 package-json/no-fallback-export-arrays
 package-json/no-http-dependencies
+package-json/no-incompatible-peer-dependency-ranges
 package-json/no-install-scripts
 package-json/no-invalid-direct-overrides
 package-json/no-manual-maintainers
@@ -1630,6 +1646,7 @@ package-json/prefer-files-field
 package-json/prefer-https-urls
 package-json/prefer-shorthand
 package-json/prefer-side-effects-field
+package-json/require-bin-executable
 package-json/require-bin-shebang
 package-json/require-default-condition
 package-json/require-entry-point
@@ -1640,39 +1657,3 @@ package-json/sort-dependencies
 package-json/sort-files
 package-json/sort-properties
 package-json/valid-fields
-
-# package-lock.json — 34 rules
-ava/assertion-arguments [{}]
-ava/hooks-order
-ava/no-async-fn-without-await
-ava/no-commented-tests
-ava/no-conditional-assertion
-ava/no-duplicate-hooks
-ava/no-identical-title
-ava/no-ignored-test-files [{}]
-ava/no-import-test-files [{}]
-ava/no-incorrect-deep-equal
-ava/no-inline-assertions
-ava/no-invalid-modifier-chain
-ava/no-negated-assertion
-ava/no-nested-assertions
-ava/no-nested-tests
-ava/no-only-test
-ava/no-skip-assert
-ava/no-skip-test
-ava/no-todo-implementation
-ava/no-todo-test
-ava/no-useless-t-pass
-ava/prefer-async-await
-ava/prefer-t-regex
-ava/prefer-t-throws
-ava/require-assertion
-ava/test-title
-ava/use-t
-ava/use-t-throws-async-well
-ava/use-t-well
-ava/use-test
-ava/use-true-false
-json/no-duplicate-keys
-json/no-unnormalized-keys [{"form":"NFC"}]
-json/no-unsafe-values

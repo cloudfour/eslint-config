@@ -182,9 +182,9 @@ npx eslint --print-config probe.ts > ours.json
 npx eslint --no-config-lookup -c xo-only.config.js --print-config probe.ts > xo.json
 ```
 
-Compare per rule, and do it for a `.js`, `.ts`, `.html`, `package.json` and
-`package-lock.json` path separately — a rule set in one layer and re-set in a
-narrower one is misattributed otherwise.
+Compare per rule, and do it for a `.js`, `.ts`, `.html` and `package.json` path
+separately — a rule set in one layer and re-set in a narrower one is
+misattributed otherwise.
 
 Do this rather than writing "same as xo" in a comment. Such a marker is a claim
 about a moving target: the moment xo changes, it is wrong and nothing checks it.
