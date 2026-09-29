@@ -1,5 +1,53 @@
 # @cloudfour/eslint-config
 
+## 29.0.0 - 2026-09-29
+
+### Major Changes
+
+- **`eslint-config-xo` is now v4, which brings `eslint-plugin-unicorn` 76 and
+  `eslint-package-json` 1.0.** Ten rules arrive at error severity:
+
+  - `unicorn/no-async-iterator-callback`
+  - `unicorn/no-unused-builtin-method-return`, which replaces the now-deprecated
+    `unicorn/no-unused-array-method-return` and covers more built-ins. A config
+    that turns the old name off still loads, but should switch to the new one.
+  - `unicorn/no-unused-iterator-helper`
+  - `unicorn/no-useless-set-construction`
+  - `unicorn/no-using-resource-escape`
+  - `unicorn/prefer-combined-guards`
+  - `unicorn/prefer-iterator-zip`
+  - `unicorn/prefer-temporal-conversion`
+  - `package-json/no-absolute-paths-in-scripts`
+  - `package-json/no-incompatible-peer-dependency-ranges`
+  - `package-json/require-bin-executable`
+
+  Several rules we already had also report more than before.
+  `unicorn/prefer-ternary`, `prefer-early-return` and `prefer-continue` now
+  recognise more code shapes. The last two also gain a `checkShortBodies`
+  option, and `no-break-in-nested-loop` and `no-immediate-mutation` gain options
+  of their own, but every new option defaults to off, so the extra reports come
+  from the broader matching, not the options.
+
+  Measured across three consumers — `c4-sw-ac-patterns`,
+  `linkedin-talent-connect` and `lighthouse-parade`, 855 files — this is **21
+  new reports, 13 of them auto-fixable**. Ten are `prefer-ternary`, all
+  fixable; ten more are `prefer-early-return` and `prefer-continue`, of which
+  only two are fixable; the last is one fixable `prefer-combined-guards`. None of
+  the other new rules reported anything. `lighthouse-parade` also gets one
+  `require-bin-executable` report, but only because its `bin` points into an
+  unbuilt `dist/`.
+
+### Minor Changes
+
+- **Lockfiles are no longer linted.** xo now ignores `**/package-lock.json` and
+  `**/npm-shrinkwrap.json` by default, so our lockfile layer, which only turned
+  off `json/no-empty-keys` for npm's root-package key, had nothing left to apply
+  to and has been removed.
+
+- **`@typescript-eslint/no-floating-promises` allows un-awaited `node:test`
+  calls.** `test()`, `it()`, `describe()` and their siblings return promises
+  that the runner tracks itself, and xo now lists them as known-safe.
+
 ## 28.0.0 - 2026-09-17
 
 ### Major Changes

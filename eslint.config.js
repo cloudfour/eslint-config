@@ -422,13 +422,6 @@ const config = [
 			'package-json/require-engines': 'off',
 		},
 	},
-
-	// Lockfiles are generated. npm uses an empty string as the key for the root
-	// package, so every package-lock.json trips `json/no-empty-keys`.
-	{
-		files: ['**/package-lock.json'],
-		rules: { 'json/no-empty-keys': 'off' },
-	},
 ];
 
 export default config;
