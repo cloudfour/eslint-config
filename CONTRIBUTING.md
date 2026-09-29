@@ -64,9 +64,12 @@ npm test    # the rule inventory fails if anything changed
 ```
 
 `__tests__/rule-inventory.snapshot.txt` lists every rule the config leaves on,
-with its options, for a JavaScript, TypeScript, HTML and `package.json` file. The
-test fails when that set changes and names the rules that moved. Regenerate it
-with:
+with its options, for one probe path per layer of the config: JavaScript,
+TypeScript, HTML, CSS, Markdown, JSON and `package.json`, plus narrow layers such
+as `.tsx` and `.d.ts`, which record only how they differ from `.ts`. The test
+fails when that set changes and names the rules that moved. A second test fails
+when a layer's `files` pattern matches no probe, which is how a layer xo adds
+later gets noticed. Regenerate the snapshot with:
 
 ```sh
 UPDATE_RULE_INVENTORY=1 npm test
@@ -182,9 +185,9 @@ npx eslint --print-config probe.ts > ours.json
 npx eslint --no-config-lookup -c xo-only.config.js --print-config probe.ts > xo.json
 ```
 
-Compare per rule, and do it for a `.js`, `.ts`, `.html` and `package.json` path
-separately — a rule set in one layer and re-set in a narrower one is
-misattributed otherwise.
+Compare per rule, and do it separately for each probe path in
+`__tests__/rule-inventory.test.js` — a rule set in one layer and re-set in a
+narrower one is misattributed otherwise.
 
 Do this rather than writing "same as xo" in a comment. Such a marker is a claim
 about a moving target: the moment xo changes, it is wrong and nothing checks it.
