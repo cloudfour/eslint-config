@@ -28,14 +28,12 @@
   of their own, but every new option defaults to off, so the extra reports come
   from the broader matching, not the options.
 
-  Measured across three consumers — `c4-sw-ac-patterns`,
-  `linkedin-talent-connect` and `lighthouse-parade`, 855 files — this is **21
-  new reports, 13 of them auto-fixable**. Ten are `prefer-ternary`, all
-  fixable; ten more are `prefer-early-return` and `prefer-continue`, of which
-  only two are fixable; the last is one fixable `prefer-combined-guards`. None of
-  the other new rules reported anything. `lighthouse-parade` also gets one
-  `require-bin-executable` report, but only because its `bin` points into an
-  unbuilt `dist/`.
+  Measured across 855 files in three consumers, this is **21 new reports, 13 of
+  them auto-fixable**. Ten are `prefer-ternary`, all fixable; ten more are
+  `prefer-early-return` and `prefer-continue`, of which only two are fixable; the
+  last is one fixable `prefer-combined-guards`. None of the other new rules
+  reported anything, apart from one `require-bin-executable` report that came
+  only from a `bin` pointing into an unbuilt `dist/`.
 
 ### Minor Changes
 
@@ -58,12 +56,10 @@
   enables both, so this change deletes our two overrides rather than configuring
   anything: the rules arrive with xo's options, not the plugin defaults.
 
-  Measured across 296 TypeScript files in three consumers — `c4-sw-ac-patterns`
-  (221), `linkedin-talent-connect` (66) and `lighthouse-parade` (9) — this is
-  **nine `no-floating-promises` reports and two
-  `restrict-template-expressions`**. Neither rule is auto-fixable, though
-  `no-floating-promises` offers editor suggestions, so anything either one
-  catches has to be edited by hand. That is what makes this a major release.
+  Measured across 296 TypeScript files in three consumers, this is **nine
+  `no-floating-promises` reports and two `restrict-template-expressions`**.
+  Neither rule is auto-fixable, though `no-floating-promises` offers editor
+  suggestions, so anything either one catches has to be edited by hand. That is what makes this a major release.
 
   `no-floating-promises` reports a promise that is started and then abandoned —
   no `await`, no `.catch()`, no `void`. It runs with xo's `ignoreVoid`, so
