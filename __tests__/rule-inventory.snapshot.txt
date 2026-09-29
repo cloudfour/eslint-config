@@ -142,7 +142,7 @@ n/prefer-process-get-builtin-module
 n/prefer-promises/dns
 n/prefer-promises/fs
 n/process-exit-as-throw
-new-cap [{"capIsNew":true,"capIsNewExceptions":["Array","Boolean","Date","Error","Function","Number","Object","RegExp","String","Symbol","BigInt"],"newIsCap":true,"newIsCapExceptions":[],"properties":true}]
+new-cap [{"capIsNew":true,"capIsNewExceptions":[],"newIsCap":true,"newIsCapExceptions":[],"properties":true}]
 no-alert
 no-array-constructor
 no-async-promise-executor
@@ -937,7 +937,7 @@ n/prefer-process-get-builtin-module
 n/prefer-promises/dns
 n/prefer-promises/fs
 n/process-exit-as-throw
-new-cap [{"capIsNew":true,"capIsNewExceptions":["Array","Boolean","Date","Error","Function","Number","Object","RegExp","String","Symbol","BigInt"],"newIsCap":true,"newIsCapExceptions":[],"properties":true}]
+new-cap [{"capIsNew":true,"capIsNewExceptions":[],"newIsCap":true,"newIsCapExceptions":[],"properties":true}]
 no-alert
 no-async-promise-executor
 no-await-in-loop
