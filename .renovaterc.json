@@ -1,4 +1,17 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": ["local>cloudfour/renovate-config:library"]
+	"extends": ["local>cloudfour/renovate-config:library"],
+	"packageRules": [
+		{
+			"description": "The library preset leaves runtime dependencies as ranges so users get fixes without waiting for our release. Here they are pinned instead, because they are part of what this package promises: ESLint's semver policy lets a minor release report more errors, so a ranged plugin could change which errors users see after a routine reinstall, without a new version of this config. Pinned, those changes only arrive when users update this package. The trade-off is that every update here reaches users only through a release, so these PRs are labeled 'needs release' and the dependency drift check keeps an issue open until one is published.",
+			"matchDepTypes": ["dependencies"],
+			"rangeStrategy": "pin",
+			"addLabels": ["needs release"]
+		}
+	],
+	"vulnerabilityAlerts": {
+		"description": "Security updates wait for a person rather than automerging, so the fix ships in a prompt release instead of sitting unreleased on main. This also holds devDependency security updates, which don't need a release but are rare enough that a manual merge costs little.",
+		"automerge": false,
+		"addLabels": ["security"]
+	}
 }
