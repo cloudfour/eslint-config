@@ -7,6 +7,12 @@
 			"matchDepTypes": ["dependencies"],
 			"rangeStrategy": "pin",
 			"addLabels": ["needs release"]
+		},
+		{
+			"description": "The typescript peer range isn't a choice of ours to keep current. It mirrors what our dependencies support: eslint-config-xo sets the floor and typescript-eslint the ceiling. When TypeScript releases outside it, Renovate's 'replace' rewrites the compound range '>=6.0.0 <6.1.0' as '<7.1.0', which drops the floor and claims support typescript-eslint doesn't have. Widen it by hand when typescript-eslint does, as described in #736.",
+			"matchDepTypes": ["peerDependencies"],
+			"matchPackageNames": ["typescript"],
+			"enabled": false
 		}
 	],
 	"vulnerabilityAlerts": {
