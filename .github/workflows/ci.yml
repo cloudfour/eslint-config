@@ -30,27 +30,70 @@ jobs:
       - name: Run Tests
         run: npm test
 
-  # `validate` only ever sees the ESLint version in the lockfile, so on its own
-  # it cannot tell us whether the range we advertise in `peerDependencies` is
-  # honest. This runs the same checks against the oldest ESLint we claim to
-  # support, resolved from that range so it follows whatever we declare.
-  validate-oldest-eslint:
+  # Finds the oldest Node version each part of `engines.node` allows, for
+  # example 22.13.0 and 24.0.0 from `^22.13.0 || >=24`, for the job below. It
+  # reads them from package.json rather than listing them in the workflow, so
+  # Renovate doesn't update them and changing `engines` is the only edit needed.
+  oldest-node-versions:
     runs-on: ubuntu-latest
+    outputs:
+      versions: ${{ steps.read.outputs.versions }}
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v7.0.1
+      - name: Read engines.node
+        id: read
+        run: |
+          versions="$(node --print '
+            JSON.stringify(require("./package.json").engines.node.split("||").map((part) => {
+              const match = /^(?:\^|~|>=)?\s*v?(\d+)(?:\.(\d+))?(?:\.(\d+))?(?:\s|$)/.exec(part.trim());
+              if (!match) throw new Error(`Can not find the oldest version in "${part.trim()}"`);
+              return [match[1], match[2] ?? 0, match[3] ?? 0].join(".");
+            }))
+          ')"
+          echo "Oldest supported Node versions: $versions"
+          echo "versions=$versions" >> "$GITHUB_OUTPUT"
+
+  # `validate` only ever sees the current Node and the versions in the
+  # lockfile, so on its own it cannot tell us whether the ranges we advertise in
+  # `engines` and `peerDependencies` are honest. This runs the same checks on
+  # the oldest Node, ESLint and TypeScript we claim to support, resolved from
+  # those ranges so it follows whatever we declare. See CONTRIBUTING.md.
+  validate-oldest-supported:
+    name: validate-oldest-supported (Node ${{ matrix.node-version }})
+    needs: oldest-node-versions
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ${{ fromJSON(needs.oldest-node-versions.outputs.versions) }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v7.0.1
       - name: Setup Node
         uses: actions/setup-node@v7.1.0
         with:
-          node-version: 'lts/*'
+          node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - name: Install Dependencies
         run: npm ci
-      - name: Downgrade to the oldest supported ESLint
+      # Asks npm for the oldest published release in each peer range rather
+      # than working it out from the range, which can name a version that was
+      # never published: TypeScript went from 6.0.1-rc to 6.0.2, so
+      # `>=6.0.0 <6.1.0` starts at 6.0.2. Installing a missing version doesn't
+      # fail here, npm hangs.
+      - name: Downgrade to the oldest supported peer dependencies
         run: |
-          version="$(node --print "require('semver').minVersion(require('./package.json').peerDependencies.eslint).version")"
-          echo "Testing against eslint@$version"
-          npm install --no-save "eslint@$version"
+          specs="$(node --print '
+            const { execFileSync } = require("node:child_process");
+            const semver = require("semver");
+            Object.entries(require("./package.json").peerDependencies).map(([name, range]) => {
+              const published = [JSON.parse(execFileSync("npm", ["view", `${name}@${range}`, "version", "--json"]))].flat();
+              return `${name}@${semver.sort(published)[0]}`;
+            }).join(" ")
+          ')"
+          echo "Testing against $specs"
+          npm install --no-save $specs
       - name: Run Lint
         run: npm run lint:check
       - name: Run Tests

@@ -31,19 +31,71 @@ test framework to install. It covers five things:
 When a dependency bump changes which rules fire, that is a real behaviour change
 for consumers: update the fixtures and record it in `CHANGELOG.md`.
 
-Locally the suite only ever runs against the ESLint version in the lockfile. CI
-also runs it against the oldest ESLint our `peerDependencies` range allows,
-which is where a bump that quietly raises our real floor shows up. To reproduce
-that run:
-
-```sh
-npm install --no-save eslint@$(node --print "require('semver').minVersion(require('./package.json').peerDependencies.eslint).version")
-npm test
-npm ci   # restore the lockfile version
-```
+Locally the suite only ever runs against your Node and the versions in the
+lockfile. CI also runs it on the oldest versions we claim to support; see
+[Supported versions](#supported-versions).
 
 Fixtures are excluded from ESLint and Prettier so that autofixing can never
 silently change what they test.
+
+## Supported versions
+
+`engines.node` and `peerDependencies` in `package.json` are promises to users:
+this config works with every Node, ESLint and TypeScript version they allow. CI
+checks both ends of those ranges:
+
+- **The newest.** `validate` runs lint and the tests on the current Node LTS,
+  with the ESLint and TypeScript versions in the lockfile, which Renovate keeps
+  current.
+- **The oldest.** `validate-oldest-supported` runs the same checks once for the
+  oldest Node each part of `engines.node` allows (`^22.13.0 || >=24` gives
+  22.13.0 and 24.0.0), each time with the oldest published ESLint and
+  TypeScript our `peerDependencies` allow. It reads all of those from
+  `package.json` when it runs, so the workflow has no version numbers to keep in
+  step.
+
+To reproduce the oldest run locally, switch to the oldest Node (for example
+`nvm use 22.13.0`), then:
+
+```sh
+npm ci
+npm install --no-save eslint@10.6.0 typescript@6.0.2   # the oldest published in each peer range
+npm run lint:check
+npm test
+npm ci   # restore the lockfile versions
+```
+
+### When an oldest-version job fails
+
+This usually happens on a Renovate PR: a dependency's new release needs a newer
+Node, ESLint or TypeScript than we claim to support. Our dependencies are
+pinned, so the PR only reaches users when we release it, but merging it means
+the next release breaks for them. Either:
+
+- **Keep the older dependency.** Add a rule to `.renovaterc.json` that holds it
+  back, with a `description` saying why and when it can be removed. This keeps
+  our support as it is.
+- **Raise the floor** in a major release, as described below.
+
+Do not delete or skip the job to get the PR through. A red job means a range in
+`package.json` is wrong, and removing the job only hides that from us, not from
+users.
+
+### Changing a range
+
+Edit `engines.node` or `peerDependencies` in `package.json`. The CI job follows
+them, so there is nothing else to update in the workflow. Update the example
+versions above if they change.
+
+- **Raising the oldest version** drops support for someone, so it is a breaking
+  change and needs a major release. Good reasons to raise it: that Node line has
+  reached [end of life](https://nodejs.org/en/about/previous-releases), a
+  dependency we need requires a newer version, or we want a newer API.
+- **Lowering it**, or supporting another major, is a minor release, as long as
+  the oldest-version job passes. The TypeScript range is the exception: it
+  follows what our dependencies support, as described in #736.
+
+Either way, record the change in `CHANGELOG.md`.
 
 ## Reviewing a major dependency bump
 
@@ -84,7 +136,7 @@ happily as one that adds a rule.
 
 Resolved options include the defaults ESLint injects from each core rule's
 `meta.defaultOptions`, and those change between ESLint releases. So under
-`validate-oldest-eslint`, which swaps ESLint out deliberately, the test compares
+`validate-oldest-supported`, which swaps ESLint out deliberately, the test compares
 only which rules are enabled and leaves their options alone — otherwise it would
 report ESLint's own churn as if it were ours.
 
@@ -108,9 +160,10 @@ the absolute number is meaningless — the _delta_ is the number worth quoting.
 ### 3. Does it still support what we claim to?
 
 `engines.test.js` and `peer-dependencies.test.js` cover this, and CI runs the
-suite against the oldest ESLint our `peerDependencies` range allows. That job is
-what catches a bump quietly raising our real floor, so do not dismiss it as
-redundant with the main run.
+suite on the oldest Node, ESLint and TypeScript our ranges allow, as described
+in [Supported versions](#supported-versions). That job is what catches a bump
+quietly raising our real floor, so do not dismiss it as redundant with the main
+run.
 
 ### When to add a test
 

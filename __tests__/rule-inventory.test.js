@@ -15,7 +15,7 @@ const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
 // `meta.defaultOptions`, and those change between ESLint releases — 10.10 added
 // `checkConditionalExpressions` to `no-unmodified-loop-condition` and
 // `errorClassNames` to `preserve-caught-error`, neither of which we or xo set.
-// The `validate-oldest-eslint` CI job swaps ESLint out deliberately, so
+// The `validate-oldest-supported` CI job swaps ESLint out deliberately, so
 // comparing options there reports ESLint's own churn as if it were ours.
 //
 // Which rules are enabled is stable across the ESLint range we support, so that
