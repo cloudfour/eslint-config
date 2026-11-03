@@ -1,5 +1,13 @@
 # @cloudfour/eslint-config
 
+## 29.0.1 - 2026-11-03
+
+### Patch Changes
+
+- `globals` moves from `17.12.0` to `17.13.0`. The new version only adds three
+  browser globals, and we use only its `es2026` and `node` sets, so lint results
+  are unchanged.
+
 ## 29.0.0 - 2026-09-29
 
 ### Major Changes
