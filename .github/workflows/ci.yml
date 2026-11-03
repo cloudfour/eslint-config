@@ -62,23 +62,10 @@ jobs:
           cache: 'npm'
       - name: Install Dependencies
         run: npm ci
-      # Asks npm for the oldest published release in each peer range rather
-      # than working it out from the range, which can name a version that was
-      # never published: TypeScript went from 6.0.1-rc to 6.0.2, so
-      # `>=6.0.0 <6.1.0` starts at 6.0.2. Installing a missing version doesn't
-      # fail here, npm hangs.
+      # Installs the oldest published release each peer range allows. The
+      # action is shared in cloudfour/.github, whose README explains how.
       - name: Downgrade to the oldest supported peer dependencies
-        run: |
-          specs="$(node --print '
-            const { execFileSync } = require("node:child_process");
-            const semver = require("semver");
-            Object.entries(require("./package.json").peerDependencies).map(([name, range]) => {
-              const published = [JSON.parse(execFileSync("npm", ["view", `${name}@${range}`, "version", "--json"]))].flat();
-              return `${name}@${semver.sort(published)[0]}`;
-            }).join(" ")
-          ')"
-          echo "Testing against $specs"
-          npm install --no-save $specs
+        uses: cloudfour/.github/actions/oldest-peer-dependencies@main
       - name: Run Lint
         run: npm run lint:check
       - name: Run Tests
